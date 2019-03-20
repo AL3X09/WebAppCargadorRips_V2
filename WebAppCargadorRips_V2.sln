@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCargadorRips_V2", "WebAppCargadorRips_V2\WebAppCargadorRips_V2.csproj", "{4CEA3B07-FD3F-4C1B-BB57-FA5E702881F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCargadorRips_V2.Tests", "WebAppCargadorRips_V2.Tests\WebAppCargadorRips_V2.Tests.csproj", "{227A15FC-1112-48FC-98F5-AF9A36CE636B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CEA3B07-FD3F-4C1B-BB57-FA5E702881F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CEA3B07-FD3F-4C1B-BB57-FA5E702881F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CEA3B07-FD3F-4C1B-BB57-FA5E702881F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CEA3B07-FD3F-4C1B-BB57-FA5E702881F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227A15FC-1112-48FC-98F5-AF9A36CE636B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227A15FC-1112-48FC-98F5-AF9A36CE636B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227A15FC-1112-48FC-98F5-AF9A36CE636B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227A15FC-1112-48FC-98F5-AF9A36CE636B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C923D240-6035-41DA-BC54-1818A3C14999}
+	EndGlobalSection
+EndGlobal
