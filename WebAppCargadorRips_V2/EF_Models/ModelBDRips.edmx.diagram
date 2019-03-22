@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40f0cbd3c44543da9f6eefa8f9435455" Name="Diagram1">
+        <EntityTypeShape EntityType="RipsModel.Servicio_Radicacion" Width="1.5" PointX="6" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Servicio_Validacion" Width="1.5" PointX="5.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Servicio_Validacion_Error" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Preradicacion" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Validacion" Width="1.5" PointX="8.25" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Correo" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Directorios" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Categoria" Width="1.5" PointX="3" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Estructura" Width="1.5" PointX="3" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Estructura_Campo" Width="1.5" PointX="8.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Sexo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Tipo_Usuario" Width="1.5" PointX="3" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Mensaje" Width="1.5" PointX="3" PointY="48.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Permiso" Width="1.5" PointX="3" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Rol" Width="1.5" PointX="3" PointY="55" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_RolHasPermiso" Width="1.5" PointX="5.25" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.DIVIPOLA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Estado_RIPS" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Pais" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Plantilla_Correo" Width="1.5" PointX="3" PointY="58.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Prestador" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Administrador" Width="1.5" PointX="5.25" PointY="54.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Correo_Sin_Restriccion" Width="1.5" PointX="3" PointY="62" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Documento" Width="1.5" PointX="3" PointY="64.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Pregunta_Frecuente" Width="1.5" PointX="3" PointY="67.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.Web_Usuario" Width="1.5" PointX="8.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.VW_Radicacion" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.VW_Servicio_Validacion" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RipsModel.VW_Listado_Estado_Rips" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___carga__26CFC035" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___radic__25DB9BFC" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___servi__24E777C3" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___categ__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___estad__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___prest__7DCDAAA2" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___tipo___2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Web_Prera__FK_pr__70A8B9AE" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_preradicacion_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_validacion_categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_validacion_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_validacion_tipo_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_validacion_web_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_correo_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Categoria__estad__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Estructur__estad__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Estructur__estru__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Estructur__estad__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Tipo_Usua__estad__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_mensaje_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_permiso_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_permiso" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_rol_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_usuario_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_administrador_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_correo_sin_restriccion_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_plantillas_correo_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_pregunta_frecuente_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_usuario_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_web_documento_estado_rips" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK_usuario_prestador" ManuallyRouted="false" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___valid__469D7149" />
+        <AssociationConnector Association="RipsModel.FK__Servicio___estru__47919582" />
+        <AssociationConnector Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
