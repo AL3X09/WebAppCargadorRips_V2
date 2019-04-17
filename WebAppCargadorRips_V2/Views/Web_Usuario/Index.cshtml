@@ -1,0 +1,120 @@
+﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Usuario>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<div class="container-fluid mt-5">
+
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
+
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <span>USUARIOS</span>
+            </h4>
+        </div>
+
+    </div>
+    <!-- Heading -->
+
+    <h2>USUARIOS</h2>
+
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Create")
+    </p>
+    <table class="table table-hover">
+        <!-- Table head -->
+        <thead class="blue-grey lighten-4">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.correo)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.nombres)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.razon_social)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.confirmacion_condiciones)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.confirmacion_correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha_modificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prestador.codigo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.razon_social)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.confirmacion_condiciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.confirmacion_correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_modificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prestador.codigo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.usuario_id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.usuario_id }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.usuario_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

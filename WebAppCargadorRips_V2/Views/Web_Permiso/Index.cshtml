@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Permiso>
+
+@{
+    ViewBag.Title = "Permisos";
+}
+
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
+
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
+
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <a href="#" target="_blank">Permisos</a>
+        </h4>
+    </div>
+
+</div>
+<!-- Heading -->
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_modificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.permiso_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.permiso_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.permiso_id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Web_RolHasPermiso
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Web_RolHasPermiso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web_Modulo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web_Modulo.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web_Permiso.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web_Permiso.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web_Rol.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rolhaspermiso_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

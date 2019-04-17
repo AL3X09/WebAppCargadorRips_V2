@@ -1,0 +1,122 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Web_Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Web_Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razon_social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmacion_condiciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmacion_condiciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmacion_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmacion_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web_Rol.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prestador.codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestador.codigo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.usuario_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

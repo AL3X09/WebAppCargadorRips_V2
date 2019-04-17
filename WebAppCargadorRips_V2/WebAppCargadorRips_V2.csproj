@@ -192,7 +192,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
+    <Compile Include="Controllers\APIS\ArchivosplanosController.cs" />
+    <Compile Include="Controllers\APIS\Web_PermisoController.cs" />
+    <Compile Include="Controllers\CargadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Web_ModuloController.cs" />
+    <Compile Include="Controllers\Web_PermisoController.cs" />
+    <Compile Include="Controllers\Web_RolController.cs" />
+    <Compile Include="Controllers\Web_RolHasPermisoController.cs" />
+    <Compile Include="Controllers\Web_UsuarioController.cs" />
     <Compile Include="EF_Models\Categoria.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
@@ -349,6 +358,9 @@
     <Compile Include="EF_Models\Web_Mensaje.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\Web_Modulo.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\Web_Permiso.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
@@ -373,6 +385,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SysDataTablePager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -540,15 +553,42 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\MDB\bootstrap.css" />
-    <Content Include="Content\MDB\bootstrap.min.css" />
+    <Content Include="Content\gijgo\combined\gijgo.css" />
+    <Content Include="Content\gijgo\combined\gijgo.min.css" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.svg" />
+    <Content Include="Content\gijgo\modular\checkbox.css" />
+    <Content Include="Content\gijgo\modular\checkbox.min.css" />
+    <Content Include="Content\gijgo\modular\colorpicker.css" />
+    <Content Include="Content\gijgo\modular\colorpicker.min.css" />
+    <Content Include="Content\gijgo\modular\core.css" />
+    <Content Include="Content\gijgo\modular\core.min.css" />
+    <Content Include="Content\gijgo\modular\datepicker.css" />
+    <Content Include="Content\gijgo\modular\datepicker.min.css" />
+    <Content Include="Content\gijgo\modular\datetimepicker.css" />
+    <Content Include="Content\gijgo\modular\datetimepicker.min.css" />
+    <Content Include="Content\gijgo\modular\dialog.css" />
+    <Content Include="Content\gijgo\modular\dialog.min.css" />
+    <Content Include="Content\gijgo\modular\dropdown.css" />
+    <Content Include="Content\gijgo\modular\dropdown.min.css" />
+    <Content Include="Content\gijgo\modular\editor.css" />
+    <Content Include="Content\gijgo\modular\editor.min.css" />
+    <Content Include="Content\gijgo\modular\grid.css" />
+    <Content Include="Content\gijgo\modular\grid.min.css" />
+    <Content Include="Content\gijgo\modular\slider.css" />
+    <Content Include="Content\gijgo\modular\slider.min.css" />
+    <Content Include="Content\gijgo\modular\timepicker.css" />
+    <Content Include="Content\gijgo\modular\timepicker.min.css" />
+    <Content Include="Content\gijgo\modular\tree.css" />
+    <Content Include="Content\gijgo\modular\tree.min.css" />
+    <Content Include="Content\Material\demo.css" />
+    <Content Include="Content\Material\material-dashboard.css" />
+    <Content Include="Content\MDB\compiled.min.css" />
     <Content Include="Content\MDB\mdb.css" />
     <Content Include="Content\MDB\mdb.lite.css" />
     <Content Include="Content\MDB\mdb.lite.min.css" />
     <Content Include="Content\MDB\mdb.min.css" />
     <Content Include="Content\MDB\style.css" />
     <Content Include="Content\MDB\style.min.css" />
-    <Content Include="Content\simple-sidebar.css" />
     <Content Include="EF_Models\ModelBDRips.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelBDRips.edmx</DependentUpon>
@@ -582,6 +622,25 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Img\lightbox\default-skin.png" />
+    <Content Include="Img\lightbox\default-skin.svg" />
+    <Content Include="Img\lightbox\preloader.gif" />
+    <Content Include="Img\logos\alcaldia_logo.png" />
+    <Content Include="Img\logos\alcaldia_logo2.jpg" />
+    <Content Include="Img\logos\logo.ico" />
+    <Content Include="Img\logos\logo.png" />
+    <Content Include="Img\logos\logo2.png" />
+    <Content Include="Img\overlays\01.png" />
+    <Content Include="Img\overlays\02.png" />
+    <Content Include="Img\overlays\03.png" />
+    <Content Include="Img\overlays\04.png" />
+    <Content Include="Img\overlays\05.png" />
+    <Content Include="Img\overlays\06.png" />
+    <Content Include="Img\overlays\07.png" />
+    <Content Include="Img\overlays\08.png" />
+    <Content Include="Img\overlays\09.png" />
+    <Content Include="Img\svg\arrow_left.svg" />
+    <Content Include="Img\svg\arrow_right.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -691,7 +750,83 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="font\roboto\Roboto-Bold.eot" />
+    <Content Include="font\roboto\Roboto-Bold.ttf" />
+    <Content Include="font\roboto\Roboto-Bold.woff" />
+    <Content Include="font\roboto\Roboto-Bold.woff2" />
+    <Content Include="font\roboto\Roboto-Light.eot" />
+    <Content Include="font\roboto\Roboto-Light.ttf" />
+    <Content Include="font\roboto\Roboto-Light.woff" />
+    <Content Include="font\roboto\Roboto-Light.woff2" />
+    <Content Include="font\roboto\Roboto-Medium.eot" />
+    <Content Include="font\roboto\Roboto-Medium.ttf" />
+    <Content Include="font\roboto\Roboto-Medium.woff" />
+    <Content Include="font\roboto\Roboto-Medium.woff2" />
+    <Content Include="font\roboto\Roboto-Regular.eot" />
+    <Content Include="font\roboto\Roboto-Regular.ttf" />
+    <Content Include="font\roboto\Roboto-Regular.woff" />
+    <Content Include="font\roboto\Roboto-Regular.woff2" />
+    <Content Include="font\roboto\Roboto-Thin.eot" />
+    <Content Include="font\roboto\Roboto-Thin.ttf" />
+    <Content Include="font\roboto\Roboto-Thin.woff" />
+    <Content Include="font\roboto\Roboto-Thin.woff2" />
+    <Content Include="Content\Material\material-dashboard.css.map" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.woff" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.ttf" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\gijgo\combined\gijgo.js" />
+    <Content Include="Scripts\gijgo\combined\gijgo.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.bg-bg.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.bg-bg.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.de-de.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.de-de.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.es-es.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.es-es.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.fr-fr.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.fr-fr.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.it-it.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.it-it.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ja-jp.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ja-jp.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.pt-br.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.pt-br.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ru-ru.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ru-ru.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.tr-tr.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.tr-tr.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.zh-cn.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.zh-cn.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.zh-tw.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.zh-tw.min.js" />
+    <Content Include="Scripts\gijgo\modular\checkbox.js" />
+    <Content Include="Scripts\gijgo\modular\checkbox.min.js" />
+    <Content Include="Scripts\gijgo\modular\colorpicker.js" />
+    <Content Include="Scripts\gijgo\modular\colorpicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\core.js" />
+    <Content Include="Scripts\gijgo\modular\core.min.js" />
+    <Content Include="Scripts\gijgo\modular\datepicker.js" />
+    <Content Include="Scripts\gijgo\modular\datepicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\datetimepicker.js" />
+    <Content Include="Scripts\gijgo\modular\datetimepicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\dialog.js" />
+    <Content Include="Scripts\gijgo\modular\dialog.min.js" />
+    <Content Include="Scripts\gijgo\modular\draggable.js" />
+    <Content Include="Scripts\gijgo\modular\draggable.min.js" />
+    <Content Include="Scripts\gijgo\modular\dropdown.js" />
+    <Content Include="Scripts\gijgo\modular\dropdown.min.js" />
+    <Content Include="Scripts\gijgo\modular\droppable.js" />
+    <Content Include="Scripts\gijgo\modular\droppable.min.js" />
+    <Content Include="Scripts\gijgo\modular\editor.js" />
+    <Content Include="Scripts\gijgo\modular\editor.min.js" />
+    <Content Include="Scripts\gijgo\modular\grid.js" />
+    <Content Include="Scripts\gijgo\modular\grid.min.js" />
+    <Content Include="Scripts\gijgo\modular\slider.js" />
+    <Content Include="Scripts\gijgo\modular\slider.min.js" />
+    <Content Include="Scripts\gijgo\modular\timepicker.js" />
+    <Content Include="Scripts\gijgo\modular\timepicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\tree.js" />
+    <Content Include="Scripts\gijgo\modular\tree.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -701,7 +836,44 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Material\core\bootstrap-material-design.min.js" />
+    <Content Include="Scripts\Material\demo.js" />
+    <Content Include="Scripts\Material\material-dashboard.js" />
+    <Content Include="Scripts\Material\plugins\arrive.min.js" />
+    <Content Include="Scripts\Material\plugins\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\Material\plugins\bootstrap-notify.js" />
+    <Content Include="Scripts\Material\plugins\bootstrap-selectpicker.js" />
+    <Content Include="Scripts\Material\plugins\bootstrap-tagsinput.js" />
+    <Content Include="Scripts\Material\plugins\chartist.min.js" />
+    <Content Include="Scripts\Material\plugins\fullcalendar.min.js" />
+    <Content Include="Scripts\Material\plugins\jasny-bootstrap.min.js" />
+    <Content Include="Scripts\Material\plugins\jquery-jvectormap.js" />
+    <Content Include="Scripts\Material\plugins\jquery.bootstrap-wizard.js" />
+    <Content Include="Scripts\Material\plugins\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Material\plugins\jquery.tagsinput.js" />
+    <Content Include="Scripts\Material\plugins\jquery.validate.min.js" />
+    <Content Include="Scripts\Material\plugins\moment.min.js" />
+    <Content Include="Scripts\Material\plugins\nouislider.min.js" />
+    <Content Include="Scripts\Material\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Scripts\Material\plugins\sweetalert2.js" />
+    <Content Include="Scripts\MDB\mdb.js" />
+    <Content Include="Scripts\MDB\mdb.min.js" />
+    <Content Include="Scripts\MDB\modules\chart.js" />
+    <Content Include="Scripts\MDB\modules\default-file-input.js" />
+    <Content Include="Scripts\MDB\modules\enhanced-modals.js" />
+    <Content Include="Scripts\MDB\modules\forms-free.js" />
+    <Content Include="Scripts\MDB\modules\jquery.easing.js" />
+    <Content Include="Scripts\MDB\modules\scrolling-navbar.js" />
+    <Content Include="Scripts\MDB\modules\velocity.js" />
+    <Content Include="Scripts\MDB\modules\velocity.min.js" />
+    <Content Include="Scripts\MDB\modules\waves.js" />
+    <Content Include="Scripts\MDB\modules\wow.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Paginas\cargarips.js" />
+    <Content Include="Scripts\Paginas\home.js" />
+    <Content Include="Scripts\Paginas\listadorips.js" />
+    <Content Include="Scripts\Paginas\RolHasPermiso.js" />
+    <Content Include="Scripts\Paginas\Sidebar.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -710,6 +882,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Validaciones\validaCargaArchivo.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -737,12 +910,39 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Administracion\Index.cshtml" />
+    <Content Include="Views\Web_Usuario\Create.cshtml" />
+    <Content Include="Views\Web_Usuario\Delete.cshtml" />
+    <Content Include="Views\Web_Usuario\Details.cshtml" />
+    <Content Include="Views\Web_Usuario\Edit.cshtml" />
+    <Content Include="Views\Web_Usuario\Index.cshtml" />
+    <Content Include="Views\Web_Rol\Create.cshtml" />
+    <Content Include="Views\Web_Rol\Delete.cshtml" />
+    <Content Include="Views\Web_Rol\Details.cshtml" />
+    <Content Include="Views\Web_Rol\Edit.cshtml" />
+    <Content Include="Views\Web_Rol\Index.cshtml" />
+    <Content Include="Views\Web_Permiso\Create.cshtml" />
+    <Content Include="Views\Web_Permiso\Delete.cshtml" />
+    <Content Include="Views\Web_Permiso\Details.cshtml" />
+    <Content Include="Views\Web_Permiso\Edit.cshtml" />
+    <Content Include="Views\Web_Permiso\Index.cshtml" />
+    <Content Include="Views\Web_Modulo\Create.cshtml" />
+    <Content Include="Views\Web_Modulo\Delete.cshtml" />
+    <Content Include="Views\Web_Modulo\Details.cshtml" />
+    <Content Include="Views\Web_Modulo\Edit.cshtml" />
+    <Content Include="Views\Web_Modulo\Index.cshtml" />
+    <Content Include="Views\Web_RolHasPermiso\Create.cshtml" />
+    <Content Include="Views\Web_RolHasPermiso\Delete.cshtml" />
+    <Content Include="Views\Web_RolHasPermiso\Details.cshtml" />
+    <Content Include="Views\Web_RolHasPermiso\Edit.cshtml" />
+    <Content Include="Views\Web_RolHasPermiso\Index.cshtml" />
+    <Content Include="Views\Home\Index - Copia.cshtml" />
+    <Content Include="Scripts\Material\material-dashboard.js.map" />
+    <Content Include="Views\Cargador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\MDB\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

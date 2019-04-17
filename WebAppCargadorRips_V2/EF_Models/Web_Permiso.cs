@@ -28,5 +28,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual Estado_RIPS Estado_RIPS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
+        
     }
 }

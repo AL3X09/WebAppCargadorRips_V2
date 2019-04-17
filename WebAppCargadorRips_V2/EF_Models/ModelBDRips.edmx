@@ -184,6 +184,15 @@
           <Property Name="FK_mensaje_estado_rips" Type="bigint" Nullable="false" />
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Web_Modulo">
+          <Key>
+            <PropertyRef Name="modulo_id" />
+          </Key>
+          <Property Name="modulo_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_modulo_estado_rips" Type="bigint" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Web_Permiso">
           <Key>
             <PropertyRef Name="permiso_id" />
@@ -208,6 +217,7 @@
           </Key>
           <Property Name="rolhaspermiso_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FK_rolhaspermiso_rol" Type="bigint" Nullable="false" />
+          <Property Name="FK_rolhaspermiso_modulo" Type="bigint" Nullable="false" />
           <Property Name="FK_rolhaspermiso_permiso" Type="bigint" Nullable="false" />
           <Property Name="FK_rolhaspermiso_estado_rips" Type="bigint" Nullable="false" />
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
@@ -771,7 +781,19 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_rolhaspermiso_permiso">
+        <Association Name="FK_rolhaspermiso_web_modulo">
+          <End Role="Web_Modulo" Type="Self.Web_Modulo" Multiplicity="1" />
+          <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Modulo">
+              <PropertyRef Name="modulo_id" />
+            </Principal>
+            <Dependent Role="Web_RolHasPermiso">
+              <PropertyRef Name="FK_rolhaspermiso_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolhaspermiso_web_permiso">
           <End Role="Web_Permiso" Type="Self.Web_Permiso" Multiplicity="1" />
           <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -783,7 +805,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_rolhaspermiso_rol">
+        <Association Name="FK_rolhaspermiso_web_rol">
           <End Role="Web_Rol" Type="Self.Web_Rol" Multiplicity="1" />
           <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -852,6 +874,18 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Principal>
             <Dependent Role="Web_Documento">
               <PropertyRef Name="FK_web_documento_estado_rips" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_web_modulo_estado_rips">
+          <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
+          <End Role="Web_Modulo" Type="Self.Web_Modulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_RIPS">
+              <PropertyRef Name="estado_rips_id" />
+            </Principal>
+            <Dependent Role="Web_Modulo">
+              <PropertyRef Name="FK_modulo_estado_rips" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1029,6 +1063,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Tipo_Usuario" EntityType="Self.Tipo_Usuario" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Web_Mensaje" EntityType="Self.Web_Mensaje" Schema="Parametros" store:Type="Tables" />
+          <EntitySet Name="Web_Modulo" EntityType="Self.Web_Modulo" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Web_Permiso" EntityType="Self.Web_Permiso" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Web_Rol" EntityType="Self.Web_Rol" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Web_RolHasPermiso" EntityType="Self.Web_RolHasPermiso" Schema="Parametros" store:Type="Tables" />
@@ -1226,11 +1261,15 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
-          <AssociationSet Name="FK_rolhaspermiso_permiso" Association="Self.FK_rolhaspermiso_permiso">
+          <AssociationSet Name="FK_rolhaspermiso_web_modulo" Association="Self.FK_rolhaspermiso_web_modulo">
+            <End Role="Web_Modulo" EntitySet="Web_Modulo" />
+            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolhaspermiso_web_permiso" Association="Self.FK_rolhaspermiso_web_permiso">
             <End Role="Web_Permiso" EntitySet="Web_Permiso" />
             <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
-          <AssociationSet Name="FK_rolhaspermiso_rol" Association="Self.FK_rolhaspermiso_rol">
+          <AssociationSet Name="FK_rolhaspermiso_web_rol" Association="Self.FK_rolhaspermiso_web_rol">
             <End Role="Web_Rol" EntitySet="Web_Rol" />
             <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
@@ -1253,6 +1292,10 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <AssociationSet Name="FK_web_documento_estado_rips" Association="Self.FK_web_documento_estado_rips">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Documento" EntitySet="Web_Documento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_web_modulo_estado_rips" Association="Self.FK_web_modulo_estado_rips">
+            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
+            <End Role="Web_Modulo" EntitySet="Web_Modulo" />
           </AssociationSet>
           <AssociationSet Name="FK_web_preradicacion_estado_rips" Association="Self.FK_web_preradicacion_estado_rips">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
@@ -1498,7 +1541,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="FK_permiso_estado_rips" Type="Int64" Nullable="false" />
           <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK_permiso_estado_rips" FromRole="Web_Permiso" ToRole="Estado_RIPS" />
-          <NavigationProperty Name="Web_RolHasPermiso" Relationship="Self.FK_rolhaspermiso_permiso" FromRole="Web_Permiso" ToRole="Web_RolHasPermiso" />
+          <NavigationProperty Name="Web_RolHasPermiso" Relationship="RipsModel.FK_rolhaspermiso_web_permiso" FromRole="Web_Permiso" ToRole="Web_RolHasPermiso" />
         </EntityType>
         <EntityType Name="Web_Rol">
           <Key>
@@ -1509,22 +1552,9 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="FK_rol_estado_rips" Type="Int64" Nullable="false" />
           <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK_rol_estado_rips" FromRole="Web_Rol" ToRole="Estado_RIPS" />
-          <NavigationProperty Name="Web_RolHasPermiso" Relationship="Self.FK_rolhaspermiso_rol" FromRole="Web_Rol" ToRole="Web_RolHasPermiso" />
           <NavigationProperty Name="Web_Usuario" Relationship="Self.FK_usuario_rol" FromRole="Web_Rol" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Administrador" Relationship="Self.FK_web_administrador_rol" FromRole="Web_Rol" ToRole="Web_Administrador" />
-        </EntityType>
-        <EntityType Name="Web_RolHasPermiso">
-          <Key>
-            <PropertyRef Name="rolhaspermiso_id" />
-          </Key>
-          <Property Name="rolhaspermiso_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FK_rolhaspermiso_rol" Type="Int64" Nullable="false" />
-          <Property Name="FK_rolhaspermiso_permiso" Type="Int64" Nullable="false" />
-          <Property Name="FK_rolhaspermiso_estado_rips" Type="Int64" Nullable="false" />
-          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Web_Permiso" Relationship="Self.FK_rolhaspermiso_permiso" FromRole="Web_RolHasPermiso" ToRole="Web_Permiso" />
-          <NavigationProperty Name="Web_Rol" Relationship="Self.FK_rolhaspermiso_rol" FromRole="Web_RolHasPermiso" ToRole="Web_Rol" />
-          <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK_rolhaspermiso_estado_rips" FromRole="Web_RolHasPermiso" ToRole="Estado_RIPS" />
+          <NavigationProperty Name="Web_RolHasPermiso" Relationship="RipsModel.FK_rolhaspermiso_web_rol" FromRole="Web_Rol" ToRole="Web_RolHasPermiso" />
         </EntityType>
         <EntityType Name="DIVIPOLA">
           <Key>
@@ -1564,13 +1594,14 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <NavigationProperty Name="Web_Mensaje" Relationship="Self.FK_mensaje_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Mensaje" />
           <NavigationProperty Name="Web_Permiso" Relationship="Self.FK_permiso_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Permiso" />
           <NavigationProperty Name="Web_Rol" Relationship="Self.FK_rol_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Rol" />
-          <NavigationProperty Name="Web_RolHasPermiso" Relationship="Self.FK_rolhaspermiso_estado_rips" FromRole="Estado_RIPS" ToRole="Web_RolHasPermiso" />
           <NavigationProperty Name="Web_Correo_Sin_Restriccion" Relationship="Self.FK_correo_sin_restriccion_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Correo_Sin_Restriccion" />
           <NavigationProperty Name="Plantilla_Correo" Relationship="Self.FK_plantillas_correo_estado_rips" FromRole="Estado_RIPS" ToRole="Plantilla_Correo" />
           <NavigationProperty Name="Web_Pregunta_Frecuente" Relationship="Self.FK_pregunta_frecuente_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Pregunta_Frecuente" />
           <NavigationProperty Name="Web_Usuario" Relationship="Self.FK_usuario_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Documento" Relationship="Self.FK_web_documento_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Documento" />
           <NavigationProperty Name="Sexo" Relationship="RipsModel.FK__Sexo__estado_rip__4CC05EF3" FromRole="Estado_RIPS" ToRole="Sexo" />
+          <NavigationProperty Name="Web_Modulo" Relationship="RipsModel.FK_web_modulo_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Modulo" />
+          <NavigationProperty Name="Web_RolHasPermiso" Relationship="RipsModel.FK_rolhaspermiso_estado_rips" FromRole="Estado_RIPS" ToRole="Web_RolHasPermiso" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -2075,18 +2106,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_rolhaspermiso_permiso">
-          <End Role="Web_Permiso" Type="Self.Web_Permiso" Multiplicity="1" />
-          <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Web_Permiso">
-              <PropertyRef Name="permiso_id" />
-            </Principal>
-            <Dependent Role="Web_RolHasPermiso">
-              <PropertyRef Name="FK_rolhaspermiso_permiso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_rol_estado_rips">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
           <End Role="Web_Rol" Type="Self.Web_Rol" Multiplicity="*" />
@@ -2096,18 +2115,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Principal>
             <Dependent Role="Web_Rol">
               <PropertyRef Name="FK_rol_estado_rips" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rolhaspermiso_rol">
-          <End Role="Web_Rol" Type="Self.Web_Rol" Multiplicity="1" />
-          <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Web_Rol">
-              <PropertyRef Name="rol_id" />
-            </Principal>
-            <Dependent Role="Web_RolHasPermiso">
-              <PropertyRef Name="FK_rolhaspermiso_rol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2132,18 +2139,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Principal>
             <Dependent Role="Web_Administrador">
               <PropertyRef Name="FK_web_administrador_rol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rolhaspermiso_estado_rips">
-          <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
-          <End Role="Web_RolHasPermiso" Type="Self.Web_RolHasPermiso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado_RIPS">
-              <PropertyRef Name="estado_rips_id" />
-            </Principal>
-            <Dependent Role="Web_RolHasPermiso">
-              <PropertyRef Name="FK_rolhaspermiso_estado_rips" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2235,7 +2230,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Web_Mensaje" EntityType="Self.Web_Mensaje" />
           <EntitySet Name="Web_Permiso" EntityType="Self.Web_Permiso" />
           <EntitySet Name="Web_Rol" EntityType="Self.Web_Rol" />
-          <EntitySet Name="Web_RolHasPermiso" EntityType="Self.Web_RolHasPermiso" />
           <EntitySet Name="DIVIPOLA" EntityType="Self.DIVIPOLA" />
           <EntitySet Name="Estado_RIPS" EntityType="Self.Estado_RIPS" />
           <EntitySet Name="Pais" EntityType="Self.Pais" />
@@ -2333,17 +2327,9 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Permiso" EntitySet="Web_Permiso" />
           </AssociationSet>
-          <AssociationSet Name="FK_rolhaspermiso_permiso" Association="Self.FK_rolhaspermiso_permiso">
-            <End Role="Web_Permiso" EntitySet="Web_Permiso" />
-            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
-          </AssociationSet>
           <AssociationSet Name="FK_rol_estado_rips" Association="Self.FK_rol_estado_rips">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Rol" EntitySet="Web_Rol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_rolhaspermiso_rol" Association="Self.FK_rolhaspermiso_rol">
-            <End Role="Web_Rol" EntitySet="Web_Rol" />
-            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
           <AssociationSet Name="FK_usuario_rol" Association="Self.FK_usuario_rol">
             <End Role="Web_Rol" EntitySet="Web_Rol" />
@@ -2352,10 +2338,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <AssociationSet Name="FK_web_administrador_rol" Association="Self.FK_web_administrador_rol">
             <End Role="Web_Rol" EntitySet="Web_Rol" />
             <End Role="Web_Administrador" EntitySet="Web_Administrador" />
-          </AssociationSet>
-          <AssociationSet Name="FK_rolhaspermiso_estado_rips" Association="Self.FK_rolhaspermiso_estado_rips">
-            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
-            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
           <AssociationSet Name="FK_correo_sin_restriccion_estado_rips" Association="Self.FK_correo_sin_restriccion_estado_rips">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
@@ -2492,6 +2474,28 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <AssociationSet Name="FK__Sexo__estado_rip__4CC05EF3" Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Sexo" EntitySet="Sexo" />
+          </AssociationSet>
+          <EntitySet Name="Web_Modulo" EntityType="RipsModel.Web_Modulo" />
+          <EntitySet Name="Web_RolHasPermiso" EntityType="RipsModel.Web_RolHasPermiso" />
+          <AssociationSet Name="FK_rolhaspermiso_web_modulo" Association="RipsModel.FK_rolhaspermiso_web_modulo">
+            <End Role="Web_Modulo" EntitySet="Web_Modulo" />
+            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_web_modulo_estado_rips" Association="RipsModel.FK_web_modulo_estado_rips">
+            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
+            <End Role="Web_Modulo" EntitySet="Web_Modulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolhaspermiso_web_permiso" Association="RipsModel.FK_rolhaspermiso_web_permiso">
+            <End Role="Web_Permiso" EntitySet="Web_Permiso" />
+            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolhaspermiso_web_rol" Association="RipsModel.FK_rolhaspermiso_web_rol">
+            <End Role="Web_Rol" EntitySet="Web_Rol" />
+            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolhaspermiso_estado_rips" Association="RipsModel.FK_rolhaspermiso_estado_rips">
+            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
+            <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
@@ -2705,6 +2709,92 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Principal>
             <Dependent Role="Sexo">
               <PropertyRef Name="estado_rips_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Web_Modulo">
+          <Key>
+            <PropertyRef Name="modulo_id" />
+          </Key>
+          <Property Name="modulo_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_modulo_estado_rips" Type="Int64" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Web_RolHasPermiso" Relationship="RipsModel.FK_rolhaspermiso_web_modulo" FromRole="Web_Modulo" ToRole="Web_RolHasPermiso" />
+          <NavigationProperty Name="Estado_RIPS" Relationship="RipsModel.FK_web_modulo_estado_rips" FromRole="Web_Modulo" ToRole="Estado_RIPS" />
+        </EntityType>
+        <EntityType Name="Web_RolHasPermiso">
+          <Key>
+            <PropertyRef Name="rolhaspermiso_id" />
+          </Key>
+          <Property Name="rolhaspermiso_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_rolhaspermiso_rol" Type="Int64" Nullable="false" />
+          <Property Name="FK_rolhaspermiso_modulo" Type="Int64" Nullable="false" />
+          <Property Name="FK_rolhaspermiso_permiso" Type="Int64" Nullable="false" />
+          <Property Name="FK_rolhaspermiso_estado_rips" Type="Int64" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Web_Modulo" Relationship="RipsModel.FK_rolhaspermiso_web_modulo" FromRole="Web_RolHasPermiso" ToRole="Web_Modulo" />
+          <NavigationProperty Name="Web_Permiso" Relationship="RipsModel.FK_rolhaspermiso_web_permiso" FromRole="Web_RolHasPermiso" ToRole="Web_Permiso" />
+          <NavigationProperty Name="Web_Rol" Relationship="RipsModel.FK_rolhaspermiso_web_rol" FromRole="Web_RolHasPermiso" ToRole="Web_Rol" />
+          <NavigationProperty Name="Estado_RIPS" Relationship="RipsModel.FK_rolhaspermiso_estado_rips" FromRole="Web_RolHasPermiso" ToRole="Estado_RIPS" />
+        </EntityType>
+        <Association Name="FK_rolhaspermiso_web_modulo">
+          <End Type="RipsModel.Web_Modulo" Role="Web_Modulo" Multiplicity="1" />
+          <End Type="RipsModel.Web_RolHasPermiso" Role="Web_RolHasPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Modulo">
+              <PropertyRef Name="modulo_id" />
+            </Principal>
+            <Dependent Role="Web_RolHasPermiso">
+              <PropertyRef Name="FK_rolhaspermiso_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_web_modulo_estado_rips">
+          <End Type="RipsModel.Estado_RIPS" Role="Estado_RIPS" Multiplicity="1" />
+          <End Type="RipsModel.Web_Modulo" Role="Web_Modulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_RIPS">
+              <PropertyRef Name="estado_rips_id" />
+            </Principal>
+            <Dependent Role="Web_Modulo">
+              <PropertyRef Name="FK_modulo_estado_rips" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolhaspermiso_web_permiso">
+          <End Type="RipsModel.Web_Permiso" Role="Web_Permiso" Multiplicity="1" />
+          <End Type="RipsModel.Web_RolHasPermiso" Role="Web_RolHasPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Permiso">
+              <PropertyRef Name="permiso_id" />
+            </Principal>
+            <Dependent Role="Web_RolHasPermiso">
+              <PropertyRef Name="FK_rolhaspermiso_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolhaspermiso_web_rol">
+          <End Type="RipsModel.Web_Rol" Role="Web_Rol" Multiplicity="1" />
+          <End Type="RipsModel.Web_RolHasPermiso" Role="Web_RolHasPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Web_RolHasPermiso">
+              <PropertyRef Name="FK_rolhaspermiso_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolhaspermiso_estado_rips">
+          <End Type="RipsModel.Estado_RIPS" Role="Estado_RIPS" Multiplicity="1" />
+          <End Type="RipsModel.Web_RolHasPermiso" Role="Web_RolHasPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_RIPS">
+              <PropertyRef Name="estado_rips_id" />
+            </Principal>
+            <Dependent Role="Web_RolHasPermiso">
+              <PropertyRef Name="FK_rolhaspermiso_estado_rips" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2922,17 +3012,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="FK_rol_estado_rips" ColumnName="FK_rol_estado_rips" />
-                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Web_RolHasPermiso">
-            <EntityTypeMapping TypeName="RipsModel.Web_RolHasPermiso">
-              <MappingFragment StoreEntitySet="Web_RolHasPermiso">
-                <ScalarProperty Name="rolhaspermiso_id" ColumnName="rolhaspermiso_id" />
-                <ScalarProperty Name="FK_rolhaspermiso_rol" ColumnName="FK_rolhaspermiso_rol" />
-                <ScalarProperty Name="FK_rolhaspermiso_permiso" ColumnName="FK_rolhaspermiso_permiso" />
-                <ScalarProperty Name="FK_rolhaspermiso_estado_rips" ColumnName="FK_rolhaspermiso_estado_rips" />
                 <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3475,6 +3554,28 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Web_Modulo">
+            <EntityTypeMapping TypeName="RipsModel.Web_Modulo">
+              <MappingFragment StoreEntitySet="Web_Modulo">
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="FK_modulo_estado_rips" ColumnName="FK_modulo_estado_rips" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="modulo_id" ColumnName="modulo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_RolHasPermiso">
+            <EntityTypeMapping TypeName="RipsModel.Web_RolHasPermiso">
+              <MappingFragment StoreEntitySet="Web_RolHasPermiso">
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="FK_rolhaspermiso_estado_rips" ColumnName="FK_rolhaspermiso_estado_rips" />
+                <ScalarProperty Name="FK_rolhaspermiso_permiso" ColumnName="FK_rolhaspermiso_permiso" />
+                <ScalarProperty Name="FK_rolhaspermiso_modulo" ColumnName="FK_rolhaspermiso_modulo" />
+                <ScalarProperty Name="FK_rolhaspermiso_rol" ColumnName="FK_rolhaspermiso_rol" />
+                <ScalarProperty Name="rolhaspermiso_id" ColumnName="rolhaspermiso_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

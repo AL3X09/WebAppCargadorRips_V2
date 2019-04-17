@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="RipsModel.Web_Mensaje" Width="1.5" PointX="3" PointY="48.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Web_Permiso" Width="1.5" PointX="3" PointY="51.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Web_Rol" Width="1.5" PointX="3" PointY="55" IsExpanded="true" />
-        <EntityTypeShape EntityType="RipsModel.Web_RolHasPermiso" Width="1.5" PointX="5.25" PointY="45.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.DIVIPOLA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Estado_RIPS" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Pais" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
@@ -55,12 +54,9 @@
         <AssociationConnector Association="RipsModel.FK__Tipo_Usua__estad__1DE57479" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_mensaje_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_permiso_estado_rips" ManuallyRouted="false" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_permiso" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_rol_estado_rips" ManuallyRouted="false" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_rol" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_usuario_rol" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_web_administrador_rol" ManuallyRouted="false" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_correo_sin_restriccion_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_plantillas_correo_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_pregunta_frecuente_estado_rips" ManuallyRouted="false" />
@@ -70,6 +66,13 @@
         <AssociationConnector Association="RipsModel.FK__Servicio___valid__469D7149" />
         <AssociationConnector Association="RipsModel.FK__Servicio___estru__47919582" />
         <AssociationConnector Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3" />
+        <EntityTypeShape EntityType="RipsModel.Web_Modulo" Width="1.5" PointX="3" PointY="29.125" />
+        <EntityTypeShape EntityType="RipsModel.Web_RolHasPermiso" Width="1.5" PointX="5.25" PointY="44.875" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_modulo" />
+        <AssociationConnector Association="RipsModel.FK_web_modulo_estado_rips" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_permiso" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_rol" />
+        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_estado_rips" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

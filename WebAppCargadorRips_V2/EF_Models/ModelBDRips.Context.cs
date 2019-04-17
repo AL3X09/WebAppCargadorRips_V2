@@ -42,7 +42,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<Web_Mensaje> Web_Mensaje { get; set; }
         public virtual DbSet<Web_Permiso> Web_Permiso { get; set; }
         public virtual DbSet<Web_Rol> Web_Rol { get; set; }
-        public virtual DbSet<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
         public virtual DbSet<DIVIPOLA> DIVIPOLA { get; set; }
         public virtual DbSet<Estado_RIPS> Estado_RIPS { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
@@ -56,6 +55,8 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<VW_Radicacion> VW_Radicacion { get; set; }
         public virtual DbSet<VW_Servicio_Validacion> VW_Servicio_Validacion { get; set; }
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
+        public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
+        public virtual DbSet<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
     
         public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
         {

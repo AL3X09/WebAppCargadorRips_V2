@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Cargar RIPS";
+}
+
+
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
+
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
+
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <span>/</span>
+            <span>@ViewBag.Title</span>
+        </h4>
+
+    </div>
+
+</div>
+<!-- Heading -->
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title">Carga de Archivos RIPS</h4>
+                <blockquote>
+                    Recuerde que para no presentar problemas con el cargue, se le recomienda haber validado sus RIPS con la herramienta de escritorio.
+                    <br />Diligencie el  formulario para cargar sus RIPS, tenga en cuenta que solo se admiten archivos de texto es decir con extensión<strong>".txt"</strong>,
+                    <br />Los campos con el símbolo asterisco (<span class="red-text">*</span>) son de carácter obligatorio.
+                </blockquote>
+            </div>
+            <div class="card-body">
+                <form id="formulariocargaarchivo" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating" for="tipoUsuario2">Tipo Usuario (*)</label>
+                                <select class="form-control" name="tipoUsuario2" id="tipoUsuario2" required>
+                                    <option value="" disabled selected>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating" for="categoria">Categoría</label>
+                                <select class="form-control" name="categoria" id="categoria" required>
+                                    <option value="" disabled selected>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Lo uso con el fin de enviar el val del select-->
+                            <input type="hidden" name="tipoUsuario" id="tipoUsuario" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-header card-header-info  text-center">
+                                <p class="card-category">CONDICIONES ESPECIALES</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="IVE" id="IVE">
+                                    Interrupción Voluntaria del Embarazo (IVE)
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="NOPOS" id="NOPOS" />
+                                    Atenciones no POS
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-header card-header-info  text-center">
+                                <p class="card-category">PERIODO DE REPORTE</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="label-control">Fecha Inicio:</label>
+                                <input type="text" class="form-control" name="fechaInicio" id="fechaInicio" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="label-control">Fecha Fin:</label>
+                                <input type="text" class="form-control" name="fechaFin" id="fechaFin" />
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-header card-header-info  text-center">
+                                <p class="card-category">CARGA DE ARCHIVOS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+
+
+                            <div class="dz-preview dz-file-preview">
+                                <div class="dz-details">
+                                    <div class="dz-filename"><span data-dz-name></span></div>
+                                    <div class="dz-size" data-dz-size></div>
+                                    <img data-dz-thumbnail />
+                                </div>
+                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                <div class="dz-success-mark"><span>✔</span></div>
+                                <div class="dz-error-mark"><span>✘</span></div>
+                                <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>
+                            <br />
+
+
+                            <div class="form-group form-file-upload form-file-multiple">
+                                <input type="file" multiple="" class="inputFileHidden">
+                                <div class="input-group">
+                                    <input type="file" class="form-control inputFileVisible" name="rips" id="rips" multiple accept=".txt">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-fab btn-round btn-info">
+                                            <i class="material-icons">layers</i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <button type="submit" class="btn btn-info pull-right">Cargar</button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <button type="submit" class="btn btn-danger pull-right">Cancelar</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/dropzonejs"),
+    @Scripts.Render("~/bundles/datepickerjs"),
+    @Scripts.Render("~/JSValidacion/validacargaarchivo"),
+    @Scripts.Render("~/JSPaginas/cargarripsjs")
+
+
+}

@@ -16,10 +16,12 @@ namespace WebAppCargadorRips_V2.EF_Models
     {
         public long rolhaspermiso_id { get; set; }
         public long FK_rolhaspermiso_rol { get; set; }
+        public long FK_rolhaspermiso_modulo { get; set; }
         public long FK_rolhaspermiso_permiso { get; set; }
         public long FK_rolhaspermiso_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
+        public virtual Web_Modulo Web_Modulo { get; set; }
         public virtual Web_Permiso Web_Permiso { get; set; }
         public virtual Web_Rol Web_Rol { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }

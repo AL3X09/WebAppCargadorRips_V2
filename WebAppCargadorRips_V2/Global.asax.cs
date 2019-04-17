@@ -18,6 +18,15 @@ namespace WebAppCargadorRips_V2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Articulo
+            //http://www.resuelvetusproblemas.com/el-tipo-objectcontent1-no-pudo-serializar-el-cuerpo-de-respuesta-para-el-tipo-de-contenido/
+            //Evito las referencias circulares al trabajar con Entity FrameWork         
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+
+            //Elimino que el sistema devuelva en XML, sólo trabajaremos con JSON
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
     }
 }

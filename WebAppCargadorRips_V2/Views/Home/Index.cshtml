@@ -1,31 +1,70 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "LISTADO ARCHIVOS RIPS";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
+
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
+
+        <h4 class="mb-2 mb-sm-0 pt-1">
+
+            <span>@ViewBag.Title</span>
+        </h4>
+
+    </div>
+
+</div>
+<!-- Heading -->
+<div class="row">
+
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title "> Este módulo le da una visión del estado de sus archivso RIPS cargados.</h4>
+            </div>
+            <div class="card-body">
+                <table id="listaRips" class="table-responsive">
+                    <thead class=" text-info">
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo Usuario</th>
+                            <th>Categoría</th>
+                            <th>Periodo Inicio Reportado</th>
+                            <th>Periodo Fin Reportado</th>
+                            <th>Fecha de Carga</th>
+                            <th>Estado Validación Preradicación</th>
+                            <th>Estado Radicación</th>
+                        </tr>
+                    </thead>
+                    <!--<tbody id="tbodylistarips"></tbody>-->
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo Usuario</th>
+                            <th>Categoría</th>
+                            <th>Periodo Inicio Reportado</th>
+                            <th>Periodo Fin Reportado</th>
+                            <th>Fecha de Carga</th>
+                            <th>Estado Validación Preradicación</th>
+                            <th>Estado Radicación</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="divclaims" style="display:none;">
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/datatablesjs"),
+    @Scripts.Render("~/bundles/listadoripsjs"),
+
+}
