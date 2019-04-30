@@ -15,14 +15,14 @@ namespace WebAppCargadorRips_V2.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Descripción de la pagina";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contenido de la pagina.";
 
             return View();
         }

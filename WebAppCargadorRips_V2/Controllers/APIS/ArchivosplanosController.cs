@@ -18,6 +18,11 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
     {
         private RipsEntitiesConnection bd = new RipsEntitiesConnection();
 
+        //Constructor        
+        public ArchivosplanosController()
+        {
+            //this.radicadoripsRepository = new RadicadoRipsRepository(new BD_CargadorRipsConnection());
+        }
 
         ///<summary>
         /// Metodo asincrono carga un archivo con datos de su respectivo formulario

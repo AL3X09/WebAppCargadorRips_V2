@@ -1,0 +1,106 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Web_Administrador
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Web_Administrador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FK_web_administrador_estado_rips)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FK_web_administrador_estado_rips)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web_Rol.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.administrador_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -61,20 +61,42 @@ namespace WebAppCargadorRips_V2
                       "~/Scripts/DataTables/responsive.bootstrap4.min.js"
                       ));
 
-            //DropZone
-            bundles.Add(new StyleBundle("~/Stile/dropzonecss").Include(
-                          "~/Scripts/dropzone/dropzone.min.css"
-                          ));
+            //jquery multifile
+            //http://lampspw.wallonie.be/dgo4/tinymvc/myfiles/plugins/multifile-2.2.1/docs.html#Customize
+            bundles.Add(new ScriptBundle("~/bundles/multifilejs").Include(
+                     "~/Scripts/Multifile/jquery.MultiFile.js"
+                     ));
 
-            bundles.Add(new ScriptBundle("~/bundles/dropzonejs").Include(
-                      "~/Scripts/dropzone/dropzone.min.js"
-                      
-                      ));
+            bundles.Add(new StyleBundle("~/Stile/multifilecss").Include(
+                     "~/Content/Multifile/freestyle.css"
+                     ));
+
+            //SweetAlert 2 (instalado de nuget)
+            //https://sweetalert2.github.io/
+
+            bundles.Add(new ScriptBundle("~/bundles/sweetalertjs").Include(
+                    "~/SweetAlert2/sweetalert2.js"
+                    ));
+
+            //Tingle JS
+            //https://robinparisi.github.io/tingle/
+            bundles.Add(new StyleBundle("~/Stile/tinglecss").Include(
+                     "~/Content/Tinglejs/tingle.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/tinglejs").Include(
+                     "~/Scripts/Tinglejs/tingle.js"
+                     ));
+
 
             //FIN LIBRERIAS EXTERNAS
 
 
             // JS para cada una de las paginas 
+
+            //PAGINA LAYOUT
+            bundles.Add(new ScriptBundle("~/JSPaginas/layoutjs").Include(
+                "~/Scripts/Paginas/layout.js"));
             //PAGINA HOME
             bundles.Add(new ScriptBundle("~/JSPaginas/home").Include(
                 "~/Scripts/Paginas/home.js"));
@@ -90,7 +112,9 @@ namespace WebAppCargadorRips_V2
 
             //PAGINA CARGA DE ARCHIVOS RIPS
             bundles.Add(new ScriptBundle("~/JSPaginas/cargarripsjs").Include(
-                "~/Scripts/Paginas/cargarips.js"));
+                "~/Scripts/Paginas/cargarips.js",
+                "~/Scripts/Paginas/multifilecontrol.js"
+                ));
             // FIN JS para cada una de las paginas 
 
             // JS validaciones para cada una de las paginas 

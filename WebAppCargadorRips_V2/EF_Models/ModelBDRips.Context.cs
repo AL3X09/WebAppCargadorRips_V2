@@ -20,6 +20,9 @@ namespace WebAppCargadorRips_V2.EF_Models
         public RipsEntitiesConnection()
             : base("name=RipsEntitiesConnection")
         {
+            //Disable Lazy Loading
+            //https://www.entityframeworktutorial.net/lazyloading-in-entity-framework.aspx
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -57,6 +60,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
         public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
         public virtual DbSet<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
+        public virtual DbSet<Anios_Periodos> Anios_Periodos { get; set; }
     
         public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
         {

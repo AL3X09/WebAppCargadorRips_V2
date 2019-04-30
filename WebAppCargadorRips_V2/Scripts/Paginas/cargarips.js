@@ -4,16 +4,17 @@
  * 26-10-2017
  */
 
-
-
-
+var TipoEstructuraArray = []; //variable que almacena las estructuras existentes en la norma
+var nombre = []; //variable almacena los nombre de los archivos a cargar
+//var FechaMin;
+//var FechaMax;
 
 $(document).ready(function () {
-
+    $("#mcarga").addClass("active");
     //valido que el explorador soporte la api de lectura de archivos
     if (!(window.File)) {
         //console.log('La API File no está soportada en este esplorador');
-        swal(
+        swal.fire(
             'Precaución',
             'Su explorador no soporta la lectura de archivos, por favor cambie a un explorador mas reciente o active la función si la desactivado',
             'info'
@@ -21,8 +22,7 @@ $(document).ready(function () {
         return;
     }
 
-    //
-    calendarios();
+    
 
     //escucho select tipousuario para efectuar respectivas acciones
     $('#tipoUsuario2').change(function (event) {
@@ -60,21 +60,50 @@ $(document).ready(function () {
             $("select").material_select();
         }
     });
+
+    //inicializo la llamada a los datos de los calendarios
+    callFechasPeriodos();
+    
    
 });
+
+//Función que permite traer las fechas definidas para los periodos de cada uno de los calendarios
+function callFechasPeriodos() {
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/Anios_Periodos",
+        success: function (response) {
+            $.each(response, function (i, v) {
+                FechaMin = v.fecha_minima.substring(0, 10).replace(/-/g, '/');
+                FechaMax = v.fecha_maxima.substring(0, 10).replace(/-/g, '/');
+                calendarios(FechaMin, FechaMax);
+            });
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        Swal.fire(
+            'Error',
+            'Error al traer la fecha para los calendarios, comuníquese con el administrador',
+            'error',         
+        )
+        console.error(textStatus, errorThrown); // Algo fallo
+    })   
+}
 
 //Getting the last day for a given year and month:
 function getLastDayOfYearAndMonth(year, month) {
     return (new Date((new Date(year, month + 1, 1)) - 1)).getDate();
 }
 
-function calendarios() {
-
+//Función encargada de los calendarios
+function calendarios(FechaMin, FechaMax) {
+   
     $('#fechaInicio').datepicker({
         locale: 'es-es',
-        format: 'dd/mm/yyyy',
-        minDate: '12/02/2017',
-        maxDate: '12/05/2019',
+        format: 'yyyy/mm/dd',
+        minDate: FechaMin,
+        maxDate: FechaMax,
         disableDates: function (date) {
             var disabled = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
             if (disabled.indexOf(date.getDate()) == -1) {
@@ -86,9 +115,9 @@ function calendarios() {
     });
     $('#fechaFin').datepicker({
         locale: 'es-es',
-        format: 'dd/mm/yyyy',
-        minDate: '12/02/2017',
-        maxDate: '12/05/2019',
+        format: 'yyyy/mm/dd',
+        minDate: FechaMin,
+        maxDate: FechaMax,
         disableDates: function (date) {
             if (date.getDate() ==  getLastDayOfYearAndMonth(date.getFullYear(), date.getMonth())) {
                 return true;
@@ -141,26 +170,367 @@ function habilitarDatosGer2() {
 
 }
 
-function dropzone() {
-    // Dropzone class:
-    var myDropzone = new Dropzone("div#myId", { url: "/file/post" });
+//Función que me permite limpiar los campos
+function limpiardivfiles() {
+    $('#filename').html("");
+
+    zonaarchvos();
+    //$('#rips').val('');
+    //$('#archivos').val('');
 }
 
-function produ() {
+//funcion cancela la operación y retorna a la pagina principal
+function cancelado() {
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: 'Desea cancelar la operación de carga',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, Cancelar',
+        cancelButtonText: 'No',
+        cancelButtonColor: '#d33',
+        confirmButtonClass: 'btn green',
+        cancelButtonClass: 'waves-effect waves-light btn red',
+    }).then((result) => {
 
-    if (validarCamposVacios() == true) {
-        $.ajax({
-            url: '/Armada/Controladores/controladorTbaspirantes.php?tarea=insertar',
-            method: 'POST',
-            data: formData.serialize(),
-            beforeSend: function () {
-                alert('almacenando');
-            },
-            success: function (data) {
-                alert('error');
-            }
-        });
-    }
-} 
+        if (result.value) {
+            Swal.fire(
+                'Cancelado',
+                'Operación Cancelada',
+                'error',
+                setTimeout(function () {
+                    //location.reload("/Home/Index");
+                    window.location.href = baseURL + "Home";
+                }, 2000)
+            )
+        }
+        
+    })
+}
 
 
+//funcion solicita datos para cargar al select de tipo de usuarios
+function callTipoUsuario() {
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/TipoUsuario/Listar",
+        success: function (data) {
+
+            var option = $('<option></option>').attr("value", "").text("Seleccione...");
+            $.each(data, function (i, v) {
+
+                option = $('<option></option>').attr("value", "tipo" + v.numero).text(v.nombre);
+                $("#tipoUsuario2").append(option);
+            });
+            
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown); // Algo fallo
+        swal.fire(
+            textStatus,
+            'Hay un problema al traer los datos de tipo de usuario comuníquese con el administrador ',
+            'error',
+            setTimeout(function () {
+            }, 2000)
+        )
+    });
+
+}
+
+//funcion solicita datos para cargar al select de categorias
+function callCategoria(objeto, idtipousuario) {
+    $('#categoria').empty();
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/Categorias/Listar",
+        data: { 'id': objeto },
+        success: function (data) {
+            var option = $('<option></option>').attr("value", "").text("Seleccione...");
+            $.each(data, function (i, v) {
+                option = $('<option></option>').attr("value", v.categoria_id).text(v.nombre);
+                $("#categoria").append(option);
+            });
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown); // Algo fallo
+        swal.fire(
+            textStatus,
+            'Hay un problema al traer los datos de las Categorías comuníquese con el administrador ',
+            'error',
+            setTimeout(function () {
+            }, 2000)
+        )
+    });
+    $("#tipoUsuario").val(idtipousuario)
+}
+
+
+//Función que permite traer los campos para cada estructura de los archivod
+function callEstructuraCampo() {
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/Estructura/Listar",
+        success: function (response) {
+
+            $.each(response, function (i, v) {
+                TipoEstructuraArray[v.estAcronimo] = v.cantidadDatos;
+            });
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        console.error(textStatus, errorThrown); // Algo fallo
+    })
+}
+
+//Esta funcion envia el formulario para almacenarlo en la tabla 
+//de validacion
+function UploadValidacionConErrores(reserrores) {
+
+    var formd = $('#formulariocargaarchivo')[0];
+    var data = new FormData(formd);
+
+    $.ajax({
+        url: baseURL + "api/Rips/GuardarValidacionConErrores",
+        type: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            swal.fire({
+                title: 'Espere..',
+                text: 'Almacenando información, esto puede tardar unos segundos.',
+                animation: false,
+                customClass: 'animated tada',
+                allowOutsideClick: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            }).then((result) => {
+                //console.log('cerrado modal')
+                //window.location.href = "/Home";
+            })
+        },
+        success: function (response) {
+            //console.log(response);
+            $.each(response, function (i, v) {
+                //cambio el tititulo si es diferente de error
+                //console.log(v);
+                if (v.type == "error") {
+                    titulo = "Mensaje";
+                    swal.fire(
+                        titulo,
+                        v.value,
+                        v.type
+                    ).then((result) => {
+                        //console.log('cerrado modal')
+                        //location.reload();
+                        enviarCorreoErrores(reserrores);
+                        //window.location.href = baseURL +"Home";
+                    })
+                }
+                /*modificado 30-11-2018
+                 * else {
+                  //Envio correo de errores
+                  enviarCorreoErrores(reserrores)
+                }*/
+
+            });
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        console.error(textStatus, errorThrown); // Algo fallo
+    });
+
+}
+
+
+//Esta funcion envia el correo al cargar los archivos en el servidor
+//encontrados
+function enviarCorreo(tipoCorreo, consec) {
+
+    var email = $('#emailspan').text();
+    var nombreuser = $('#nombreuserspan').text();
+    $.ajax({
+        type: "POST",
+        url: baseURL + "api/Correo/SendEmail",
+        data: { codPlantilla: tipoCorreo, usercorreo: email, usernombre: nombreuser, codigocarga: consec },
+        beforeSend: function () {
+            swal.fire({
+                title: 'Espere..',
+                text: 'Enviando correo por favor espere, no cierre el dialogo, esto puede tardar unos segundos.',
+                animation: false,
+                customClass: 'animated tada',
+                allowOutsideClick: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            }).then((result) => {
+                //console.log('cerrado modal')
+
+            })
+        },
+        success: function (response) {
+            //console.log(response);
+            $.each(response, function (i, v) {
+                //valido el codigo retornado por la api aqui pongo de codigo 1009 ya que es el envio de correo
+                if (v.codigo == 1009) {
+                    setTimeout(function () {
+                        window.location.href = baseURL + "Home";
+                    }, 9000)
+                }
+                //cambio el tititulo si es diferente de error
+                if (v.type !== "error") {
+                    titulo = "Mensaje";
+                } else {
+                    titulo = v.type;
+                }
+                swal.fire(
+                    titulo,
+                    v.value,
+                    v.type
+                )
+
+            });
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        console.error(textStatus, errorThrown); // Algo fallo
+    });
+
+}
+
+//Esta funcion envia el correo con los diferentes problemas
+//encontrados
+function enviarCorreoErrores(errores) {
+    //console.log(errores.length);
+    //envio a la api los errores
+    var email = $('#emailspan').text();
+    var nombreuser = $('#nombreuserspan').text();
+
+    $.ajax({
+        type: "POST",
+        url: baseURL + "api/Correo/SendEmailErrors",
+        data: { codPlantilla: 2, usercorreo: email, errores: errores, usernombre: nombreuser },
+        beforeSend: function () {
+            swal.fire({
+                title: 'Espere..',
+                text: 'Enviando correo con los errores por favor espere, no cierre el dialogo, esto puede tardar unos segundos.',
+                animation: false,
+                customClass: 'animated tada',
+                allowOutsideClick: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            }).then((result) => {
+                //console.log('cerrado modal')
+
+            })
+        },
+        success: function (response) {
+            //console.log(response);
+            $.each(response, function (i, v) {
+
+                //cambio el tititulo si es diferente de error
+                if (v.type !== "error") {
+                    titulo = "Mensaje";
+                } else {
+                    titulo = v.type;
+                }
+                swal.fire(
+                    titulo,
+                    v.value,
+                    v.type
+                ).then((result) => {
+                    //console.log('cerrado modal')
+                    window.location.href = baseURL + "Home";
+                })
+
+            });
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        console.error(textStatus, errorThrown); // Algo fallo
+        //notifico al usuario del error al enviar correo y recargo la pagina
+        swal.fire({
+            title: 'Error',
+            text: "Lo sentimos la plataforma no pudo enviar el correo por favor comuníquese con el administrador",
+            type: 'error',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Recargar'
+        }).then((result) => {
+            //if (result.value) {
+            location.reload();
+            //}
+        })
+    });
+    //limpio la variable errores
+    errores.length = 0;
+}
+
+
+//funcion envia el archivo a los servidores
+function loadRIPS() {
+    //debugger;
+
+    var formd = $('#formulariocargaarchivo')[0];
+    var data = new FormData(formd);
+
+    $.ajax({
+        url: baseURL + "api/Rips/Upload",
+        type: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            swal.fire({
+                title: 'Espere..',
+                text: 'Enviando archivos por favor espere.',
+                animation: false,
+                customClass: 'animated tada',
+                //timer: 5000,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            });
+        },
+        success: function (response) {
+            $.each(response, function (i, v) {
+                //valido el codigo retornado por la api
+                if (v.codigo == 201) {
+                    //envio correo
+                    enviarCorreo(1, v.consec);
+                }
+                //cambio el tititulo si es diferente de error
+                console.log(v.type);
+                if (v.type !== "error") {
+                    //titulo="Mensaje";
+                } else {
+                    titulo = v.type;
+                    swal.fire(
+                        titulo,
+                        v.value,
+                        v.type
+                    )
+                }
+            });
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown); // Algo fallo
+        swal.fire(
+            textStatus,
+            'Hay un problema al cargar los datos y archivos comuníquese con el administrador ',
+            'error',
+            setTimeout(function () {
+            }, 2000)
+        )
+    });
+    //debugger;
+}

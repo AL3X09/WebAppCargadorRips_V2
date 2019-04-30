@@ -42,7 +42,7 @@ namespace WebAppCargadorRips_V2.Controllers
         {
             ViewBag.FK_usuario_rol = new SelectList(db.Web_Rol, "rol_id", "nombre");
             ViewBag.FK_usuario_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
-            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador, "prestador_id", "codigo");
+            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador.Where(x => x.municipio == "BOGOTÁ D.C."), "prestador_id", "codigo");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace WebAppCargadorRips_V2.Controllers
 
             ViewBag.FK_usuario_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Usuario.FK_usuario_rol);
             ViewBag.FK_usuario_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Usuario.FK_usuario_estado_rips);
-            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador, "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
+            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador.Where(x => x.municipio == "BOGOTÁ D.C."), "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
             return View(web_Usuario);
         }
 
@@ -80,7 +80,7 @@ namespace WebAppCargadorRips_V2.Controllers
             }
             ViewBag.FK_usuario_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Usuario.FK_usuario_rol);
             ViewBag.FK_usuario_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Usuario.FK_usuario_estado_rips);
-            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador, "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
+            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador.Where(x => x.municipio == "BOGOTÁ D.C."), "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
             return View(web_Usuario);
         }
 
@@ -99,7 +99,7 @@ namespace WebAppCargadorRips_V2.Controllers
             }
             ViewBag.FK_usuario_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Usuario.FK_usuario_rol);
             ViewBag.FK_usuario_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Usuario.FK_usuario_estado_rips);
-            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador, "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
+            ViewBag.FK_usuario_prestador = new SelectList(db.Prestador.Where(x => x.municipio == "BOGOTÁ D.C."), "prestador_id", "codigo", web_Usuario.FK_usuario_prestador);
             return View(web_Usuario);
         }
 

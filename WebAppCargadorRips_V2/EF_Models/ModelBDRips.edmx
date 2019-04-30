@@ -105,6 +105,16 @@
           <Property Name="usuario_directorios" Type="nvarchar" MaxLength="50" />
           <Property Name="contraseña_directorios" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Anios_Periodos">
+          <Key>
+            <PropertyRef Name="anios_periodos_id" />
+          </Key>
+          <Property Name="anios_periodos_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_minima" Type="smalldatetime" Nullable="false" />
+          <Property Name="fecha_maxima" Type="smalldatetime" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="FK_anios_estado_rips_id" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="categoria_id" />
@@ -685,6 +695,18 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_anios_periodos_estado_RIPS">
+          <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
+          <End Role="Anios_Periodos" Type="Self.Anios_Periodos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_RIPS">
+              <PropertyRef Name="estado_rips_id" />
+            </Principal>
+            <Dependent Role="Anios_Periodos">
+              <PropertyRef Name="FK_anios_estado_rips_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_correo_estado_rips">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
           <End Role="Correo" Type="Self.Correo" Multiplicity="*" />
@@ -1057,6 +1079,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Web_Validacion" EntityType="Self.Web_Validacion" Schema="Auditoria" store:Type="Tables" />
           <EntitySet Name="Correo" EntityType="Self.Correo" Schema="Configuracion" store:Type="Tables" />
           <EntitySet Name="Directorios" EntityType="Self.Directorios" Schema="Configuracion" store:Type="Tables" />
+          <EntitySet Name="Anios_Periodos" EntityType="Self.Anios_Periodos" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Estructura" EntityType="Self.Estructura" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Estructura_Campo" EntityType="Self.Estructura_Campo" Schema="Parametros" store:Type="Tables" />
@@ -1228,6 +1251,10 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <AssociationSet Name="FK__Web_Prera__FK_pr__35FCF52C" Association="Self.FK__Web_Prera__FK_pr__35FCF52C">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Preradicacion" EntitySet="Web_Preradicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_anios_periodos_estado_RIPS" Association="Self.FK_anios_periodos_estado_RIPS">
+            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
+            <End Role="Anios_Periodos" EntitySet="Anios_Periodos" />
           </AssociationSet>
           <AssociationSet Name="FK_correo_estado_rips" Association="Self.FK_correo_estado_rips">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
@@ -1602,6 +1629,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <NavigationProperty Name="Sexo" Relationship="RipsModel.FK__Sexo__estado_rip__4CC05EF3" FromRole="Estado_RIPS" ToRole="Sexo" />
           <NavigationProperty Name="Web_Modulo" Relationship="RipsModel.FK_web_modulo_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Modulo" />
           <NavigationProperty Name="Web_RolHasPermiso" Relationship="RipsModel.FK_rolhaspermiso_estado_rips" FromRole="Estado_RIPS" ToRole="Web_RolHasPermiso" />
+          <NavigationProperty Name="Anios_Periodos" Relationship="RipsModel.FK_anios_periodos_estado_RIPS" FromRole="Estado_RIPS" ToRole="Anios_Periodos" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -2497,6 +2525,11 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_RolHasPermiso" EntitySet="Web_RolHasPermiso" />
           </AssociationSet>
+          <EntitySet Name="Anios_Periodos" EntityType="RipsModel.Anios_Periodos" />
+          <AssociationSet Name="FK_anios_periodos_estado_RIPS" Association="RipsModel.FK_anios_periodos_estado_RIPS">
+            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
+            <End Role="Anios_Periodos" EntitySet="Anios_Periodos" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2795,6 +2828,29 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Principal>
             <Dependent Role="Web_RolHasPermiso">
               <PropertyRef Name="FK_rolhaspermiso_estado_rips" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Anios_Periodos">
+          <Key>
+            <PropertyRef Name="anios_periodos_id" />
+          </Key>
+          <Property Name="anios_periodos_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_minima" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_maxima" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_anios_estado_rips_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Estado_RIPS" Relationship="RipsModel.FK_anios_periodos_estado_RIPS" FromRole="Anios_Periodos" ToRole="Estado_RIPS" />
+        </EntityType>
+        <Association Name="FK_anios_periodos_estado_RIPS">
+          <End Type="RipsModel.Estado_RIPS" Role="Estado_RIPS" Multiplicity="1" />
+          <End Type="RipsModel.Anios_Periodos" Role="Anios_Periodos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_RIPS">
+              <PropertyRef Name="estado_rips_id" />
+            </Principal>
+            <Dependent Role="Anios_Periodos">
+              <PropertyRef Name="FK_anios_estado_rips_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3573,6 +3629,17 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
                 <ScalarProperty Name="FK_rolhaspermiso_modulo" ColumnName="FK_rolhaspermiso_modulo" />
                 <ScalarProperty Name="FK_rolhaspermiso_rol" ColumnName="FK_rolhaspermiso_rol" />
                 <ScalarProperty Name="rolhaspermiso_id" ColumnName="rolhaspermiso_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Anios_Periodos">
+            <EntityTypeMapping TypeName="RipsModel.Anios_Periodos">
+              <MappingFragment StoreEntitySet="Anios_Periodos">
+                <ScalarProperty Name="FK_anios_estado_rips_id" ColumnName="FK_anios_estado_rips_id" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="fecha_maxima" ColumnName="fecha_maxima" />
+                <ScalarProperty Name="fecha_minima" ColumnName="fecha_minima" />
+                <ScalarProperty Name="anios_periodos_id" ColumnName="anios_periodos_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

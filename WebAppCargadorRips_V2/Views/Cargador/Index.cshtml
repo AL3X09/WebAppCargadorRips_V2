@@ -2,9 +2,10 @@
     ViewBag.Title = "Cargar RIPS";
 }
 
-
+<!-- stilo para los calendarios -->
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
+<!-- stilo para la zona de archivos -->
+@Styles.Render("~/Stile/multifilecss")
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
 
@@ -125,32 +126,19 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
 
-
-                            <div class="dz-preview dz-file-preview">
-                                <div class="dz-details">
-                                    <div class="dz-filename"><span data-dz-name></span></div>
-                                    <div class="dz-size" data-dz-size></div>
-                                    <img data-dz-thumbnail />
+                            <div id="drop-zone">
+                                <p></p>
+                                <div id="clickHere">
+                                    Seleccione <span class="red-text">*</span><i class="fa fa-upload"></i>
+                                    <input type="file" name="rips" id="rips" multiple accept=".txt" />
                                 </div>
-                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                                <div class="dz-success-mark"><span>✔</span></div>
-                                <div class="dz-error-mark"><span>✘</span></div>
-                                <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                <div id='aqui'></div>
+                                <div id='filename'></div>
                             </div>
+
                             <br />
 
 
-                            <div class="form-group form-file-upload form-file-multiple">
-                                <input type="file" multiple="" class="inputFileHidden">
-                                <div class="input-group">
-                                    <input type="file" class="form-control inputFileVisible" name="rips" id="rips" multiple accept=".txt">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-fab btn-round btn-info">
-                                            <i class="material-icons">layers</i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -159,7 +147,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="col-md-3 col-sm-12">
-                            <button type="submit" class="btn btn-danger pull-right">Cancelar</button>
+                            <button type="button" class="btn btn-danger pull-right" onclick="cancelado()">Cancelar</button>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -170,13 +158,42 @@
 
 </div>
 
+<div class="row">
+    <!--modal del progres bar-->
+
+    <div class="tingle_addon_window hide">
+        <div class="row">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 @section Scripts {
 
     @Scripts.Render("~/bundles/jqueryval"),
-    @Scripts.Render("~/bundles/dropzonejs"),
+    @Scripts.Render("~/bundles/multifilejs"),
     @Scripts.Render("~/bundles/datepickerjs"),
+    @Scripts.Render("~/JSPaginas/cargarripsjs"),
     @Scripts.Render("~/JSValidacion/validacargaarchivo"),
-    @Scripts.Render("~/JSPaginas/cargarripsjs")
 
+    <script>
+
+        $(document).ready(function () {
+           
+            //inicializo la llamada de los tipos de usuarios
+            callTipoUsuario();
+            //inicializo multifile
+            inicilizoMultifile();
+            //inicializo la zona de los archivos
+            zonaarchvos();
+            //inicializo el llamado de las estructuras
+            callEstructuraCampo();
+
+        });
+
+    </script>
 
 }

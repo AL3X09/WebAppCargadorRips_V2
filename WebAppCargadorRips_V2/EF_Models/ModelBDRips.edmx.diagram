@@ -73,6 +73,8 @@
         <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_permiso" />
         <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_rol" />
         <AssociationConnector Association="RipsModel.FK_rolhaspermiso_estado_rips" />
+        <EntityTypeShape EntityType="RipsModel.Anios_Periodos" Width="1.5" PointX="3" PointY="12.125" />
+        <AssociationConnector Association="RipsModel.FK_anios_periodos_estado_RIPS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

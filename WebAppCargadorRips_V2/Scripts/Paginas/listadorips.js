@@ -1,5 +1,6 @@
-﻿//Archivo lista rips 
+﻿//Archivo encargado unicamente de la lista rips 
 $(document).ready(function () {
+    $("#mlistado").addClass("active");
     //$("#listaRips").DataTable();  
     //documentación de la biblioteca http://legacy.datatables.net/styling/custom_classes 
 
