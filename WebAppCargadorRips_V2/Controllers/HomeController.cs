@@ -6,25 +6,21 @@ using System.Web.Mvc;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Web_Usuario");
+            }
+            
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Descripción de la pagina";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Contenido de la pagina.";
-
-            return View();
-        }
     }
 }

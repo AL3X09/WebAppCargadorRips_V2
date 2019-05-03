@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using WebAppCargadorRips_V2.EF_Models;
-using System.Linq;
 using WebAppCargadorRips.Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS

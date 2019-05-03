@@ -30,11 +30,17 @@ namespace WebAppCargadorRips_V2
                       "~/Content/bootstrap.min.css"                      
                       ));
 
+            //LIBRERIAS EXTERNAS
+
             // Estilos desing para boostrap 
             //https://mdbootstrap.com/
-            //EN DESUSO 
+            bundles.Add(new StyleBundle("~/Content/mdbcss").Include(
+                      "~/Content/MDB/mdb.css",                      
+                      "~/Content/MDB/compiled.min.css"
+                      ));
 
-            //LIBRERIAS EXTERNAS
+            bundles.Add(new ScriptBundle("~/bundles/jsmdb").Include(
+                     "~/Scripts/MDB/mdb.js"));
 
             // Estilos desing para boostrap
             //https://www.creative-tim.com/product/material-dashboard-dark
@@ -93,7 +99,9 @@ namespace WebAppCargadorRips_V2
 
 
             // JS para cada una de las paginas 
-
+            //PAGINA SESION
+            bundles.Add(new ScriptBundle("~/bundles/loginval").Include(
+                      "~/Scripts/Paginas/login.js"));
             //PAGINA LAYOUT
             bundles.Add(new ScriptBundle("~/JSPaginas/layoutjs").Include(
                 "~/Scripts/Paginas/layout.js"));

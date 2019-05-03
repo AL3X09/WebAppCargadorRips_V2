@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebAppCargadorRips_V2.EF_Models;
+using WebAppCargadorRips_V2.Models;
+using System.Web.Security;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
@@ -128,6 +130,67 @@ namespace WebAppCargadorRips_V2.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Login()
+        {
+            return View("~/Views/Sesion/Index.cshtml");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objUser"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel objUser )
+        {
+            //Valido los campos del modelo
+            if (!ModelState.IsValid)
+            {
+                return View("~/Views/Sesion/Index.cshtml");
+            }
+            else
+            {
+                var SP = db.SP_Ingreso_Usuario(objUser.Usuario,objUser.Password ).FirstOrDefault();
+                if (SP != null && SP.codigo.Equals(200))
+                    {
+                    var obj = db.Web_Usuario.Where(u =>u.Prestador.codigo.Equals(objUser.Usuario) ).FirstOrDefault();
+                    TempData["UserID"] = obj.usuario_id.ToString();
+                    TempData["UserName"] =  String.Concat(obj.nombres.ToString()," ",obj.apellidos);
+                    TempData["UserEmail"] = obj.correo.ToString();
+                    TempData["UserImg"] = obj.imagen.ToString();
+                    FormsAuthentication.SetAuthCookie(objUser.Usuario, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (SP.codigo != 200)
+                {
+                    ModelState.AddModelError(string.Empty, SP.mensaje);
+                }
+                else
+                {
+                    //Limpio campos
+                    ModelState.Clear();
+                    //envio un mensaje al usuario
+                    ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
+                }
+                
+            }
+            return View(objUser);
+        }
+
+        public ActionResult UserDashBoard()
+        {
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
 
         protected override void Dispose(bool disposing)
         {

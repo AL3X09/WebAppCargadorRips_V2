@@ -208,6 +208,7 @@
     <Compile Include="Controllers\APIS\Web_UsuarioController.cs" />
     <Compile Include="Controllers\CargadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\Web_AdministradoresController.cs" />
     <Compile Include="Controllers\Web_DocumentoController.cs" />
     <Compile Include="Controllers\Web_ModuloController.cs" />
@@ -401,6 +402,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CuentaViewModel.cs" />
     <Compile Include="Models\EnviarCorreoModel.cs" />
     <Compile Include="Models\SysDataTablePager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -937,6 +939,7 @@
     <Content Include="Scripts\Paginas\home.js" />
     <Content Include="Scripts\Paginas\layout.js" />
     <Content Include="Scripts\Paginas\listadorips.js" />
+    <Content Include="Scripts\Paginas\login.js" />
     <Content Include="Scripts\Paginas\multifilecontrol.js" />
     <Content Include="Scripts\Paginas\RolHasPermiso.js" />
     <Content Include="Scripts\Paginas\Sidebar.js" />
@@ -1023,6 +1026,11 @@
     <Content Include="Views\Web_Documento\Edit.cshtml" />
     <Content Include="Views\Web_Documento\Index.cshtml" />
     <Content Include="Views\Web_Usuario\Perfil.cshtml" />
+    <Content Include="Views\Sesion\Login.cshtml" />
+    <Content Include="Views\Sesion\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutSesion.cshtml" />
+    <Content Include="Views\Sesion\ViewPartialLogin.cshtml" />
+    <Content Include="Views\Sesion\ViewPartialRegistro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

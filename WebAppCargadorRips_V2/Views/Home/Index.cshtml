@@ -2,7 +2,14 @@
     ViewBag.Title = "LISTADO ARCHIVOS RIPS";
 }
 
+<fieldset>
+    <legend> User DashBoard </legend>
+    <div style="text-align:center">
+        <h1>Esta es una sección privada</h1>
+        <h2>Usuario: @HttpContext.Current.User.Identity.Name</h2>
+    </div>
 
+</fieldset> 
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
 
@@ -10,7 +17,6 @@
     <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-
             <span>@ViewBag.Title</span>
         </h4>
 
