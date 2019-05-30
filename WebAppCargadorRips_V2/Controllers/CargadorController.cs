@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class CargadorController : Controller
     {
         // GET: Carga

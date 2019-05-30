@@ -11,14 +11,14 @@ namespace WebAppCargadorRips_V2.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["UserID"] != null)
-            {
+            //if (Session["UserID"] != null)
+            //{
                 return View();
-            }
+            /*}
             else
             {
-                return RedirectToAction("Login", "Web_Usuario");
-            }
+                return RedirectToAction("Index", "Sesion");
+            }*/
             
         }
 

@@ -9,6 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/mdbcss")
+    @Styles.Render("~/Stile/izitoastcss")
 
     <style type="text/css">
         html,
@@ -72,7 +73,7 @@
         </div>
     </noscript>
     <!--fin  Seccion del <noscript>  -->
-    <link rel="icon" href="@Url.Content("~/Img/logo.ico")" />
+    <link rel="icon" href="@Url.Content("~/Img/logos/logo.ico")" />
 </head>
 
 <body>
@@ -82,7 +83,7 @@
     </div>
 
     <!-- Full Page Intro -->
-    <div class="view full-page-intro" style="background-image: url(@Url.Content("~/Img/bg.jpg")); background-repeat: no-repeat; background-size: cover;">
+    <div class="view full-page-intro" style="background-image: url(@Url.Content("~/Img/backgrounds/bg.jpg")); background-repeat: no-repeat; background-size: cover;">
 
         <!-- Mask & flexbox options-->
         <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -95,7 +96,7 @@
                         <h1 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s"> <a class="font-weight-bold" style="color:#194569;">CARGADOR</a></h1>
                     </div>
                     <div class="text-center">
-                        <img src="@Url.Content("~/Img/logo.png")" class="rounded mx-auto d-block" alt="CARGADOR RIPS" />
+                        <img src="@Url.Content("~/Img/logos/logo.png")" class="rounded mx-auto d-block" alt="CARGADOR RIPS" />
                     </div>
                     <br />
 
@@ -129,7 +130,7 @@
 
         <!--Escudo action-->
         <div class="pt-4">
-            <img src="@Url.Content("~/Img/alcaldia_logo.png")" class="img-fluid" alt="" width="200" height="200"/>
+            <img src="@Url.Content("~/Img/logos/alcaldia_logo.png")" class="img-fluid" alt="" width="200" height="200" />
 
         </div>
         <!--/.Call to action-->
@@ -153,6 +154,7 @@
     <!--/.Footer-->
     <!-- SCRIPTS -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    @Scripts.Render("~/bundles/izitoastjs")
     @Scripts.Render("~/bundles/jsmdb")
     @Scripts.Render("~/bundles/loginval")
     @RenderSection("scripts", required: true)

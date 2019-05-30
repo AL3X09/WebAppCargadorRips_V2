@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-            <img src="@Url.Content("~/Img/logos/logo.png")" alt="RIPS" width="" height="50">
+            <img src="@Url.Content("~/Img/logos/logo.png")" alt="RIPS" width="" height="100">
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -23,17 +23,16 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right info-color" data-color="azure" aria-labelledby="navbarDropdownProfile">
-                        @if (TempData["UserName"] != null)
-                        {
-                            <a class="dropdown-item" href="#" id="nombreuserspan">@TempData["UserName"].ToString()</a>
-                            <a class="dropdown-item" href="#" id="emailspan">@TempData["UserEmail"].ToString()</a>
-                        }
-
-                        <a class="dropdown-item" href="#">Perfíl</a>
-                        <a class="dropdown-item" href="#">Cambio contrs</a>
+                        <a class="dropdown-item" href="#" id="nombreuserspan"></a>
+                        <a class="dropdown-item" href="#" id="emailspan"></a>
+                        <a class="dropdown-item" href="@Url.Action("Perfil", "Web_Usuario", new { id = @HttpContext.Current.User.Identity.Name.ToString() })">Perfíl</a>
+                        <a class="dropdown-item" href="@Url.Action("CambiarContrasenia", "Web_Usuario",new { id = @HttpContext.Current.User.Identity.Name.ToString() })">Cambiar contraseña</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Salir</a>
-                    </div>
+                        @using (Html.BeginForm("Logout", "Sesion", FormMethod.Post))
+                        {
+                            <a class="dropdown-item" href="javascript:;" onclick="document.forms[0].submit();">Salir</a>
+                        }
+                        </div>
                 </li>
             </ul>
         </div>
@@ -41,5 +40,6 @@
 </nav>
 
 <div id="divclaims" style="display:none;">
+
 </div>
 

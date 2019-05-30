@@ -2427,9 +2427,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <FunctionImport Name="SP_GetAllPlantillasCorreo" ReturnType="Collection(RipsModel.SP_GetAllPlantillasCorreo_Result)" />
           <FunctionImport Name="SP_GetAllPreguntasFrecuentes" ReturnType="Collection(RipsModel.SP_GetAllPreguntasFrecuentes_Result)" />
           <FunctionImport Name="SP_GetAllPresentacionesAyuda" ReturnType="Collection(RipsModel.SP_GetAllPresentacionesAyuda_Result)" />
-          <FunctionImport Name="SP_GetDatosUsuario" ReturnType="Collection(RipsModel.SP_GetDatosUsuario_Result)">
-          <Parameter Name="codigo" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_GetEstadoRipsRecibidos" ReturnType="Collection(RipsModel.SP_GetEstadoRipsRecibidos_Result)">
           <Parameter Name="Prestador" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2530,6 +2527,9 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Anios_Periodos" EntitySet="Anios_Periodos" />
           </AssociationSet>
+          <FunctionImport Name="SP_GetDatosUsuario" ReturnType="Collection(RipsModel.SP_GetDatosUsuario_Result)">
+            <Parameter Name="codigo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2628,21 +2628,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="ruta" Nullable="false" MaxLength="Max" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
           <Property Type="Int64" Name="FK_estado" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SP_GetDatosUsuario_Result">
-          <Property Type="Int64" Name="usuario_id" Nullable="false" />
-          <Property Type="String" Name="codigo" Nullable="false" MaxLength="12" />
-          <Property Type="String" Name="nombres" Nullable="false" />
-          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="correo" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="razon_social" Nullable="false" />
-          <Property Type="String" Name="imagen" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="id_rol" Nullable="false" />
-          <Property Type="String" Name="nombre_rol" Nullable="false" MaxLength="50" />
-          <Property Type="Boolean" Name="habilitado" Nullable="false" />
-          <Property Type="Int64" Name="id_estado" Nullable="false" />
-          <Property Type="String" Name="nombre_estado" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="SP_GetEstadoRipsRecibidos_Result">
           <Property Type="DateTime" Name="fecha" Nullable="true" Precision="16" />
@@ -2854,6 +2839,21 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_GetDatosUsuario_Result">
+          <Property Type="Int64" Name="usuario_id" Nullable="false" />
+          <Property Type="String" Name="codigo" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="nombres" Nullable="false" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="razon_social" Nullable="false" />
+          <Property Type="String" Name="imagen" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="id_rol" Nullable="false" />
+          <Property Type="String" Name="nombre_rol" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="habilitado" Nullable="false" />
+          <Property Type="Int64" Name="id_estado" Nullable="false" />
+          <Property Type="String" Name="nombre_estado" Nullable="false" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3482,25 +3482,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetDatosUsuario" FunctionName="RipsModel.Store.SP_GetDatosUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="RipsModel.SP_GetDatosUsuario_Result">
-                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
-                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
-                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
-                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetEstadoRipsRecibidos" FunctionName="RipsModel.Store.SP_GetEstadoRipsRecibidos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="RipsModel.SP_GetEstadoRipsRecibidos_Result">
@@ -3643,6 +3624,25 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetDatosUsuario" FunctionName="RipsModel.Store.SP_GetDatosUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_GetDatosUsuario_Result">
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

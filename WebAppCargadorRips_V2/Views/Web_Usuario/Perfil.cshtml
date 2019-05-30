@@ -1,45 +1,51 @@
-﻿@model WebAppCargadorRips_V2.EF_Models.Web_Usuario
+﻿@model WebAppCargadorRips_V2.Models.ActualizarDatosViewModel
 
 @{
-    ViewBag.Title = "Perfil";
+    ViewBag.Title = "Perfil de usuario";
 }
 
-<h2>ViewBag.Title</h2>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
+
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
+
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>@ViewBag.Title</span>
+        </h4>
+
+    </div>
+
+</div>
+
 <div class="col s12">
     <blockquote>Hola <span id="nombreUser"></span> !! desde aquí puede actualizar su información.</blockquote>
 </div>
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("Perfil", "Web_Usuario", null, new AjaxOptions
+{
+    Url = "/api/Usuarios/UpdateDatosUsuario",
+    HttpMethod = "POST",
+
+}))
+
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Web_Usuario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.usuario_id)
+        @Html.HiddenFor(model => model.id_estado)
+        @Html.HiddenFor(model => model.id_rol)
+
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FK_usuario_prestador, "FK_usuario_prestador", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FK_usuario_prestador", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FK_usuario_prestador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.correo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.contrasenia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.contrasenia, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -76,56 +82,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.correo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.confirmacion_condiciones, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="imguserperfil">Imagen</label>
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.confirmacion_condiciones)
-                    @Html.ValidationMessageFor(model => model.confirmacion_condiciones, "", new { @class = "text-danger" })
-                </div>
+                <img id="imguserperfil" class="rounded" alt="Cinque Terre" height="150">
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.confirmacion_correo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.confirmacion_correo)
-                    @Html.ValidationMessageFor(model => model.confirmacion_correo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FK_usuario_rol, "FK_usuario_rol", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("FK_usuario_rol", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FK_usuario_rol, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FK_usuario_estado_rips, "FK_usuario_estado_rips", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("FK_usuario_estado_rips", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FK_usuario_estado_rips, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha_modificacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_modificacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_modificacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -135,6 +106,21 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<!-- Modal que tiene el formulario de la imagen -->
+<div class="row d-none">
+    <div id="dialog" class="tingle_addon_window">
+        <form id="formuserimage" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            <label for="avatar">adjunta una imagen ".JPEG"</label>
+            <input type="file" id="avatar" name="avatar" class="dropify" data-allowed-file-extensions="jpg jpeg">
+        </form>
+    </div>
 </div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/dropifyjs")
+    @Scripts.Render("~/bundles/perfilusuariojs")
+
+}

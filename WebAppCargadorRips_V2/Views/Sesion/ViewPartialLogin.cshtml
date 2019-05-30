@@ -11,7 +11,7 @@
     <!--Body-->
     <div class="modal-body mb-1">
         <section id="loginForm">
-            @using (Html.BeginForm("ViewPartialLogin", "Cuenta", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formularioLogin", runat = "server" }))
+            @using (Html.BeginForm("ViewPartialLogin", "Sesion", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formularioLogin", runat = "server" }))
 
             {
                 @Html.AntiForgeryToken()
@@ -27,7 +27,7 @@
                 <div class="md-form form-sm">
                     <i class="fa fa-lock prefix"></i>
                     @Html.LabelFor(model => model.Password, new { @class = "" })
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "" })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
                 <hr />
@@ -37,59 +37,43 @@
                         @ViewBag.ErrorMessage
                     </div>
                 </div>
-
-                                        <!--<div class="row">
-                        <div class="col-sm-12">
-                                <input type="checkbox" class="filled-in" id="RememberMe" name="RememberMe">
-
-                            </div>
-                        </div>
-
-                                <hr>-->
-                                        <!--captcha
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="text-center">
-                                    <div class="g-recaptcha" data-sitekey="6Lf7v0UUAAAAAHR6TDCi8jPihFtb0NGvWlVobwW2"></div>
-                                </div>
-                            </div>
-                        </div>-->
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="text-center">
-                                <input type="submit" value="Iniciar sesión" class="btn blue accent-4" />
-                            </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <input type="submit" value="Iniciar sesión" class="btn blue accent-4" />
                         </div>
                     </div>
-                    }
-            </section>
-
-        </div>
-        <!--Footer-->
-        <div class="modal-footer display-footer">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="options text-center text-md-right mt-1">
-                        <p>
-                            @Html.ActionLink("¿Ha olvidado su contraseña?", "RecuperarContrasenia")
-                        </p>
-                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>@ViewBag.json</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <button type="button" class="btn blue lighten-3 waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
+            }
+        </section>
 
     </div>
-    <!--/.Panel 1-->
-    <!--/ Vista parcial-->
+    <!--Footer-->
+    <div class="modal-footer display-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="options text-center text-md-right mt-1">
+                    <p>
+                        @Html.ActionLink("¿Ha olvidado su contraseña?", "RecuperarContrasenia")
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>@ViewBag.json</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" class="btn blue lighten-3 waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--/.Panel 1-->
+<!--/ Vista parcial-->
+
+

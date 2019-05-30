@@ -35,7 +35,7 @@ namespace WebAppCargadorRips_V2
             // Estilos desing para boostrap 
             //https://mdbootstrap.com/
             bundles.Add(new StyleBundle("~/Content/mdbcss").Include(
-                      "~/Content/MDB/mdb.css",                      
+                      "~/Content/MDB/mdb.css",
                       "~/Content/MDB/compiled.min.css"
                       ));
 
@@ -63,8 +63,8 @@ namespace WebAppCargadorRips_V2
 
             //Datatables
             bundles.Add(new ScriptBundle("~/bundles/datatablesjs").Include(
-                      "~/Scripts/DataTables/jquery.dataTables.min.js",
-                      "~/Scripts/DataTables/responsive.bootstrap4.min.js"
+                      "~/Scripts/DataTables/jquery.dataTables.js"
+                      //"~/Scripts/DataTables/responsive.bootstrap4.min.js"
                       ));
 
             //jquery multifile
@@ -94,6 +94,26 @@ namespace WebAppCargadorRips_V2
                      "~/Scripts/Tinglejs/tingle.js"
                      ));
 
+            //Izitoast JS
+            //http://izitoast.marcelodolza.com//
+            bundles.Add(new StyleBundle("~/Stile/izitoastcss").Include(
+                     "~/Content/Izitoast/iziToast.min.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/izitoastjs").Include(
+                     "~/Scripts/Izitoast/iziToast.min.js"
+                     ));
+
+            //DROPFY https://github.com/JeremyFagis/dropify
+
+            bundles.Add(new StyleBundle("~/Stile/dropifycss").Include(
+                      "~/Content/Dropify/dropify.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropifyjs").Include(
+                      "~/Scripts/Dropify/dropify.min.js"
+                      ));
+
 
             //FIN LIBRERIAS EXTERNAS
 
@@ -108,6 +128,11 @@ namespace WebAppCargadorRips_V2
             //PAGINA HOME
             bundles.Add(new ScriptBundle("~/JSPaginas/home").Include(
                 "~/Scripts/Paginas/home.js"));
+
+            //PAGINA LISTADO RIPS
+            bundles.Add(new ScriptBundle("~/bundles/perfilusuariojs").Include(
+                      "~/Scripts/Paginas/perfilusuario.js"
+                      ));
 
             //PAGINA LISTADO RIPS
             bundles.Add(new ScriptBundle("~/bundles/listadoripsjs").Include(

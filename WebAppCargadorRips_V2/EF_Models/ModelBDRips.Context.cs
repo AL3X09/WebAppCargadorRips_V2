@@ -20,9 +20,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public RipsEntitiesConnection()
             : base("name=RipsEntitiesConnection")
         {
-            //Disable Lazy Loading
-            //https://www.entityframeworktutorial.net/lazyloading-in-entity-framework.aspx
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -189,15 +186,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual ObjectResult<SP_GetAllPresentacionesAyuda_Result> SP_GetAllPresentacionesAyuda()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllPresentacionesAyuda_Result>("SP_GetAllPresentacionesAyuda");
-        }
-    
-        public virtual ObjectResult<SP_GetDatosUsuario_Result> SP_GetDatosUsuario(string codigo)
-        {
-            var codigoParameter = codigo != null ?
-                new ObjectParameter("codigo", codigo) :
-                new ObjectParameter("codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetDatosUsuario_Result>("SP_GetDatosUsuario", codigoParameter);
         }
     
         public virtual ObjectResult<SP_GetEstadoRipsRecibidos_Result> SP_GetEstadoRipsRecibidos(Nullable<int> prestador)
@@ -417,6 +405,15 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("Token", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ValidarDatosRestablecimientoContrasenia_Result>("SP_ValidarDatosRestablecimientoContrasenia", codigoParameter, tokenParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetDatosUsuario_Result> SP_GetDatosUsuario(string codigo)
+        {
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetDatosUsuario_Result>("SP_GetDatosUsuario", codigoParameter);
         }
     }
 }

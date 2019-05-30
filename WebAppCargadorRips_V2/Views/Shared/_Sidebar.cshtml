@@ -6,18 +6,14 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-        <a href="http://www.saludcapital.gov.co/DPYS/Paginas/RegistroIndividualdePrestaciondeServicios.aspx" target="_blank" class="simple-text logo-normal">
-            <img src="@Url.Content("~/Img/logos/logo.png")" alt="RIPS">
-        </a>
+        <div class="text-center">
+            <img id="imguser" src="" class="rounded" alt="User image" width="" height="150">
+        </div>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item " id="madmin">
-                <a class="nav-link" href="@Url.Action("Index", "Administracion")">
-                    <i class="material-icons">dashboard</i>
-                    <p>Administración</p>
-                </a>
-            </li>
+            <div id="tokenacces">
+            </div>
             <li class="nav-item " id="mlistado">
                 <a class="nav-link" href="@Url.Action("Index", "Home")">
                     <i class="material-icons">person</i>
@@ -30,8 +26,8 @@
                     <p>Cargar Archvivos RIPS</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
+            <li id="li-descargarvalidador" class="nav-item ">
+                <a class="nav-link" href="#!" onclick="vistaDescargarValidador()">
                     <i class="material-icons">library_books</i>
                     <p>Descargar Validador RIPS</p>
                 </a>
@@ -43,7 +39,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
+                <a class="nav-link" href="@Url.Action("Index","Ayuda")">
                     <i class="material-icons">notifications</i>
                     <p>Ayuda</p>
                 </a>

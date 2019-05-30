@@ -25,9 +25,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         //Sobrecargo el constructor para acerlo publico a ciertas clases, tener cuidado esta sobrecarga es para casos especiales
         public EnviarCorreoController()
         {
-            //agrego a la variable privada un texto
-            //IdPlantillacorreo = idPlantillacorreo;
-
+           
         }
 
         //consulto la tabla que manntiene la configuracion del smtp para envio de correos
@@ -214,14 +212,14 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         //[EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> PostSendEmailRecuperacionContrasenia(EnviarCorreoRecuperacionModel datos)
 
-        //public async Task<IHttpActionResult> PostSendEmailRecuperacionContrasenia(EnviarCorreoRecuperacionModel datos)
         {
             //Valido que los valores no lleguen vacios
             if (datos != null)
             {
 
-                //var mappedPath = HttpContext.Current.Request.Url.AbsoluteUri; //mapeo la ruta completa del servidor
-                var mappedPath = HttpContext.Current.Request.Url.Scheme + "//" + HttpContext.Current.Request.Url.Authority + "/cargadorrips"; //mapeo la url del servidor
+                //mapeo la ruta completa del servidor
+                //var mappedPath = HttpContext.Current.Request.Url.Scheme + "//" + HttpContext.Current.Request.Url.Authority + "/cargadorrips"; //mapeo la url del servidor
+                var mappedPath = HttpContext.Current.Request.Url.ToString();
 
                 //invoco metodo que permite obtener los datos del smtp del correo
                 SmtpCorreos();
@@ -248,7 +246,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 msg.Subject = result.asunto;
                 msg.IsBodyHtml = true;
                 //se arma cuerpo del correo                
-                msg.Body = String.Format(result.cuerpo, mappedPath, datos.id, datos.token);
+                msg.Body = String.Format(result.cuerpo, mappedPath.Replace("/RecuperarContrasenia", ""), datos.id, datos.token);
 
                 try
                 {

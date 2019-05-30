@@ -12,7 +12,7 @@
     <!--Body-->
     <div class="modal-body mb-1">
         <section id="registerForm">
-            @using (Html.BeginForm("ViewPartialRegistro", "Cuenta", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formularioRegistro", runat = "server" }))
+            @using (Html.BeginForm("ViewPartialRegistro", "Sesion", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formularioRegistro", runat = "server" }))
             {
                 @Html.AntiForgeryToken()
                 <h6>Campos marcados con (*) son obligatorios.</h6>
@@ -24,63 +24,63 @@
 
                 <div class="md-form form-sm">
                     <i class="fa fa-qrcode prefix"></i>
-                    @Html.TextBoxFor(m => m.CodPrestador, new { @class = "form-control", onchange = "", })
+                    @Html.TextBoxFor(m => m.CodPrestador, new { @class = "", onchange = "", })
                     @Html.LabelFor(m => m.CodPrestador, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.CodPrestador, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-envelope prefix"></i>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "" })
                     @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-envelope-o prefix"></i>
-                    @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "form-control", onpaste = "return false" })
+                    @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "", onpaste = "return false" })
                     @Html.LabelFor(m => m.ConfirmEmail, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-lock prefix"></i>
-                    @Html.PasswordFor(m => m.Pasword, new { @class = "form-control" })
+                    @Html.PasswordFor(m => m.Pasword, new { @class = "" })
                     @Html.LabelFor(m => m.Pasword, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.Pasword, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-lock prefix"></i>
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", onpaste = "return false" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", onpaste = "return false" })
                     @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-user prefix"></i>
-                    @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Nombres, new { @class = "" })
                     @Html.LabelFor(m => m.Nombres, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-user-o prefix"></i>
-                    @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Apellidos, new { @class = "" })
                     @Html.LabelFor(m => m.Apellidos, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-legal prefix"></i>
-                    @Html.TextBoxFor(m => m.RazonSocial, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.RazonSocial, new { @class = "" })
                     @Html.LabelFor(m => m.RazonSocial, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="md-form form-sm">
                     <i class="fa fa-phone prefix"></i>
-                    @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Telefono, new { @class = "" })
                     @Html.LabelFor(m => m.Telefono, new { @class = "control-label" })
                     @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
                 </div>
@@ -130,14 +130,16 @@
 <script type="application/javascript">
         $(document).ready(function () {
         //debugger;
+
         var json =@Html.Raw(ViewBag.SomeData);
-        if(json[0]=== undefined ){
-            ShowAlert(json.tipo,json.mensaje)
-        }
-        else if(json[0].codigo!=200 && json[0].codigo!=201){
+
+        if(json.tipo==="error" && json.codigo!=200 && json.codigo!=201){
+
          $("#btnRegistro").click();
+
         }
-        ShowAlert(json[0].tipo,json[0].mensaje)
+
+        ShowAlert(json.tipo,json.mensaje)
         });
 </script>
 }

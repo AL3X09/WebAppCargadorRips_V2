@@ -90,6 +90,17 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="Extranjero" id="Extranjero" />
+                                    Extranjero (Circular 029)
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <br>
                     <div class="row">
@@ -141,6 +152,12 @@
 
                         </div>
                     </div>
+                    
+                    <div>
+                        <!-- se usa para enviar el ID del usuario-->
+                        <input type="hidden" name="idUsuario" id="idUsuario" value="@HttpContext.Current.User.Identity.Name"/>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <button type="submit" class="btn btn-info pull-right">Cargar</button>
@@ -173,7 +190,6 @@
 
 @section Scripts {
 
-    @Scripts.Render("~/bundles/jqueryval"),
     @Scripts.Render("~/bundles/multifilejs"),
     @Scripts.Render("~/bundles/datepickerjs"),
     @Scripts.Render("~/JSPaginas/cargarripsjs"),

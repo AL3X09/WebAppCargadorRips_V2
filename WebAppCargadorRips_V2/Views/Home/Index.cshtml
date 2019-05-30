@@ -2,14 +2,6 @@
     ViewBag.Title = "LISTADO ARCHIVOS RIPS";
 }
 
-<fieldset>
-    <legend> User DashBoard </legend>
-    <div style="text-align:center">
-        <h1>Esta es una sección privada</h1>
-        <h2>Usuario: @HttpContext.Current.User.Identity.Name</h2>
-    </div>
-
-</fieldset> 
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
 
@@ -32,30 +24,32 @@
                 <h4 class="card-title "> Este módulo le da una visión del estado de sus archivso RIPS cargados.</h4>
             </div>
             <div class="card-body">
-                <table id="listaRips" class="table-responsive">
-                    <thead class=" text-info">
+                <table id="listaRips" class="table-striped table-responsive">
+                    <thead class="text-info">
                         <tr>
-                            <th>#</th>
+                            <th># </th>
                             <th>Tipo Usuario</th>
                             <th>Categoría</th>
                             <th>Periodo Inicio Reportado</th>
                             <th>Periodo Fin Reportado</th>
-                            <th>Fecha de Carga</th>
-                            <th>Estado Validación Preradicación</th>
+                            <th>Estado Validación Carga</th>
+                            <th>Estado Validación</th>
                             <th>Estado Radicación</th>
+                            <th>Fecha de Carga</th>
                         </tr>
                     </thead>
                     <!--<tbody id="tbodylistarips"></tbody>-->
                     <tfoot>
                         <tr>
-                            <th>#</th>
+                            <th># </th>
                             <th>Tipo Usuario</th>
                             <th>Categoría</th>
                             <th>Periodo Inicio Reportado</th>
                             <th>Periodo Fin Reportado</th>
-                            <th>Fecha de Carga</th>
-                            <th>Estado Validación Preradicación</th>
+                            <th>Estado Validación Carga</th>
+                            <th>Estado Validación</th>
                             <th>Estado Radicación</th>
+                            <th>Fecha de Carga</th>
                         </tr>
                     </tfoot>
 
@@ -64,13 +58,12 @@
         </div>
     </div>
 
-    <div id="divclaims" style="display:none;">
-    </div>
 </div>
 
 @section Scripts {
 
     @Scripts.Render("~/bundles/datatablesjs"),
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     @Scripts.Render("~/bundles/listadoripsjs"),
 
 }

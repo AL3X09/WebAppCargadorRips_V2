@@ -10,9 +10,12 @@ using System.Web.Mvc;
 using WebAppCargadorRips_V2.EF_Models;
 using WebAppCargadorRips_V2.Models;
 using System.Web.Security;
+using Newtonsoft.Json;
+using WebAppCargadorRips_V2.Controllers.APIS;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class Web_UsuarioController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
@@ -131,66 +134,109 @@ namespace WebAppCargadorRips_V2.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Login()
+       /// <summary>
+       /// Metodo invoca la vista para el perfil y realiza una sobre carga de información
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+        public virtual ActionResult Perfil(long? id)
         {
-            return View("~/Views/Sesion/Index.cshtml");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Web_Usuario u = db.Web_Usuario.Find(id);
+
+            ActualizarDatosViewModel model = new ActualizarDatosViewModel
+                {
+                    usuario_id = Convert.ToInt32(u.usuario_id),
+                    codigo = u.Prestador.codigo_habilitacion,
+                    nombres = u.nombres,
+                    apellidos = u.apellidos,
+                    razon_social = u.razon_social,
+                    correo = u.correo,
+                    telefono = u.telefono,
+                    id_rol = Convert.ToInt32(u.FK_usuario_rol),
+                    id_estado = Convert.ToInt32(u.FK_usuario_estado_rips)
+                };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Perfil(ActualizarDatosViewModel model)
+        {
+            //Valido los campos del modelo
+            if (ModelState.IsValid)
+            {
+                var result = new Web_UsuarioApiController().UpdateDatosUsuario(model);
+                //Console.WriteLine(result);
+                return View();
+                //Web_UsuarioApiController datos = await datos.UpdateDatosUsuario(model);
+                //await datos.UpdateDatosUsuario(model);
+            }
+
+            return View(model);
         }
 
         /// <summary>
-        /// 
+        /// Metodo carga la vista para el cambio de contraseña de un usuario logeado
         /// </summary>
-        /// <param name="objUser"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel objUser )
+        /// GET: Perfil Usuario
+        /*public ActionResult CambiarContrasenia()
         {
-            //Valido los campos del modelo
-            if (!ModelState.IsValid)
-            {
-                return View("~/Views/Sesion/Index.cshtml");
-            }
-            else
-            {
-                var SP = db.SP_Ingreso_Usuario(objUser.Usuario,objUser.Password ).FirstOrDefault();
-                if (SP != null && SP.codigo.Equals(200))
-                    {
-                    var obj = db.Web_Usuario.Where(u =>u.Prestador.codigo.Equals(objUser.Usuario) ).FirstOrDefault();
-                    TempData["UserID"] = obj.usuario_id.ToString();
-                    TempData["UserName"] =  String.Concat(obj.nombres.ToString()," ",obj.apellidos);
-                    TempData["UserEmail"] = obj.correo.ToString();
-                    TempData["UserImg"] = obj.imagen.ToString();
-                    FormsAuthentication.SetAuthCookie(objUser.Usuario, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else if (SP.codigo != 200)
-                {
-                    ModelState.AddModelError(string.Empty, SP.mensaje);
-                }
-                else
-                {
-                    //Limpio campos
-                    ModelState.Clear();
-                    //envio un mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
-                }
-                
-            }
-            return View(objUser);
-        }
+           return View();
+        }*/
 
-        public ActionResult UserDashBoard()
+        public async Task<ActionResult> CambiarContrasenia(CambiarContraseniaViewModel model)
         {
-            if (Session["UserID"] != null)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
+                var MSG = new EnviarCorreoRecuperacionModel();
+                try
+                {
+                        //Ejecuto los valores en el SP
+                        //borrarSP_Updaterestacontra
+                        var response = db.SP_ChangeContraseniaUser(model.idUsuario, model.contrasenia).First();
+                        //
+                        await db.SaveChangesAsync();
 
+                        // el procedimiento envia un codigo de 201 como respuesta
+                        if (response.codigo == 201)
+                        {
+                            //consulto el mensaje correspondiente para el esta caso
+                            var msg = db.Web_Mensaje.Where(m => m.codigo.Equals(1018)).Select(m => new { codigo = m.codigo, tipo = m.tipo, mensaje = m.cuerpo }).First();
+                            //creo un array a partir del json devuelto por la api para tratarlo desde aca y poder enviar los diferentes errores
+                            var json = JsonConvert.SerializeObject(msg, Formatting.Indented);
+                            //creo un json dinamico para enviarlo a la vista
+                            dynamic dynJson = JsonConvert.DeserializeObject(json);
+                            //envio mensaje
+                            TempData["mensaje"] = dynJson;
+                            //cierro sesiones
+                            FormsAuthentication.SignOut();
+                            //Cargo la vista                            
+                            return RedirectToAction("Index", "Sesion");
+
+                        }// fin if valida response
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, response.mensaje);
+                            //return View();
+                        }
+
+                }//fin try
+                catch (Exception e)
+                {
+                    // envio error a la api logs errores
+                    //envio a la carpeta logs
+                    APIS.LogsController log = new APIS.LogsController(e.ToString());
+                    log.createFolder();
+                    //envio error mensaje al usuario
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                }
+            }
+            return View(model);
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -1,22 +1,21 @@
 ﻿//Archivo encargado unicamente de la lista rips 
 $(document).ready(function () {
-    $("#mlistado").addClass("active");
+    //$("#mlistado").addClass("active");
+    //$("#listaRips").removeClass("active");
     //$("#listaRips").DataTable();  
     //documentación de la biblioteca http://legacy.datatables.net/styling/custom_classes 
 
-    $.fn.dataTable.ext.classes.sPageButtonActive = 'btn small blue lighten-2'; // Change Pagination Button Class
-    $.fn.dataTable.ext.classes.sPageButtonActive = 'waves-light btn small'; // Change Pagination Button Class
+    //$.fn.dataTable.ext.classes.sPageButtonActive = 'active'; // Change Pagination Button Class
+    //$.fn.dataTable.ext.classes.sPageButtonActive = 'waves-light btn small'; // Change Pagination Button Class
     //$.fn.dataTable.ext.classes.sPageButtonStaticDisabled = 'btn small disabled'; // Change Pagination Button Class
-   
-    
-    //cargaratabla();
+    cargaratabla(token);
 })
 
 //https://qawithexperts.com/article/asp.net/jquery-datatable-server-side-processing-with-web-api-in-aspn/72
 
 function cargaratabla(token) {
-
-    $("#listaRips").dataTable({
+    
+    var table = $("#listaRips").dataTable({
         "bServerSide": true, //make server side processing to true
         "sAjaxSource": baseURL + "api/Rips/GetListadoRips?fktoken="+token, //url of the Ajax source,i.e. web api method
         "sAjaxDataProp": "aaData", // data property of the returned ajax which contains table data
@@ -35,21 +34,34 @@ function cargaratabla(token) {
                     return data.substring(0,10);
                   }
                 },
-                {'mData': "fecha_cargo", 'mRender': function(data, type, full) {
-                    //console.log(data.substring(0,10))
-                    return data.substring(0,10);
-                  }
-                },
                 { "mData": "estado_web_validacion"},
-                { "mData": "estado_web_preradicacion"},
-                { "mData": "estado_servicio_validacion"},
-                { "mData": "estado_radicacion"},
-                //{
-                    //"mData": "web_validacion_id", "bSearchable": false, "bSortable": false, "sWidth": "40px",
-                    //"mRender": function (data) {
-                        //return '<button class="btn btn-primary" type="button" data-Id="' + data + '" >Edit</button>'
-                    //}
-                //}
+                { 
+                    "mData": "estado_servicio_validacion", 'mRender': function (data, type, row) {
+                        //console.log(row.desc_estado_servicio_validacion);
+                        if (row.desc_estado_servicio_validacion == null) {
+                            return "Pendiente";
+                        } else {
+                            return row.desc_estado_servicio_validacion;
+                        }
+                    }
+                },
+                { 
+                    "mData": "estado_radicacion", 'mRender': function (data, type, row ) {
+                        //console.log(row.desc_estado_servicio_validacion);
+                        if (row.desc_estado_servicio_validacion == null) {
+                            return "Pendiente";
+                        } else {
+                            return row.desc_estado_radicacion;
+                        }
+                    }
+                },
+                {
+                    'mData': "fecha_cargo", 'mRender': function (data, type, full) {
+                        //console.log(data.substring(0,10))
+                        return data.substring(0, 10);
+                    }
+                },
+                
         ],
         "language": {
             'processing': 'Cargando...',
@@ -86,42 +98,23 @@ function cargaratabla(token) {
     //
     $("select").val('10');
     //$('select').addClass("browser-default");
-    $('select').material_select();
-        
-}
+    //$('select').material_select();
 
-//metodo no funcional
-function cargaratabla2() {
-    
-    $("#listaRips").DataTable(
-        {
-          "processing": true,
-          "serverSide": true,
-          "ajax": {
-            "url": baseURL + "api/Rips/PostListadoRips_1",
-			"method": "POST",
-			"datatype": "json",
-			"dataSrc": "Data"
-			
-          },
-          "columns": [
-            { "data": "CompanyName" }, 
-			{ "data": "Address" }, 
-			{ "data": "Postcode" },
-            { "data": "Telephone" }
-          ],
-          "language": {
-            "emptyTable": "There are no customers at present.",
-            "zeroRecords": "There were no matching customers found.",
-			"infoFiltered": " - filtered from _MAX_ records"			
-          },
-          "searching": true,
-          "ordering": true,
-          "paging": true
-         });  
-    //
-    $("select").val('10');
-    //$('select').addClass("browser-default");
-    $('select').material_select();
+    /*$('#listaRips tbody').on('click', 'tr', function () {
+        $(this).toggleClass('table-success');
+        console.log(table);
+        var data = table[0].rows($(this).parents('tr')).data();
+        alert(data[0] + "'s salary is: " + data[5]);
+    });*/
+    $('#listaRips').on('click', 'tr', function (e) {
+        $(this).toggleClass('table-success');
+        e.preventDefault();
+        console.log(e);
+        var row = $(this).closest('tr'),
+            data = oTable._(row),
+            id = data[0].id;
+        
+        //do something with your id
+    });
         
 }

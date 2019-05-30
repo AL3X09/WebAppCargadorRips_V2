@@ -3,12 +3,12 @@
  */
 const getUrl = window.location;
 const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
+var token;
 //const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
 
-    ///
-    getAllME();
+    
     
     // Initialize menu
     $().ready(function () {
@@ -185,16 +185,16 @@ function vistaDescargarValidador() {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZOk-bHZ8lhyZ_s5iqbznbGUYgXoYny3kDhqHmkSQHRyYyIw/viewform?embedded=true');
 }
 
-function getAllME() {
-    var token = $('#codigospan').text();
-
+function getAllME(token) {
+    token = token;
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Usuarios/GetAllDatos",
-        data: { codigo: token },
+        url: baseURL + "api/Web_UsuarioApi",
+        data: { id: token },
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {
+                
                 var apellido;
                 if (v.apellidos == null) {
                     apellido = "";
@@ -204,11 +204,18 @@ function getAllME() {
                 $("#imguser").attr("src", baseURL + v.imagen);
                 $("#nombreuserspan").html(v.nombres + " " + apellido);
                 $('#emailspan').html(v.correo);
-                if (v.nombre_rol === "Administrador") {
-                    $("#tokenacces").append('<li id="li-administracion"><a href="/Administracion"><i class="material-icons">power</i>Administración</a></li>');
-                }
-                if ($("#divclaims") != undefined) {
-                    $("#divclaims").append('<input type="hidden" name="idUsuario" id="idUsuario" value="' + v.usuario_id + '" />');
+                if (v.id_rol === 1) {
+                    $("#tokenacces").append(
+                        '<li class="nav-item " id="madmin">' +
+                        '<a class="nav-link" href="/Administracion"> ' +
+                        '<i class= "material-icons" > dashboard</i> ' +
+                        '<p> Administración</p> ' +
+                        '</a>' +
+                        '</li>');
+                }                
+                
+                if (document.getElementById("imguserperfil") != undefined || document.getElementById("imguserperfil") != null) {
+                    $("#imguserperfil").attr("src", baseURL + v.imagen);
                 }
 
                 if (document.getElementById("divtabEstado") != undefined || document.getElementById("divtabEstado") != null) {
@@ -240,4 +247,19 @@ function getAllME() {
 
 }
 
+
+// función usada para las alertas
+function ShowAlert(tipo, msj) {
+    console.log(tipo);
+    console.log(msj);
+    var toast = "iziToast." + tipo + "({" +
+        "timeout: 20000," +
+        "title: '" + tipo.toUpperCase() + "'," +
+        "message: '" + msj + "'," +
+        "position: 'topCenter'," +
+        "})";
+
+    eval(toast);
+
+}
 
