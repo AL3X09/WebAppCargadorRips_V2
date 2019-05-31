@@ -973,6 +973,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Multifile\jquery.MultiFile.js" />
     <Content Include="Scripts\Paginas\administracion.js" />
+    <Content Include="Scripts\Paginas\ayuda.js" />
     <Content Include="Scripts\Paginas\cargarips.js" />
     <Content Include="Scripts\Paginas\home.js" />
     <Content Include="Scripts\Paginas\layout.js" />

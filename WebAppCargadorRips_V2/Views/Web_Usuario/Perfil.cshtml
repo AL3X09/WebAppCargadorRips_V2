@@ -21,14 +21,7 @@
 <div class="col s12">
     <blockquote>Hola <span id="nombreUser"></span> !! desde aquí puede actualizar su información.</blockquote>
 </div>
-
-@using (Ajax.BeginForm("Perfil", "Web_Usuario", null, new AjaxOptions
-{
-    Url = "/api/Usuarios/UpdateDatosUsuario",
-    HttpMethod = "POST",
-
-}))
-
+@using (Html.BeginForm("Perfil", "Web_Usuario", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formularioPerfil", runat = "server" }))
 {
     @Html.AntiForgeryToken()
 
@@ -113,6 +106,8 @@
             @Html.AntiForgeryToken()
             <label for="avatar">adjunta una imagen ".JPEG"</label>
             <input type="file" id="avatar" name="avatar" class="dropify" data-allowed-file-extensions="jpg jpeg">
+            @Html.HiddenFor(model => model.usuario_id)
+            @Html.HiddenFor(model => model.codigo)
         </form>
     </div>
 </div>

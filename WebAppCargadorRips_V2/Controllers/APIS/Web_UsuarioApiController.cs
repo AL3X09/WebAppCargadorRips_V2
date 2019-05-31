@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security;
+using System.Security.Permissions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebAppCargadorRips_V2.EF_Models;
@@ -18,6 +22,8 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
     public class Web_UsuarioApiController : ApiController
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
+        private string path = HttpContext.Current.Server.MapPath("~/Img/avatarsusers/"); //crea la carpeta apropiada
+        private string pathimagen = "Img/avatarsusers/"; // esta liena debe ser igual a la linea anterior ya que es la que tiene el nombre del donde se alamcenara la imagen
 
         // GET: api/Web_Usuario
         public IEnumerable<Object> GetWeb_Usuario()
@@ -148,6 +154,135 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
             }
             //return NotFound();
+        }
+
+        /// <summary>
+        /// Actualizar la imagen de un usuario especifico
+        /// </summary>
+        [Route("PostUploadAvatar")]
+        [HttpPost]
+        [Authorize]
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        public async Task<Object> UpdateAvatar()
+        {
+            //consulto que exista el folder raiz
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                var permisos = new FileIOPermission(FileIOPermissionAccess.AllAccess, path);
+                var permisosSET = new PermissionSet(PermissionState.None);
+                permisosSET.AddPermission(permisos);
+                if (permisosSET.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet))
+                {
+                }
+
+            }
+
+            //variables que se estan reciviendo del front
+            // obtengo las variables enviadas por el formulario
+            var nombreimagen = HttpContext.Current.Request.Files["avatar"];
+
+            var idUser = HttpContext.Current.Request.Params["usuario_id"];
+            var codigousuario = HttpContext.Current.Request.Params["codigo"];
+            //almaceno el path donde se guarda la imagen
+            var contentType = "." + nombreimagen.ContentType.Substring(6);
+            var pathguardo = pathimagen + codigousuario + contentType;
+            //creo una variable para manejar los mensajes
+            var MSG = new List<object>();
+
+            //valido la información recivida del formulario
+            if (String.IsNullOrEmpty(nombreimagen.FileName) && nombreimagen.ContentLength == 0)
+            {
+                MSG.Add(new { type = "error", value = "Debe cargar una imagen.", codigo = 0 });
+            }
+            //Valido que el formulario sea enviado con el formato permitido.
+            else if (!Request.Content.IsMimeMultipartContent("form-data"))
+            {
+                //Armo mensaje y envio al cliente
+                MSG.Add(new { type = "error", value = "Formato de envio no permitido", codigo = 0 });
+
+                throw new HttpResponseException(
+                    Request.CreateResponse(HttpStatusCode.UnsupportedMediaType)
+
+                    );
+                //TODO envio error a la base de datos
+
+            }
+            else
+            {
+
+                //almaceno la información en la base de datos
+                try
+                {
+                    var result = db.SP_UpdateAvatarUser(Int32.Parse(idUser), pathguardo).First();
+
+                    //si la respuesta del porcedimeinto es satisfactoria realizo el almacenamiento de los archivos
+                    if (result.codigo == 201)
+                    {
+                        //variables que almacenan temporalmente los archivos para no perderlos
+                        var streamProvider = new MultipartFormDataStreamProvider(path);
+                        await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+                        //carga de archivos a la carpeta
+                        
+
+                            foreach (MultipartFileData archivo in streamProvider.FileData)
+                            {
+                                string fileName = "";
+                                if (string.IsNullOrEmpty(archivo.Headers.ContentDisposition.FileName))
+                                {
+                                    fileName = Guid.NewGuid().ToString();
+                                }
+                                fileName = archivo.Headers.ContentDisposition.FileName;
+                                if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
+                                {
+                                    fileName = fileName.Trim('"');
+                                }
+                                if (fileName.Contains(@"/") || fileName.Contains(@"\"))
+                                {
+                                    fileName = Path.GetFileName(fileName);
+                                }
+                                if (archivo != null && fileName != "")
+                                {
+                                    fileName = codigousuario + contentType;
+                                    if (File.Exists(Path.Combine(path, fileName)))
+                                    {
+                                        File.Replace(archivo.LocalFileName, Path.Combine(path, fileName), null);
+                                    }
+                                    else
+                                    {
+                                        File.Move(archivo.LocalFileName, Path.Combine(path, fileName));
+                                    }
+
+                                }
+
+                            }
+
+                            var linq1 = db.Web_Mensaje.Where(s => s.codigo == 1011).First();
+
+                            MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = result.codigo });
+
+                       
+                    }//fin if respuesta satisfactoria
+                    else
+                    {
+                        //envio mensaje al usuario final
+                        MSG.Add(new { type = result.tipo, value = result.mensaje, codigo = result.codigo });
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    //envio log a archivo de logs 
+                    LogsController log = new LogsController(e.ToString());
+                    log.createFolder();
+                    MSG.Add(new { type = "error", value = e.ToString() });
+                    //todo enviar error a la  base de datos
+                }//end catch
+
+            }//end else
+
+            return Json(MSG);
         }
 
         protected override void Dispose(bool disposing)

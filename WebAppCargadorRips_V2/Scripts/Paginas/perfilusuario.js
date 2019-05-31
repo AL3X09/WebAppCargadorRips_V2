@@ -75,14 +75,14 @@ function updateAvatar() {
         processData: false,
         contentType: false,
         beforeSend: function () {
-            swal({
+            Swal.fire({
                 title: 'Espere..',
                 text: 'Enviando Avatar por favor espere, no cierre el dialogo, esto puede tardar unos segundos.',
                 animation: false,
                 customClass: 'animated tada',
                 allowOutsideClick: false,
                 onOpen: () => {
-                    swal.showLoading()
+                    Swal.showLoading()
                 }
             })
         },
@@ -91,7 +91,7 @@ function updateAvatar() {
             $.each(response, function (i, v) {
 
                 titulo = v.type;
-                swal({
+                Swal.fire({
                     title: titulo,
                     text: v.value,
                     type: v.type
