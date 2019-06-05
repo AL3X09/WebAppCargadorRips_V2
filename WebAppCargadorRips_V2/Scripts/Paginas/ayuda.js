@@ -149,7 +149,7 @@ function getNormatividad() {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
         //console.error(textStatus, errorThrown); // Algo fallo
-        swal(
+        Swal.fire(
             '',
             "Error al intertar traer las Resoluciones y normas",
             'error'
@@ -179,7 +179,7 @@ function getContactos() {
                                  '</a>'+
                             '</div>'+
                             '<div class="card-body">'+
-                                    '<h6 class="card-category text-gray">CEO / Co-Founder</h6>'+
+                                    '<h6 class="card-category text-gray">'+ i +'</h6>'+
                                     '<h4 class="card-title">' + v.nombre + ' ' + v.apellido + '</h4>'+
                                     '<p class="card-description">'+
                                         '<p>Descripción:</p>' +
@@ -202,7 +202,7 @@ function getContactos() {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
         //console.error(textStatus, errorThrown); // Algo fallo
-        swal(
+        Swal.fire(
             '',
             "Error al intertar traer la informacion del equipo",
             'error'
