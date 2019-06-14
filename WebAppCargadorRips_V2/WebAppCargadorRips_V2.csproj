@@ -203,6 +203,10 @@
     <Compile Include="Controllers\APIS\EnviarCorreoController.cs" />
     <Compile Include="Controllers\APIS\EstructuraController.cs" />
     <Compile Include="Controllers\APIS\LogsController.cs" />
+    <Compile Include="Controllers\APIS\ManualesController.cs" />
+    <Compile Include="Controllers\APIS\NormatividadController.cs" />
+    <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
+    <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
     <Compile Include="Controllers\APIS\Web_PermisoController.cs" />
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />

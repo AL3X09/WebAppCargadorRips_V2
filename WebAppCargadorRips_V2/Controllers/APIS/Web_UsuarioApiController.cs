@@ -111,6 +111,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             return Ok(web_Usuario);
         }
 
+        
         /// <summary>
         /// 
         /// </summary>
@@ -283,6 +284,30 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }//end else
 
             return Json(MSG);
+        }
+
+        ///<summary>
+        /// Lista de los Contactos existentes en el universo.
+        /// </summary>
+        /// <returns>Todos los valores disponibles en el universo</returns>
+        [HttpGet]
+        [Route("ListarContactos")]
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IEnumerable<Object> GetContactos()
+        {
+            var result = from e in db.Web_Administrador
+                         where e.FK_web_administrador_estado_rips == 1
+                         select new
+                         {
+                             id = e.administrador_id,
+                             nombre = e.nombres,
+                             apellido = e.apellidos,
+                             descripcion = e.descripcion,
+                             correo = e.correo,
+                             extencion = e.extension,
+                             imagen = e.imagen
+                         };
+            return result;
         }
 
         protected override void Dispose(bool disposing)

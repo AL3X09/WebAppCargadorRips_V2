@@ -148,6 +148,11 @@ namespace WebAppCargadorRips_V2
                 "~/Scripts/Paginas/cargarips.js",
                 "~/Scripts/Paginas/multifilecontrol.js"
                 ));
+
+            //PAGINA AYUDA 
+            bundles.Add(new ScriptBundle("~/JSPaginas/ayudajs").Include(
+                "~/Scripts/Paginas/ayuda.js"
+                ));
             // FIN JS para cada una de las paginas 
 
             // JS validaciones para cada una de las paginas 
