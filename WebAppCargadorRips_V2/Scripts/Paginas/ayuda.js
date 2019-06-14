@@ -173,29 +173,29 @@ function getContactos() {
             $.each(response, function (i, v) {
                 $('#divcontactos').append(
 
-                    '<div class="col-md-4">' +
-                    '<div class="card card-profile">' +
-                    '<div class="card-avatar">' +
-                    '<a href="#!">' +
-                    '<img class="img" src="' + baseURL + v.imagen + '">' +
-                    '</a>' +
-                    '</div>' +
-                    '<div class="card-body">' +
-                    '<h6 class="card-category text-gray">CEO / Co-Founder</h6>' +
-                    '<h4 class="card-title">' + v.nombre + ' ' + v.apellido + '</h4>' +
-                    '<p class="card-description">' +
-                    '<p>Descripción:</p>' +
-                    '<p>' + v.descripcion + '</p>' +
-                    '<div class="card-action">' +
-                    '<p>Correo:</p>' +
-                    '<spam>' + v.correo + '</spam>' +
-                    '</div>' +
-                    '<div class="card-action">' +
-                    '<p> EXT:' + v.extencion + '</p>' +
-                    '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
+                    '<div class="col-md-4">'+
+                        '<div class="card card-profile">'+
+                            '<div class="card-avatar">'+
+                                '<a href="#!">'+
+                                    '<img class="img" src="' + baseURL + v.imagen + '">'+
+                                 '</a>'+
+                            '</div>'+
+                            '<div class="card-body">'+
+                                    '<h6 class="card-category text-gray">'+ i +'</h6>'+
+                                    '<h4 class="card-title">' + v.nombre + ' ' + v.apellido + '</h4>'+
+                                    '<p class="card-description">'+
+                                        '<p>Descripción:</p>' +
+                                        '<p>' + v.descripcion + '</p>' +
+                                        '<div class="card-action">' +
+                                        '<p>Correo:</p>' +
+                                        '<spam>' + v.correo + '</spam>' +
+                                        '</div>' +
+                                        '<div class="card-action">' +
+                                        '<p> EXT:' + v.extencion + '</p>' +
+                                    '</p>'+
+                             '</div>'+
+                        '</div>'+
+                    '</div>'+
 
                 )
             });
