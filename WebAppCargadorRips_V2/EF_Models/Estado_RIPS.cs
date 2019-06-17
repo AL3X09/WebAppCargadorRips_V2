@@ -37,8 +37,6 @@ namespace WebAppCargadorRips_V2.EF_Models
             this.Web_Usuario = new HashSet<Web_Usuario>();
             this.Web_Documento = new HashSet<Web_Documento>();
             this.Sexo = new HashSet<Sexo>();
-            this.Web_Modulo = new HashSet<Web_Modulo>();
-            this.Web_RolHasPermiso = new HashSet<Web_RolHasPermiso>();
             this.Anios_Periodos = new HashSet<Anios_Periodos>();
         }
     
@@ -91,10 +89,8 @@ namespace WebAppCargadorRips_V2.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sexo> Sexo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Web_Modulo> Web_Modulo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anios_Periodos> Anios_Periodos { get; set; }
+        public virtual Web_Modulo Web_Modulo { get; set; }
+        public virtual Web_Nivel_Permiso Web_Nivel_Permiso { get; set; }
     }
 }

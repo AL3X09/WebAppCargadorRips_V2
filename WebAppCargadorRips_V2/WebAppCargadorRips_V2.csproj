@@ -208,12 +208,14 @@
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
+    <Compile Include="Controllers\APIS\Web_ModuloController.cs" />
     <Compile Include="Controllers\APIS\Web_PermisoController.cs" />
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\CargadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
+    <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
     <Compile Include="Controllers\Web_AdministradoresController.cs" />
     <Compile Include="Controllers\Web_DocumentoController.cs" />
@@ -221,7 +223,6 @@
     <Compile Include="Controllers\Web_ModuloController.cs" />
     <Compile Include="Controllers\Web_PermisoController.cs" />
     <Compile Include="Controllers\Web_RolController.cs" />
-    <Compile Include="Controllers\Web_RolHasPermisoController.cs" />
     <Compile Include="Controllers\Web_UsuarioController.cs" />
     <Compile Include="EF_Models\Anios_Periodos.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
@@ -322,6 +323,9 @@
     <Compile Include="EF_Models\SP_GetPlantillaCorreo_Result.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\SP_Get_Modulo_Permiso_Result.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\SP_Ingreso_Usuario_Administrador_Result.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
@@ -385,6 +389,9 @@
     <Compile Include="EF_Models\Web_Modulo.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\Web_Nivel_Permiso.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\Web_Permiso.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
@@ -395,9 +402,6 @@
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Web_Rol.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Web_RolHasPermiso.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Web_Usuario.cs">
@@ -987,6 +991,7 @@
     <Content Include="Scripts\Paginas\perfilusuario.js" />
     <Content Include="Scripts\Paginas\RolHasPermiso.js" />
     <Content Include="Scripts\Paginas\Sidebar.js" />
+    <Content Include="Scripts\Paginas\tablero.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -1085,6 +1090,7 @@
     <Content Include="Views\Web_Mensaje\Index.cshtml" />
     <Content Include="Views\Web_Usuario\CambiarContrasenia.cshtml" />
     <Content Include="Views\Ayuda\Index.cshtml" />
+    <Content Include="Views\Tablero\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

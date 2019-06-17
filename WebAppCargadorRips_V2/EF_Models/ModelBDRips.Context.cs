@@ -55,11 +55,11 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<VW_Radicacion> VW_Radicacion { get; set; }
         public virtual DbSet<VW_Servicio_Validacion> VW_Servicio_Validacion { get; set; }
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
-        public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
-        public virtual DbSet<Web_RolHasPermiso> Web_RolHasPermiso { get; set; }
         public virtual DbSet<Anios_Periodos> Anios_Periodos { get; set; }
+        public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
+        public virtual DbSet<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
     
-        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
+        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
         {
             var tipoUsuarioParameter = tipoUsuario != null ?
                 new ObjectParameter("TipoUsuario", tipoUsuario) :
@@ -68,6 +68,10 @@ namespace WebAppCargadorRips_V2.EF_Models
             var categoriaParameter = categoria != null ?
                 new ObjectParameter("Categoria", categoria) :
                 new ObjectParameter("Categoria", typeof(string));
+    
+            var extranjeroParameter = extranjero.HasValue ?
+                new ObjectParameter("Extranjero", extranjero) :
+                new ObjectParameter("Extranjero", typeof(bool));
     
             var periodoFechaInicioParameter = periodoFechaInicio != null ?
                 new ObjectParameter("PeriodoFechaInicio", periodoFechaInicio) :
@@ -85,7 +89,7 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("FkEstado", fkEstado) :
                 new ObjectParameter("FkEstado", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, extranjeroParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
         }
     
         public virtual ObjectResult<SP_Web_Insert_Rips_a_Preradicar_Result> SP_Web_Insert_Rips_a_Preradicar(Nullable<long> idUser, Nullable<long> webvalidacion_id)
@@ -414,6 +418,15 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetDatosUsuario_Result>("SP_GetDatosUsuario", codigoParameter);
+        }
+    
+        public virtual ObjectResult<SP_Get_Modulo_Permiso_Result> SP_Get_Modulo_Permiso(string rolUser)
+        {
+            var rolUserParameter = rolUser != null ?
+                new ObjectParameter("RolUser", rolUser) :
+                new ObjectParameter("RolUser", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Get_Modulo_Permiso_Result>("SP_Get_Modulo_Permiso", rolUserParameter);
         }
     }
 }

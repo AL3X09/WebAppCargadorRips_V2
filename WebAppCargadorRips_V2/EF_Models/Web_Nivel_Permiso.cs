@@ -12,18 +12,17 @@ namespace WebAppCargadorRips_V2.EF_Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Web_RolHasPermiso
+    public partial class Web_Nivel_Permiso
     {
-        public long rolhaspermiso_id { get; set; }
-        public long FK_rolhaspermiso_rol { get; set; }
-        public long FK_rolhaspermiso_modulo { get; set; }
-        public long FK_rolhaspermiso_permiso { get; set; }
-        public long FK_rolhaspermiso_estado_rips { get; set; }
+        public long nivelpermiso_id { get; set; }
+        public long FK_nivelpermiso_rol { get; set; }
+        public long FK_nivelpermiso_modulo { get; set; }
+        public bool nivelpermiso_crear { get; set; }
+        public bool nivelpermiso_modificar { get; set; }
+        public bool nivelpermiso_eliminar { get; set; }
+        public long FK_nivelpermiso_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        public virtual Web_Modulo Web_Modulo { get; set; }
-        public virtual Web_Permiso Web_Permiso { get; set; }
-        public virtual Web_Rol Web_Rol { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

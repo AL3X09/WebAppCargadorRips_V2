@@ -93,7 +93,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             {
                 //inserto en la tabla web_validacion
                 //3 es estado aprobado sin errores
-                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario, "3").First();
+                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria,false,fechaInicio, fechaFin, idUsuario, "3").First();
 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
                 if (result.codigo == 201)

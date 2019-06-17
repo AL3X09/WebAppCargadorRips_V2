@@ -66,15 +66,12 @@
         <AssociationConnector Association="RipsModel.FK__Servicio___valid__469D7149" />
         <AssociationConnector Association="RipsModel.FK__Servicio___estru__47919582" />
         <AssociationConnector Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3" />
-        <EntityTypeShape EntityType="RipsModel.Web_Modulo" Width="1.5" PointX="3" PointY="29.125" />
-        <EntityTypeShape EntityType="RipsModel.Web_RolHasPermiso" Width="1.5" PointX="5.25" PointY="44.875" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_modulo" />
-        <AssociationConnector Association="RipsModel.FK_web_modulo_estado_rips" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_permiso" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_web_rol" />
-        <AssociationConnector Association="RipsModel.FK_rolhaspermiso_estado_rips" />
         <EntityTypeShape EntityType="RipsModel.Anios_Periodos" Width="1.5" PointX="3" PointY="12.125" />
         <AssociationConnector Association="RipsModel.FK_anios_periodos_estado_RIPS" />
+        <EntityTypeShape EntityType="RipsModel.Web_Modulo" Width="1.5" PointX="3" PointY="72" />
+        <EntityTypeShape EntityType="RipsModel.Web_Nivel_Permiso" Width="1.5" PointX="3" PointY="28.75" />
+        <AssociationConnector Association="RipsModel.FK_web_modulo_estado_rips" />
+        <AssociationConnector Association="RipsModel.FK_nivelpermiso_estado_rips" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

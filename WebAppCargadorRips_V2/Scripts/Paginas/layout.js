@@ -186,10 +186,11 @@ function vistaDescargarValidador() {
 }
 
 function getAllME(token) {
+   
     token = token;
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Web_UsuarioApi",
+        url: baseURL + "api/Web_UsuarioApi/GetWeb_Usuario",
         data: { id: token },
         success: function (response) {
             //console.log(response);
@@ -235,7 +236,8 @@ function getAllME(token) {
                         close: true,
                     });
                 }
-
+                //getDatosTablero(v.id_rol);
+                getControlTablero(v.id_rol);
             });
 
         }

@@ -119,6 +119,12 @@ namespace WebAppCargadorRips_V2
 
 
             // JS para cada una de las paginas 
+
+            //PAGINA TABLERO
+            bundles.Add(new ScriptBundle("~/JSPaginas/tablerojs").Include(
+                "~/Scripts/Paginas/tablero.js"
+                ));
+
             //PAGINA SESION
             bundles.Add(new ScriptBundle("~/bundles/loginval").Include(
                       "~/Scripts/Paginas/login.js"));

@@ -22,6 +22,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public long FK_web_validacion_web_usuario { get; set; }
         public long FK_web_validacion_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
+        public bool extranjero { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }

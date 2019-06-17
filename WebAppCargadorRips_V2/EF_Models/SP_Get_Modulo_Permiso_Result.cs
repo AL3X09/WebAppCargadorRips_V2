@@ -10,20 +10,17 @@
 namespace WebAppCargadorRips_V2.EF_Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Web_Modulo
+    public partial class SP_Get_Modulo_Permiso_Result
     {
         public long modulo_id { get; set; }
-        public string grupo { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public string imagen { get; set; }
         public string ruta { get; set; }
         public int orden { get; set; }
-        public long FK_modulo_estado_rips { get; set; }
-        public System.DateTime fecha_modificacion { get; set; }
-    
-        public virtual Estado_RIPS Estado_RIPS { get; set; }
+        public bool pr_crear { get; set; }
+        public bool pr_modificar { get; set; }
+        public bool pr_eliminar { get; set; }
     }
 }
