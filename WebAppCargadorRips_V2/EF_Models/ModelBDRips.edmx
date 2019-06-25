@@ -593,6 +593,13 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
           <Parameter Name="Contrasenia" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_Insert_Nivel_Permiso_Modulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web">
+          <Parameter Name="fkrol" Type="nvarchar" Mode="In" />
+          <Parameter Name="fkmodulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="crear" Type="nvarchar" Mode="In" />
+          <Parameter Name="modificar" Type="nvarchar" Mode="In" />
+          <Parameter Name="eliminar" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SP_ListarTipoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web" />
         <Function Name="SP_Registro_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web">
           <Parameter Name="CodigoPrestador" Type="nvarchar" Mode="In" />
@@ -1939,7 +1946,14 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Web_Nivel_Permiso" EntitySet="Web_Nivel_Permiso" />
           </AssociationSet>
           <FunctionImport Name="SP_Get_Modulo_Permiso" ReturnType="Collection(RipsModel.SP_Get_Modulo_Permiso_Result)">
-            <Parameter Name="RolUser" Mode="In" Type="String" />
+          <Parameter Name="RolUser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Nivel_Permiso_Modulo" ReturnType="Collection(RipsModel.SP_Insert_Nivel_Permiso_Modulo_Result)">
+            <Parameter Name="fkrol" Mode="In" Type="String" />
+            <Parameter Name="fkmodulo" Mode="In" Type="String" />
+            <Parameter Name="crear" Mode="In" Type="String" />
+            <Parameter Name="modificar" Mode="In" Type="String" />
+            <Parameter Name="eliminar" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
@@ -2242,6 +2256,11 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="Boolean" Name="pr_crear" Nullable="false" />
           <Property Type="Boolean" Name="pr_modificar" Nullable="false" />
           <Property Type="Boolean" Name="pr_eliminar" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Insert_Nivel_Permiso_Modulo_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mensaje" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3052,6 +3071,15 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
                 <ScalarProperty Name="pr_crear" ColumnName="pr_crear" />
                 <ScalarProperty Name="pr_modificar" ColumnName="pr_modificar" />
                 <ScalarProperty Name="pr_eliminar" ColumnName="pr_eliminar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Insert_Nivel_Permiso_Modulo" FunctionName="RipsModel.Store.SP_Insert_Nivel_Permiso_Modulo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_Insert_Nivel_Permiso_Modulo_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

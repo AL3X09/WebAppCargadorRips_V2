@@ -210,6 +210,7 @@
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
     <Compile Include="Controllers\APIS\Web_ModuloController.cs" />
     <Compile Include="Controllers\APIS\Web_PermisoController.cs" />
+    <Compile Include="Controllers\APIS\Web_RolController.cs" />
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\CargadorController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Controllers\Web_DocumentoController.cs" />
     <Compile Include="Controllers\Web_MensajeController.cs" />
     <Compile Include="Controllers\Web_ModuloController.cs" />
+    <Compile Include="Controllers\Web_Nivel_PermisoController.cs" />
     <Compile Include="Controllers\Web_PermisoController.cs" />
     <Compile Include="Controllers\Web_RolController.cs" />
     <Compile Include="Controllers\Web_UsuarioController.cs" />
@@ -330,6 +332,9 @@
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\SP_Ingreso_Usuario_Result.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_Insert_Nivel_Permiso_Modulo_Result.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\SP_ListarTipoUsuario_Result.cs">
@@ -991,6 +996,7 @@
     <Content Include="Scripts\Paginas\perfilusuario.js" />
     <Content Include="Scripts\Paginas\RolHasPermiso.js" />
     <Content Include="Scripts\Paginas\Sidebar.js" />
+    <Content Include="Scripts\Paginas\rolpermisomodulo.js" />
     <Content Include="Scripts\Paginas\tablero.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -1049,11 +1055,6 @@
     <Content Include="Views\Web_Modulo\Details.cshtml" />
     <Content Include="Views\Web_Modulo\Edit.cshtml" />
     <Content Include="Views\Web_Modulo\Index.cshtml" />
-    <Content Include="Views\Web_RolHasPermiso\Create.cshtml" />
-    <Content Include="Views\Web_RolHasPermiso\Delete.cshtml" />
-    <Content Include="Views\Web_RolHasPermiso\Details.cshtml" />
-    <Content Include="Views\Web_RolHasPermiso\Edit.cshtml" />
-    <Content Include="Views\Web_RolHasPermiso\Index.cshtml" />
     <Content Include="Views\Home\Index - Copia.cshtml" />
     <Content Include="Scripts\Material\material-dashboard.js.map" />
     <Content Include="Views\Cargador\Index.cshtml" />
@@ -1091,6 +1092,13 @@
     <Content Include="Views\Web_Usuario\CambiarContrasenia.cshtml" />
     <Content Include="Views\Ayuda\Index.cshtml" />
     <Content Include="Views\Tablero\Index.cshtml" />
+    <Content Include="Views\Administracion\Rol_Permiso_Modulo.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Create.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Delete.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Details.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Edit.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Index.cshtml" />
+    <Content Include="Views\Web_Nivel_Permiso\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

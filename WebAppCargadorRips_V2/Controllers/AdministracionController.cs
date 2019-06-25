@@ -14,6 +14,13 @@ namespace WebAppCargadorRips_V2.Controllers
             return View();
         }
 
+        // GET: Rol_Permiso_Modulo
+        public ActionResult Rol_Permiso_Modulo()
+        {
+            return View();
+        }
+        
+
         // GET: Administracion/Details/5
         public ActionResult Details(int id)
         {

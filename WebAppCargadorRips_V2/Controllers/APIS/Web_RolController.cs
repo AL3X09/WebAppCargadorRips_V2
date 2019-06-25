@@ -13,56 +13,56 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-    [RoutePrefix("api/Modulos")]
-    public class Web_ModuloController : ApiController
+    [RoutePrefix("api/Rol")]
+    public class Web_RolController : ApiController
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
 
-        
+
+        // GET: api/Web_Rol
+        public IQueryable<Web_Rol> GetWeb_Rol()
+        {
+            return db.Web_Rol;
+        }
+
         // GET: api/Web_Rol
         [Route("Listar")]
-        [HttpGet]
         public async Task<IHttpActionResult> Get_Web_Rol()
         {
-            var web_Rol = db.Web_Modulo.Select(m => new { modulo_id = m.modulo_id, nombre = m.nombre, fkmoduloestado = m.FK_modulo_estado_rips }).Where(m => m.fkmoduloestado == 1);
+            var web_Rol = db.Web_Rol.Select(r => new { rol_id = r.rol_id, nombre = r.nombre, fkrolestado = r.FK_rol_estado_rips }).Where(r => r.fkrolestado == 1).OrderBy(m => m.nombre);
             return Ok(web_Rol);
+
+            //return db.Web_Rol.Select(r => new { rol_id = r.rol_id, nombre = r.nombre, fkrolestado = r.FK_rol_estado_rips });
         }
 
-
-        // GET: api/Web_Modulo
-        public IQueryable<Web_Modulo> GetWeb_Modulo()
+        // GET: api/Web_Rol/5
+        [ResponseType(typeof(Web_Rol))]
+        public async Task<IHttpActionResult> GetWeb_Rol(long id)
         {
-            return db.Web_Modulo;
-        }
-
-        // GET: api/Web_Modulo/5
-        [ResponseType(typeof(Web_Modulo))]
-        public async Task<IHttpActionResult> GetWeb_Modulo(long id)
-        {
-            Web_Modulo web_Modulo = await db.Web_Modulo.FindAsync(id);
-            if (web_Modulo == null)
+            Web_Rol web_Rol = await db.Web_Rol.FindAsync(id);
+            if (web_Rol == null)
             {
                 return NotFound();
             }
 
-            return Ok(web_Modulo);
+            return Ok(web_Rol);
         }
 
-        // PUT: api/Web_Modulo/5
+        // PUT: api/Web_Rol/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutWeb_Modulo(long id, Web_Modulo web_Modulo)
+        public async Task<IHttpActionResult> PutWeb_Rol(long id, Web_Rol web_Rol)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != web_Modulo.modulo_id)
+            if (id != web_Rol.rol_id)
             {
                 return BadRequest();
             }
 
-            db.Entry(web_Modulo).State = EntityState.Modified;
+            db.Entry(web_Rol).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +70,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Web_ModuloExists(id))
+                if (!Web_RolExists(id))
                 {
                     return NotFound();
                 }
@@ -83,35 +83,35 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Web_Modulo
-        [ResponseType(typeof(Web_Modulo))]
-        public async Task<IHttpActionResult> PostWeb_Modulo(Web_Modulo web_Modulo)
+        // POST: api/Web_Rol
+        [ResponseType(typeof(Web_Rol))]
+        public async Task<IHttpActionResult> PostWeb_Rol(Web_Rol web_Rol)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Web_Modulo.Add(web_Modulo);
+            db.Web_Rol.Add(web_Rol);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = web_Modulo.modulo_id }, web_Modulo);
+            return CreatedAtRoute("DefaultApi", new { id = web_Rol.rol_id }, web_Rol);
         }
 
-        // DELETE: api/Web_Modulo/5
-        [ResponseType(typeof(Web_Modulo))]
-        public async Task<IHttpActionResult> DeleteWeb_Modulo(long id)
+        // DELETE: api/Web_Rol/5
+        [ResponseType(typeof(Web_Rol))]
+        public async Task<IHttpActionResult> DeleteWeb_Rol(long id)
         {
-            Web_Modulo web_Modulo = await db.Web_Modulo.FindAsync(id);
-            if (web_Modulo == null)
+            Web_Rol web_Rol = await db.Web_Rol.FindAsync(id);
+            if (web_Rol == null)
             {
                 return NotFound();
             }
 
-            db.Web_Modulo.Remove(web_Modulo);
+            db.Web_Rol.Remove(web_Rol);
             await db.SaveChangesAsync();
 
-            return Ok(web_Modulo);
+            return Ok(web_Rol);
         }
 
         protected override void Dispose(bool disposing)
@@ -123,9 +123,9 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             base.Dispose(disposing);
         }
 
-        private bool Web_ModuloExists(long id)
+        private bool Web_RolExists(long id)
         {
-            return db.Web_Modulo.Count(e => e.modulo_id == id) > 0;
+            return db.Web_Rol.Count(e => e.rol_id == id) > 0;
         }
     }
 }

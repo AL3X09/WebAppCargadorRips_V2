@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Asignar Permisos";
+}
+
+<h2>Asignar Permisos</h2>
+<div class="row">
+    <div class="card">
+        <form id="permisosmodulo" method="post" class="" action="~/Web_Nivel_Permiso/Nuevo">
+            @Html.AntiForgeryToken()
+            <!--Select ROL--->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="bmd-label-floating" for="rol">Rol (*)</label>
+                        <select class="form-control" name="fkrol" id="fkrol" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--/Select ROL--->
+            <!--parent--->
+            <div id="asigna_permiso">
+
+            </div>
+            <!--/parent--->
+            <div class="row">
+                <input type="submit" />
+            </div>
+
+        </form>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    </div>
+</div>
+
+    @section Scripts {
+
+        @Scripts.Render("~/JSPaginas/rolpermisomodulojs"),
+
+        <script>
+
+            $(document).ready(function () {
+
+            });
+
+        </script>
+
+    }
+
+
+

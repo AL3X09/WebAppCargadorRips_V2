@@ -428,5 +428,30 @@ namespace WebAppCargadorRips_V2.EF_Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Get_Modulo_Permiso_Result>("SP_Get_Modulo_Permiso", rolUserParameter);
         }
+    
+        public virtual ObjectResult<SP_Insert_Nivel_Permiso_Modulo_Result> SP_Insert_Nivel_Permiso_Modulo(string fkrol, string fkmodulo, string crear, string modificar, string eliminar)
+        {
+            var fkrolParameter = fkrol != null ?
+                new ObjectParameter("fkrol", fkrol) :
+                new ObjectParameter("fkrol", typeof(string));
+    
+            var fkmoduloParameter = fkmodulo != null ?
+                new ObjectParameter("fkmodulo", fkmodulo) :
+                new ObjectParameter("fkmodulo", typeof(string));
+    
+            var crearParameter = crear != null ?
+                new ObjectParameter("crear", crear) :
+                new ObjectParameter("crear", typeof(string));
+    
+            var modificarParameter = modificar != null ?
+                new ObjectParameter("modificar", modificar) :
+                new ObjectParameter("modificar", typeof(string));
+    
+            var eliminarParameter = eliminar != null ?
+                new ObjectParameter("eliminar", eliminar) :
+                new ObjectParameter("eliminar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Insert_Nivel_Permiso_Modulo_Result>("SP_Insert_Nivel_Permiso_Modulo", fkrolParameter, fkmoduloParameter, crearParameter, modificarParameter, eliminarParameter);
+        }
     }
 }

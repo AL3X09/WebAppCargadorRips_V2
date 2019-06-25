@@ -124,7 +124,10 @@ namespace WebAppCargadorRips_V2
             bundles.Add(new ScriptBundle("~/JSPaginas/tablerojs").Include(
                 "~/Scripts/Paginas/tablero.js"
                 ));
-
+            //PAGINA ROL PERMISO MODULO
+            bundles.Add(new ScriptBundle("~/JSPaginas/rolpermisomodulojs").Include(
+                "~/Scripts/Paginas/rolpermisomodulo.js"
+                ));
             //PAGINA SESION
             bundles.Add(new ScriptBundle("~/bundles/loginval").Include(
                       "~/Scripts/Paginas/login.js"));

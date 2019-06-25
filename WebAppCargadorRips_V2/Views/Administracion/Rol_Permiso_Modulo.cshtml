@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Asignar Permisos";
+}
+
+<h2>Asignar Permisos</h2>
+<div class="">
+    <form id="permisosmodulo" method="post" class="" action="~/Web_Nivel_Permiso/Nuevo">
+        @Html.AntiForgeryToken()
+        <!--Select ROL--->
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="bmd-label-floating" for="rol">Rol (*)</label>
+                    <select class="form-control" name="rol" id="rol" >
+                        <option value="" disabled selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--/Select ROL--->
+        <!--parent--->
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <!--table i--->
+                <div class="row">
+                    <!--modulo--->
+                    <div class="col-md-2 col-sm-12">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="modulo[0_0]" id="modulo[0_0]" value="1">
+                            Modulo1
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <!--/modulo--->
+                    <!--permisos--->
+                    <div class="col-md-2 col-sm-12">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="prcrea[0_1]" id="IVE_1" value="true">
+                            Crear
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="prmodifica[0_1]" id="IVE_2" value="true">
+                            Modificar
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="prelimina[0_1]" id="IVE_3" value="true">
+                            Eliminar
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <!--permisos--->
+                </div>
+                <!--/table i--->
+
+            </div>
+        </div>
+        <!--/parent--->
+        <div id="asigna_permiso"></div>
+        <input type="submit" />
+    </form>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/JSpaginas/roloermisomodulojs"),
+
+    <script>
+
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+}
