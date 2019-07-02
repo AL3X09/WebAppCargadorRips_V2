@@ -270,14 +270,15 @@ function getControlTablero(id_rol) {
 
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Modulos/Modulo_permiso",
+        url: baseURL + "api/PermisosModulos/Tablero",
         data: { rol: 1 },
         success: function (response) {
 
             $.each(response, function (i, v) {
 
-                $('#listamandos').after(
-                    '<div class="col-lg-4 col-sm-1" id"' + v.nombre + '">' +
+                $('#listamandos').append(
+
+                    '<div class="col-lg-3 col-sm-1" id"' + v.nombre + '">' +
                     '<div class="card">' +
                     '<!-- Card image -->' +
                     '<div class="view overlay">' +
@@ -301,13 +302,14 @@ function getControlTablero(id_rol) {
 
                 )
 
-                if (v.pr_crear == false) {
+
+                if (v.pr_crear == false && document.getElementById("btnTacceso") != undefined) {
                     document.getElementById('btnTacceso').remove();
                 }
-                if (v.pr_modificar == false) {
+                if (v.pr_modificar == false && document.getElementById("btnTmodificar") != undefined) {
                     document.getElementById('btnTmodificar').remove();
                 }
-                if (v.pr_eliminar == true) {
+                if (v.pr_eliminar == true && document.getElementById("btnTeliminar") != undefined) {
                     document.getElementById('btnTeliminar').remove();
                 }
 

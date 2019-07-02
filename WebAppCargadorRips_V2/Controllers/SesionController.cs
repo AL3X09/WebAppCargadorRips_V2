@@ -89,7 +89,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     {
                         var obj = db.Web_Usuario.Where(u => u.Prestador.codigo.Equals(model.Usuario)).FirstOrDefault();
                         FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString(), false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Tablero");
                     }
                     else if (response.codigo != 200)
                     {

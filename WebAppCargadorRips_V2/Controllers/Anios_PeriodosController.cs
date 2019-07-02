@@ -11,6 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [RoutePrefix("Fechas_periodos")]
     public class Anios_PeriodosController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();

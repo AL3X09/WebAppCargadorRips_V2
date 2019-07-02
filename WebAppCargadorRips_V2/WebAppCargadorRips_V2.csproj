@@ -209,7 +209,7 @@
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
     <Compile Include="Controllers\APIS\Web_ModuloController.cs" />
-    <Compile Include="Controllers\APIS\Web_PermisoController.cs" />
+    <Compile Include="Controllers\APIS\Web_Nivel_PermisoController.cs" />
     <Compile Include="Controllers\APIS\Web_RolController.cs" />
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
@@ -223,7 +223,6 @@
     <Compile Include="Controllers\Web_MensajeController.cs" />
     <Compile Include="Controllers\Web_ModuloController.cs" />
     <Compile Include="Controllers\Web_Nivel_PermisoController.cs" />
-    <Compile Include="Controllers\Web_PermisoController.cs" />
     <Compile Include="Controllers\Web_RolController.cs" />
     <Compile Include="Controllers\Web_UsuarioController.cs" />
     <Compile Include="EF_Models\Anios_Periodos.cs">

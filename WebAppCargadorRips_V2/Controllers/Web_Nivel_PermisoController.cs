@@ -11,7 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
-    [RoutePrefix("api/PermisosModulos")]
+    
     public class Web_Nivel_PermisoController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
@@ -24,7 +24,6 @@ namespace WebAppCargadorRips_V2.Controllers
         }
 
         // GET: Web_Nivel_Permiso/Details/5
-        [Route("Listar")]
         public async Task<ActionResult> Details(long? id)
         {
             if (id == null)
