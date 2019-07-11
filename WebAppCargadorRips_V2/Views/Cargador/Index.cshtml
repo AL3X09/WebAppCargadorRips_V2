@@ -13,7 +13,7 @@
     <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <a href="@Url.Action("Index", "Home")">Listado</a>
             <span>/</span>
             <span>@ViewBag.Title</span>
         </h4>
@@ -130,11 +130,18 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card-header card-header-info  text-center">
                                 <p class="card-category">CARGA DE ARCHIVOS</p>
+
                             </div>
+                            
                         </div>
                     </div>
                     <br>
                     <div class="row">
+
+                        <div class="col-md-12 col-sm-12">
+                            <h5 class="lighten-3">Debe seleccionar todos los archivos planos ".TXT" a cargar(*)</h5>
+                        </div>
+
                         <div class="col-md-12 col-sm-12">
 
                             <div id="drop-zone">

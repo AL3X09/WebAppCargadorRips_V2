@@ -1,13 +1,46 @@
 ﻿
 @{
-    ViewBag.Title = "Tablero de Mando";
+    ViewBag.Title = "Tablero de mando";
 }
 
-<h2>Index</h2>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
 
-<div class="row wow fadeIn" id="listamandos">
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
+
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>@ViewBag.Title</span>
+        </h4>
+
+    </div>
 
 </div>
+<!-- Heading -->
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title" >Código: <span id="codigoprest"></span></h4>
+                <blockquote>
+                    <strong>Prestador: <span id="prestador"></span></strong>
+                    <br /><span id="saludo"></span>
+                </blockquote>
+            </div>
+            <div class="card-body">
+
+                <div class="row wow fadeIn" id="listamandos">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 
 
 @section Scripts {

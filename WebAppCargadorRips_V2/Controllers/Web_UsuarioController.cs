@@ -108,7 +108,7 @@ namespace WebAppCargadorRips_V2.Controllers
             return View(web_Usuario);
         }
 
-        // GET: Web_Usuario/Delete/5
+        /*// GET: Web_Usuario/Delete/5
         public async Task<ActionResult> Delete(long? id)
         {
             if (id == null)
@@ -132,13 +132,13 @@ namespace WebAppCargadorRips_V2.Controllers
             db.Web_Usuario.Remove(web_Usuario);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
+        }*/
 
-       /// <summary>
-       /// Metodo invoca la vista para el perfil y realiza una sobre carga de información
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Metodo invoca la vista para el perfil y realiza una sobre carga de información
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual ActionResult Perfil(long? id)
         {
             if (id == null)

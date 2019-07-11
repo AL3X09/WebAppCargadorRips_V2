@@ -204,6 +204,8 @@ function getAllME(token) {
                 }
                 $("#imguser").attr("src", baseURL + v.imagen);
                 $("#nombreuserspan").html(v.nombres + " " + apellido);
+                $("#prestador").html(v.nombres + " " + apellido);
+                $("#codigoprest").html(v.codigo);
                 $('#emailspan').html(v.correo);
                 if (v.id_rol === 1) {
                     $("#tokenacces").append(
