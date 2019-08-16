@@ -49,7 +49,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "modulo_id,nombre,FK_modulo_estado_rips,fecha_modificacion")] Web_Modulo web_Modulo)
+        public async Task<ActionResult> Create([Bind(Include = "modulo_id,grupo,nombre,descripcion,imagen,ruta,orden,FK_modulo_estado_rips,fecha_modificacion")] Web_Modulo web_Modulo)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "modulo_id,nombre,FK_modulo_estado_rips,fecha_modificacion")] Web_Modulo web_Modulo)
+        public async Task<ActionResult> Edit([Bind(Include = "modulo_id,grupo,nombre,descripcion,imagen,ruta,orden,FK_modulo_estado_rips,fecha_modificacion")] Web_Modulo web_Modulo)
         {
             if (ModelState.IsValid)
             {

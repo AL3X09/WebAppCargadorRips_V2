@@ -14,6 +14,12 @@ namespace WebAppCargadorRips_V2.EF_Models
     
     public partial class Web_Modulo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Web_Modulo()
+        {
+            this.Web_Nivel_Permiso = new HashSet<Web_Nivel_Permiso>();
+        }
+    
         public long modulo_id { get; set; }
         public string grupo { get; set; }
         public string nombre { get; set; }
@@ -24,6 +30,8 @@ namespace WebAppCargadorRips_V2.EF_Models
         public long FK_modulo_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

@@ -1049,11 +1049,6 @@
     <Content Include="Views\Web_Permiso\Details.cshtml" />
     <Content Include="Views\Web_Permiso\Edit.cshtml" />
     <Content Include="Views\Web_Permiso\Index.cshtml" />
-    <Content Include="Views\Web_Modulo\Create.cshtml" />
-    <Content Include="Views\Web_Modulo\Delete.cshtml" />
-    <Content Include="Views\Web_Modulo\Details.cshtml" />
-    <Content Include="Views\Web_Modulo\Edit.cshtml" />
-    <Content Include="Views\Web_Modulo\Index.cshtml" />
     <Content Include="Views\Home\Index - Copia.cshtml" />
     <Content Include="Scripts\Material\material-dashboard.js.map" />
     <Content Include="Views\Cargador\Index.cshtml" />
@@ -1098,6 +1093,11 @@
     <Content Include="Views\Web_Nivel_Permiso\Edit.cshtml" />
     <Content Include="Views\Web_Nivel_Permiso\Index.cshtml" />
     <Content Include="Views\Web_Nivel_Permiso\Nuevo.cshtml" />
+    <Content Include="Views\Web_Modulo\Create.cshtml" />
+    <Content Include="Views\Web_Modulo\Delete.cshtml" />
+    <Content Include="Views\Web_Modulo\Details.cshtml" />
+    <Content Include="Views\Web_Modulo\Edit.cshtml" />
+    <Content Include="Views\Web_Modulo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

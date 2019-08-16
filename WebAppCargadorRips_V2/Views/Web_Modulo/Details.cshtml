@@ -1,42 +1,90 @@
 ﻿@model WebAppCargadorRips_V2.EF_Models.Web_Modulo
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>Web_Modulo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_modificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.modulo_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Web_Modulo</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.grupo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.grupo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.imagen)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.imagen)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ruta)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ruta)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.orden)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.orden)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fecha_modificacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fecha_modificacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.modulo_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

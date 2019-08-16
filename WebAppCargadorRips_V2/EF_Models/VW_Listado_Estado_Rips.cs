@@ -20,7 +20,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public string categoria { get; set; }
         public Nullable<System.DateTime> periodo_fecha_inicio { get; set; }
         public Nullable<System.DateTime> periodo_fecha_fin { get; set; }
-        public Nullable<System.DateTime> fecha_cargo { get; set; }
+        public System.DateTime fecha_cargo { get; set; }
         public long FK_usuario { get; set; }
         public long FK_estado_web_validacion { get; set; }
         public string estado_web_validacion { get; set; }

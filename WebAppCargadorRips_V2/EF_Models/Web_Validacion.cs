@@ -14,6 +14,12 @@ namespace WebAppCargadorRips_V2.EF_Models
     
     public partial class Web_Validacion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Web_Validacion()
+        {
+            this.Web_Preradicacion = new HashSet<Web_Preradicacion>();
+        }
+    
         public long validacion_id { get; set; }
         public long FK_web_validacion_tipo_usuario { get; set; }
         public long FK_web_validacion_categoria { get; set; }
@@ -28,5 +34,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual Estado_RIPS Estado_RIPS { get; set; }
         public virtual Tipo_Usuario Tipo_Usuario { get; set; }
         public virtual Web_Usuario Web_Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Web_Preradicacion> Web_Preradicacion { get; set; }
     }
 }

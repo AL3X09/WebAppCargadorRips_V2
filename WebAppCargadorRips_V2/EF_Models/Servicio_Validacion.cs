@@ -43,6 +43,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public Nullable<long> estado_rips_id { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
         public Nullable<long> prestador_id { get; set; }
+        public Nullable<long> web_preradicacion_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Servicio_Radicacion> Servicio_Radicacion { get; set; }
@@ -52,5 +53,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual Tipo_Usuario Tipo_Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Servicio_Validacion_Error> Servicio_Validacion_Error { get; set; }
+        public virtual Web_Preradicacion Web_Preradicacion { get; set; }
     }
 }

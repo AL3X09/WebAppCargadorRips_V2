@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +11,22 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.grupo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ruta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orden)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.fecha_modificacion)
@@ -23,23 +37,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.modulo_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.modulo_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.modulo_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.grupo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ruta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_modificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.modulo_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.modulo_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.modulo_id })
+            </td>
+        </tr>
+    }
 
 </table>
+

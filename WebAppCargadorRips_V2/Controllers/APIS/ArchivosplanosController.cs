@@ -307,7 +307,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                           || VLR.categoria.ToString().ToLower().Contains(sSearch.ToString())
                           || VLR.periodo_fecha_inicio.Value.ToString().Contains(sSearch.ToString())
                           || VLR.periodo_fecha_fin.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.fecha_cargo.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.fecha_cargo.ToString().Contains(sSearch.ToString())
                           || VLR.estado_web_validacion.ToString().ToLower().Contains(sSearch.ToString())
                           || VLR.estado_web_preradicacion.ToString().ToLower().Contains(sSearch.ToString())
                           || VLR.estado_servicio_validacion.ToString().ToLower().Contains(sSearch.ToString())
