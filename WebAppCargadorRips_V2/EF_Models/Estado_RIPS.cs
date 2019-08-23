@@ -37,9 +37,9 @@ namespace WebAppCargadorRips_V2.EF_Models
             this.Web_Usuario = new HashSet<Web_Usuario>();
             this.Web_Documento = new HashSet<Web_Documento>();
             this.Sexo = new HashSet<Sexo>();
-            this.Anios_Periodos = new HashSet<Anios_Periodos>();
             this.Web_Modulo = new HashSet<Web_Modulo>();
             this.Web_Nivel_Permiso1 = new HashSet<Web_Nivel_Permiso>();
+            this.Periodos_Reporte = new HashSet<Periodos_Reporte>();
         }
     
         public long estado_rips_id { get; set; }
@@ -90,12 +90,12 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual ICollection<Web_Documento> Web_Documento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sexo> Sexo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Anios_Periodos> Anios_Periodos { get; set; }
         public virtual Web_Nivel_Permiso Web_Nivel_Permiso { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Modulo> Web_Modulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Nivel_Permiso> Web_Nivel_Permiso1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Periodos_Reporte> Periodos_Reporte { get; set; }
     }
 }

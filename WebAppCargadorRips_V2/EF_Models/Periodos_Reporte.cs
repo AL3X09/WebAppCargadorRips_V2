@@ -12,14 +12,28 @@ namespace WebAppCargadorRips_V2.EF_Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Anios_Periodos
+    public partial class Periodos_Reporte
     {
-        public long anios_periodos_id { get; set; }
+        public long periodos_reporte_id { get; set; }
         public System.DateTime fecha_minima { get; set; }
         public System.DateTime fecha_maxima { get; set; }
+        public System.DateTime fecha_reporte { get; set; }
+        public long FK_periodos_rol_id { get; set; }
+        public long FK_periodos_estado_rips_id { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
-        public long FK_anios_estado_rips_id { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
+        public virtual Web_Rol Web_Rol { get; set; }
+    }
+
+    public partial class Periodos_Reporte1
+    {
+        public long periodos_reporte_id { get; set; }
+        public System.DateTime fecha_minima { get; set; }
+        public System.DateTime fecha_maxima { get; set; }
+        public System.DateTime fecha_reporte { get; set; }
+        public long FK_periodos_rol_id { get; set; }
+        public long FK_periodos_estado_rips_id { get; set; }
+        public System.DateTime fecha_modificacion { get; set; }
     }
 }

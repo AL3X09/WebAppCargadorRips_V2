@@ -20,6 +20,7 @@ namespace WebAppCargadorRips_V2.EF_Models
             this.Web_Usuario = new HashSet<Web_Usuario>();
             this.Web_Administrador = new HashSet<Web_Administrador>();
             this.Web_Nivel_Permiso = new HashSet<Web_Nivel_Permiso>();
+            this.Periodos_Reporte = new HashSet<Periodos_Reporte>();
         }
     
         public long rol_id { get; set; }
@@ -34,5 +35,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual ICollection<Web_Administrador> Web_Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Periodos_Reporte> Periodos_Reporte { get; set; }
     }
 }

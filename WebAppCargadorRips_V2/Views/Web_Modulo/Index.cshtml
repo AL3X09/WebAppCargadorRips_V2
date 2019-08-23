@@ -1,76 +1,113 @@
 ﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Modulo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Módulo";
 }
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.grupo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ruta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.orden)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid mt-5">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.grupo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.imagen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ruta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.orden)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_modificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.modulo_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.modulo_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.modulo_id })
-            </td>
-        </tr>
-    }
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
 
-</table>
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
 
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <a href="@Url.Action("Index", "Administracion")">Administración</a>
+                <span>/</span>
+                <span>@ViewBag.Title</span>
+            </h4>
+
+        </div>
+
+    </div>
+    <!-- Heading -->
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <p>
+                        @Html.ActionLink("Crear Nuevo", "Create")
+                    </p>
+                </div>
+                <div class="card-body">
+
+
+                    <table class="table-responsive">
+                        <!-- Table head -->
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.grupo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.imagen)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ruta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.orden)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fecha_modificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.grupo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.imagen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ruta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.orden)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fecha_modificacion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.modulo_id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.modulo_id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.modulo_id })
+                                    </td>
+                                </tr>
+                            }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

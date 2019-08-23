@@ -62,7 +62,7 @@ $(document).ready(function () {
     });
 
     //inicializo la llamada a los datos de los calendarios
-    callFechasPeriodos();
+    //callFechasPeriodos();
     
    
 });

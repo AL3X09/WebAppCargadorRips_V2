@@ -196,8 +196,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
-    <Compile Include="Controllers\Anios_PeriodosController.cs" />
-    <Compile Include="Controllers\APIS\Anios_PeriodosController.cs" />
     <Compile Include="Controllers\APIS\ArchivosplanosController.cs" />
     <Compile Include="Controllers\APIS\CategoriasController.cs" />
     <Compile Include="Controllers\APIS\EnviarCorreoController.cs" />
@@ -205,6 +203,7 @@
     <Compile Include="Controllers\APIS\LogsController.cs" />
     <Compile Include="Controllers\APIS\ManualesController.cs" />
     <Compile Include="Controllers\APIS\NormatividadController.cs" />
+    <Compile Include="Controllers\APIS\Periodos_ReporteController.cs" />
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
@@ -215,19 +214,18 @@
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\CargadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Periodos_ReporteController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
     <Compile Include="Controllers\Web_AdministradoresController.cs" />
+    <Compile Include="Controllers\Web_Correo_Sin_RestriccionController.cs" />
     <Compile Include="Controllers\Web_DocumentoController.cs" />
     <Compile Include="Controllers\Web_MensajeController.cs" />
     <Compile Include="Controllers\Web_ModuloController.cs" />
     <Compile Include="Controllers\Web_Nivel_PermisoController.cs" />
     <Compile Include="Controllers\Web_RolController.cs" />
     <Compile Include="Controllers\Web_UsuarioController.cs" />
-    <Compile Include="EF_Models\Anios_Periodos.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\Categoria.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
@@ -265,6 +263,9 @@
       <DependentUpon>ModelBDRips.edmx</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Pais.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\Periodos_Reporte.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Plantilla_Correo.cs">
@@ -1057,11 +1058,6 @@
     <Content Include="Views\Web_Administradores\Details.cshtml" />
     <Content Include="Views\Web_Administradores\Edit.cshtml" />
     <Content Include="Views\Web_Administradores\Index.cshtml" />
-    <Content Include="Views\Anios_Periodos\Create.cshtml" />
-    <Content Include="Views\Anios_Periodos\Delete.cshtml" />
-    <Content Include="Views\Anios_Periodos\Details.cshtml" />
-    <Content Include="Views\Anios_Periodos\Edit.cshtml" />
-    <Content Include="Views\Anios_Periodos\Index.cshtml" />
     <Content Include="Views\Web_Documento\Create.cshtml" />
     <Content Include="Views\Web_Documento\Delete.cshtml" />
     <Content Include="Views\Web_Documento\Details.cshtml" />
@@ -1098,6 +1094,17 @@
     <Content Include="Views\Web_Modulo\Details.cshtml" />
     <Content Include="Views\Web_Modulo\Edit.cshtml" />
     <Content Include="Views\Web_Modulo\Index.cshtml" />
+    <Content Include="Views\Administracion\Index - Copia.cshtml" />
+    <Content Include="Views\Web_Correo_Sin_Restriccion\Create.cshtml" />
+    <Content Include="Views\Web_Correo_Sin_Restriccion\Delete.cshtml" />
+    <Content Include="Views\Web_Correo_Sin_Restriccion\Details.cshtml" />
+    <Content Include="Views\Web_Correo_Sin_Restriccion\Edit.cshtml" />
+    <Content Include="Views\Web_Correo_Sin_Restriccion\Index.cshtml" />
+    <Content Include="Views\Periodos_Reporte\Create.cshtml" />
+    <Content Include="Views\Periodos_Reporte\Delete.cshtml" />
+    <Content Include="Views\Periodos_Reporte\Details.cshtml" />
+    <Content Include="Views\Periodos_Reporte\Edit.cshtml" />
+    <Content Include="Views\Periodos_Reporte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

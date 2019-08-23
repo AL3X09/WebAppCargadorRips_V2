@@ -46,13 +46,28 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Tablero(string rol)
         {
             var nivel_permiso_modulo = db.SP_Get_Modulo_Permiso(rol);
-            
+
             if (nivel_permiso_modulo == null)
             {
                 return NotFound();
             }
 
-            return Ok(nivel_permiso_modulo);
+            return Ok(nivel_permiso_modulo.Where(r => r.orden == 1));
+        }
+
+        [Route("Administrar")]
+        // GET: api/Web_Nivel_Permiso/5
+        //[ResponseType(typeof(Web_Nivel_Permiso))]
+        public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Administrar(string rol)
+        {
+            var nivel_permiso_modulo = db.SP_Get_Modulo_Permiso(rol);
+
+            if (nivel_permiso_modulo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(nivel_permiso_modulo.Where(r => r.orden == 12));
         }
 
         // PUT: api/Web_Nivel_Permiso/5

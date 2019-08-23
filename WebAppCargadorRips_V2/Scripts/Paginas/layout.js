@@ -238,8 +238,8 @@ function getAllME(token) {
                         close: true,
                     });
                 }
-                //getDatosTablero(v.id_rol);
                 getControlTablero(v.id_rol);
+                getControlAdministración(v.id_rol);
             });
 
         }

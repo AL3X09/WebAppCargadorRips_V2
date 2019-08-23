@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Periodos_Reporte>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_minima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_maxima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_reporte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_modificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_minima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_maxima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_reporte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_modificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.periodos_reporte_id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.periodos_reporte_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.periodos_reporte_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

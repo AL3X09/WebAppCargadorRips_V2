@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Mensaje>
+﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Correo_Sin_Restriccion>
 
 @{
     ViewBag.Title = "Index";
@@ -39,16 +39,7 @@
                         <thead class="blue-grey lighten-4">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.codigo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.nombre)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tipo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.cuerpo)
+                                    @Html.DisplayNameFor(model => model.correo)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.fecha_modificacion)
@@ -63,16 +54,7 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.codigo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tipo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.cuerpo)
+                                        @Html.DisplayFor(modelItem => item.correo)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.fecha_modificacion)
@@ -81,9 +63,9 @@
                                         @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.mensaje_id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.mensaje_id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.mensaje_id })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.correo_sin_restriccion_id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.correo_sin_restriccion_id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.correo_sin_restriccion_id })
                                     </td>
                                 </tr>
                             }

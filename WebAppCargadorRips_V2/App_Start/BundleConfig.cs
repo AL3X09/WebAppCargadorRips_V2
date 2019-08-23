@@ -114,7 +114,6 @@ namespace WebAppCargadorRips_V2
                       "~/Scripts/Dropify/dropify.min.js"
                       ));
 
-
             //FIN LIBRERIAS EXTERNAS
 
 
@@ -123,6 +122,10 @@ namespace WebAppCargadorRips_V2
             //PAGINA TABLERO
             bundles.Add(new ScriptBundle("~/JSPaginas/tablerojs").Include(
                 "~/Scripts/Paginas/tablero.js"
+                ));
+            //PAGINA ADMINISTRACIÓN
+            bundles.Add(new ScriptBundle("~/JSPaginas/administracionjs").Include(
+                "~/Scripts/Paginas/administracion.js"
                 ));
             //PAGINA ROL PERMISO MODULO
             bundles.Add(new ScriptBundle("~/JSPaginas/rolpermisomodulojs").Include(
