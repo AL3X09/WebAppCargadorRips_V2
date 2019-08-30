@@ -7,8 +7,6 @@ var token;
 //const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
-
-    
     
     // Initialize menu
     $().ready(function () {
@@ -239,7 +237,14 @@ function getAllME(token) {
                     });
                 }
                 getControlTablero(v.id_rol);
-                getControlAdministración(v.id_rol);
+                if (typeof getControlAdministración !== "undefined") {
+                    getControlAdministración(v.id_rol);
+                }
+                //identificar si la función existe
+                if (typeof callFechasPeriodos !== "undefined") {
+                    callFechasPeriodos(v.id_rol);
+                }
+               
             });
 
         }
@@ -280,11 +285,11 @@ function getControlTablero(id_rol) {
 
                 $('#listamandos').append(
 
-                    '<div class="col-lg-3 col-sm-1" id"' + v.nombre + '">' +
+                    '<div class="col-lg-3 col-sm-12" id"' + v.nombre + '">' +
                     '<div class="card">' +
                     '<!-- Card image -->' +
                     '<div class="view overlay">' +
-                    '<img class="card-img-top" src="' + v.imagen + '" alt="' + v.nombre + '">' +
+                    '<img class="card-img-top" src="' + baseURL + v.imagen + '" alt="' + v.nombre + '" width="50">' +
                     '<a href="#!">' +
                     '<div class="mask rgba-white-slight"></div>' +
                     '</a>' +

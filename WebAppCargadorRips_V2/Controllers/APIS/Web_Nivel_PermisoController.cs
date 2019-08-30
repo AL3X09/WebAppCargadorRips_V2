@@ -52,7 +52,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 return NotFound();
             }
 
-            return Ok(nivel_permiso_modulo.Where(r => r.orden == 1));
+            return Ok(nivel_permiso_modulo.Where(r => r.orden == 1).OrderBy(r => r.nombre));
         }
 
         [Route("Administrar")]

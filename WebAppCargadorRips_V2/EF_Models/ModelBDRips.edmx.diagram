@@ -66,19 +66,18 @@
         <AssociationConnector Association="RipsModel.FK__Servicio___valid__469D7149" />
         <AssociationConnector Association="RipsModel.FK__Servicio___estru__47919582" />
         <AssociationConnector Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3" />
-        <EntityTypeShape EntityType="RipsModel.Web_Nivel_Permiso" Width="1.5" PointX="3" PointY="28.75" />
-        <AssociationConnector Association="RipsModel.FK_nivelpermiso_estado_rips" />
         <EntityTypeShape EntityType="RipsModel.Web_Modulo" Width="1.5" PointX="3" PointY="71.75" />
         <AssociationConnector Association="RipsModel.FK__Servicio___web_p__2C3E80C8" />
         <AssociationConnector Association="RipsModel.FK__Web_Prera__FK_we__2B4A5C8F" />
-        <AssociationConnector Association="RipsModel.FK_nivelpermiso_modulo" />
         <AssociationConnector Association="RipsModel.FK_web_modulo_estado_rips" />
-        <AssociationConnector Association="RipsModel.FK_nivelpermiso_estado_rips1" />
+        <EntityTypeShape EntityType="RipsModel.Fecha" Width="1.5" PointX="5.5" PointY="45.5" />
+        <AssociationConnector Association="RipsModel.FK__Fecha__estado_ri__07CC1628" />
+        <AssociationConnector Association="RipsModel.FK__Fecha__rol_ide__05E3CDB6" />
+        <EntityTypeShape EntityType="RipsModel.Web_Nivel_Permiso" Width="1.5" PointX="5.25" PointY="49.875" />
+        <AssociationConnector Association="RipsModel.FK_nivelpermiso_modulo" />
+        <AssociationConnector Association="RipsModel.FK_nivelpermiso_estado_rips" />
         <AssociationConnector Association="RipsModel.FK_nivelpermiso_rol" />
-        <EntityTypeShape EntityType="RipsModel.Periodos_Reporte" Width="1.5" PointX="5.25" PointY="45.5" />
-        <AssociationConnector Association="RipsModel.FK_periodos_reporte_estado_RIPS" />
-        <AssociationConnector Association="RipsModel.FK_periodos_reporte_web_rol" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -58,7 +58,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FK_modulo_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Modulo.FK_modulo_estado_rips);
+            ViewBag.FK_modulo_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Modulo.FK_modulo_estado_rips);
             return View(web_Modulo);
         }
 
@@ -74,7 +74,7 @@ namespace WebAppCargadorRips_V2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FK_modulo_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Modulo.FK_modulo_estado_rips);
+            ViewBag.FK_modulo_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Modulo.FK_modulo_estado_rips);
             return View(web_Modulo);
         }
 

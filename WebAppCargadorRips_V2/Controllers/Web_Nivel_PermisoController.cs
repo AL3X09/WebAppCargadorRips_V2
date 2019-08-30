@@ -41,7 +41,8 @@ namespace WebAppCargadorRips_V2.Controllers
         // GET: Web_Nivel_Permiso/Create
         public ActionResult Create()
         {
-            ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
+            //ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
+            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
             return View();
         }
 

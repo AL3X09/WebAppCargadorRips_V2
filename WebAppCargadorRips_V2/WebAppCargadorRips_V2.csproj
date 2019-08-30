@@ -200,10 +200,11 @@
     <Compile Include="Controllers\APIS\CategoriasController.cs" />
     <Compile Include="Controllers\APIS\EnviarCorreoController.cs" />
     <Compile Include="Controllers\APIS\EstructuraController.cs" />
+    <Compile Include="Controllers\APIS\FechasController.cs" />
     <Compile Include="Controllers\APIS\LogsController.cs" />
+    <Compile Include="Controllers\APIS\DocsRedascritacontroller.cs" />
     <Compile Include="Controllers\APIS\ManualesController.cs" />
     <Compile Include="Controllers\APIS\NormatividadController.cs" />
-    <Compile Include="Controllers\APIS\Periodos_ReporteController.cs" />
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
@@ -213,8 +214,8 @@
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\CargadorController.cs" />
+    <Compile Include="Controllers\FechasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Periodos_ReporteController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
@@ -247,6 +248,9 @@
     <Compile Include="EF_Models\Estructura_Campo.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\Fecha.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\ModelBDRips.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -263,9 +267,6 @@
       <DependentUpon>ModelBDRips.edmx</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Pais.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Periodos_Reporte.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Plantilla_Correo.cs">
@@ -629,6 +630,7 @@
     <Content Include="Content\MDB\style.css" />
     <Content Include="Content\MDB\style.min.css" />
     <Content Include="Content\Multifile\freestyle.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -704,10 +706,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Img\administracion\email_card.png" />
-    <Content Include="Img\administracion\medal_card.png" />
-    <Content Include="Img\administracion\ques_card.png" />
-    <Content Include="Img\administracion\shield_card.png" />
     <Content Include="Img\administracion\user_card.png" />
     <Content Include="Img\avatarsusers\110011234567.jpeg" />
     <Content Include="Img\avatarsusers\1234567890.png" />
@@ -748,6 +746,8 @@
     <Content Include="Img\overlays\09.png" />
     <Content Include="Img\svg\arrow_left.svg" />
     <Content Include="Img\svg\arrow_right.svg" />
+    <Content Include="Img\tablero\administrar.png" />
+    <Content Include="Img\tablero\txt.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -935,6 +935,7 @@
     <Content Include="Scripts\gijgo\modular\timepicker.min.js" />
     <Content Include="Scripts\gijgo\modular\tree.js" />
     <Content Include="Scripts\gijgo\modular\tree.min.js" />
+    <None Include="Properties\PublishProfiles\caragdorripsv2.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Izitoast\iziToast.js" />
     <Content Include="Scripts\Izitoast\iziToast.min.js" />
@@ -984,6 +985,122 @@
     <Content Include="Scripts\MDB\modules\waves.js" />
     <Content Include="Scripts\MDB\modules\wow.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Moment\locale\af.js" />
+    <Content Include="Scripts\Moment\locale\ar-dz.js" />
+    <Content Include="Scripts\Moment\locale\ar-kw.js" />
+    <Content Include="Scripts\Moment\locale\ar-ly.js" />
+    <Content Include="Scripts\Moment\locale\ar-ma.js" />
+    <Content Include="Scripts\Moment\locale\ar-sa.js" />
+    <Content Include="Scripts\Moment\locale\ar-tn.js" />
+    <Content Include="Scripts\Moment\locale\ar.js" />
+    <Content Include="Scripts\Moment\locale\az.js" />
+    <Content Include="Scripts\Moment\locale\be.js" />
+    <Content Include="Scripts\Moment\locale\bg.js" />
+    <Content Include="Scripts\Moment\locale\bn.js" />
+    <Content Include="Scripts\Moment\locale\bo.js" />
+    <Content Include="Scripts\Moment\locale\br.js" />
+    <Content Include="Scripts\Moment\locale\bs.js" />
+    <Content Include="Scripts\Moment\locale\ca.js" />
+    <Content Include="Scripts\Moment\locale\cs.js" />
+    <Content Include="Scripts\Moment\locale\cv.js" />
+    <Content Include="Scripts\Moment\locale\cy.js" />
+    <Content Include="Scripts\Moment\locale\da.js" />
+    <Content Include="Scripts\Moment\locale\de-at.js" />
+    <Content Include="Scripts\Moment\locale\de-ch.js" />
+    <Content Include="Scripts\Moment\locale\de.js" />
+    <Content Include="Scripts\Moment\locale\dv.js" />
+    <Content Include="Scripts\Moment\locale\el.js" />
+    <Content Include="Scripts\Moment\locale\en-au.js" />
+    <Content Include="Scripts\Moment\locale\en-ca.js" />
+    <Content Include="Scripts\Moment\locale\en-gb.js" />
+    <Content Include="Scripts\Moment\locale\en-ie.js" />
+    <Content Include="Scripts\Moment\locale\en-nz.js" />
+    <Content Include="Scripts\Moment\locale\eo.js" />
+    <Content Include="Scripts\Moment\locale\es-do.js" />
+    <Content Include="Scripts\Moment\locale\es.js" />
+    <Content Include="Scripts\Moment\locale\et.js" />
+    <Content Include="Scripts\Moment\locale\eu.js" />
+    <Content Include="Scripts\Moment\locale\fa.js" />
+    <Content Include="Scripts\Moment\locale\fi.js" />
+    <Content Include="Scripts\Moment\locale\fo.js" />
+    <Content Include="Scripts\Moment\locale\fr-ca.js" />
+    <Content Include="Scripts\Moment\locale\fr-ch.js" />
+    <Content Include="Scripts\Moment\locale\fr.js" />
+    <Content Include="Scripts\Moment\locale\fy.js" />
+    <Content Include="Scripts\Moment\locale\gd.js" />
+    <Content Include="Scripts\Moment\locale\gl.js" />
+    <Content Include="Scripts\Moment\locale\gom-latn.js" />
+    <Content Include="Scripts\Moment\locale\he.js" />
+    <Content Include="Scripts\Moment\locale\hi.js" />
+    <Content Include="Scripts\Moment\locale\hr.js" />
+    <Content Include="Scripts\Moment\locale\hu.js" />
+    <Content Include="Scripts\Moment\locale\hy-am.js" />
+    <Content Include="Scripts\Moment\locale\id.js" />
+    <Content Include="Scripts\Moment\locale\is.js" />
+    <Content Include="Scripts\Moment\locale\it.js" />
+    <Content Include="Scripts\Moment\locale\ja.js" />
+    <Content Include="Scripts\Moment\locale\jv.js" />
+    <Content Include="Scripts\Moment\locale\ka.js" />
+    <Content Include="Scripts\Moment\locale\kk.js" />
+    <Content Include="Scripts\Moment\locale\km.js" />
+    <Content Include="Scripts\Moment\locale\kn.js" />
+    <Content Include="Scripts\Moment\locale\ko.js" />
+    <Content Include="Scripts\Moment\locale\ky.js" />
+    <Content Include="Scripts\Moment\locale\lb.js" />
+    <Content Include="Scripts\Moment\locale\lo.js" />
+    <Content Include="Scripts\Moment\locale\lt.js" />
+    <Content Include="Scripts\Moment\locale\lv.js" />
+    <Content Include="Scripts\Moment\locale\me.js" />
+    <Content Include="Scripts\Moment\locale\mi.js" />
+    <Content Include="Scripts\Moment\locale\mk.js" />
+    <Content Include="Scripts\Moment\locale\ml.js" />
+    <Content Include="Scripts\Moment\locale\mr.js" />
+    <Content Include="Scripts\Moment\locale\ms-my.js" />
+    <Content Include="Scripts\Moment\locale\ms.js" />
+    <Content Include="Scripts\Moment\locale\my.js" />
+    <Content Include="Scripts\Moment\locale\nb.js" />
+    <Content Include="Scripts\Moment\locale\ne.js" />
+    <Content Include="Scripts\Moment\locale\nl-be.js" />
+    <Content Include="Scripts\Moment\locale\nl.js" />
+    <Content Include="Scripts\Moment\locale\nn.js" />
+    <Content Include="Scripts\Moment\locale\pa-in.js" />
+    <Content Include="Scripts\Moment\locale\pl.js" />
+    <Content Include="Scripts\Moment\locale\pt-br.js" />
+    <Content Include="Scripts\Moment\locale\pt.js" />
+    <Content Include="Scripts\Moment\locale\ro.js" />
+    <Content Include="Scripts\Moment\locale\ru.js" />
+    <Content Include="Scripts\Moment\locale\sd.js" />
+    <Content Include="Scripts\Moment\locale\se.js" />
+    <Content Include="Scripts\Moment\locale\si.js" />
+    <Content Include="Scripts\Moment\locale\sk.js" />
+    <Content Include="Scripts\Moment\locale\sl.js" />
+    <Content Include="Scripts\Moment\locale\sq.js" />
+    <Content Include="Scripts\Moment\locale\sr-cyrl.js" />
+    <Content Include="Scripts\Moment\locale\sr.js" />
+    <Content Include="Scripts\Moment\locale\ss.js" />
+    <Content Include="Scripts\Moment\locale\sv.js" />
+    <Content Include="Scripts\Moment\locale\sw.js" />
+    <Content Include="Scripts\Moment\locale\ta.js" />
+    <Content Include="Scripts\Moment\locale\te.js" />
+    <Content Include="Scripts\Moment\locale\tet.js" />
+    <Content Include="Scripts\Moment\locale\th.js" />
+    <Content Include="Scripts\Moment\locale\tl-ph.js" />
+    <Content Include="Scripts\Moment\locale\tlh.js" />
+    <Content Include="Scripts\Moment\locale\tr.js" />
+    <Content Include="Scripts\Moment\locale\tzl.js" />
+    <Content Include="Scripts\Moment\locale\tzm-latn.js" />
+    <Content Include="Scripts\Moment\locale\tzm.js" />
+    <Content Include="Scripts\Moment\locale\uk.js" />
+    <Content Include="Scripts\Moment\locale\ur.js" />
+    <Content Include="Scripts\Moment\locale\uz-latn.js" />
+    <Content Include="Scripts\Moment\locale\uz.js" />
+    <Content Include="Scripts\Moment\locale\vi.js" />
+    <Content Include="Scripts\Moment\locale\x-pseudo.js" />
+    <Content Include="Scripts\Moment\locale\yo.js" />
+    <Content Include="Scripts\Moment\locale\zh-cn.js" />
+    <Content Include="Scripts\Moment\locale\zh-hk.js" />
+    <Content Include="Scripts\Moment\locale\zh-tw.js" />
+    <Content Include="Scripts\Moment\moment.js" />
     <Content Include="Scripts\Multifile\jquery.MultiFile.js" />
     <Content Include="Scripts\Paginas\administracion.js" />
     <Content Include="Scripts\Paginas\ayuda.js" />
@@ -1050,7 +1167,6 @@
     <Content Include="Views\Web_Permiso\Details.cshtml" />
     <Content Include="Views\Web_Permiso\Edit.cshtml" />
     <Content Include="Views\Web_Permiso\Index.cshtml" />
-    <Content Include="Views\Home\Index - Copia.cshtml" />
     <Content Include="Scripts\Material\material-dashboard.js.map" />
     <Content Include="Views\Cargador\Index.cshtml" />
     <Content Include="Views\Web_Administradores\Create.cshtml" />
@@ -1100,11 +1216,11 @@
     <Content Include="Views\Web_Correo_Sin_Restriccion\Details.cshtml" />
     <Content Include="Views\Web_Correo_Sin_Restriccion\Edit.cshtml" />
     <Content Include="Views\Web_Correo_Sin_Restriccion\Index.cshtml" />
-    <Content Include="Views\Periodos_Reporte\Create.cshtml" />
-    <Content Include="Views\Periodos_Reporte\Delete.cshtml" />
-    <Content Include="Views\Periodos_Reporte\Details.cshtml" />
-    <Content Include="Views\Periodos_Reporte\Edit.cshtml" />
-    <Content Include="Views\Periodos_Reporte\Index.cshtml" />
+    <Content Include="Views\Fechas\Create.cshtml" />
+    <Content Include="Views\Fechas\Delete.cshtml" />
+    <Content Include="Views\Fechas\Details.cshtml" />
+    <Content Include="Views\Fechas\Edit.cshtml" />
+    <Content Include="Views\Fechas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

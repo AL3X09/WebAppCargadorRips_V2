@@ -15,7 +15,7 @@ function getControlAdministración(id_rol) {
 
                 $('#listadministrar').append(
 
-                    '<div class="col-lg-3 col-md-3 mb-4" id"' + v.nombre + '">' +
+                    '<div class="col-lg-3 col-md-3 mb-4 col-sm-12" id"' + v.nombre + '">' +
                     '<div class="card">' +
                     '<!-- Card image -->' +
                     '<div class="view overlay">' +

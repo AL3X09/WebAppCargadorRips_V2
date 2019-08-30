@@ -1,0 +1,76 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Fecha
+
+@{
+    ViewBag.Title = "Detalles Fecha";
+}
+
+<div class="container-fluid mt-auto">
+
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
+
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
+
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <a href="@Url.Action("Index")">Volver</a>
+                <span>/</span>
+                <span>@ViewBag.Title</span>
+            </h4>
+
+        </div>
+
+    </div>
+    <!-- Heading -->
+
+    <div>
+        <h4>Fecha</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre_fecha)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre_fecha)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.valor_fecha)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.valor_fecha)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fecha_modificacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fecha_modificacion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Web_Rol.nombre)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.fecha_id }) |
+       @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+    </p>
+</div>

@@ -22,12 +22,16 @@ namespace WebAppCargadorRips_V2
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/popper.min.js",
-                        "~/Scripts/bootstrap.min.js"
+                        "~/Scripts/bootstrap.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+                        "~/Scripts/popper.min.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css"                      
+                      "~/Content/bootstrap.css"                     
+                     
                       ));
 
             //LIBRERIAS EXTERNAS
@@ -112,6 +116,13 @@ namespace WebAppCargadorRips_V2
 
             bundles.Add(new ScriptBundle("~/bundles/dropifyjs").Include(
                       "~/Scripts/Dropify/dropify.min.js"
+                      ));
+
+            //MOMENTJS
+
+            bundles.Add(new ScriptBundle("~/bundles/momentjs").Include(
+                      "~/Scripts/Moment/moment.js",
+                      "~/Scripts/Moment/locale/es.js"
                       ));
 
             //FIN LIBRERIAS EXTERNAS

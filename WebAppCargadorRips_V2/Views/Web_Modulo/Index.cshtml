@@ -5,7 +5,7 @@
 }
 
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-auto">
 
     <!-- Heading -->
     <div class="card mb-4 wow fadeIn">
@@ -30,10 +30,10 @@
             <div class="card">
                 <div class="card-header card-header-info">
                     <p>
-                        @Html.ActionLink("Crear Nuevo", "Create")
+                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "card-title" })
                     </p>
                 </div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
 
 
                     <table class="table-responsive">
@@ -95,9 +95,9 @@
                                         @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.modulo_id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.modulo_id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.modulo_id })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.modulo_id}, new { @class = "btn btn-round btn-success btn-sm" }) |
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.modulo_id }, new { @class = "btn btn-round btn-info btn-sm" })
+                                        @*Html.ActionLink("Delete", "Delete", new { id = item.modulo_id })*@
                                     </td>
                                 </tr>
                             }

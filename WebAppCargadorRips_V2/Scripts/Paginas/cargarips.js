@@ -7,7 +7,18 @@
 var TipoEstructuraArray = []; //variable que almacena las estructuras existentes en la norma
 var nombre = []; //variable almacena los nombre de los archivos a cargar
 //var FechaMin;
-//var FechaMax;
+var currentDate1 = new Date();
+var currentDate2 = new Date();
+var FechaDeReporte;
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+var FechaInicioReporte = null;
+var FechaFinReporte = null;
+
 
 $(document).ready(function () {
     $("#mcarga").addClass("active");
@@ -68,16 +79,37 @@ $(document).ready(function () {
 });
 
 //Función que permite traer las fechas definidas para los periodos de cada uno de los calendarios
-function callFechasPeriodos() {
+function callFechasPeriodos(rol) {
 
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Anios_Periodos",
+        url: baseURL + "api/Fechas/Listar",
+        data: { rol: 1 },
         success: function (response) {
             $.each(response, function (i, v) {
-                FechaMin = v.fecha_minima.substring(0, 10).replace(/-/g, '/');
-                FechaMax = v.fecha_maxima.substring(0, 10).replace(/-/g, '/');
-                calendarios(FechaMin, FechaMax);
+                if (v.fecha_id == 1) {
+                    FechaMin = v.valor_fecha.substring(0, 10).replace(/-/g, '/');
+                    FechaMax = new Date(currentDate2.getFullYear(), currentDate2.getMonth() - 0, 0);
+                    calendarios(FechaMin, FechaMax);
+                }
+
+                //valido si el prestador tiene la fecha habilitada para realizar el cargue
+                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 12).trim() =='fecha inicio' ) {
+                    FechaInicioReporte = v.valor_fecha.substring(0, 10);
+                    if (new Date(today) < new Date(FechaInicioReporte)) {
+                        $('#btncargarinfo').remove();
+                    }
+                    
+                }
+                //valido si el prestador tiene la fecha habilitada para realizar el cargue
+                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 10).trim() == 'fecha fin') {
+                    FechaFinReporte = v.valor_fecha.substring(0, 10);
+                    console.log(FechaFinReporte);
+                    if (new Date(today) >= new Date(FechaFinReporte)) { 
+                        $('#btncargarinfo').remove();
+                    }
+                }
+                
             });
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -88,11 +120,14 @@ function callFechasPeriodos() {
             'error',         
         )
         console.error(textStatus, errorThrown); // Algo fallo
-    })   
+
+        })
+
 }
 
 //Getting the last day for a given year and month:
 function getLastDayOfYearAndMonth(year, month) {
+    console.log(month);
     return (new Date((new Date(year, month + 1, 1)) - 1)).getDate();
 }
 
@@ -104,15 +139,25 @@ function calendarios(FechaMin, FechaMax) {
         format: 'yyyy/mm/dd',
         minDate: FechaMin,
         maxDate: FechaMax,
+        close: function (e) {
+
+            var fec1 = moment(e.target.value).format('YYYY-MM-DD');
+            var fec2 = moment(fec1).endOf('month').format('YYYY/MM/DD');
+            $("#fechaFin").datepicker().value(new Date(fec2));
+            
+        },
         disableDates: function (date) {
-            var disabled = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+            var disabled = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
             if (disabled.indexOf(date.getDate()) == -1) {
                 return true;
             } else {
                 return false;
             }
         }
-    });
+        
+    })
+    
+
     $('#fechaFin').datepicker({
         locale: 'es-es',
         format: 'yyyy/mm/dd',
@@ -182,7 +227,7 @@ function limpiardivfiles() {
 //funcion cancela la operación y retorna a la pagina principal
 function cancelado() {
     Swal.fire({
-        title: '¿Estas seguro?',
+        title: '¿Esta seguro?',
         text: 'Desea cancelar la operación de carga',
         type: 'warning',
         showCancelButton: true,
