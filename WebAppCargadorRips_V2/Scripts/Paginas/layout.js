@@ -2,8 +2,8 @@
  * Created by Alex on 11/03/2017.
  */
 const getUrl = window.location;
-const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
 var token;
+const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
 //const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
@@ -215,8 +215,8 @@ function getAllME(token) {
                         '</li>');
                 }                
                 
-                if (document.getElementById("imguserperfil") != undefined || document.getElementById("imguserperfil") != null) {
-                    $("#imguserperfil").attr("src", baseURL + v.imagen);
+                if (document.getElementById("imguser") != undefined || document.getElementById("imguser") != null) {
+                    $("#imguser").attr("src", baseURL + v.imagen);
                 }
 
                 if (document.getElementById("divtabEstado") != undefined || document.getElementById("divtabEstado") != null) {
@@ -297,18 +297,19 @@ function getControlTablero(id_rol) {
                     '<!-- Card content -->' +
                     '<div class="card-body">' +
                     '<!-- Title -->' +
-                    '<h4 class="card-title">' +
+                    '<h4 class="card-title font-weight-bold">' +
                     v.nombre +
                     '</h4>' +
                     '<!-- Text -->' +
-                    '<p class="card-text">' + v.descripcion + '</p>' +
+                    '<p class="card-text text-justify">' + v.descripcion + '</p>' +
                     '<!-- Button -->' +
-                    (v.pr_crear == true ? '<a href = "' + baseURL + v.ruta + '" class= "btn btn-primary" id = "btnTacceso">Acceder</a >' : '') +
+                    (v.nombre.search("validador") > 1 ? '<div id="validador">' :  '<div>') +
+                    (v.pr_crear == true ? '<a href = "' + (v.nombre.search("validador") > 1 ? v.ruta : baseURL + v.ruta) + '" class= "btn btn-info" id = "btnTacceso">Acceder</a >' : '') +
+                    '</div>' +
                     '</div>' +
                     '</div >'
 
                 )
-
 
                 if (v.pr_crear == false && document.getElementById("btnTacceso") != undefined) {
                     document.getElementById('btnTacceso').remove();

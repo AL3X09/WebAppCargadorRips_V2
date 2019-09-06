@@ -511,7 +511,7 @@ if (window.jQuery)(function ($) {
                             r = $('<div class="MultiFile-label"></div>'),
                             //$('<div class="MultiFile-label"></div>'),
 							//b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
-                            b = $('<a class="btn btn-danger btn-fab btn-fab-mini btn-round" href="#' + MultiFile.wrapID + '" onclick="limpiardivfiles()" ><i class="material-icons " >clear</i></a>')
+                            b = $('<a class="btn btn-danger btn-round" href="#' + MultiFile.wrapID + '" onclick="limpiardivfiles()" >Borrar</a><br/>')
 
 								// ********
 								// TODO:

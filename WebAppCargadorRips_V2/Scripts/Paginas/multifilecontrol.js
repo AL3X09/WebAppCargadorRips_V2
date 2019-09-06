@@ -114,6 +114,11 @@ function zonaarchvos() {
 
         });
 
+        //Si existen archivos nuevos incio lectura
+        if (fileNum > 0) {
+            readFile();
+        }
+
         for (initial; initial < fileNum; initial++) {
             counter = counter + 1;
             $('#filename').append('<div id="file_' + initial + '"><span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">' + counter + '</strong></span> ' + this.files[initial].name + '</div>');

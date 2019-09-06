@@ -1,6 +1,7 @@
 ﻿/**
  * @author ALEXANDER CIFUENTES SANCHEZ
  * @description este archivo se encarga de la pagina home y la pagina carga de rips
+ * @ojo El archvio que controla la zona de carga se enceuntra en multifilecontrol
  * 26-10-2017
  */
 

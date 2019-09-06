@@ -22,150 +22,153 @@ var buscar;
 var buscarpc;
 
 $(document).ready(function () {
-    var container = document.getElementById('divcontainer');//$('div.container');
+  var container = document.getElementById('divcontainer');//$('div.container');
 
-    $.validator.setDefaults({
-        ignore: []
-    });
+  //$('select').material_select();
 
-});
+  $.validator.setDefaults({
+    ignore: []
+  });
 
-    jQuery(function () {
+  // Extension pour comptabilité avec materialize.css
 
-        $('#formulariocargaarchivo').validate({
-            onsubmit: true,
-            rules: {
-                fechaInicio: {
-                    required: true,
-                },
-                fechaFin: {
-                    required: true,
-                },
-                rips: {
-                    required: true,
-                }
-            },
-            messages: {
-                tipoUsuario2: "Seleccione un tipo de usuario",
-                categoria: "Seleccione una categoría",
-                fechaInicio: "Indique una fecha de inicio",
-                fechaFin: "Indique una fecha de fin",
-                rips: "Seleccione sus archivos",
-            },
-            errorPlacement: function (error, element) {
-                error.addClass("text-danger");
-                error.insertAfter(element);
-            },
-            submitHandler: function (e) {
+  $("#formulariocargaarchivo").submit(function (e) {
+    e.preventDefault();
+  }).validate({
+    //debug: true,
+    errorClass: "invalid form-error",
+    validClass: "valid",
+    rules: {
+      fechaInicio: {
+        required: true,
+      },
+      fechaFin: "required",
+      rips: "required",
+    },
+    //errorElement : 'div',
+    errorContainer: container,
+    errorLabelContainer: $("ol", container),
+    wrapper: 'li',
 
-                readFile();
-            }
+    errorPlacement: function (error, element) {
+      //error.append(element.parent());
+      //console.log(element);
 
-        });
-    });
-
-    function modalprogres() {
-
-        modalButtonOnly.open();
-        modalButtonOnly.setContent(document.querySelector('.tingle_addon_window').innerHTML);
-
+    },
+    //For custom messages
+    messages: {
+      tipoUsuario2: "Seleccione un tipo de usuario",
+      categoria: "Seleccione una categoria",
+      fechaInicio: "Indique una fecha de inicio",
+      fechaFin: "Indique una fecha de fin",
+      rips: "Seleccione sus archivos",
+    },
+    submitHandler: function (e) {
+      //readFile();
+        terminaLectura();
     }
+  });
+
+
+})
 
 //Función pre lee los archivos antes de cargarlos, con el fin de notificar al usuario
 function readFile() {
     
-  let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
-  var fileInput = document.getElementById('rips');
-  var fileDisplayArea = document.getElementById('fileDisplayArea');
-  var cantidad = fileInput.childNodes[0].files.length;
+    
+        let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
+        var fileInput = document.getElementById('rips');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+        var cantidad = fileInput.childNodes[0].files.length;
 
-  //almaceno el nombre de los archivos en un array para su posterior validacion, ya que no se pueden enviar repetidos
+        //almaceno el nombre de los archivos en un array para su posterior validacion, ya que no se pueden enviar repetidos
 
 
-  for (let i = 0; i < cantidad; i++) {
-      nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0).toUpperCase());
+        for (let i = 0; i < cantidad; i++) {
+            nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0).toUpperCase());
     }
 
-    //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
-    //ya que son obligatorios
-    if (nombre.includes('US') == true && nombre.includes('AF') == true && nombre.length > 2) {
+        //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
+        //ya que son obligatorios
+        if (nombre.includes('US') == true && nombre.includes('AF') == true && nombre.length > 2) {
 
-        //Valido que el usuario no seleccione archivos iguales
-        //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
-        for (let i = 0; i < cantidad - 1; i++) {
-            for (let j = i + 1; j < cantidad; j++) {
+            //Valido que el usuario no seleccione archivos iguales
+            //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
+            for (let i = 0; i < cantidad - 1; i++) {
+                for (let j = i + 1; j < cantidad; j++) {
 
-                if (nombre[i] == nombre[j]) {
-                    //Cambio el balor de la variable de validación
-                    bandera = false;
+                    if (nombre[i] == nombre[j]) {
+                        //Cambio el balor de la variable de validación
+                        bandera = false;
+                    }
                 }
             }
-        }
 
-        //valido que la variable de validacion no cambio
-        if (bandera === true) {
-            modalprogres();
-            // si la variable bandera no cambio envio lectura de archivos
-            for (let i = 0; i < cantidad; i++) {
+            //valido que la variable de validacion no cambio
+            if (bandera === true) {
+                modalprogres();
+                // si la variable bandera no cambio envio lectura de archivos
+                for (let i = 0; i < cantidad; i++) {
 
-                var file = fileInput.childNodes[0].files[i];
-                var textType = /text.*/;
-                //var buscarpuntos=null;
-                var namefile = null;
-                if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
-                    var reader = new FileReader();
+                    var file = fileInput.childNodes[0].files[i];
+                    var textType = /text.*/;
+                    //var buscarpuntos=null;
+                    var namefile = null;
+                    if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
+                        var reader = new FileReader();
 
-                    reader.onload = function (e) {
+                        reader.onload = function (e) {
 
-                        namefile = fileInput.childNodes[0].files[i]['name'];
+                            namefile = fileInput.childNodes[0].files[i]['name'];
 
-                        // Por lineas
-                        var lines = this.result.split('\n');
+                            // Por lineas
+                            var lines = this.result.split('\n');
 
-                        //envio a una función las lienas del archivo a subir
-                        readlines(lines, namefile, cantidad);
+                            //envio a una función las lienas del archivo a subir
+                            readlines(lines, namefile, cantidad);
 
+                        }
+                        reader.readAsText(file);
+                        //delete reader;
+                    } else {
+                         Swal.fire(
+                            'Precaución',
+                            'Parece que intenta cargar archivos ilegibles, por favor elimine e intente nuevamente',
+                            'info'
+                        )
+                        //fileDisplayArea.innerText = "Archivos No Soportados!"
+                        nombre.length = 0; //Limpio el vector de nombres
                     }
-                    reader.readAsText(file);
-                    //delete reader;
-                } else {
-                    swal(
-                        'Precaución',
-                        'Parece que intenta cargar archivos ilegibles, por favor elimine e intente nuevamente',
-                        'info'
-                    )
-                    //fileDisplayArea.innerText = "Archivos No Soportados!"
-                    nombre.length = 0; //Limpio el vector de nombres
-                }
-            }//fin for
-            //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
-            //terminaLectura();
-        } else {
-            //si cambio la variable bandera
-            //evito la carga innesaria de los archivos
-            //le indico al usuario que por favor revice la info a cargar
-            swal(
+                }//fin for
+                //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
+                //terminaLectura();
+            } else {
+                //si cambio la variable bandera
+                //evito la carga innesaria de los archivos
+                //le indico al usuario que por favor revice la info a cargar
+                 Swal.fire(
+                    'Precaución',
+                    'Parece que intenta cargar el mismo tipo de estructura, por favor elimine e intente nuevamente',
+                    'info'
+                )
+                nombre.length = 0;
+                nombre = [];
+                //limpiarCampos();
+            }
+
+
+        } else { //de lo contrario envio alerta para obligar cargar los archivos
+             Swal.fire(
                 'Precaución',
-                'Parece que intenta cargar el mismo tipo de estructura, por favor elimine e intente nuevamente',
+                'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), o le hace falta una estructura de atención, por favor elimine los archivos e intente cargar nuevamente.',
                 'info'
             )
-            nombre.length = 0;
-            nombre = [];
-            //limpiarCampos();
-        }
+            nombre = [];//Limpio el vector de nombres
+
+        } //fin else archivos obligatorios 
 
 
-    } else { //de lo contrario envio alerta para obligar cargar los archivos
-        swal(
-            'Precaución',
-            'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), o le hace falta una estructura de atención, por favor elimine los archivos e intente cargar nuevamente.',
-            'info'
-        )
-        nombre = [];//Limpio el vector de nombres
-
-    } //fin else archivos obligatorios 
-
-  
+    
 
 }
 
@@ -180,7 +183,7 @@ function readlines(lineas, namefile, cantidad) {
         modalButtonOnly.close();
         //limpio variable de posicion de lectura
         poslec = 0;
-        swal(
+         Swal.fire(
             'Error!',
             'Esta intentando cargar estructuras con un nombre no permitido, por favor corrijalos e intente nuevamente!',
             'error'
@@ -361,63 +364,68 @@ function readlines(lineas, namefile, cantidad) {
     }
 }
 
+function modalprogres() {
 
-    function terminaLectura() {
-        //valido que si se presentan errores en la validacion
-        //console.log(erroresEstructura);
-        if (erroresEstructura.length > 0) {
-            //envio notificación del error
-            swal({
-                title: 'Error',
-                text: 'Sus estructuras presentan Errores de estructura y/o divisiones por punto y coma (;) !! se enviara un correo con los diferentes ' +
-                    'errores encontrados, por favor corrijalos e intente nuevamente.',
-                type: 'warning',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK!',
-                allowOutsideClick: false
-            }).then((result) => {
-                //if (result.value) {
+  modalButtonOnly.open();
+  modalButtonOnly.setContent(document.querySelector('.tingle_addon_window').innerHTML);
+
+}
+
+function terminaLectura() {
+    //valido que si se presentan errores en la validacion
+    //console.log(erroresEstructura);
+    if (erroresEstructura.length > 0) {
+        //envio notificación del error
+         Swal.fire({
+            title: 'Error',
+            text: 'Sus estructuras presentan Errores de estructura y/o divisiones por punto y coma (;) !! se enviara un correo con los diferentes ' +
+                'errores encontrados, por favor corrijalos e intente nuevamente.',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK!',
+            allowOutsideClick: false
+        }).then((result) => {
+            //if (result.value) {
+            //envio a la api de errores
+            UploadValidacionConErrores(erroresEstructura.slice(0, 100));
+            //con slice envio del primer error al 100 para no saturar el servidor de correo
+            //enviarCorreoErrores(errores.slice(0,100));
+            //}
+        })
+
+    }else if (erroresCaracteres.length > 0) { //
+        //envio notificación de posible error
+         Swal.fire({
+            title: 'Error',
+            text: 'Sus estructuras presentan caracteres especiales no permitidos, desea continuar con el cargue, o desea recibir un correo con los diferentes ' +
+                'caracteres encontrados.',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Enviar correo',
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continuar',
+            allowOutsideClick: false
+        }).then(function (result) {
+            //console.log(result);
+            if (result) {
+                //llamo funcio de carga de los archivos RIPS
+                loadRIPS();
+            }
+        }, function (dismiss) {
+            //console.log(dismiss);
+            if (dismiss === 'cancel') { // you might also handle 'close' or 'timer' if you used those
                 //envio a la api de errores
-                UploadValidacionConErrores(erroresEstructura.slice(0, 100));
-                //con slice envio del primer error al 100 para no saturar el servidor de correo
-                //enviarCorreoErrores(errores.slice(0,100));
-                //}
-            })
+                enviarCorreoErrores(erroresCaracteres.slice(0, 100));
+            } else {
+                throw dismiss;
+            }
+        })
 
-        } else if (erroresCaracteres.length > 0) { //
-            //envio notificación de posible error
-            swal({
-                title: 'Error',
-                text: 'Sus estructuras presentan caracteres especiales no permitidos, desea continuar con el cargue, o desea recibir un correo con los diferentes ' +
-                    'caracteres encontrados.',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'Enviar correo',
-                cancelButtonColor: '#d33',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Continuar',
-                allowOutsideClick: false
-            }).then(function (result) {
-                //console.log(result);
-                if (result) {
-                    //llamo funcio de carga de los archivos RIPS
-                    loadRIPS();
-                }
-            }, function (dismiss) {
-                //console.log(dismiss);
-                if (dismiss === 'cancel') { // you might also handle 'close' or 'timer' if you used those
-                    //envio a la api de errores
-                    enviarCorreoErrores(erroresCaracteres.slice(0, 100));
-                } else {
-                    throw dismiss;
-                }
-            })
-
-        }
-        else if (nombre.includes("US") == true && nombre.includes("AF") == true && nombre.length > 2) {
-            //console.log('pasa');
-            //llamo funcio de carga de los 
-            loadRIPS();
-        }
+    } else if (nombre.includes("US") == true && nombre.includes("AF") == true && nombre.length > 2) {
+     //console.log('pasa');
+    //llamo funcio de carga de los 
+    loadRIPS();
+  }
 }

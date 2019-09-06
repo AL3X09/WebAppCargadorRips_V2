@@ -1,58 +1,76 @@
 ﻿@model WebAppCargadorRips_V2.EF_Models.Web_Documento
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles Documento";
 }
 
-<h2>Details</h2>
+<div class="container-fluid mt-auto">
 
-<div>
-    <h4>Web_Documento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tipo)
-        </dt>
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
 
-        <dd>
-            @Html.DisplayFor(model => model.tipo)
-        </dd>
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
+            <h4 class="mb-2 mb-sm-0 pt-1">
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ruta)
-        </dt>
+                <span>@ViewBag.Title</span>
+            </h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.ruta)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </dt>
+    </div>
+    <!-- Heading -->
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha_modificacion)
-        </dd>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.tipo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tipo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.documento_id }) |
-   @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ruta)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ruta)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fecha_modificacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fecha_modificacion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.documento_id }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+    </p>
+
+    </div>

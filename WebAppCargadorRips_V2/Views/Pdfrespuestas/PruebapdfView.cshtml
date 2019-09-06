@@ -1,0 +1,35 @@
+﻿<style>
+    thead {
+        background-color: black;
+        color: white
+    }
+
+    table {
+        border: 1px solid black;
+    }
+
+    td, th {
+        padding: 5px;
+        font-size: 14px;
+    }
+</style>
+
+<table class="table table-bordered table-striped" border="1" style="border-color:black">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Contact</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.age</td>
+                <td>@item.contact</td>
+            </tr>
+        }
+    </tbody>
+</table>

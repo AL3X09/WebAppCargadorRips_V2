@@ -40,7 +40,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // GET: Web_Documento/Create
         public ActionResult Create()
         {
-            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
+            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Documento.FK_web_documento_estado_rips);
+            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Documento.FK_web_documento_estado_rips);
             return View(web_Documento);
         }
 
@@ -74,7 +74,7 @@ namespace WebAppCargadorRips_V2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Documento.FK_web_documento_estado_rips);
+            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Documento.FK_web_documento_estado_rips);
             return View(web_Documento);
         }
 
@@ -91,7 +91,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Documento.FK_web_documento_estado_rips);
+            ViewBag.FK_web_documento_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Documento.FK_web_documento_estado_rips);
             return View(web_Documento);
         }
 

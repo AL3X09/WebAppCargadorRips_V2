@@ -78,6 +78,9 @@
     <Reference Include="RouteJs.Mvc5, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RouteJs.Mvc5.2.2.0\lib\net45\RouteJs.Mvc5.dll</HintPath>
     </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=19.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.19.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -205,6 +208,7 @@
     <Compile Include="Controllers\APIS\DocsRedascritacontroller.cs" />
     <Compile Include="Controllers\APIS\ManualesController.cs" />
     <Compile Include="Controllers\APIS\NormatividadController.cs" />
+    <Compile Include="Controllers\APIS\PdfexampleController.cs" />
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
@@ -216,6 +220,7 @@
     <Compile Include="Controllers\CargadorController.cs" />
     <Compile Include="Controllers\FechasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PdfgeneradorController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
@@ -706,13 +711,29 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Img\administracion\user_card.png" />
-    <Content Include="Img\avatarsusers\110011234567.jpeg" />
-    <Content Include="Img\avatarsusers\1234567890.png" />
-    <Content Include="Img\avatarsusers\1234567895.jpeg" />
-    <Content Include="Img\avatarsusers\1234567899.png" />
+    <Content Include="Img\administracion\admins.png" />
+    <Content Include="Img\administracion\api.png" />
+    <Content Include="Img\administracion\categorias.png" />
+    <Content Include="Img\administracion\config_correos.png" />
+    <Content Include="Img\administracion\correos.png" />
+    <Content Include="Img\administracion\default.png" />
+    <Content Include="Img\administracion\directorios.png" />
+    <Content Include="Img\administracion\documentos.png" />
+    <Content Include="Img\administracion\estados.png" />
+    <Content Include="Img\administracion\estructura.png" />
+    <Content Include="Img\administracion\fechas.png" />
+    <Content Include="Img\administracion\logs.png" />
+    <Content Include="Img\administracion\mensajes.png" />
+    <Content Include="Img\administracion\modulos.png" />
+    <Content Include="Img\administracion\nivel_permiso.png" />
+    <Content Include="Img\administracion\plant_correo.png" />
+    <Content Include="Img\administracion\preguntas.png" />
+    <Content Include="Img\administracion\preradicacion.png" />
+    <Content Include="Img\administracion\prestadores.png" />
+    <Content Include="Img\administracion\roles.png" />
+    <Content Include="Img\administracion\tipo_usuario.png" />
+    <Content Include="Img\administracion\usuarios.png" />
     <Content Include="Img\avatarsusers\avatar.png" />
-    <Content Include="Img\avatarsusers\avata_old.jpg" />
     <Content Include="Img\avatarsusers\yop.jpg" />
     <Content Include="Img\backgrounds\bg.jpg" />
     <Content Include="Img\backgrounds\cookies.jpeg" />
@@ -747,7 +768,13 @@
     <Content Include="Img\svg\arrow_left.svg" />
     <Content Include="Img\svg\arrow_right.svg" />
     <Content Include="Img\tablero\administrar.png" />
+    <Content Include="Img\tablero\ayuda.png" />
+    <Content Include="Img\tablero\default.png" />
+    <Content Include="Img\tablero\indicadores.png" />
+    <Content Include="Img\tablero\listado.png" />
     <Content Include="Img\tablero\txt.png" />
+    <Content Include="Img\tablero\validador.png" />
+    <Content Include="Img\tboton\apdf.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -935,6 +962,8 @@
     <Content Include="Scripts\gijgo\modular\timepicker.min.js" />
     <Content Include="Scripts\gijgo\modular\tree.js" />
     <Content Include="Scripts\gijgo\modular\tree.min.js" />
+    <Content Include="Pdfrespuestas\EjemploActa de aprobacion.pdf" />
+    <Content Include="Pdfrespuestas\EjemploActa de rechazo.pdf" />
     <None Include="Properties\PublishProfiles\caragdorripsv2.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Izitoast\iziToast.js" />
@@ -1221,9 +1250,11 @@
     <Content Include="Views\Fechas\Details.cshtml" />
     <Content Include="Views\Fechas\Edit.cshtml" />
     <Content Include="Views\Fechas\Index.cshtml" />
+    <Content Include="Views\Pdfrespuestas\PruebapdfView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pdfgenerador\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -160,7 +160,7 @@ function getNormatividad() {
 
         //envio a la api errores para que almacene el error
     })
-    getContactos();
+    getRedadscrita();
 }
 
 //llamo la api y alimento el ul de resoluciones y normas
@@ -168,14 +168,15 @@ function getRedadscrita() {
 
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Normatividad/Listar",
+        url: baseURL + "api/DocsRedadscrita/Listar",
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {
-                $('#listresolucionesnormas').append(
+
+                $('#listdocredascrita').append(
                     '<div class="">' +
                     '<div class="card-header card-header-info">' +
-                    '<a class="card-link" data-toggle="collapse" href="#v.pregunta_frecuente">' +
+                    '<a class="card-link" data-toggle="collapse" href="#v.doc_redascrita">' +
                     '<div><a href="' + v.ruta + '" class="secondary-content title" target="_blank">' + v.descripcion + ' <i class="material-icons">send</i></a></div>' +
                     '</a>' +
                     '</div>' +
