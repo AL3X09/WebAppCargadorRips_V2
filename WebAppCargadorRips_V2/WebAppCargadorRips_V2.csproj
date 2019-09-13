@@ -221,6 +221,7 @@
     <Compile Include="Controllers\FechasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PdfgeneradorController.cs" />
+    <Compile Include="Controllers\Plantilla_Respuesta_PDFController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
@@ -277,13 +278,10 @@
     <Compile Include="EF_Models\Plantilla_Correo.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\Plantilla_Respuesta_PDF.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\Prestador.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Servicio_Radicacion.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Servicio_Validacion.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Servicio_Validacion_Error.cs">
@@ -380,6 +378,9 @@
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\VW_Radicacion.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\VW_Seguimiento_Web.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\VW_Servicio_Validacion.cs">
@@ -775,6 +776,9 @@
     <Content Include="Img\tablero\txt.png" />
     <Content Include="Img\tablero\validador.png" />
     <Content Include="Img\tboton\apdf.png" />
+    <Content Include="Img\tboton\error.png" />
+    <Content Include="Img\tboton\info.png" />
+    <Content Include="Img\tboton\success.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1251,6 +1255,11 @@
     <Content Include="Views\Fechas\Edit.cshtml" />
     <Content Include="Views\Fechas\Index.cshtml" />
     <Content Include="Views\Pdfrespuestas\PruebapdfView.cshtml" />
+    <Content Include="Views\Plantilla_Respuesta_PDF\Create.cshtml" />
+    <Content Include="Views\Plantilla_Respuesta_PDF\Delete.cshtml" />
+    <Content Include="Views\Plantilla_Respuesta_PDF\Details.cshtml" />
+    <Content Include="Views\Plantilla_Respuesta_PDF\Edit.cshtml" />
+    <Content Include="Views\Plantilla_Respuesta_PDF\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

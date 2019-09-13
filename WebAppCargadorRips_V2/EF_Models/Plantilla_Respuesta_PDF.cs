@@ -12,19 +12,16 @@ namespace WebAppCargadorRips_V2.EF_Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Servicio_Radicacion
+    public partial class Plantilla_Respuesta_PDF
     {
-        public long servicio_radicacion_id { get; set; }
-        public Nullable<long> servicio_validacion_id { get; set; }
-        public int radicado { get; set; }
-        public Nullable<long> radicacion_estado_id { get; set; }
-        public Nullable<System.DateTime> radicacion_fecha { get; set; }
-        public string radicacion_usuario { get; set; }
-        public Nullable<long> carga_estado_id { get; set; }
-        public Nullable<System.DateTime> carga_fecha { get; set; }
+        public long plantilla_respuesta_pdf_id { get; set; }
+        public string categoria { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public string cuerpo { get; set; }
+        public long FK_plantillas_respuesta_pdf_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        public virtual Servicio_Validacion Servicio_Validacion { get; set; }
     }
 }

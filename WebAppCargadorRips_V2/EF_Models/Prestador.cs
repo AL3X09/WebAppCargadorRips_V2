@@ -17,7 +17,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Prestador()
         {
-            this.Servicio_Validacion = new HashSet<Servicio_Validacion>();
             this.Web_Usuario = new HashSet<Web_Usuario>();
         }
     
@@ -58,8 +57,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public Nullable<long> upz_id { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicio_Validacion> Servicio_Validacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Usuario> Web_Usuario { get; set; }
     }

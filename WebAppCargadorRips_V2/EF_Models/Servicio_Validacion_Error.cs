@@ -21,7 +21,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public int cantidad { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        public virtual Servicio_Validacion Servicio_Validacion { get; set; }
         public virtual Estructura Estructura { get; set; }
     }
 }

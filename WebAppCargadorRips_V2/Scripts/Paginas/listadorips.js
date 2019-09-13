@@ -24,43 +24,44 @@ function cargaratabla(token) {
         "sPaginationType": "full_numbers",//pagination type
         "aoColumns": [
 
-            { "mData": "codigo" },
-            { "mData": "tipo_usuario" },
-            { "mData": "categoria" },
             {
-                'mData': "periodo_fecha_inicio", 'mRender': function (data, type, full) {
-                    return data.substring(0, 10);
-                }
-            },
-            {
-                'mData': "periodo_fecha_fin", 'mRender': function (data, type, full) {
-                    return data.substring(0, 10);
-                }
-            },
-            { "mData": "estado_web_preradicacion" },
-            { "mData": "codigo" },
-            {
-                "mData": "estado_radicacion", 'mRender': function (data, type, row) {
-                    //console.log(row.desc_estado_servicio_validacion);
-                    if (row.desc_estado_radicacion == null) {
-                        return "Pendiente";
-                    } else {
-                        return row.desc_estado_radicacion;
+                'mData': "#", 'mRender': function (data, type, row) {
 
+                    if (row.estado_id === 5) {
+                        return '<img src="../Img/tboton/info.png" alt="Información" height="42" width="42">';
+                    } if (row.estado_id === 10) {
+                        return '<img src="../Img/tboton/success.png" alt="Generar PDF" height="42" width="42">';
+                    } else {
+                        return '<img src="../Img/tboton/error.png" alt="Errores" height="42" width="42">';                        
                     }
+
                 }
             },
-            { "mData": "codigo" },
+            { "mData": "Preradicado" },
+            { "mData": "Tipo_Usuario" },
+            { "mData": "Categoria" },
             {
-                'mData': "fecha_cargo", 'mRender': function (data, type, full) {
+                'mData': "Periodo_inicio", 'mRender': function (data, type, full) {
+                    return data.substring(0, 10);
+                }
+            },
+            {
+                'mData': "Periodo_Fin", 'mRender': function (data, type, full) {
+                    return data.substring(0, 10);
+                }
+            },
+            {
+                'mData': "Fecha_Carga", 'mRender': function (data, type, full) {
                     //console.log(data.substring(0,10))
                     return data.substring(0, 10);
                 }
             },
+            { "mData": "Estado" },
+            { "mData": "Radicado" },
             {
-                'mData': "estado_radicacion", 'mRender': function (data, type, row) {
+                'mData': "Acciones", 'mRender': function (data, type, row) {
 
-                    if (row.desc_estado_radicacion == null) {
+                    if (row.Radicado === null) {
                         //return "Pendiente";
                         //return '<button class="btn btn-info" type="button" data-Id="' + row.codigo + '" >Generar</button>';
                         return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + '"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';

@@ -296,57 +296,56 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             int iSortCol = Convert.ToInt32(nvc["iSortCol_0"]);
             //provides your sort order (asc/desc)
             string sortOrder = nvc["sSortDir_0"].ToString();
-            var result = new List<VW_Listado_Estado_Rips>();//new List<VW_Listado_Estado_Rips>();
+            var result = new List<VW_Seguimiento_Web>();//new List<VW_Listado_Estado_Rips>();
             //Search query when sSearch is not empty
             if (sSearch != "" && sSearch != null) //If there is search query
             {
 
-                result = (from VLR in bd.VW_Listado_Estado_Rips
-                          where (VLR.codigo.ToString().Contains(sSearch.ToString())
-                          || VLR.tipo_usuario.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.categoria.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.periodo_fecha_inicio.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.periodo_fecha_fin.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.fecha_cargo.ToString().Contains(sSearch.ToString())
-                          || VLR.estado_web_validacion.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.estado_web_preradicacion.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.estado_servicio_validacion.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.estado_radicacion.ToString().ToLower().Contains(sSearch.ToString())
+                result = (from VLR in bd.VW_Seguimiento_Web
+                          where (VLR.Preradicado.ToString().Contains(sSearch.ToString())
+                          || VLR.Tipo_Usuario.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.Categoria.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.Periodo_inicio.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.Periodo_Fin.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.Fecha_Carga.ToString().Contains(sSearch.ToString())
+                          || VLR.estado_id.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.Estado.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.radicacion_id.ToString().ToLower().Contains(sSearch.ToString())
                           )
                           where VLR.FK_usuario == fktoken
-                          orderby VLR.fecha_cargo descending
+                          orderby VLR.Preradicado ascending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }
             else //Si no hay valores a buscar
             {
-                result = (from VLR in bd.VW_Listado_Estado_Rips
+                result = (from VLR in bd.VW_Seguimiento_Web
                           where VLR.FK_usuario == fktoken
-                          orderby VLR.fecha_cargo descending
+                          orderby VLR.Preradicado ascending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }
 
             //get total value count
-            var Cantidad = bd.VW_Listado_Estado_Rips.Where(v => v.FK_usuario == fktoken).Count();
+            var Cantidad = bd.VW_Seguimiento_Web.Where(v => v.FK_usuario == fktoken).Count();
 
             //se Creo un modelo para datatable paging and sending data & enter all the required values
-            var VWListadoPaged = new SysDataTablePager<VW_Listado_Estado_Rips>(result, Cantidad, Cantidad, sEcho);
+            var VWListadoPaged = new SysDataTablePager<VW_Seguimiento_Web>(result, Cantidad, Cantidad, sEcho);
 
             return VWListadoPaged;
         }
 
 
         //Funcion de ordenado
-        private List<VW_Listado_Estado_Rips> SortFunction(int iSortCol, string sortOrder, List<VW_Listado_Estado_Rips> list)
+        private List<VW_Seguimiento_Web> SortFunction(int iSortCol, string sortOrder, List<VW_Seguimiento_Web> list)
         {
 
             //Sorting for String columns
             if (iSortCol == 1 || iSortCol == 0)
             {
-                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 1 ? c.codigo : c.codigo); // compara la columna a ordenar
+                Func<VW_Seguimiento_Web, long> orderingFunction = (c => iSortCol == 1 ? c.Preradicado : c.Preradicado); // compara la columna a ordenar
 
                 if (sortOrder == "desc")
                 {
@@ -361,7 +360,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             //Sorting for Int columns TODO
             else if (iSortCol == 2)
             {
-                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 2 ? c.validacion_id : c.codigo); // compara la columna a ordenar
+                Func<VW_Seguimiento_Web, long> orderingFunction = (c => iSortCol == 2 ? c.Preradicado : c.Preradicado); // compara la columna a ordenar
 
                 if (sortOrder == "desc")
                 {

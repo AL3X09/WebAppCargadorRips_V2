@@ -113,7 +113,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde " +e.ToString());
                 }
 
             }//fin else captcha

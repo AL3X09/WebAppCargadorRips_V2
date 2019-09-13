@@ -30,8 +30,8 @@ namespace WebAppCargadorRips_V2.EF_Models
         public long FK_modulo_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        public virtual Estado_RIPS Estado_RIPS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
+        public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

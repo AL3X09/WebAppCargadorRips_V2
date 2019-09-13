@@ -17,8 +17,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estado_RIPS()
         {
-            this.Servicio_Radicacion = new HashSet<Servicio_Radicacion>();
-            this.Servicio_Validacion = new HashSet<Servicio_Validacion>();
             this.Web_Preradicacion = new HashSet<Web_Preradicacion>();
             this.Web_Validacion = new HashSet<Web_Validacion>();
             this.Correo = new HashSet<Correo>();
@@ -35,9 +33,10 @@ namespace WebAppCargadorRips_V2.EF_Models
             this.Web_Usuario = new HashSet<Web_Usuario>();
             this.Web_Documento = new HashSet<Web_Documento>();
             this.Sexo = new HashSet<Sexo>();
-            this.Web_Modulo = new HashSet<Web_Modulo>();
             this.Fecha = new HashSet<Fecha>();
             this.Web_Nivel_Permiso = new HashSet<Web_Nivel_Permiso>();
+            this.Web_Modulo = new HashSet<Web_Modulo>();
+            this.Plantilla_Respuesta_PDF = new HashSet<Plantilla_Respuesta_PDF>();
         }
     
         public long estado_rips_id { get; set; }
@@ -48,10 +47,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public string imagen { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicio_Radicacion> Servicio_Radicacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicio_Validacion> Servicio_Validacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Preradicacion> Web_Preradicacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -85,10 +80,12 @@ namespace WebAppCargadorRips_V2.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sexo> Sexo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Web_Modulo> Web_Modulo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fecha> Fecha { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Web_Modulo> Web_Modulo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Plantilla_Respuesta_PDF> Plantilla_Respuesta_PDF { get; set; }
     }
 }
