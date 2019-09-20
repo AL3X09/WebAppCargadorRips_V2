@@ -1,0 +1,66 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Directorios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Directorios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_error)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_error)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_rechazo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_rechazo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario_directorios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario_directorios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contraseña_directorios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contraseña_directorios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.directorios_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

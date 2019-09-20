@@ -1,0 +1,72 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Directorios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Directorios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_error)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_error)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directorio_rechazo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directorio_rechazo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario_directorios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario_directorios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contraseña_directorios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contraseña_directorios)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

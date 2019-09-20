@@ -1,0 +1,82 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Correo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Correo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.from)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.from)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.host)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.host)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.puerto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.puerto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.correo_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

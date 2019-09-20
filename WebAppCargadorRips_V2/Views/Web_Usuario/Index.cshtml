@@ -4,7 +4,7 @@
     ViewBag.Title = "Usuarios";
 }
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-auto">
 
     <!-- Heading -->
     <div class="card mb-4 wow fadeIn">
@@ -23,18 +23,17 @@
     </div>
     <!-- Heading -->
 
-
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header card-header-info">
                     <p>
-                        @Html.ActionLink("Crear Nuevo", "Create")
+                        @*Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "card-title" })*@
                     </p>
                 </div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
 
-                   
+
                     <table class="table-responsive">
                         <!-- Table head -->
                         <thead class="blue-grey lighten-4">
@@ -119,9 +118,10 @@
                                     @Html.DisplayFor(modelItem => item.Prestador.codigo)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Editar", "Edit", new { id = item.usuario_id }) |
-                                    @Html.ActionLink("Detalles", "Details", new { id = item.usuario_id }) |
-                                    @Html.ActionLink("Borrar", "Delete", new { id = item.usuario_id })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.usuario_id }, new { @class = "btn btn-round btn-success btn-sm" }) |
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.usuario_id }, new { @class = "btn btn-round btn-info btn-sm" })
+                                    @*Html.ActionLink("Delete", "Delete", new { id = item.usuario_id })*@
+                                   
                                 </td>
                             </tr>
                         }

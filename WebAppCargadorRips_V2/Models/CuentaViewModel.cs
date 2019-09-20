@@ -14,6 +14,22 @@ namespace WebAppCargadorRips_V2.Models
     public class CuentaViewModel
     {
     }
+
+    public class LoginViewModelAdmin
+    {
+        [Required]
+        [MinLength(2)]
+        //[RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numéricos, sin espacios y mínimo de 12 caracteres")]
+        [Display(Name = "Usuario (*)")]
+        public string Usuario { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser mínimo {2}.", MinimumLength = 8)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña (*)")]
+        public string Password { get; set; }
+    }
+
     public class LoginViewModel
     {
         [Required]

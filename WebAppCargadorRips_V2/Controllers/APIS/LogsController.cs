@@ -104,5 +104,62 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }
         }
 
-    }
+        //http://techxposer.com/2017/12/25/downloading-pdf-file-server-client-using-asp-net-c/
+        //https://www.dotnetspider.com/resources/21758-Downloading-Files-From-Server-To-CLient-Using.aspx
+        ///<summary>
+        /// Descargar Archivo LOGS
+        ///</summary>
+        [HttpGet]
+        [Route("Logs/descargar")]
+        public void Download_Logs() 
+        {
+            HttpResponse Response = HttpContext.Current.Response;
+
+            try
+            {
+
+
+                if (File.Exists(nombrefile))
+                {
+                    // Create New instance of FileInfo class to get the properties of the file being downloaded
+                    FileInfo myfile = new FileInfo(nombrefile);
+
+                    // Clear the content of the response
+                    Response.ClearContent();
+
+                    // Add the file name and attachment, which will force the open/cancel/save dialog box to show, to the header
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + myfile.Name);
+
+                    // Add the file size into the response header 
+                    Response.AddHeader("Content-Length", myfile.Length.ToString());
+
+                    // Set the ContentType
+                    Response.ContentType = "text/plain";
+
+                    // Write the file into the response (TransmitFile is for ASP.NET 2.0. In ASP.NET 1.1 you have to use WriteFile instead)
+                    Response.TransmitFile(myfile.FullName);
+
+                    // End the response
+                    Response.End();
+                }
+                else
+                {
+                    Response.ContentType = "text/plain";
+                    Response.Write("File not be found!");
+                }
+            }
+            catch (Exception e)
+            {
+                
+                Response.ContentType = "text/plain";
+                Response.Write("File not be found!"+e);
+                Console.Write(e);
+            }
+
+        }
+
+
+
+
+        }
 }

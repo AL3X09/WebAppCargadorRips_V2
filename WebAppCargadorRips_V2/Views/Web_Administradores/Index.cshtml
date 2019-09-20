@@ -1,93 +1,123 @@
 ﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Administrador>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios internos";
 }
 
-<h2>Index</h2>
+<div class="container-fluid mt-auto">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.usuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contrasenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.extension)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FK_web_administrador_estado_rips)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Web_Rol.nombre)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contrasenia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.extension)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FK_web_administrador_estado_rips)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.administrador_id }) |
-            @Html.ActionLink("Detales", "Details", new { id=item.administrador_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.administrador_id })
-        </td>
-    </tr>
-}
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
 
-</table>
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <a href="@Url.Action("Index", "Administracion")">Administración</a>
+                <span>/</span>
+                <span>@ViewBag.Title</span>
+            </h4>
+
+        </div>
+
+    </div>
+    <!-- Heading -->
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <p>
+                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "card-title" })
+                    </p>
+                </div>
+                <div class="card-body table-responsive">
+
+
+                    <table class="table-responsive">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.usuario)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nombres)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.apellidos)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.correo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.extension)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.imagen)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FK_web_administrador_estado_rips)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.fecha_modificacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Web_Rol.nombre)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.usuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.apellidos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.correo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.extension)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.imagen)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FK_web_administrador_estado_rips)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_modificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.administrador_id }, new { @class = "btn btn-round btn-success btn-sm" }) |
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.administrador_id }, new { @class = "btn btn-round btn-info btn-sm" })
+                                    @*Html.ActionLink("Delete", "Delete", new { id = item.administrador_id })*@
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

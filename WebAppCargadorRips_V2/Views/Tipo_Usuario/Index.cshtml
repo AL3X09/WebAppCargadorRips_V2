@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Web_Nivel_Permiso>
+﻿@model IEnumerable<WebAppCargadorRips_V2.EF_Models.Tipo_Usuario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tipo de Usuario";
 }
 
 <div class="container-fluid mt-auto">
@@ -23,35 +23,31 @@
     </div>
     <!-- Heading -->
 
+
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header card-header-info">
                     <p>
-                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "card-title" })
+                        @*Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "card-title" })*@
                     </p>
                 </div>
                 <div class="card-body table-responsive">
 
-                    <table class="table">
+
+                    <table class="table-responsive">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.FK_nivelpermiso_rol)
+                                @Html.DisplayNameFor(model => model.numero)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.FK_nivelpermiso_modulo)
+                                @Html.DisplayNameFor(model => model.nombre)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.nivelpermiso_crear)
+                                @Html.DisplayNameFor(model => model.afiliacion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.nivelpermiso_modificar)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.nivelpermiso_eliminar)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FK_nivelpermiso_estado_rips)
+                                @Html.DisplayNameFor(model => model.condicion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.fecha_modificacion)
@@ -59,29 +55,23 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
                             </th>
-                            <th></th>
+                            <th>Acciones</th>
                         </tr>
 
                         @foreach (var item in Model)
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_rol)
+                                    @Html.DisplayFor(modelItem => item.numero)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_modulo)
+                                    @Html.DisplayFor(modelItem => item.nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nivelpermiso_crear)
+                                    @Html.DisplayFor(modelItem => item.afiliacion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nivelpermiso_modificar)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nivelpermiso_eliminar)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_estado_rips)
+                                    @Html.DisplayFor(modelItem => item.condicion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fecha_modificacion)
@@ -90,9 +80,10 @@
                                     @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Editar", "Edit", new { id = item.nivelpermiso_id }) |
-                                    @Html.ActionLink("Detales", "Details", new { id = item.nivelpermiso_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.nivelpermiso_id })
+                                    @*Html.ActionLink("Editar", "Edit", new { id = item.tipo_usuario_id }, new { @class = "btn btn-round btn-success btn-sm" }) |*@
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.tipo_usuario_id }, new { @class = "btn btn-round btn-info btn-sm" })
+                                    @*Html.ActionLink("Delete", "Delete", new { id = item.tipo_usuario_id })*@
+
                                 </td>
                             </tr>
                         }

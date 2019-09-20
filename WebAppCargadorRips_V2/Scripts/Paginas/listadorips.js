@@ -63,8 +63,8 @@ function cargaratabla(token) {
 
                     if (row.Radicado === null) {
                         //return "Pendiente";
-                        //return '<button class="btn btn-info" type="button" data-Id="' + row.codigo + '" >Generar</button>';
-                        return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + '"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                        return 'Pendiente';
+                        //return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + '"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
                     } else {
                         return 'Pendiente';
                     }

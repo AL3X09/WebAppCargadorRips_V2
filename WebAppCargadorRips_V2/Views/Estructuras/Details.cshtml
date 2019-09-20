@@ -1,0 +1,66 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Estructura
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estructura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acronimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acronimo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tabla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tabla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.estructura_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

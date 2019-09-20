@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -50,6 +51,10 @@ namespace WebAppCargadorRips_V2.Controllers
             return View("Index");
 
         }
+
+       
+
+
         /// <summary>
         /// Metodo que ejecuta el inicio de sesion
         /// </summary>
@@ -440,6 +445,103 @@ namespace WebAppCargadorRips_V2.Controllers
                 }
             }
             return View();
+        }
+
+
+        byte[] ComputeHash(byte[] data)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                return sha256.ComputeHash(data);
+            }
+        }
+
+        // GET: Form Login
+        public ActionResult ViewPartialLoginAdmin()
+        {
+            //Limpio campos
+            ModelState.Clear();
+            return View("IndexAdmin");
+
+        }
+
+
+        /// <summary>
+        /// Metodo que ejecuta el inicio de sesion
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// https://www.meziantou.net/cryptography-in-dotnet.html
+        /// https://codeday.me/es/qa/20190111/67544.html
+        // POST: /Account/ViewPartialLogin
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ViewPartialLoginAdmin([Bind(Include = "Usuario,Password")] LoginViewModelAdmin model)
+        {
+
+            //Valido los campos del modelo
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            //Valido el capcha
+
+            if (!this.IsCaptchaValid("Captcha is not valid"))
+            {
+                ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
+            }
+            //si el captcha es valido
+            else
+            {
+                var Password = SHA256.Create(model.Password);
+                try
+                {
+
+                   
+
+                    //Ejecuto los valores
+                    var response = db.SP_Ingreso_Usuario(model.Usuario, model.Password).FirstOrDefault();
+                    //
+                    await db.SaveChangesAsync();
+                    //
+                    if (response != null && response.codigo.Equals(200))
+                    {
+                        var obj = db.Web_Usuario.Where(u => u.Prestador.codigo.Equals(model.Usuario)).FirstOrDefault();
+                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString(), false);
+                        return RedirectToAction("Index", "Tablero");
+                    }
+                    else if (response.codigo != 200)
+                    {
+                        ModelState.AddModelError(string.Empty, response.mensaje);
+                    }
+                    else
+                    {
+                        //Limpio campos
+                        ModelState.Clear();
+                        //envio un mensaje al usuario
+                        ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    //envio error a la api logs errores
+                    //y envio a la carpeta logs
+                    APIS.LogsController log = new APIS.LogsController(e.ToString());
+                    log.createFolder();
+                    //Limpio campos
+                    ModelState.Clear();
+                    //envio error mensaje al usuario
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde " + e.ToString());
+                }
+
+            }//fin else captcha
+
+            //retorno la vista en caso de que no se efectue el regsitro
+            return View("Index", model);
+
         }
 
         /// <summary>

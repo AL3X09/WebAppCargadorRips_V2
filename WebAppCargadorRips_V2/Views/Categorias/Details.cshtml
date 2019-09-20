@@ -1,0 +1,114 @@
+﻿@model WebAppCargadorRips_V2.EF_Models.Categoria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo7)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo7)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo8)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo8)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.categoria_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
