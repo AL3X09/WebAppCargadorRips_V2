@@ -12,6 +12,7 @@ using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAppCargadorRips_V2.EF_Models;
 using WebAppCargadorRips_V2.Models;
@@ -33,6 +34,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         }
 
         // GET: api/Web_Usuario/5
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Usuario(long id, long rol)
         {
             //var web_Usuario = new Dictionary<int, string>;
@@ -74,6 +76,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         // POST: api/UpdateDatosUsuario
         [Route("GetOtroUser")]
         [HttpGet]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         // GET: api/Web_Usuario/5
         public async Task<IHttpActionResult> GetWeb_Usuario_Admin(long id)
         {
@@ -98,6 +101,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // PUT: api/Web_Usuario/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PutWeb_Usuario(long id, Web_Usuario web_Usuario)
         {
             if (!ModelState.IsValid)
@@ -133,6 +137,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // POST: api/Web_Usuario
         [ResponseType(typeof(Web_Usuario))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PostWeb_Usuario(Web_Usuario web_Usuario)
         {
             if (!ModelState.IsValid)
@@ -148,6 +153,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // DELETE: api/Web_Usuario/5
         [ResponseType(typeof(Web_Usuario))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> DeleteWeb_Usuario(long id)
         {
             Web_Usuario web_Usuario = await db.Web_Usuario.FindAsync(id);
@@ -170,6 +176,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         // POST: api/UpdateDatosUsuario
         [Route("UpdateDatosUsuario")]
         [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         //[ResponseType(typeof(ActualizarDatosViewModel))]
         public async Task<Object> UpdateDatosUsuario(ActualizarDatosViewModel datos)
         {
@@ -214,7 +221,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [Route("PostUploadAvatar")]
         [HttpPost]
         [Authorize]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> UpdateAvatar()
         {
             //consulto que exista el folder raiz
@@ -343,7 +350,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Todos los valores disponibles en el universo</returns>
         [HttpGet]
         [Route("ListarContactos")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> GetContactos()
         {
             var result = from e in db.Web_Administrador

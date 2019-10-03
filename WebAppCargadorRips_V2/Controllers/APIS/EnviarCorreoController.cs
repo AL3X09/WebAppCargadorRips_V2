@@ -60,7 +60,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Todos los valores disponibles en el universo</returns>
         [HttpGet]
         [Route("ListarPlantillasCorreo")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> Get()
         {
             var result = bd.SP_GetAllPlantillasCorreo();
@@ -73,7 +73,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Respuesta "SI" o "NO" fue satisfactorio el envio</returns>
         [Route("SendEmail")]
         [HttpPost]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> PostSendEmail(EnviarCorreoModel datos)
         {
             //invoco metodo que permite obtener los datos del smtp del correo
@@ -135,7 +135,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Respuesta "SI" o "NO" fue satisfactorio el envio</returns>os.
         [Route("SendEmailErrors")]
         [HttpPost]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> PostSendEmailErrors(EnviarCorreoModelErrors datos)
         {
             //invoco metodo que permite obtener los datos del smtp del correo
@@ -210,7 +210,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [AllowAnonymous]
         [Route("SendEmailRecuperarContrasenia")]
         [HttpPost]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> PostSendEmailRecuperacionContrasenia(EnviarCorreoRecuperacionModel datos)
 
         {

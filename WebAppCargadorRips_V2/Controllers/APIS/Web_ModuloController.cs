@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAppCargadorRips_V2.EF_Models;
 
@@ -23,6 +24,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         // GET: api/Web_Rol
         [Route("Listar")]
         [HttpGet]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> Get_Web_Rol()
         {
             var web_Rol = db.Web_Modulo.Select(m => new { modulo_id = m.modulo_id, nombre = m.nombre, fkmoduloestado = m.FK_modulo_estado_rips }).Where(m => m.fkmoduloestado == 1);
@@ -31,6 +33,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
 
         // GET: api/Web_Modulo
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IQueryable<Web_Modulo> GetWeb_Modulo()
         {
             return db.Web_Modulo;
@@ -38,6 +41,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // GET: api/Web_Modulo/5
         [ResponseType(typeof(Web_Modulo))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Modulo(long id)
         {
             Web_Modulo web_Modulo = await db.Web_Modulo.FindAsync(id);
@@ -51,6 +55,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // PUT: api/Web_Modulo/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PutWeb_Modulo(long id, Web_Modulo web_Modulo)
         {
             if (!ModelState.IsValid)
@@ -86,6 +91,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // POST: api/Web_Modulo
         [ResponseType(typeof(Web_Modulo))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PostWeb_Modulo(Web_Modulo web_Modulo)
         {
             if (!ModelState.IsValid)
@@ -101,6 +107,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // DELETE: api/Web_Modulo/5
         [ResponseType(typeof(Web_Modulo))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> DeleteWeb_Modulo(long id)
         {
             Web_Modulo web_Modulo = await db.Web_Modulo.FindAsync(id);

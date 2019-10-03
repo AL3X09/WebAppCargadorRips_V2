@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
@@ -28,7 +29,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         ///</summary>
         [HttpGet]
         [Route("Listar")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> Get()
         {
             var result = db.SP_GetAllPreguntasFrecuentes();

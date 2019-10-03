@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAppCargadorRips_V2.EF_Models;
 
@@ -21,6 +22,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
 
         // GET: api/Web_Rol
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IQueryable<Web_Rol> GetWeb_Rol()
         {
             return db.Web_Rol;
@@ -28,6 +30,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // GET: api/Web_Rol
         [Route("Listar")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> Get_Web_Rol()
         {
             var web_Rol = db.Web_Rol.Select(r => new { rol_id = r.rol_id, nombre = r.nombre, fkrolestado = r.FK_rol_estado_rips }).Where(r => r.fkrolestado == 1).OrderBy(m => m.nombre);
@@ -38,6 +41,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // GET: api/Web_Rol/5
         [ResponseType(typeof(Web_Rol))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Rol(long id)
         {
             Web_Rol web_Rol = await db.Web_Rol.FindAsync(id);
@@ -51,6 +55,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // PUT: api/Web_Rol/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PutWeb_Rol(long id, Web_Rol web_Rol)
         {
             if (!ModelState.IsValid)
@@ -86,6 +91,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // POST: api/Web_Rol
         [ResponseType(typeof(Web_Rol))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PostWeb_Rol(Web_Rol web_Rol)
         {
             if (!ModelState.IsValid)
@@ -101,6 +107,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // DELETE: api/Web_Rol/5
         [ResponseType(typeof(Web_Rol))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> DeleteWeb_Rol(long id)
         {
             Web_Rol web_Rol = await db.Web_Rol.FindAsync(id);

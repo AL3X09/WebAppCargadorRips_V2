@@ -8,6 +8,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
@@ -113,6 +114,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         ///</summary>
         [HttpGet]
         [Route("Logs/descargar")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Download_Logs() 
         {
             HttpResponse Response = HttpContext.Current.Response;

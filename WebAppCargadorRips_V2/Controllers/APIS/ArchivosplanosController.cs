@@ -14,6 +14,7 @@ using System.Security.Permissions;
 using System.Security;
 using Ionic.Zip;
 using WebAppCargadorRips_V2.Models;
+using System.Web.Http.Cors;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
@@ -41,7 +42,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         ///</summary>
         [Route("Upload")]
         [HttpPost]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> UploadSingleFile()
         {
 
@@ -283,7 +284,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         ///</summary>
         [Route("GetListadoRips")]
         [HttpGet]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> GetListadoRipstAsync(int fktoken)
         {
             NameValueCollection nvc = HttpUtility.ParseQueryString(Request.RequestUri.Query);

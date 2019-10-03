@@ -27,7 +27,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         ///</summary>
         [HttpGet]
         [Route("Listar")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> Get()
         {
             var result = db.Web_Documento.Where(d => d.tipo == "Redadscrita" && d.FK_web_documento_estado_rips ==1)

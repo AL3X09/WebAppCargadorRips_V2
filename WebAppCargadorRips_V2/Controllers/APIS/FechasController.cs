@@ -27,6 +27,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // GET: api/Fechas/5
         [ResponseType(typeof(Fecha))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetFecha(long id)
         {
             Fecha fecha = await db.Fecha.FindAsync(id);
@@ -44,6 +45,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         // GET: api/Fechas/5
         [Route("Listar")]
         [ResponseType(typeof(Fecha))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetFecha_rol(long rol)
         {
             var fecha =  db.Fecha.Where(x => x.rol_ide.Equals(rol)).Select(x => new {
@@ -63,6 +65,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // PUT: api/Fechas/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PutFecha(long id, Fecha fecha)
         {
             if (!ModelState.IsValid)
@@ -98,6 +101,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // POST: api/Fechas
         [ResponseType(typeof(Fecha))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PostFecha(Fecha fecha)
         {
             if (!ModelState.IsValid)
@@ -113,6 +117,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // DELETE: api/Fechas/5
         [ResponseType(typeof(Fecha))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> DeleteFecha(long id)
         {
             Fecha fecha = await db.Fecha.FindAsync(id);

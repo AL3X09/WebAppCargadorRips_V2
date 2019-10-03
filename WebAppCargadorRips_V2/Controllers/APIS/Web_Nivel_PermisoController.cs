@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAppCargadorRips_V2.EF_Models;
 
@@ -29,6 +30,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [HttpGet]
         // GET: api/Web_Nivel_Permiso/5
         [ResponseType(typeof(Web_Nivel_Permiso))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso(long rol)
         {
             Web_Nivel_Permiso web_Nivel_Permiso = await db.Web_Nivel_Permiso.FirstOrDefaultAsync(np => np.FK_nivelpermiso_rol == rol);
@@ -46,6 +48,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         //[ResponseType(typeof(Web_Nivel_Permiso))]
         [Route("Tablero")]
         [HttpGet]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Tablero(string rol)
         {
             var nivel_permiso_modulo = db.SP_Get_Modulo_Permiso(rol);
@@ -60,8 +63,8 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         [Route("Administrar")]
         [HttpGet]
-        // GET: api/Web_Nivel_Permiso/5
-        //[ResponseType(typeof(Web_Nivel_Permiso))]
+        [ResponseType(typeof(Web_Nivel_Permiso))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Administrar(string rol)
         {
             var nivel_permiso_modulo = db.SP_Get_Modulo_Permiso(rol);
@@ -76,6 +79,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // PUT: api/Web_Nivel_Permiso/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PutWeb_Nivel_Permiso(long id, Web_Nivel_Permiso web_Nivel_Permiso)
         {
             if (!ModelState.IsValid)
@@ -111,6 +115,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // POST: api/Web_Nivel_Permiso
         [ResponseType(typeof(Web_Nivel_Permiso))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> PostWeb_Nivel_Permiso(Web_Nivel_Permiso web_Nivel_Permiso)
         {
             if (!ModelState.IsValid)
@@ -126,6 +131,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // DELETE: api/Web_Nivel_Permiso/5
         [ResponseType(typeof(Web_Nivel_Permiso))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> DeleteWeb_Nivel_Permiso(long id)
         {
             Web_Nivel_Permiso web_Nivel_Permiso = await db.Web_Nivel_Permiso.FindAsync(id);
