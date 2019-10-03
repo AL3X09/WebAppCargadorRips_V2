@@ -13,6 +13,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Rol")]
     public class Web_RolController : ApiController
     {

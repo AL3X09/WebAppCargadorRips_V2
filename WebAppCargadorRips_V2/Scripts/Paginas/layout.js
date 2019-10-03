@@ -1,5 +1,6 @@
 ﻿/**
  * Created by Alex on 11/03/2017.
+ * https://www.it-swarm.net/es/asp.net/asp.net-mvc-establecer-identidad-personalizada-o-iprincipal/967225311/
  */
 const getUrl = window.location;
 var token;
@@ -183,13 +184,14 @@ function vistaDescargarValidador() {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZOk-bHZ8lhyZ_s5iqbznbGUYgXoYny3kDhqHmkSQHRyYyIw/viewform?embedded=true');
 }
 
-function getAllME(token) {
+function getAllME(token, rol) {
    
     token = token;
+    
     $.ajax({
         type: "GET",
         url: baseURL + "api/Web_UsuarioApi/GetWeb_Usuario",
-        data: { id: token },
+        data: { id: token, rol: rol },
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {
@@ -221,6 +223,11 @@ function getAllME(token) {
 
                 if (document.getElementById("divtabEstado") != undefined || document.getElementById("divtabEstado") != null) {
                     cargaratabla(v.usuario_id);
+                }
+                
+                if (v.codigo === undefined) {
+                    $("#btn_perfil").remove();
+                    $("#btn_contrase").remove();
                 }
 
                 // si el prestador no esta habilitado notifico visualmente
@@ -256,7 +263,6 @@ function getAllME(token) {
 
 }
 
-
 // función usada para las alertas
 function ShowAlert(tipo, msj) {
     console.log(tipo);
@@ -278,7 +284,7 @@ function getControlTablero(id_rol) {
     $.ajax({
         type: "GET",
         url: baseURL + "api/PermisosModulos/Tablero",
-        data: { rol: 1 },
+        data: { rol: id_rol },
         success: function (response) {
 
             $.each(response, function (i, v) {
@@ -304,11 +310,10 @@ function getControlTablero(id_rol) {
                     '<p class="card-text text-justify">' + v.descripcion + '</p>' +
                     '<!-- Button -->' +
                     (v.nombre.search("validador") > 1 ? '<div id="validador">' :  '<div>') +
-                    (v.pr_crear == true ? '<a href = "' + (v.nombre.search("validador") > 1 ? v.ruta : baseURL + v.ruta) + '" class= "btn btn-info" id = "btnTacceso">Acceder</a >' : '') +
+                    (v.pr_crear == true ? '<a href = "' + (v.nombre.search("validador") > 1 ? v.ruta : baseURL + v.ruta ) + '" class= "btn btn-info" id = "btnTacceso">Acceder</a >' : '') +
                     '</div>' +
                     '</div>' +
                     '</div >'
-
                 )
 
                 if (v.pr_crear == false && document.getElementById("btnTacceso") != undefined) {

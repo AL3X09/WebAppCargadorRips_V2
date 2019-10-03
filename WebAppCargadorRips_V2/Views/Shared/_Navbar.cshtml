@@ -25,8 +25,8 @@
                     <div class="dropdown-menu dropdown-menu-right info-color" data-color="azure" aria-labelledby="navbarDropdownProfile">
                         <a class="dropdown-item" href="#" id="nombreuserspan"></a>
                         <a class="dropdown-item" href="#" id="emailspan"></a>
-                        <a class="dropdown-item" href="@Url.Action("Perfil", "Web_Usuario", new { id = @HttpContext.Current.User.Identity.Name.ToString() })">Perfíl</a>
-                        <a class="dropdown-item" href="@Url.Action("CambiarContrasenia", "Web_Usuario",new { id = @HttpContext.Current.User.Identity.Name.ToString() })">Cambiar contraseña</a>
+                        <a class="dropdown-item" id="btn_perfil" href="@Url.Action("Perfil", "Web_Usuario", new { id = @HttpContext.Current.User.Identity.Name.Split('|')[0].ToString() })">Perfíl</a>
+                        <a class="dropdown-item" id="btn_contrase" href="@Url.Action("CambiarContrasenia", "Web_Usuario",new { id = @HttpContext.Current.User.Identity.Name.Split('|')[0].ToString() })">Cambiar contraseña</a>
                         <div class="dropdown-divider"></div>
                         @using (Html.BeginForm("Logout", "Sesion", FormMethod.Post))
                         {

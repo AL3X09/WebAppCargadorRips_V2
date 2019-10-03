@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebAppCargadorRips_V2.Controllers.APIS;
@@ -93,7 +94,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     if (response != null && response.codigo.Equals(200))
                     {
                         var obj = db.Web_Usuario.Where(u => u.Prestador.codigo.Equals(model.Usuario)).FirstOrDefault();
-                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString(), false);
+                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString() + "|" + obj.FK_usuario_rol.ToString(), false);
                         return RedirectToAction("Index", "Tablero");
                     }
                     else if (response.codigo != 200)
@@ -105,7 +106,7 @@ namespace WebAppCargadorRips_V2.Controllers
                         //Limpio campos
                         ModelState.Clear();
                         //envio un mensaje al usuario
-                        ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
+                        ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde.");
                     }
 
                 }
@@ -118,7 +119,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde " +e.ToString());
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde. ");
                 }
 
             }//fin else captcha
@@ -184,7 +185,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde Error:"+ e.ToString());
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde.");
                     //ModelState.AddModelError(string.Empty, e.ToString());
                 }
 
@@ -270,16 +271,7 @@ namespace WebAppCargadorRips_V2.Controllers
                                     // si la respuesta del correo fue erronea envio respuesta a la vista   
                                     ModelState.AddModelError(string.Empty, "No se pudo efectuar el restablecimiento de contraseña.");
                                 }
-                            /*}
-                            catch (Exception e)
-                            {
-                                // envio error a la api logs errores
-                                //envio a la carpeta logs
-                                APIS.LogsController log = new APIS.LogsController(e.ToString());
-                                log.createFolder();
-                                //envio error mensaje al usuario
-                                ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el restablecimiento de contraseña, por favor intente mas tarde");
-                            }*/
+                            
                         }
                         else
                         {
@@ -296,7 +288,7 @@ namespace WebAppCargadorRips_V2.Controllers
                         APIS.LogsController log = new APIS.LogsController(e.ToString());
                         log.createFolder();
                         //envio error mensaje al usuario
-                        ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el restablecimiento de contraseña, por favor intente mas tarde "+e.ToString());
+                        ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el restablecimiento de contraseña, por favor intente mas tarde ");
                     }
 
                 }//fin else captcha
@@ -471,7 +463,7 @@ namespace WebAppCargadorRips_V2.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        /// https://www.meziantou.net/cryptography-in-dotnet.html
+        /// https://www.codeproject.com/Articles/844722/Hashing-Passwords-using-ASP-NETs-Crypto-Class
         /// https://codeday.me/es/qa/20190111/67544.html
         // POST: /Account/ViewPartialLogin
         [HttpPost]
@@ -495,21 +487,28 @@ namespace WebAppCargadorRips_V2.Controllers
             //si el captcha es valido
             else
             {
-                var Password = SHA256.Create(model.Password);
+               
+
                 try
                 {
-
-                   
+                    var Password = Crypto.SHA256(model.Password);
+                    var salt = Crypto.GenerateSalt();
+                    var hashedPassword = Crypto.HashPassword(salt + Password);
 
                     //Ejecuto los valores
-                    var response = db.SP_Ingreso_Usuario(model.Usuario, model.Password).FirstOrDefault();
+                    var response = db.SP_Ingreso_Usuario_Administrador(model.Usuario, model.Password).FirstOrDefault();
                     //
                     await db.SaveChangesAsync();
                     //
                     if (response != null && response.codigo.Equals(200))
                     {
-                        var obj = db.Web_Usuario.Where(u => u.Prestador.codigo.Equals(model.Usuario)).FirstOrDefault();
-                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString(), false);
+
+                        var obj = db.Web_Administrador.Where(u => u.usuario.Equals(model.Usuario)).FirstOrDefault();
+                       
+                        //FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString(), true);
+                        FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString()+ "|" + obj.FK_web_administrador_rol.ToString(), true);
+
+                        //return RedirectToAction("IndexAdmin", "Tablero");
                         return RedirectToAction("Index", "Tablero");
                     }
                     else if (response.codigo != 200)
@@ -534,13 +533,13 @@ namespace WebAppCargadorRips_V2.Controllers
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde " + e.ToString());
+                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde ");
                 }
 
             }//fin else captcha
 
             //retorno la vista en caso de que no se efectue el regsitro
-            return View("Index", model);
+            return View("IndexAdmin", model);
 
         }
 

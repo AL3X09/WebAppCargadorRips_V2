@@ -12,6 +12,7 @@ using WebAppCargadorRips_V2.Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Correo")]
     public class EnviarCorreoController : ApiController
     {

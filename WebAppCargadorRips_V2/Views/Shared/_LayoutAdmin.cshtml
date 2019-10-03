@@ -68,13 +68,9 @@
     <script>
         $(document).ready(function () {
             
-            //token =@Html.Raw(@HttpContext.Current.User.Identity.Name);
             token =@Html.Raw(@HttpContext.Current.User.Identity.Name.Split('|')[0]);
-            rol =@Html.Raw(@HttpContext.Current.User.Identity.Name.Split('|')[1]);
-
-            //alert(rol);
             //
-            getAllME(token, rol);
+            getAllAdmin(token);
             
         });
     </script>

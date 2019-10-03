@@ -2,7 +2,7 @@
 @using CaptchaMvc.HtmlHelpers;
 @model LoginViewModelAdmin
 @{
-    ViewBag.Title = "Iniciar Sesión";
+    ViewBag.Title = "Iniciar Sesión Administrador";
 }
 
 <!--Vista parcial login-->
@@ -47,26 +47,35 @@
                 </div>
             }
         </section>
-
+        <br/>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="options text-lg-left">
+                    <p>
+                        @Html.ActionLink("¿Ha olvidado su contraseña?", "RecuperarContraseniaAdmin")
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Footer-->
     <div class="modal-footer display-footer">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="options text-center text-md-right mt-1">
+            <div class="col-lg-12 col-sm-12">
+                <div class="options text-lg-left">
                     <p>
-                        @Html.ActionLink("¿Ha olvidado su contraseña?", "RecuperarContrasenia")
+                       <a href="https://rips.gitbook.io/cargador-rips/" target="_blank">Ayuda</a>
                     </p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-lg-12">
                 <h3>@ViewBag.json</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-lg-12">
                 <button type="button" class="btn blue lighten-3 waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

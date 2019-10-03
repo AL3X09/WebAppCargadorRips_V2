@@ -11,6 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class Web_Pregunta_FrecuenteController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();

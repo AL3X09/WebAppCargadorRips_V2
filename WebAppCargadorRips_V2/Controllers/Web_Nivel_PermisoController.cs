@@ -11,7 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
-    
+    [Authorize]
     public class Web_Nivel_PermisoController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
@@ -42,7 +42,9 @@ namespace WebAppCargadorRips_V2.Controllers
         public ActionResult Create()
         {
             //ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
-            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
+            ViewBag.FK_nivelpermiso_rol = new SelectList(db.Web_Rol, "rol_id", "nombre");
+            ViewBag.FK_nivelpermiso_modulo = new SelectList(db.Web_Modulo, "modulo_id", "nombre");
+            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre");
             return View();
         }
 
@@ -60,7 +62,10 @@ namespace WebAppCargadorRips_V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Nivel_Permiso.nivelpermiso_id);
+            
+            ViewBag.FK_nivelpermiso_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_rol);
+            ViewBag.FK_nivelpermiso_modulo = new SelectList(db.Web_Modulo, "modulo_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_modulo);
+            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_estado_rips);
             return View(web_Nivel_Permiso);
         }
 
@@ -78,7 +83,9 @@ namespace WebAppCargadorRips_V2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Nivel_Permiso.nivelpermiso_id);
+            ViewBag.FK_nivelpermiso_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_rol);
+            ViewBag.FK_nivelpermiso_modulo = new SelectList(db.Web_Modulo, "modulo_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_modulo);
+            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_estado_rips);
             return View(web_Nivel_Permiso);
         }
 
@@ -95,7 +102,9 @@ namespace WebAppCargadorRips_V2.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.nivelpermiso_id = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Nivel_Permiso.nivelpermiso_id);
+            ViewBag.FK_nivelpermiso_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_rol);
+            ViewBag.FK_nivelpermiso_modulo = new SelectList(db.Web_Modulo, "modulo_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_modulo);
+            ViewBag.FK_nivelpermiso_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Nivel_Permiso.FK_nivelpermiso_estado_rips);
             return View(web_Nivel_Permiso);
         }
 

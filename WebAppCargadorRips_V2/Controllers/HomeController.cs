@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

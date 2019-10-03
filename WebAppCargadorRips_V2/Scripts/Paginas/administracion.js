@@ -8,7 +8,7 @@ function getControlAdministración(id_rol) {
     $.ajax({
         type: "GET",
         url: baseURL + "api/PermisosModulos/Administrar",
-        data: { rol: 1 },
+        data: { rol: id_rol },
         success: function (response) {
 
             $.each(response, function (i, v) {

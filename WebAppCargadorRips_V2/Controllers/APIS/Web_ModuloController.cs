@@ -13,6 +13,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Modulos")]
     public class Web_ModuloController : ApiController
     {

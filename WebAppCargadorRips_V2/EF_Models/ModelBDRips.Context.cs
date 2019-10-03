@@ -228,19 +228,6 @@ namespace WebAppCargadorRips_V2.EF_Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Ingreso_Usuario_Result>("SP_Ingreso_Usuario", codprestadorParameter, contraseniaParameter);
         }
     
-        public virtual ObjectResult<SP_Ingreso_Usuario_Administrador_Result> SP_Ingreso_Usuario_Administrador(string usuario, string contrasenia)
-        {
-            var usuarioParameter = usuario != null ?
-                new ObjectParameter("Usuario", usuario) :
-                new ObjectParameter("Usuario", typeof(string));
-    
-            var contraseniaParameter = contrasenia != null ?
-                new ObjectParameter("Contrasenia", contrasenia) :
-                new ObjectParameter("Contrasenia", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Ingreso_Usuario_Administrador_Result>("SP_Ingreso_Usuario_Administrador", usuarioParameter, contraseniaParameter);
-        }
-    
         public virtual ObjectResult<SP_ListarTipoUsuario_Result> SP_ListarTipoUsuario()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListarTipoUsuario_Result>("SP_ListarTipoUsuario");
@@ -299,7 +286,7 @@ namespace WebAppCargadorRips_V2.EF_Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Registro_Usuario_Result>("SP_Registro_Usuario", codigoPrestadorParameter, correoParameter, contraseniaParameter, nombresParameter, apellidosParameter, razonSocialParameter, telefonoParameter, imagenParameter, confirmacionCondicionesParameter, confirmacionCorreoParameter, estadoParameter, rolParameter);
         }
     
-        public virtual ObjectResult<SP_Registro_Usuario_Administrador_Result> SP_Registro_Usuario_Administrador(string usuario, string contrasenia, string correo, string nombres, string apellidos, string descripcion, string extension, string imagen, Nullable<int> rol, Nullable<int> estado)
+        public virtual int SP_Registro_Usuario_Administrador(string usuario, string contrasenia, string correo, string nombres, string apellidos, string descripcion, string extension, string imagen, Nullable<int> rol, Nullable<int> estado)
         {
             var usuarioParameter = usuario != null ?
                 new ObjectParameter("Usuario", usuario) :
@@ -341,7 +328,7 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("Estado", estado) :
                 new ObjectParameter("Estado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Registro_Usuario_Administrador_Result>("SP_Registro_Usuario_Administrador", usuarioParameter, contraseniaParameter, correoParameter, nombresParameter, apellidosParameter, descripcionParameter, extensionParameter, imagenParameter, rolParameter, estadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Registro_Usuario_Administrador", usuarioParameter, contraseniaParameter, correoParameter, nombresParameter, apellidosParameter, descripcionParameter, extensionParameter, imagenParameter, rolParameter, estadoParameter);
         }
     
         public virtual ObjectResult<SP_UpdateAvatarUser_Result> SP_UpdateAvatarUser(Nullable<int> token, string imagen)
@@ -452,6 +439,19 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("eliminar", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Insert_Nivel_Permiso_Modulo_Result>("SP_Insert_Nivel_Permiso_Modulo", fkrolParameter, fkmoduloParameter, crearParameter, modificarParameter, eliminarParameter);
+        }
+    
+        public virtual ObjectResult<SP_Ingreso_Usuario_Administrador_Result> SP_Ingreso_Usuario_Administrador(string usuario, string contrasenia)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var contraseniaParameter = contrasenia != null ?
+                new ObjectParameter("Contrasenia", contrasenia) :
+                new ObjectParameter("Contrasenia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Ingreso_Usuario_Administrador_Result>("SP_Ingreso_Usuario_Administrador", usuarioParameter, contraseniaParameter);
         }
     }
 }

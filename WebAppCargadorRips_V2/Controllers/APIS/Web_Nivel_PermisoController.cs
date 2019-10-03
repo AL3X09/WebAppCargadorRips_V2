@@ -13,7 +13,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-
+    [Authorize]
     [RoutePrefix("api/PermisosModulos")]
     public class Web_Nivel_PermisoController : ApiController
     {
@@ -26,6 +26,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         }
 
         [Route("Listar")]
+        [HttpGet]
         // GET: api/Web_Nivel_Permiso/5
         [ResponseType(typeof(Web_Nivel_Permiso))]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso(long rol)
@@ -40,9 +41,11 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             return Ok(web_Nivel_Permiso);
         }
 
-        [Route("Tablero")]
+
         // GET: api/Web_Nivel_Permiso/5
         //[ResponseType(typeof(Web_Nivel_Permiso))]
+        [Route("Tablero")]
+        [HttpGet]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Tablero(string rol)
         {
             var nivel_permiso_modulo = db.SP_Get_Modulo_Permiso(rol);
@@ -56,6 +59,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         }
 
         [Route("Administrar")]
+        [HttpGet]
         // GET: api/Web_Nivel_Permiso/5
         //[ResponseType(typeof(Web_Nivel_Permiso))]
         public async Task<IHttpActionResult> GetWeb_Nivel_Permiso_Administrar(string rol)

@@ -16,6 +16,5 @@ namespace WebAppCargadorRips_V2.EF_Models
         public int codigo { get; set; }
         public string tipo { get; set; }
         public string mensaje { get; set; }
-        public int token { get; set; }
     }
 }

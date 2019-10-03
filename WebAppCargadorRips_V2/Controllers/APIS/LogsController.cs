@@ -12,6 +12,8 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
+    [RoutePrefix("api/Log")]
     public class LogsController : ApiController
     {
         private static DateTime fechaActual = DateTime.Now;

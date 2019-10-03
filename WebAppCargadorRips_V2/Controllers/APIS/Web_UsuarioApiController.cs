@@ -18,6 +18,7 @@ using WebAppCargadorRips_V2.Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Usuarios")]
     public class Web_UsuarioApiController : ApiController
     {
@@ -32,10 +33,30 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         }
 
         // GET: api/Web_Usuario/5
-        public async Task<IHttpActionResult> GetWeb_Usuario(long id)
+        public async Task<IHttpActionResult> GetWeb_Usuario(long id, long rol)
         {
-            var web_Usuario = db.SP_GetAllInfoUsers().Where(w => w.usuario_id.Equals(id)).ToArray();
-            await db.SaveChangesAsync();
+            //var web_Usuario = new Dictionary<int, string>;
+            object web_Usuario;
+
+            if (rol != 1)
+            {
+                web_Usuario = db.SP_GetAllInfoUsers().Where(w => w.usuario_id.Equals(id)).ToArray();
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                 web_Usuario = await db.Web_Administrador.Where(a => a.administrador_id == id).Select(a => new {
+                    id = a.administrador_id,
+                    nombres = a.nombres,
+                    apellidos = a.apellidos,
+                    descripcion = a.descripcion,
+                    correo = a.correo,
+                    extencion = a.extension,
+                    imagen = a.imagen,
+                    id_rol = a.FK_web_administrador_rol
+                }).ToListAsync();
+            }
+            
 
             if (web_Usuario == null)
             {
@@ -43,6 +64,36 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }
             return Ok(web_Usuario);
             
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        // POST: api/UpdateDatosUsuario
+        [Route("GetOtroUser")]
+        [HttpGet]
+        // GET: api/Web_Usuario/5
+        public async Task<IHttpActionResult> GetWeb_Usuario_Admin(long id)
+        {
+            var web_Admin = await db.Web_Administrador.Where(a => a.administrador_id == id).Select(a => new {
+                             id = a.administrador_id,
+                             nombres = a.nombres,
+                             apellidos = a.apellidos,
+                             descripcion = a.descripcion,
+                             correo = a.correo,
+                             extencion = a.extension,
+                             imagen = a.imagen,
+                             id_rol = a.FK_web_administrador_rol
+            }).ToListAsync();
+
+            if (web_Admin == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(web_Admin);
         }
 
         // PUT: api/Web_Usuario/5

@@ -1,75 +1,100 @@
 ﻿@model WebAppCargadorRips_V2.EF_Models.Directorios
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear Directorios";
 }
 
-<h2>Create</h2>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Directorios</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.directorio_entrada, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.directorio_entrada, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.directorio_entrada, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.directorio_salida, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.directorio_salida, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.directorio_salida, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>@ViewBag.Title</span>
+        </h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.directorio_error, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.directorio_error, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.directorio_error, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.directorio_rechazo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.directorio_rechazo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.directorio_rechazo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+</div>
+<!-- Heading -->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.usuario_directorios, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.usuario_directorios, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.usuario_directorios, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.contraseña_directorios, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.contraseña_directorios, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.contraseña_directorios, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="card-body">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.directorio_entrada, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.directorio_entrada, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.directorio_entrada, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.directorio_salida, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.directorio_salida, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.directorio_salida, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.directorio_error, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.directorio_error, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.directorio_error, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.directorio_rechazo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.directorio_rechazo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.directorio_rechazo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.usuario_directorios, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.usuario_directorios, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.usuario_directorios, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.contraseña_directorios, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.contraseña_directorios, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.contraseña_directorios, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Crear" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                    <div>
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                    </div>
+
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+

@@ -8,6 +8,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Estructura")]
     public class EstructuraController : ApiController
     {

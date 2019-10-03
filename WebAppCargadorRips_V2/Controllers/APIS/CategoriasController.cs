@@ -5,10 +5,12 @@ using System.Linq.Dynamic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
+    [Authorize]
     [RoutePrefix("api/Categorias")]
     public class CategoriasController : ApiController
     {
@@ -29,7 +31,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Valores nulos</returns>
         // GET api/TipoUsuario/ListarTipos
         [Route("Listar")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> Get()
         {
             return null;
@@ -41,7 +43,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// <returns>Todos los valores disponibles en el universo corresponidentes al id enviado</returns>
         // GET api/Categoria/Listar/1
         [Route("Listar")]
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public Object Get(string id)
         {
             //se elimino el procedimeinto almmacenado y se deja la consulta con lambada

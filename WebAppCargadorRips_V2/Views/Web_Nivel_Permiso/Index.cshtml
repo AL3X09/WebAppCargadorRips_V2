@@ -66,10 +66,10 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_rol)
+                                    @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_modulo)
+                                    @Html.DisplayFor(modelItem => item.Web_Modulo.nombre)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.nivelpermiso_crear)
@@ -81,18 +81,18 @@
                                     @Html.DisplayFor(modelItem => item.nivelpermiso_eliminar)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FK_nivelpermiso_estado_rips)
+                                    @Html.DisplayFor(modelItem => item.Web_Rol.nombre)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fecha_modificacion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Estado_RIPS.tipo)
+                                    @Html.DisplayFor(modelItem => item.Estado_RIPS.nombre)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Editar", "Edit", new { id = item.nivelpermiso_id }) |
-                                    @Html.ActionLink("Detales", "Details", new { id = item.nivelpermiso_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.nivelpermiso_id })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.nivelpermiso_id }, new { @class = "btn btn-round btn-success btn-sm" }) |
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.nivelpermiso_id }, new { @class = "btn btn-round btn-info btn-sm" }) |
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.nivelpermiso_id }, new { @class = "btn btn-round btn-danger btn-sm" })
                                 </td>
                             </tr>
                         }

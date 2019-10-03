@@ -2201,10 +2201,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <Parameter Name="codprestador" Mode="In" Type="String" />
             <Parameter Name="contrasenia" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_Ingreso_Usuario_Administrador" ReturnType="Collection(RipsModel.SP_Ingreso_Usuario_Administrador_Result)">
-            <Parameter Name="Usuario" Mode="In" Type="String" />
-            <Parameter Name="Contrasenia" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_ListarTipoUsuario" ReturnType="Collection(RipsModel.SP_ListarTipoUsuario_Result)" />
           <FunctionImport Name="SP_Registro_Usuario" ReturnType="Collection(RipsModel.SP_Registro_Usuario_Result)">
             <Parameter Name="CodigoPrestador" Mode="In" Type="String" />
@@ -2220,7 +2216,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <Parameter Name="Estado" Mode="In" Type="Int32" />
             <Parameter Name="Rol" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_Registro_Usuario_Administrador" ReturnType="Collection(RipsModel.SP_Registro_Usuario_Administrador_Result)">
+          <FunctionImport Name="SP_Registro_Usuario_Administrador">
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Contrasenia" Mode="In" Type="String" />
             <Parameter Name="Correo" Mode="In" Type="String" />
@@ -2309,6 +2305,10 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Plantilla_Respuesta_PDF" EntitySet="Plantilla_Respuesta_PDF" />
           </AssociationSet>
           <EntitySet Name="VW_Seguimiento_Web" EntityType="RipsModel.VW_Seguimiento_Web" />
+          <FunctionImport Name="SP_Ingreso_Usuario_Administrador" ReturnType="Collection(RipsModel.SP_Ingreso_Usuario_Administrador_Result)">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2436,23 +2436,12 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mensaje" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SP_Ingreso_Usuario_Administrador_Result">
-          <Property Type="Int32" Name="codigo" Nullable="false" />
-          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="mensaje" Nullable="false" />
-          <Property Type="Int32" Name="token" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="SP_ListarTipoUsuario_Result">
           <Property Type="Int64" Name="tipo_usuario_id" Nullable="false" />
           <Property Type="Byte" Name="numero" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="SP_Registro_Usuario_Result">
-          <Property Type="Int32" Name="codigo" Nullable="false" />
-          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="mensaje" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SP_Registro_Usuario_Administrador_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mensaje" Nullable="false" />
@@ -2714,6 +2703,16 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="estado_id" Type="Int64" />
           <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="SP_Ingreso_Usuario_Administrador1_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mensaje" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Ingreso_Usuario_Administrador_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mensaje" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3344,16 +3343,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_Ingreso_Usuario_Administrador" FunctionName="RipsModel.Store.SP_Ingreso_Usuario_Administrador">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="RipsModel.SP_Ingreso_Usuario_Administrador_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-                <ScalarProperty Name="token" ColumnName="token" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_ListarTipoUsuario" FunctionName="RipsModel.Store.SP_ListarTipoUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="RipsModel.SP_ListarTipoUsuario_Result">
@@ -3373,13 +3362,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Registro_Usuario_Administrador" FunctionName="RipsModel.Store.SP_Registro_Usuario_Administrador">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="RipsModel.SP_Registro_Usuario_Administrador_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_UpdateAvatarUser" FunctionName="RipsModel.Store.SP_UpdateAvatarUser">
             <ResultMapping>
@@ -3524,6 +3506,15 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Ingreso_Usuario_Administrador" FunctionName="RipsModel.Store.SP_Ingreso_Usuario_Administrador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_Ingreso_Usuario_Administrador_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

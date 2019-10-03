@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class TableroController : Controller
     {
         // GET: Tablero
@@ -13,5 +14,6 @@ namespace WebAppCargadorRips_V2.Controllers
         {
             return View();
         }
+
     }
 }

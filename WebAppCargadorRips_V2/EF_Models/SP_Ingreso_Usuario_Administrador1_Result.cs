@@ -11,7 +11,7 @@ namespace WebAppCargadorRips_V2.EF_Models
 {
     using System;
     
-    public partial class SP_Registro_Usuario_Administrador_Result
+    public partial class SP_Ingreso_Usuario_Administrador1_Result
     {
         public int codigo { get; set; }
         public string tipo { get; set; }

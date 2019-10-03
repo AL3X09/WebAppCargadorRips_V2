@@ -11,6 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers
 {
+    [Authorize]
     public class DirectoriosController : Controller
     {
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
