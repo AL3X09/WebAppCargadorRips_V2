@@ -244,6 +244,7 @@ function getAllME(token, rol) {
                     });
                 }
                 getControlTablero(v.id_rol);
+                //callFechasPeriodos(v.id_rol);
                 if (typeof getControlAdministración !== "undefined") {
                     getControlAdministración(v.id_rol);
                 }

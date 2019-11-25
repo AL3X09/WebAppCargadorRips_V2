@@ -113,11 +113,13 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         /// Descargar Archivo LOGS
         ///</summary>
         [HttpGet]
-        [Route("Logs/descargar")]
+        [Route("descargar")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Download_Logs() 
         {
             HttpResponse Response = HttpContext.Current.Response;
+            //Create HTTP Response.
+            //HttpResponseMessage Response1 = Request.CreateResponse(HttpStatusCode.OK);
 
             try
             {
@@ -145,19 +147,21 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
                     // End the response
                     Response.End();
+                    //return Response;
                 }
                 else
                 {
-                    Response.ContentType = "text/plain";
-                    Response.Write("File not be found!");
+                    //Response.ContentType = "text/plain";
+                    //Response.Write("File not be found!");
+                    Response.Write("<script language=javascript>alert('ERROR');</script>");
+
                 }
+                
             }
             catch (Exception e)
             {
+                Response.Write("<script language=javascript>alert('ERROR');</script>");
                 
-                Response.ContentType = "text/plain";
-                Response.Write("File not be found!"+e);
-                Console.Write(e);
             }
 
         }

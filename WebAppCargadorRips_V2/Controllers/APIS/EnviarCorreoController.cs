@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebAppCargadorRips_V2.EF_Models;
 using WebAppCargadorRips_V2.Models;
 
@@ -44,14 +45,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 Host = a.host;
                 Puerto = a.puerto;
             }
-            /*select new
-            {
-                SmtpCorreo1 = e.CorreoSmtp_Correo,
-                PassCorreo1 = e.ContraseniaSmtp_Correo,
-                FromCorreo1 = e.FromSmtp_Correo,
-            }).FirstOrDefault();*/
-            //return result;
-            //smtpCorreo = result.smtpCorreo;
+           
         }
 
         ///<summary>
@@ -157,7 +151,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             //can be obtained from your model
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress(FromCorreo);
-            msg.To.Add(new MailAddress(datos.usercorreo));
+            msg.To.Add(new MailAddress(datos.usercorreo.ToLower()));
             //consulto el procedimiento para traer la información de la plantilla solicitada
             var result = bd.SP_GetPlantillaCorreo(datos.codPlantilla).First();
             msg.Subject = result.asunto;
@@ -240,7 +234,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 //can be obtained from your model
                 MailMessage msg = new MailMessage();
                 msg.From = new MailAddress(FromCorreo);
-                msg.To.Add(new MailAddress(datos.usercorreo));
+                msg.To.Add(new MailAddress(datos.usercorreo.ToLower()));
                 //consulto el procedimiento para traer la información de la plantilla solicitada
                 var result = bd.SP_GetPlantillaCorreo(datos.codPlantilla).First();
                 //agrego el asunto

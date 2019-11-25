@@ -119,7 +119,8 @@ namespace WebAppCargadorRips_V2.Controllers
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde. ");
+                    //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde. ");
+                    ModelState.AddModelError(string.Empty, "Estamos"+e.ToString());
                 }
 
             }//fin else captcha
@@ -233,8 +234,8 @@ namespace WebAppCargadorRips_V2.Controllers
                     try
                     {
                         //Ejecuto los valores en el SP
-                        var response = db.SP_GenerarCodigoRecuperacionContraseniaUser(model.Usuario, model.Email).First();//.ToArray();
-                                                                                                                          //almaceno cambios asincronamente
+                        var response = db.SP_GenerarCodigoRecuperacionContraseniaUser(model.Usuario, model.Email).First();
+                        //almaceno cambios asincronamente
                         await db.SaveChangesAsync();
 
                         //se elimina xq pueden llgar multiples respuestas if (response.Equals(string.Empty))
@@ -246,7 +247,7 @@ namespace WebAppCargadorRips_V2.Controllers
                             MSG.id = response.codprestador;
                             MSG.token = response.token;
 
-                            //try{
+                            
                                 // invoco el constructor
                                 EnviarCorreoController enviocorreo = new EnviarCorreoController();
                                 //llamo el metodo que realiza la acción de envio de correos
@@ -304,6 +305,7 @@ namespace WebAppCargadorRips_V2.Controllers
         /// <returns></returns>
         // GET: /Account/ValidaPasswordExternal
         [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0)]
         //[AllowAnonymous]
         public async Task<ActionResult> ValidaContraseniaExternal(validarContraseniaModel model)
         {
@@ -322,6 +324,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     {
                         //Retorno la vista principal no hay aviso alguno ya que peude que la pagina pueda estar bajo ataque
                         //cierro session
+                        AntiForgeryConfig.SuppressIdentityHeuristicChecks = true;
                         FormsAuthentication.SignOut();
                         Session.Abandon();
                         return RedirectToAction("Index");
@@ -342,6 +345,7 @@ namespace WebAppCargadorRips_V2.Controllers
                         // envio error a la api logs errores                        
                         //envio un mensaje al usuario
                         ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
+                        AntiForgeryConfig.SuppressIdentityHeuristicChecks = true;
                         FormsAuthentication.SignOut();
                         Session.Abandon();
                     }
@@ -356,6 +360,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     //envio error mensaje al usuario
                     ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
                     //cierro session
+                    AntiForgeryConfig.SuppressIdentityHeuristicChecks = true;
                     FormsAuthentication.SignOut();
                     Session.Abandon();
                 }
@@ -439,7 +444,10 @@ namespace WebAppCargadorRips_V2.Controllers
             return View();
         }
 
-
+        /*
+         * Contraseña cifrada en pruebas
+         * 
+         */
         byte[] ComputeHash(byte[] data)
         {
             using (var sha256 = SHA256.Create())

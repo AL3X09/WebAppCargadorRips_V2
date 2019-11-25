@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RipsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Servicio_Validacion_Error">
-          <Key>
-            <PropertyRef Name="servicio_validacion_error_id" />
-          </Key>
-          <Property Name="servicio_validacion_error_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="validacion_id" Type="bigint" Nullable="false" />
-          <Property Name="estructura_id" Type="bigint" Nullable="false" />
-          <Property Name="tipo_error_id" Type="bigint" Nullable="false" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Web_Preradicacion">
           <Key>
             <PropertyRef Name="preradicacion_id" />
@@ -602,18 +591,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Servicio___estru__47919582">
-          <End Role="Estructura" Type="Self.Estructura" Multiplicity="1" />
-          <End Role="Servicio_Validacion_Error" Type="Self.Servicio_Validacion_Error" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estructura">
-              <PropertyRef Name="estructura_id" />
-            </Principal>
-            <Dependent Role="Servicio_Validacion_Error">
-              <PropertyRef Name="estructura_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Sexo__estado_rip__4CC05EF3">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
           <End Role="Sexo" Type="Self.Sexo" Multiplicity="*" />
@@ -1007,7 +984,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Parameter Name="Token" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="RipsModelStoreContainer">
-          <EntitySet Name="Servicio_Validacion_Error" EntityType="Self.Servicio_Validacion_Error" Schema="Auditoria" store:Type="Tables" />
           <EntitySet Name="Web_Preradicacion" EntityType="Self.Web_Preradicacion" Schema="Auditoria" store:Type="Tables" />
           <EntitySet Name="Web_Validacion" EntityType="Self.Web_Validacion" Schema="Auditoria" store:Type="Tables" />
           <EntitySet Name="Correo" EntityType="Self.Correo" Schema="Configuracion" store:Type="Tables" />
@@ -1175,10 +1151,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Plantilla_Respuesta_PDF" EntitySet="Plantilla_Respuesta_PDF" />
           </AssociationSet>
-          <AssociationSet Name="FK__Servicio___estru__47919582" Association="Self.FK__Servicio___estru__47919582">
-            <End Role="Estructura" EntitySet="Estructura" />
-            <End Role="Servicio_Validacion_Error" EntitySet="Servicio_Validacion_Error" />
-          </AssociationSet>
           <AssociationSet Name="FK__Sexo__estado_rip__4CC05EF3" Association="Self.FK__Sexo__estado_rip__4CC05EF3">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Sexo" EntitySet="Sexo" />
@@ -1280,18 +1252,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RipsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Servicio_Validacion_Error">
-          <Key>
-            <PropertyRef Name="servicio_validacion_error_id" />
-          </Key>
-          <Property Name="servicio_validacion_error_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="validacion_id" Type="Int64" Nullable="false" />
-          <Property Name="estructura_id" Type="Int64" Nullable="false" />
-          <Property Name="tipo_error_id" Type="Int64" Nullable="false" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Estructura" Relationship="RipsModel.FK__Servicio___estru__47919582" FromRole="Servicio_Validacion_Error" ToRole="Estructura" />
-        </EntityType>
         <EntityType Name="Web_Preradicacion">
           <Key>
             <PropertyRef Name="preradicacion_id" />
@@ -1382,7 +1342,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="estado_rips_id" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK__Estructur__estad__4AB81AF0" FromRole="Estructura" ToRole="Estado_RIPS" />
           <NavigationProperty Name="Estructura_Campo" Relationship="Self.FK__Estructur__estru__5070F446" FromRole="Estructura" ToRole="Estructura_Campo" />
-          <NavigationProperty Name="Servicio_Validacion_Error" Relationship="RipsModel.FK__Servicio___estru__47919582" FromRole="Estructura" ToRole="Servicio_Validacion_Error" />
         </EntityType>
         <EntityType Name="Estructura_Campo">
           <Key>
@@ -2035,7 +1994,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RipsEntitiesConnection" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Servicio_Validacion_Error" EntityType="Self.Servicio_Validacion_Error" />
           <EntitySet Name="Web_Preradicacion" EntityType="Self.Web_Preradicacion" />
           <EntitySet Name="Web_Validacion" EntityType="Self.Web_Validacion" />
           <EntitySet Name="Correo" EntityType="Self.Correo" />
@@ -2247,10 +2205,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <Parameter Name="Codigo" Mode="In" Type="String" />
             <Parameter Name="Token" Mode="In" Type="String" />
           </FunctionImport>
-          <AssociationSet Name="FK__Servicio___estru__47919582" Association="RipsModel.FK__Servicio___estru__47919582">
-            <End Role="Estructura" EntitySet="Estructura" />
-            <End Role="Servicio_Validacion_Error" EntitySet="Servicio_Validacion_Error" />
-          </AssociationSet>
           <AssociationSet Name="FK__Sexo__estado_rip__4CC05EF3" Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Sexo" EntitySet="Sexo" />
@@ -2462,18 +2416,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="mensaje" Nullable="false" />
           <Property Type="Int32" Name="idusuario" Nullable="true" />
         </ComplexType>
-        <Association Name="FK__Servicio___estru__47919582">
-          <End Type="RipsModel.Estructura" Role="Estructura" Multiplicity="1" />
-          <End Type="RipsModel.Servicio_Validacion_Error" Role="Servicio_Validacion_Error" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estructura">
-              <PropertyRef Name="estructura_id" />
-            </Principal>
-            <Dependent Role="Servicio_Validacion_Error">
-              <PropertyRef Name="estructura_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Sexo__estado_rip__4CC05EF3">
           <End Type="RipsModel.Estado_RIPS" Role="Estado_RIPS" Multiplicity="1" />
           <End Type="RipsModel.Sexo" Role="Sexo" Multiplicity="*" />
@@ -2719,18 +2661,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RipsModelStoreContainer" CdmEntityContainer="RipsEntitiesConnection">
-          <EntitySetMapping Name="Servicio_Validacion_Error">
-            <EntityTypeMapping TypeName="RipsModel.Servicio_Validacion_Error">
-              <MappingFragment StoreEntitySet="Servicio_Validacion_Error">
-                <ScalarProperty Name="servicio_validacion_error_id" ColumnName="servicio_validacion_error_id" />
-                <ScalarProperty Name="validacion_id" ColumnName="validacion_id" />
-                <ScalarProperty Name="estructura_id" ColumnName="estructura_id" />
-                <ScalarProperty Name="tipo_error_id" ColumnName="tipo_error_id" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Web_Preradicacion">
             <EntityTypeMapping TypeName="RipsModel.Web_Preradicacion">
               <MappingFragment StoreEntitySet="Web_Preradicacion">

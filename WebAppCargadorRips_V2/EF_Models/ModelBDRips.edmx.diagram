@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="40f0cbd3c44543da9f6eefa8f9435455" Name="Diagram1">
-        <EntityTypeShape EntityType="RipsModel.Servicio_Validacion_Error" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Web_Preradicacion" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Web_Validacion" Width="1.5" PointX="8.25" PointY="38" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.Correo" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
@@ -54,7 +53,6 @@
         <AssociationConnector Association="RipsModel.FK_usuario_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_web_documento_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_usuario_prestador" ManuallyRouted="false" />
-        <AssociationConnector Association="RipsModel.FK__Servicio___estru__47919582" />
         <AssociationConnector Association="RipsModel.FK__Sexo__estado_rip__4CC05EF3" />
         <AssociationConnector Association="RipsModel.FK__Web_Prera__FK_we__2B4A5C8F" />
         <EntityTypeShape EntityType="RipsModel.Fecha" Width="1.5" PointX="5.5" PointY="45.5" />

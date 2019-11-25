@@ -27,7 +27,6 @@ namespace WebAppCargadorRips_V2.EF_Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Servicio_Validacion_Error> Servicio_Validacion_Error { get; set; }
         public virtual DbSet<Web_Preradicacion> Web_Preradicacion { get; set; }
         public virtual DbSet<Web_Validacion> Web_Validacion { get; set; }
         public virtual DbSet<Correo> Correo { get; set; }

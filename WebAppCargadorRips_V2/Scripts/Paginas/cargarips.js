@@ -85,7 +85,7 @@ function callFechasPeriodos(rol) {
     $.ajax({
         type: "GET",
         url: baseURL + "api/Fechas/Listar",
-        data: { rol: 1 },
+        data: { rol: rol },
         success: function (response) {
             $.each(response, function (i, v) {
                 if (v.fecha_id == 1) {

@@ -13,7 +13,7 @@
     <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="@Url.Action("Index", "Home")">Listado</a>
+            <a href="@Url.Action("Index", "Home")">Volver a Listado</a>
             <span>/</span>
             <span>@ViewBag.Title</span>
         </h4>
@@ -165,8 +165,8 @@
                         <input type="hidden" name="idUsuario" id="idUsuario" value="@HttpContext.Current.User.Identity.Name"/>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-1 col-sm-12">
                             <button type="submit" class="btn btn-info pull-right" id="btncargarinfo">Cargar</button>
                             <div class="clearfix"></div>
                         </div>
@@ -197,10 +197,10 @@
 
 @section Scripts {
 
-    @Scripts.Render("~/bundles/multifilejs"),
-    @Scripts.Render("~/bundles/datepickerjs"),
-    @Scripts.Render("~/JSPaginas/cargarripsjs"),
-    @Scripts.Render("~/JSValidacion/validacargaarchivo"),
+    @Scripts.Render("~/bundles/multifilejs")
+    @Scripts.Render("~/bundles/datepickerjs")
+    @Scripts.Render("~/JSPaginas/cargarripsjs")
+    @Scripts.Render("~/JSValidacion/validacargaarchivo")
 
     <script>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -37,17 +38,14 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetWeb_Usuario(long id, long rol)
         {
-            //var web_Usuario = new Dictionary<int, string>;
-            object web_Usuario;
+            object[] web_Usuario;
 
-            if (rol != 1)
+            web_Usuario = db.SP_GetAllInfoUsers().Where(w => w.id_rol.Equals(rol) && w.usuario_id.Equals(id)).ToArray();
+            
+            //si el retorno del usuario llega en cero busca si es un usario de otro rol
+            if (web_Usuario.Count() == 0 )
             {
-                web_Usuario = db.SP_GetAllInfoUsers().Where(w => w.usuario_id.Equals(id)).ToArray();
-                await db.SaveChangesAsync();
-            }
-            else
-            {
-                 web_Usuario = await db.Web_Administrador.Where(a => a.administrador_id == id).Select(a => new {
+                web_Usuario = await db.Web_Administrador.Where(a => a.administrador_id == id && a.FK_web_administrador_rol.Equals(rol)).Select(a => new {
                     id = a.administrador_id,
                     nombres = a.nombres,
                     apellidos = a.apellidos,
@@ -56,19 +54,21 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                     extencion = a.extension,
                     imagen = a.imagen,
                     id_rol = a.FK_web_administrador_rol
-                }).ToListAsync();
+                }).ToArrayAsync();
+                
+                //await db.SaveChangesAsync();
             }
             
-
-            if (web_Usuario == null)
+            else if (web_Usuario == null)
             {
                 return NotFound();
             }
+
             return Ok(web_Usuario);
             
         }
 
-
+        /*
         /// <summary>
         /// 
         /// </summary>
@@ -97,7 +97,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }
 
             return Ok(web_Admin);
-        }
+        }*/
 
         // PUT: api/Web_Usuario/5
         [ResponseType(typeof(void))]

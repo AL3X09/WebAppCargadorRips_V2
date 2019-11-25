@@ -28,11 +28,11 @@ function cargaratabla(token) {
                 'mData': "#", 'mRender': function (data, type, row) {
 
                     if (row.estado_id === 5) {
-                        return '<img src="../Img/tboton/info.png" alt="Información" height="42" width="42">';
+                        return '<img src="'+baseURL+'Img/tboton/info.png" alt="Información" height="42" width="42">';
                     } if (row.estado_id === 10) {
-                        return '<img src="../Img/tboton/success.png" alt="Generar PDF" height="42" width="42">';
+                        return '<img src="' + baseURL +'Img/tboton/success.png" alt="Generar PDF" height="42" width="42">';
                     } else {
-                        return '<img src="../Img/tboton/error.png" alt="Errores" height="42" width="42">';                        
+                        return '<img src="' + baseURL +'Img/tboton/error.png" alt="Errores" height="42" width="42">';                        
                     }
 
                 }

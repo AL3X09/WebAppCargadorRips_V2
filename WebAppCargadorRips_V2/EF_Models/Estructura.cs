@@ -18,7 +18,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public Estructura()
         {
             this.Estructura_Campo = new HashSet<Estructura_Campo>();
-            this.Servicio_Validacion_Error = new HashSet<Servicio_Validacion_Error>();
         }
     
         public long estructura_id { get; set; }
@@ -32,7 +31,5 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual Estado_RIPS Estado_RIPS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Estructura_Campo> Estructura_Campo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicio_Validacion_Error> Servicio_Validacion_Error { get; set; }
     }
 }

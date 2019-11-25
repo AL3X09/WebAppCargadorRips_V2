@@ -9,7 +9,7 @@
     <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="@Url.Action("Index", "Tablero")">Tablero</a>
+            <a href="@Url.Action("Index", "Tablero")">Volver</a>
             <span>/</span>
             <span>@ViewBag.Title</span>
         </h4>
@@ -28,10 +28,10 @@
                 Se presenta lista en orden ascendente por fecha de carga.
             </div>
             <div class="card-body">
-                <table id="listaRips" class="table-striped table-responsive">
+                <table id="listaRips" class="table-striped">
                     <thead class="text-info">
                         <tr>
-                            <th># </th>
+                            <th>-</th>
                             <th>Preradicado</th>
                             <th>Tipo Usuario</th>
                             <th>Categoría</th>
@@ -39,14 +39,14 @@
                             <th>Periodo Fin Reportado</th>
                             <th>Fecha de Carga</th>
                             <th>Estado</th>
-                            <th>Radicado</th>
+                            <th># Radicado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <!--<tbody id="tbodylistarips"></tbody>-->
                     <tfoot>
                         <tr>
-                            <th># </th>
+                            <th>-</th>
                             <th>Preradicado</th>
                             <th>Tipo Usuario</th>
                             <th>Categoría</th>
@@ -54,7 +54,7 @@
                             <th>Periodo Fin Reportado</th>
                             <th>Fecha de Carga</th>
                             <th>Estado</th>
-                            <th>Radicado</th>
+                            <th># Radicado</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>

@@ -124,8 +124,15 @@ function readFile() {
                             // Por lineas
                             var lines = this.result.split('\n');
 
-                            //envio a una función las lienas del archivo a subir
-                            readlines(lines, namefile, cantidad);
+                            //tomo el nombre corto de los archivos
+                            var nombrecorto = namefile.substring(2, 0).toUpperCase();
+                            //valido
+                            if (nombrecorto !== 'CT' && nombrecorto !== 'AD') {
+                                //envio a una función las lienas del archivo a subir
+                                readlines(lines, namefile, cantidad);
+                            } else {
+                                modalButtonOnly.close();
+                            }
 
                         }
                         reader.readAsText(file);
@@ -173,7 +180,8 @@ function readFile() {
 }
 
 //Función lee linea por linea los archivos antes de cargarlos
-function readlines(lineas, namefile, cantidad) {
+async function readlines(lineas, namefile, cantidad) {
+    lineas = lineas.filter(Boolean);
 
     //extraigo los nombres
     var nombrecorto = namefile.substring(2, 0).toUpperCase();
@@ -186,6 +194,16 @@ function readlines(lineas, namefile, cantidad) {
          Swal.fire(
             'Error!',
             'Esta intentando cargar estructuras con un nombre no permitido, por favor corrijalos e intente nuevamente!',
+            'error'
+        )
+    }
+    else if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && lineas.length === 0) {
+        modalButtonOnly.close();
+        poslec = 0;
+        erroresEstructura.push("Sus estructuras al parecer no cumplen con el formato solicitado, por favor cancele el proceso y verifique el contenido de los archivos e intente cargar nuevamente.");
+        swal(
+            'Error',
+            'Sus estructuras al parecer no  cumplen con el formato solicitado, por favor  y verifique el contenido de los archivos e intente cargar nuevamente.',
             'error'
         )
     }else {
@@ -247,13 +265,23 @@ function readlines(lineas, namefile, cantidad) {
              * EL VALIDADOR EXTRAE SU PROPIA VALIDACIÓN
              */
                 //valido la cantidad de campos permitidos para cada estructura
-            if (numeroColumas > 1 || puntocoma == true) {
-                if (nombrecorto !== 'CT' && puntocoma == false && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
-                        erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
+            if (numeroColumas >= 1 || puntocoma == true) {
+                if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && TipoEstructuraArray[nombrecorto] > 0 && TipoEstructuraArray[nombrecorto] !== numeroColumas && puntocoma == false) {
+                    erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
+                    //console.log('entra1');
                 }
-                if (nombrecorto !== 'CT' && puntocoma == true && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
+                if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && TipoEstructuraArray[nombrecorto] > 0 && TipoEstructuraArray[nombrecorto] !== numeroColumas && puntocoma == true) {
                     erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene el caracter punto y coma (;), elimine el caracter.");
+                    //console.log('entra2');
                 }
+            } else {
+                erroresEstructura.push("Sus estructuras al parecer no  cumplen con el formato solicitado, por favor eliminelas o verifique el contenido de los archivos e intente cargar nuevamente.");
+                swal(
+                    'Precaución',
+                    'Sus estructuras al parecer no  cumplen con el formato solicitado, por favor eliminelas o verifique el contenido de los archivos e intente cargar nuevamente.',
+                    'info'
+                )
+
             }
             //fin valido la cantidad de campos permitidos para cada estructura
 
@@ -279,41 +307,11 @@ function readlines(lineas, namefile, cantidad) {
             if (nombrecorto == 'AF') {
                 var codprestador = "'" + $('#codigospan').text().replace(/ /g, "")+"'";
                 var codprestador2 = "'"+v.split(",", 1)+"'";
-                var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
-                var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
-                
-                //Valido que la fechas de periodo de inicio seleccionado concuerden con el de los archivos de AF
-                if (v.indexOf(fechainicio1.toString(10), 7) == -1) {
+                //var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
+                //var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
 
-                    iziToast.warning({
-                        title: 'Alerta',
-                        message: 'Sus estructuras presentan una fecha de inicio de reporte diferente, al periodo indicado en el formulario, estructura AF',
-                        position: 'topCenter',
-                        timeout: 50000,
-                        resetOnHover: true,
-                        drag: true,
-                        close: true,
-                    });
-                    return false;
-                }
-
-                //Valido que la fechas de periodo de fin seleccionado concuerden con el de los archivos de AF
-                if (v.indexOf(fechafin1.toString(10), 8) == -1) {
-
-                    iziToast.warning({
-                        title: 'Alerta',
-                        message: 'Sus estructuras presentan una fecha de fin de reporte diferente, al periodo indicado en el formulario, estructura AF',
-                        position: 'topCenter',
-                        timeout: 50000,
-                        resetOnHover: true,
-                        drag: true,
-                        close: true,
-                    });
-                    return false;
-                }
-
-
-                if (codprestador.localeCompare(codprestador2) != 0) {
+                //Valido que el codigo de prestador sea el mismo
+                if (codprestador.localeCompare(codprestador2) !== 0) {
                     
                     iziToast.warning({
                         title: 'Alerta',

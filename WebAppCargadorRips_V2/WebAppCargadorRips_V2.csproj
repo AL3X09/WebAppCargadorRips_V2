@@ -329,6 +329,7 @@
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
+    <Compile Include="Controllers\APIS\Web_Correo_Sin_RestriccionController.cs" />
     <Compile Include="Controllers\APIS\Web_ModuloController.cs" />
     <Compile Include="Controllers\APIS\Web_Nivel_PermisoController.cs" />
     <Compile Include="Controllers\APIS\Web_RolController.cs" />
@@ -406,9 +407,6 @@
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Prestador.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Servicio_Validacion_Error.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Sexo.cs">
@@ -1379,7 +1377,6 @@
     <Content Include="Views\Fechas\Details.cshtml" />
     <Content Include="Views\Fechas\Edit.cshtml" />
     <Content Include="Views\Fechas\Index.cshtml" />
-    <Content Include="Views\Pdfrespuestas\PruebapdfView.cshtml" />
     <Content Include="Views\Plantilla_Respuesta_PDF\Create.cshtml" />
     <Content Include="Views\Plantilla_Respuesta_PDF\Delete.cshtml" />
     <Content Include="Views\Plantilla_Respuesta_PDF\Details.cshtml" />
@@ -1432,7 +1429,7 @@
     <Content Include="Views\Web_Pregunta_Frecuente\Index.cshtml" />
     <Content Include="Views\Sesion\IndexAdmin.cshtml" />
     <Content Include="Views\Sesion\ViewPartialLoginAdmin.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

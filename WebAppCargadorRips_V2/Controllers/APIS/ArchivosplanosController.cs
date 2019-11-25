@@ -72,8 +72,10 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
             if (!String.IsNullOrEmpty(NOPOS))
             {
+                /*tipoUsuario = "2";
+                categoria = "1";*/
                 tipoUsuario = "2";
-                categoria = "1";
+                categoria = "5";
             }
 
             //Valido que el formulario sea enviado con el formato permitido.
@@ -314,7 +316,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                           || VLR.radicacion_id.ToString().ToLower().Contains(sSearch.ToString())
                           )
                           where VLR.FK_usuario == fktoken
-                          orderby VLR.Preradicado ascending
+                          orderby VLR.Fecha_Carga descending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
@@ -323,7 +325,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             {
                 result = (from VLR in bd.VW_Seguimiento_Web
                           where VLR.FK_usuario == fktoken
-                          orderby VLR.Preradicado ascending
+                          orderby VLR.Fecha_Carga ascending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
