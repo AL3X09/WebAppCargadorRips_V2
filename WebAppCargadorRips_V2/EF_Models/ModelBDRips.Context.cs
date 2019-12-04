@@ -30,7 +30,6 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<Web_Preradicacion> Web_Preradicacion { get; set; }
         public virtual DbSet<Web_Validacion> Web_Validacion { get; set; }
         public virtual DbSet<Correo> Correo { get; set; }
-        public virtual DbSet<Directorios> Directorios { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Estructura> Estructura { get; set; }
         public virtual DbSet<Estructura_Campo> Estructura_Campo { get; set; }
@@ -57,6 +56,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
         public virtual DbSet<Plantilla_Respuesta_PDF> Plantilla_Respuesta_PDF { get; set; }
         public virtual DbSet<VW_Seguimiento_Web> VW_Seguimiento_Web { get; set; }
+        public virtual DbSet<Directorios> Directorios { get; set; }
     
         public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
         {

@@ -331,6 +331,7 @@
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
     <Compile Include="Controllers\APIS\Web_Correo_Sin_RestriccionController.cs" />
     <Compile Include="Controllers\APIS\Web_ModuloController.cs" />
+    <Compile Include="Controllers\APIS\ActasGeneradasController.cs" />
     <Compile Include="Controllers\APIS\Web_Nivel_PermisoController.cs" />
     <Compile Include="Controllers\APIS\Web_RolController.cs" />
     <Compile Include="Controllers\APIS\Web_UsuarioApiController.cs" />

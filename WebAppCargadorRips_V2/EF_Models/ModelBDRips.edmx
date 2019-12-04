@@ -51,6 +51,8 @@
           <Property Name="directorio_salida" Type="nvarchar" MaxLength="150" />
           <Property Name="directorio_error" Type="nvarchar" MaxLength="150" />
           <Property Name="directorio_rechazo" Type="nvarchar" MaxLength="150" />
+          <Property Name="directorio_actas_aprobadas" Type="nvarchar" MaxLength="150" />
+          <Property Name="directorio_actas_rechazadas" Type="nvarchar" MaxLength="150" />
           <Property Name="usuario_directorios" Type="nvarchar" MaxLength="50" />
           <Property Name="contraseña_directorios" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -1297,18 +1299,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK_correo_estado_rips" FromRole="Correo" ToRole="Estado_RIPS" />
         </EntityType>
-        <EntityType Name="Directorios">
-          <Key>
-            <PropertyRef Name="directorios_id" />
-          </Key>
-          <Property Name="directorios_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="directorio_entrada" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="directorio_salida" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="directorio_error" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="directorio_rechazo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="usuario_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contraseña_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="categoria_id" />
@@ -1997,7 +1987,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Web_Preradicacion" EntityType="Self.Web_Preradicacion" />
           <EntitySet Name="Web_Validacion" EntityType="Self.Web_Validacion" />
           <EntitySet Name="Correo" EntityType="Self.Correo" />
-          <EntitySet Name="Directorios" EntityType="Self.Directorios" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Estructura" EntityType="Self.Estructura" />
           <EntitySet Name="Estructura_Campo" EntityType="Self.Estructura_Campo" />
@@ -2263,6 +2252,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Contrasenia" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Directorios" EntityType="RipsModel.Directorios" />
           </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2655,6 +2645,20 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mensaje" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Directorios">
+          <Key>
+            <PropertyRef Name="directorios_id" />
+          </Key>
+          <Property Name="directorios_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="directorio_entrada" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_salida" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_error" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_rechazo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_actas_aprobadas" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_actas_rechazadas" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="usuario_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contraseña_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2698,19 +2702,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
                 <ScalarProperty Name="puerto" ColumnName="puerto" />
                 <ScalarProperty Name="FK_correo_estado_rips" ColumnName="FK_correo_estado_rips" />
                 <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Directorios">
-            <EntityTypeMapping TypeName="RipsModel.Directorios">
-              <MappingFragment StoreEntitySet="Directorios">
-                <ScalarProperty Name="directorios_id" ColumnName="directorios_id" />
-                <ScalarProperty Name="directorio_entrada" ColumnName="directorio_entrada" />
-                <ScalarProperty Name="directorio_salida" ColumnName="directorio_salida" />
-                <ScalarProperty Name="directorio_error" ColumnName="directorio_error" />
-                <ScalarProperty Name="directorio_rechazo" ColumnName="directorio_rechazo" />
-                <ScalarProperty Name="usuario_directorios" ColumnName="usuario_directorios" />
-                <ScalarProperty Name="contraseña_directorios" ColumnName="contraseña_directorios" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3445,6 +3436,21 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Directorios">
+            <EntityTypeMapping TypeName="RipsModel.Directorios">
+              <MappingFragment StoreEntitySet="Directorios">
+                <ScalarProperty Name="contraseña_directorios" ColumnName="contraseña_directorios" />
+                <ScalarProperty Name="usuario_directorios" ColumnName="usuario_directorios" />
+                <ScalarProperty Name="directorio_actas_rechazadas" ColumnName="directorio_actas_rechazadas" />
+                <ScalarProperty Name="directorio_actas_aprobadas" ColumnName="directorio_actas_aprobadas" />
+                <ScalarProperty Name="directorio_rechazo" ColumnName="directorio_rechazo" />
+                <ScalarProperty Name="directorio_error" ColumnName="directorio_error" />
+                <ScalarProperty Name="directorio_salida" ColumnName="directorio_salida" />
+                <ScalarProperty Name="directorio_entrada" ColumnName="directorio_entrada" />
+                <ScalarProperty Name="directorios_id" ColumnName="directorios_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

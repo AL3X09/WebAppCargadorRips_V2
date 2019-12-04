@@ -203,6 +203,7 @@ function getAllME(token, rol) {
                     apellido = v.apellidos;
                 }
                 $("#imguser").attr("src", baseURL + v.imagen);
+                $("#imguserperfil").attr("src", baseURL + v.imagen);
                 $("#nombreuserspan").html(v.nombres + " " + apellido);
                 $("#prestador").html(v.nombres + " " + apellido);
                 $("#codigoprest").html(v.codigo);

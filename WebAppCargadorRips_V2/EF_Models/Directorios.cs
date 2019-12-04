@@ -19,6 +19,8 @@ namespace WebAppCargadorRips_V2.EF_Models
         public string directorio_salida { get; set; }
         public string directorio_error { get; set; }
         public string directorio_rechazo { get; set; }
+        public string directorio_actas_aprobadas { get; set; }
+        public string directorio_actas_rechazadas { get; set; }
         public string usuario_directorios { get; set; }
         public string contraseña_directorios { get; set; }
     }
