@@ -343,3 +343,30 @@ function getControlTablero(id_rol) {
     });
 
 }
+
+//llamo la api para descargar el acta de errores segun preradicado
+function getErrores(prerra) {
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/ActasGeneradas/Rechazdo",
+        data: { preradicado: prerra },
+        success: function (response) {
+
+            console.log(response);
+                
+        }
+
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        //console.error(textStatus, errorThrown); // Algo fallo
+        Swal.fire(
+            '',
+            "Error al intertar traer los datos del tablero de control",
+            'error'
+        );
+
+    });
+    
+
+}

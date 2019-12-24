@@ -497,9 +497,6 @@
     <Compile Include="EF_Models\Tipo_Usuario.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\VW_Listado_Estado_Rips.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\VW_Radicacion.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>

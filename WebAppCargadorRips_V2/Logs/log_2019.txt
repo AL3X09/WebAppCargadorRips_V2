@@ -486,3 +486,63 @@ An Entity with Key (PK) will not round-trip when:
 -------------------------------------- 25/09/2019 12:00:55 p. m. --------------------------
 System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
    en WebAppCargadorRips_V2.Controllers.SesionController.<ViewPartialLoginAdmin>d__13.MoveNext() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\SesionController.cs:línea 506
+
+-------------------------------------- 12/12/2019 10:05:45 a. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4 Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 78
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 12/12/2019 10:10:52 a. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4 Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 79
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 12/12/2019 11:03:55 a. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4 Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 80
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 12/12/2019 11:50:43 a. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4 Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 80
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 12/12/2019 11:54:50 a. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4 Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 82
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 12/12/2019 12:01:28 p. m. --------------------------
+System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\api\ActasGeneradas\Prerrad4Errores.pdf'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.HttpResponse.TransmitFile(String filename, Int64 offset, Int64 length)
+   en System.Web.HttpResponse.TransmitFile(String filename)
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass6_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 81
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72

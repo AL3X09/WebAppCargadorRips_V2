@@ -402,6 +402,7 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Seguimiento_Web' no tiene 
             <PropertyRef Name="Preradicado" />
             <PropertyRef Name="Tipo Usuario" />
             <PropertyRef Name="Categoria" />
+            <PropertyRef Name="Extranjero" />
             <PropertyRef Name="Fecha Carga" />
             <PropertyRef Name="FK_usuario" />
             <PropertyRef Name="FK_estado_preradicacion" />
@@ -411,6 +412,7 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Seguimiento_Web' no tiene 
           <Property Name="Radicado" Type="int" />
           <Property Name="Tipo Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Categoria" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Extranjero" Type="bit" Nullable="false" />
           <Property Name="Periodo inicio" Type="date" />
           <Property Name="Periodo Fin" Type="date" />
           <Property Name="Fecha Carga" Type="smalldatetime" Nullable="false" />
@@ -472,42 +474,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
           <Property Name="carga_fecha" Type="smalldatetime" />
           <Property Name="usuario_validacion" Type="nvarchar" MaxLength="20" />
           <Property Name="radicacion_usuario" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="VW_Listado_Estado_Rips">
-          <Key>
-            <PropertyRef Name="validacion_id" />
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="tipo_usuario" />
-            <PropertyRef Name="categoria" />
-            
-            <PropertyRef Name="FK_usuario" />
-            <PropertyRef Name="FK_estado_web_validacion" />
-            <PropertyRef Name="estado_web_validacion" />
-            <PropertyRef Name="FK_estado_web_preradicacion" />
-            <PropertyRef Name="estado_web_preradicacion" />
-          </Key>
-          <Property Name="validacion_id" Type="bigint" Nullable="false" />
-          <Property Name="codigo" Type="bigint" Nullable="false" />
-          <Property Name="tipo_usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="categoria" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="periodo_fecha_inicio" Type="date" />
-          <Property Name="periodo_fecha_fin" Type="date" />
-          <Property Name="fecha_cargo" Type="smalldatetime" Nullable="false" />
-          <Property Name="FK_usuario" Type="bigint" Nullable="false" />
-          <Property Name="FK_estado_web_validacion" Type="bigint" Nullable="false" />
-          <Property Name="estado_web_validacion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="desc_estado_web_validacion" Type="nvarchar" MaxLength="255" />
-          <Property Name="FK_estado_web_preradicacion" Type="bigint" Nullable="false" />
-          <Property Name="estado_web_preradicacion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="desc_estado_web_preradicacion" Type="nvarchar" MaxLength="255" />
-          <Property Name="FK_estado_servicio_validacion" Type="bigint" />
-          <Property Name="estado_servicio_validacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="desc_estado_servicio_validacion" Type="nvarchar" MaxLength="255" />
-          <Property Name="FK_estado_radicacion" Type="bigint" />
-          <Property Name="estado_radicacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="desc_estado_radicacion" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Categoria__estad__0169315C">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
@@ -1050,6 +1016,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
     [VW_Seguimiento_Web].[Radicado] AS [Radicado], 
     [VW_Seguimiento_Web].[Tipo Usuario] AS [Tipo Usuario], 
     [VW_Seguimiento_Web].[Categoria] AS [Categoria], 
+    [VW_Seguimiento_Web].[Extranjero] AS [Extranjero], 
     [VW_Seguimiento_Web].[Periodo inicio] AS [Periodo inicio], 
     [VW_Seguimiento_Web].[Periodo Fin] AS [Periodo Fin], 
     [VW_Seguimiento_Web].[Fecha Carga] AS [Fecha Carga], 
@@ -1100,30 +1067,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
     [VW_Servicio_Validacion].[usuario_validacion] AS [usuario_validacion], 
     [VW_Servicio_Validacion].[radicacion_usuario] AS [radicacion_usuario]
     FROM [Auditoria].[VW_Servicio_Validacion] AS [VW_Servicio_Validacion]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="VW_Listado_Estado_Rips" EntityType="Self.VW_Listado_Estado_Rips" store:Type="Views" store:Schema="Web">
-            <DefiningQuery>SELECT 
-    [VW_Listado_Estado_Rips].[validacion_id] AS [validacion_id], 
-    [VW_Listado_Estado_Rips].[codigo] AS [codigo], 
-    [VW_Listado_Estado_Rips].[tipo_usuario] AS [tipo_usuario], 
-    [VW_Listado_Estado_Rips].[categoria] AS [categoria], 
-    [VW_Listado_Estado_Rips].[periodo_fecha_inicio] AS [periodo_fecha_inicio], 
-    [VW_Listado_Estado_Rips].[periodo_fecha_fin] AS [periodo_fecha_fin], 
-    [VW_Listado_Estado_Rips].[fecha_cargo] AS [fecha_cargo], 
-    [VW_Listado_Estado_Rips].[FK_usuario] AS [FK_usuario], 
-    [VW_Listado_Estado_Rips].[FK_estado_web_validacion] AS [FK_estado_web_validacion], 
-    [VW_Listado_Estado_Rips].[estado_web_validacion] AS [estado_web_validacion], 
-    [VW_Listado_Estado_Rips].[desc_estado_web_validacion] AS [desc_estado_web_validacion], 
-    [VW_Listado_Estado_Rips].[FK_estado_web_preradicacion] AS [FK_estado_web_preradicacion], 
-    [VW_Listado_Estado_Rips].[estado_web_preradicacion] AS [estado_web_preradicacion], 
-    [VW_Listado_Estado_Rips].[desc_estado_web_preradicacion] AS [desc_estado_web_preradicacion], 
-    [VW_Listado_Estado_Rips].[FK_estado_servicio_validacion] AS [FK_estado_servicio_validacion], 
-    [VW_Listado_Estado_Rips].[estado_servicio_validacion] AS [estado_servicio_validacion], 
-    [VW_Listado_Estado_Rips].[desc_estado_servicio_validacion] AS [desc_estado_servicio_validacion], 
-    [VW_Listado_Estado_Rips].[FK_estado_radicacion] AS [FK_estado_radicacion], 
-    [VW_Listado_Estado_Rips].[estado_radicacion] AS [estado_radicacion], 
-    [VW_Listado_Estado_Rips].[desc_estado_radicacion] AS [desc_estado_radicacion]
-    FROM [Web].[VW_Listado_Estado_Rips] AS [VW_Listado_Estado_Rips]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Categoria__estad__0169315C" Association="Self.FK__Categoria__estad__0169315C">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
@@ -1674,39 +1617,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="usuario_validacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="radicacion_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="VW_Listado_Estado_Rips">
-          <Key>
-            <PropertyRef Name="validacion_id" />
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="tipo_usuario" />
-            <PropertyRef Name="categoria" />
-            <PropertyRef Name="FK_usuario" />
-            <PropertyRef Name="FK_estado_web_validacion" />
-            <PropertyRef Name="estado_web_validacion" />
-            <PropertyRef Name="FK_estado_web_preradicacion" />
-            <PropertyRef Name="estado_web_preradicacion" />
-          </Key>
-          <Property Name="validacion_id" Type="Int64" Nullable="false" />
-          <Property Name="codigo" Type="Int64" Nullable="false" />
-          <Property Name="tipo_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="periodo_fecha_inicio" Type="DateTime" Precision="0" />
-          <Property Name="periodo_fecha_fin" Type="DateTime" Precision="0" />
-          <Property Name="fecha_cargo" Type="DateTime" Precision="0" Nullable="false" />
-          <Property Name="FK_usuario" Type="Int64" Nullable="false" />
-          <Property Name="FK_estado_web_validacion" Type="Int64" Nullable="false" />
-          <Property Name="estado_web_validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="desc_estado_web_validacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FK_estado_web_preradicacion" Type="Int64" Nullable="false" />
-          <Property Name="estado_web_preradicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="desc_estado_web_preradicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FK_estado_servicio_validacion" Type="Int64" />
-          <Property Name="estado_servicio_validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="desc_estado_servicio_validacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FK_estado_radicacion" Type="Int64" />
-          <Property Name="estado_radicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="desc_estado_radicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK__Web_Prera__FK_pr__70A8B9AE">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
           <End Role="Web_Preradicacion" Type="Self.Web_Preradicacion" Multiplicity="*" />
@@ -2007,7 +1917,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Web_Usuario" EntityType="Self.Web_Usuario" />
           <EntitySet Name="VW_Radicacion" EntityType="Self.VW_Radicacion" />
           <EntitySet Name="VW_Servicio_Validacion" EntityType="Self.VW_Servicio_Validacion" />
-          <EntitySet Name="VW_Listado_Estado_Rips" EntityType="Self.VW_Listado_Estado_Rips" />
           <AssociationSet Name="FK__Web_Prera__FK_pr__70A8B9AE" Association="Self.FK__Web_Prera__FK_pr__70A8B9AE">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Preradicacion" EntitySet="Web_Preradicacion" />
@@ -2247,12 +2156,12 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Plantilla_Respuesta_PDF" EntitySet="Plantilla_Respuesta_PDF" />
           </AssociationSet>
-          <EntitySet Name="VW_Seguimiento_Web" EntityType="RipsModel.VW_Seguimiento_Web" />
           <FunctionImport Name="SP_Ingreso_Usuario_Administrador" ReturnType="Collection(RipsModel.SP_Ingreso_Usuario_Administrador_Result)">
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Contrasenia" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Directorios" EntityType="RipsModel.Directorios" />
+          <EntitySet Name="VW_Seguimiento_Web" EntityType="RipsModel.VW_Seguimiento_Web" />
           </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2603,38 +2512,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="VW_Seguimiento_Web">
-          <Key>
-            <PropertyRef Name="Preradicado" />
-            <PropertyRef Name="Tipo_Usuario" />
-            <PropertyRef Name="Categoria" />
-            <PropertyRef Name="Fecha_Carga" />
-            <PropertyRef Name="FK_usuario" />
-            <PropertyRef Name="FK_estado_preradicacion" />
-            <PropertyRef Name="Estado_Preradicacion" />
-          </Key>
-          <Property Name="Preradicado" Type="Int64" Nullable="false" />
-          <Property Name="Radicado" Type="Int32" />
-          <Property Name="Tipo_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Periodo_inicio" Type="DateTime" Precision="0" />
-          <Property Name="Periodo_Fin" Type="DateTime" Precision="0" />
-          <Property Name="Fecha_Carga" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FK_usuario" Type="Int64" Nullable="false" />
-          <Property Name="FK_estado_preradicacion" Type="Int64" Nullable="false" />
-          <Property Name="Estado_Preradicacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Preradicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="validacion_id" Type="Int64" />
-          <Property Name="FK_estado_validacion" Type="Int64" />
-          <Property Name="Estado_Validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Validacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="radicacion_id" Type="Int64" />
-          <Property Name="FK_estado_radicacion" Type="Int64" />
-          <Property Name="Estado_Radicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Radicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="estado_id" Type="Int64" />
-          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <ComplexType Name="SP_Ingreso_Usuario_Administrador1_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
@@ -2658,6 +2535,40 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="directorio_actas_rechazadas" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="usuario_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contraseña_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_Seguimiento_Web">
+          <Key>
+            <PropertyRef Name="Preradicado" />
+            <PropertyRef Name="Tipo_Usuario" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="Extranjero" />
+            <PropertyRef Name="Fecha_Carga" />
+            <PropertyRef Name="FK_usuario" />
+            <PropertyRef Name="FK_estado_preradicacion" />
+            <PropertyRef Name="Estado_Preradicacion" />
+          </Key>
+          <Property Name="Preradicado" Type="Int64" Nullable="false" />
+          <Property Name="Radicado" Type="Int32" />
+          <Property Name="Tipo_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Extranjero" Type="Boolean" Nullable="false" />
+          <Property Name="Periodo_inicio" Type="DateTime" Precision="0" />
+          <Property Name="Periodo_Fin" Type="DateTime" Precision="0" />
+          <Property Name="Fecha_Carga" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_usuario" Type="Int64" Nullable="false" />
+          <Property Name="FK_estado_preradicacion" Type="Int64" Nullable="false" />
+          <Property Name="Estado_Preradicacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Estado_Preradicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="validacion_id" Type="Int64" />
+          <Property Name="FK_estado_validacion" Type="Int64" />
+          <Property Name="Estado_Validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Estado_Validacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="radicacion_id" Type="Int64" />
+          <Property Name="FK_estado_radicacion" Type="Int64" />
+          <Property Name="Estado_Radicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Estado_Radicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="estado_id" Type="Int64" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3044,32 +2955,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VW_Listado_Estado_Rips">
-            <EntityTypeMapping TypeName="RipsModel.VW_Listado_Estado_Rips">
-              <MappingFragment StoreEntitySet="VW_Listado_Estado_Rips">
-                <ScalarProperty Name="validacion_id" ColumnName="validacion_id" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="periodo_fecha_inicio" ColumnName="periodo_fecha_inicio" />
-                <ScalarProperty Name="periodo_fecha_fin" ColumnName="periodo_fecha_fin" />
-                <ScalarProperty Name="fecha_cargo" ColumnName="fecha_cargo" />
-                <ScalarProperty Name="FK_usuario" ColumnName="FK_usuario" />
-                <ScalarProperty Name="FK_estado_web_validacion" ColumnName="FK_estado_web_validacion" />
-                <ScalarProperty Name="estado_web_validacion" ColumnName="estado_web_validacion" />
-                <ScalarProperty Name="desc_estado_web_validacion" ColumnName="desc_estado_web_validacion" />
-                <ScalarProperty Name="FK_estado_web_preradicacion" ColumnName="FK_estado_web_preradicacion" />
-                <ScalarProperty Name="estado_web_preradicacion" ColumnName="estado_web_preradicacion" />
-                <ScalarProperty Name="desc_estado_web_preradicacion" ColumnName="desc_estado_web_preradicacion" />
-                <ScalarProperty Name="FK_estado_servicio_validacion" ColumnName="FK_estado_servicio_validacion" />
-                <ScalarProperty Name="estado_servicio_validacion" ColumnName="estado_servicio_validacion" />
-                <ScalarProperty Name="desc_estado_servicio_validacion" ColumnName="desc_estado_servicio_validacion" />
-                <ScalarProperty Name="FK_estado_radicacion" ColumnName="FK_estado_radicacion" />
-                <ScalarProperty Name="estado_radicacion" ColumnName="estado_radicacion" />
-                <ScalarProperty Name="desc_estado_radicacion" ColumnName="desc_estado_radicacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_Web_Insert_Datos_Rips_a_Validar" FunctionName="RipsModel.Store.SP_Web_Insert_Datos_Rips_a_Validar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="RipsModel.SP_Web_Insert_Datos_Rips_a_Validar_Result">
@@ -3400,33 +3285,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VW_Seguimiento_Web">
-            <EntityTypeMapping TypeName="RipsModel.VW_Seguimiento_Web">
-              <MappingFragment StoreEntitySet="VW_Seguimiento_Web">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="estado_id" ColumnName="estado_id" />
-                <ScalarProperty Name="Estado_Radicacion_Descripcion" ColumnName="Estado Radicacion Descripcion" />
-                <ScalarProperty Name="Estado_Radicacion" ColumnName="Estado Radicacion" />
-                <ScalarProperty Name="FK_estado_radicacion" ColumnName="FK_estado_radicacion" />
-                <ScalarProperty Name="radicacion_id" ColumnName="radicacion_id" />
-                <ScalarProperty Name="Estado_Validacion_Descripcion" ColumnName="Estado Validacion Descripcion" />
-                <ScalarProperty Name="Estado_Validacion" ColumnName="Estado Validacion" />
-                <ScalarProperty Name="FK_estado_validacion" ColumnName="FK_estado_validacion" />
-                <ScalarProperty Name="validacion_id" ColumnName="validacion_id" />
-                <ScalarProperty Name="Estado_Preradicacion_Descripcion" ColumnName="Estado Preradicacion Descripcion" />
-                <ScalarProperty Name="Estado_Preradicacion" ColumnName="Estado Preradicacion" />
-                <ScalarProperty Name="FK_estado_preradicacion" ColumnName="FK_estado_preradicacion" />
-                <ScalarProperty Name="FK_usuario" ColumnName="FK_usuario" />
-                <ScalarProperty Name="Fecha_Carga" ColumnName="Fecha Carga" />
-                <ScalarProperty Name="Periodo_Fin" ColumnName="Periodo Fin" />
-                <ScalarProperty Name="Periodo_inicio" ColumnName="Periodo inicio" />
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="Tipo_Usuario" ColumnName="Tipo Usuario" />
-                <ScalarProperty Name="Radicado" ColumnName="Radicado" />
-                <ScalarProperty Name="Preradicado" ColumnName="Preradicado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_Ingreso_Usuario_Administrador" FunctionName="RipsModel.Store.SP_Ingreso_Usuario_Administrador">
             <ResultMapping>
               <ComplexTypeMapping TypeName="RipsModel.SP_Ingreso_Usuario_Administrador_Result">
@@ -3448,6 +3306,34 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
                 <ScalarProperty Name="directorio_salida" ColumnName="directorio_salida" />
                 <ScalarProperty Name="directorio_entrada" ColumnName="directorio_entrada" />
                 <ScalarProperty Name="directorios_id" ColumnName="directorios_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Seguimiento_Web">
+            <EntityTypeMapping TypeName="RipsModel.VW_Seguimiento_Web">
+              <MappingFragment StoreEntitySet="VW_Seguimiento_Web">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="estado_id" ColumnName="estado_id" />
+                <ScalarProperty Name="Estado_Radicacion_Descripcion" ColumnName="Estado Radicacion Descripcion" />
+                <ScalarProperty Name="Estado_Radicacion" ColumnName="Estado Radicacion" />
+                <ScalarProperty Name="FK_estado_radicacion" ColumnName="FK_estado_radicacion" />
+                <ScalarProperty Name="radicacion_id" ColumnName="radicacion_id" />
+                <ScalarProperty Name="Estado_Validacion_Descripcion" ColumnName="Estado Validacion Descripcion" />
+                <ScalarProperty Name="Estado_Validacion" ColumnName="Estado Validacion" />
+                <ScalarProperty Name="FK_estado_validacion" ColumnName="FK_estado_validacion" />
+                <ScalarProperty Name="validacion_id" ColumnName="validacion_id" />
+                <ScalarProperty Name="Estado_Preradicacion_Descripcion" ColumnName="Estado Preradicacion Descripcion" />
+                <ScalarProperty Name="Estado_Preradicacion" ColumnName="Estado Preradicacion" />
+                <ScalarProperty Name="FK_estado_preradicacion" ColumnName="FK_estado_preradicacion" />
+                <ScalarProperty Name="FK_usuario" ColumnName="FK_usuario" />
+                <ScalarProperty Name="Fecha_Carga" ColumnName="Fecha Carga" />
+                <ScalarProperty Name="Periodo_Fin" ColumnName="Periodo Fin" />
+                <ScalarProperty Name="Periodo_inicio" ColumnName="Periodo inicio" />
+                <ScalarProperty Name="Extranjero" ColumnName="Extranjero" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Tipo_Usuario" ColumnName="Tipo Usuario" />
+                <ScalarProperty Name="Radicado" ColumnName="Radicado" />
+                <ScalarProperty Name="Preradicado" ColumnName="Preradicado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,6 +18,7 @@ namespace WebAppCargadorRips_V2.EF_Models
         public Nullable<int> Radicado { get; set; }
         public string Tipo_Usuario { get; set; }
         public string Categoria { get; set; }
+        public bool Extranjero { get; set; }
         public Nullable<System.DateTime> Periodo_inicio { get; set; }
         public Nullable<System.DateTime> Periodo_Fin { get; set; }
         public System.DateTime Fecha_Carga { get; set; }

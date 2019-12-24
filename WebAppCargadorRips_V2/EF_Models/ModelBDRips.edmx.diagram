@@ -28,7 +28,6 @@
         <EntityTypeShape EntityType="RipsModel.Web_Usuario" Width="1.5" PointX="8.25" PointY="42.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.VW_Radicacion" Width="1.5" PointX="12.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RipsModel.VW_Servicio_Validacion" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RipsModel.VW_Listado_Estado_Rips" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="RipsModel.FK__Web_Prera__FK_pr__70A8B9AE" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_web_preradicacion_estado_rips" ManuallyRouted="false" />
         <AssociationConnector Association="RipsModel.FK_web_validacion_categoria" ManuallyRouted="false" />
@@ -65,8 +64,8 @@
         <AssociationConnector Association="RipsModel.FK_nivelpermiso_modulo" />
         <AssociationConnector Association="RipsModel.FK_web_modulo_estado_rips" />
         <AssociationConnector Association="RipsModel.FK__Plantilla__FK_pl__1BD30ED5" />
-        <EntityTypeShape EntityType="RipsModel.VW_Seguimiento_Web" Width="1.5" PointX="10.5" PointY="0.75" />
         <EntityTypeShape EntityType="RipsModel.Directorios" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RipsModel.VW_Seguimiento_Web" Width="1.5" PointX="9.125" PointY="0.875" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

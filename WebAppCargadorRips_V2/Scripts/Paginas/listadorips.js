@@ -28,7 +28,7 @@ function cargaratabla(token) {
                 'mData': "#", 'mRender': function (data, type, row) {
 
                     if (row.estado_id === 5) {
-                        return '<img src="'+baseURL+'Img/tboton/info.png" alt="Información" height="42" width="42">';
+                        return '<img src="' + baseURL +'Img/tboton/info.png" alt="Información" height="42" width="42">';
                     } if (row.estado_id === 10) {
                         return '<img src="' + baseURL +'Img/tboton/success.png" alt="Generar PDF" height="42" width="42">';
                     } else {
@@ -40,6 +40,17 @@ function cargaratabla(token) {
             { "mData": "Preradicado" },
             { "mData": "Tipo_Usuario" },
             { "mData": "Categoria" },
+            {
+                'mData': "Extranjero", 'mRender': function (data, type, row) {
+
+                    if (row.Extranjero === true) {
+                        return '<input type="checkbox" checked="checked" disabled>';
+                    } else {
+                        return '<input type="checkbox" disabled>';
+                    }
+
+                }
+            },
             {
                 'mData': "Periodo_inicio", 'mRender': function (data, type, full) {
                     return data.substring(0, 10);
@@ -61,12 +72,15 @@ function cargaratabla(token) {
             {
                 'mData': "Acciones", 'mRender': function (data, type, row) {
 
-                    if (row.Radicado === null) {
-                        //return "Pendiente";
+                    if (row.FK_estado_preradicacion === 17) {
+                        return '<a href="' + baseURL + 'api/ActasGeneradas/Rechazdo?preradicado=' + row.Preradicado + '" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                        //return 'Pendiente';
+                    } else if (row.Radicado === null) {
                         return 'Pendiente';
-                        //return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + '"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
-                    } else {
-                        return 'Pendiente';
+                    } 
+                    else {
+                      return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + ' onclick="getErrores(' + row.codigo + ')" "><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                    //return 'Pendiente';
                     }
                     
                 }

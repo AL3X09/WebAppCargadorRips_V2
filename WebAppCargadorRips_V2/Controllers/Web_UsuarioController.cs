@@ -183,11 +183,12 @@ namespace WebAppCargadorRips_V2.Controllers
         /// Metodo carga la vista para el cambio de contraseña de un usuario logeado
         /// </summary>
         /// GET: Perfil Usuario
-        /*public ActionResult CambiarContrasenia()
+        public ActionResult CambiarContrasenia()
         {
-           return View();
-        }*/
+            return View();
+        }
 
+        [HttpPost]
         public async Task<ActionResult> CambiarContrasenia(CambiarContraseniaViewModel model)
         {
             if (ModelState.IsValid)

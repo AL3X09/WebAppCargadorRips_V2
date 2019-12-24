@@ -50,13 +50,12 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<Web_Usuario> Web_Usuario { get; set; }
         public virtual DbSet<VW_Radicacion> VW_Radicacion { get; set; }
         public virtual DbSet<VW_Servicio_Validacion> VW_Servicio_Validacion { get; set; }
-        public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
         public virtual DbSet<Fecha> Fecha { get; set; }
         public virtual DbSet<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
         public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
         public virtual DbSet<Plantilla_Respuesta_PDF> Plantilla_Respuesta_PDF { get; set; }
-        public virtual DbSet<VW_Seguimiento_Web> VW_Seguimiento_Web { get; set; }
         public virtual DbSet<Directorios> Directorios { get; set; }
+        public virtual DbSet<VW_Seguimiento_Web> VW_Seguimiento_Web { get; set; }
     
         public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
         {

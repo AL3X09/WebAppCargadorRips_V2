@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security;
 using System.Security.Permissions;
 using System.Threading.Tasks;
@@ -19,17 +20,23 @@ using WebAppCargadorRips_V2.Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/ActasGeneradas")]
     public class ActasGeneradasController : ApiController
     {
         private static RipsEntitiesConnection db = new RipsEntitiesConnection();
-
         private HttpResponse Response = HttpContext.Current.Response;
         private string usuarioZIP = db.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
         private string contraseñaZIP = db.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
         private string directorioAprobada = db.Directorios.Select(s => s.directorio_actas_aprobadas).First(); //objeto que tiene los valores de los directorios del servidor del servicio
         private string directorioRechazada = db.Directorios.Select(s => s.directorio_actas_rechazadas).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+
+
+        //Constructor        
+        public ActasGeneradasController()
+        {
+
+        }
 
         [Route("Rechazdo")]
         [HttpGet]
@@ -53,7 +60,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                     if (!Directory.Exists(nombrefile + @"\"))
                     {
 
-                        Response.Write("<script language=javascript>alert('ERROR');</script>");
+                        Response.Write(new { type = "error", value = "No se encuentran los archivos a descargar." });
                     }
 
                     if (File.Exists(nombrefile))
@@ -65,9 +72,9 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                         Response.ClearContent();
 
                         // Add the file name and attachment, which will force the open/cancel/save dialog box to show, to the header
-                        Response.AddHeader("Content-Disposition", "attachment; filename=" + myfile.Name);
+                        Response.AddHeader("Content-Disposition", "attachment; filename=" + myfile.Name.Replace(" ", ""));
 
-                        // Add the file size into the response header 
+                        // Add the file size into the response header
                         Response.AddHeader("Content-Length", myfile.Length.ToString());
 
                         // Set the ContentType
@@ -78,32 +85,33 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
                         // End the response
                         Response.End();
+
+                        // Buffer response so that page is sent
+                        // after processing is complete.
+                        Response.BufferOutput = true;
                     }
                     else
                     {
-                        Response.Write("<script language=javascript>alert('ERROR');</script>");
+                        Response.Write(new { type = "error", value = "No se encuentran los archivos a descargar." });
+                        //Response.Write("<script language=javascript>alert('ERROR');</script>");
                     }
-
-                    
 
                 });
 
-                
+               
+
             }
-            catch (Exception e)
-            {
-                Response.Write("<script language=javascript>alert('ERROR');</script>");
+            catch (Exception e){
+                //Response.Write("<script language=javascript>alert('ERROR');</script>");
+                Response.Write(new { type = "error", value = "Se encontro un error en el servidor de descarga, " + e.Message.ToString() });
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
 
             }
 
-            Web_Nivel_Permiso web_Nivel_Permiso = await db.Web_Nivel_Permiso.FirstOrDefaultAsync(np => np.FK_nivelpermiso_rol == rol);
-                //Where( np => np.FK_nivelpermiso_rol== id )
-            if (web_Nivel_Permiso == null)
-            {
-                return NotFound();
-            }
+            db.SaveChangesAsync();
+            return Ok(HttpStatusCode.OK);
+            //return new HttpResponseMessage(HttpStatusCode.OK);
 
-            return Ok(web_Nivel_Permiso);
         }
 
         [Route("Aprobado")]
@@ -113,7 +121,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetActas_Aprobado(long preradicado)
         {
-            Web_Nivel_Permiso web_Nivel_Permiso = await db.Web_Nivel_Permiso.FirstOrDefaultAsync(np => np.FK_nivelpermiso_rol == rol);
+            Web_Nivel_Permiso web_Nivel_Permiso = await db.Web_Nivel_Permiso.FirstOrDefaultAsync(np => np.FK_nivelpermiso_rol == preradicado);
             //Where( np => np.FK_nivelpermiso_rol== id )
             if (web_Nivel_Permiso == null)
             {
