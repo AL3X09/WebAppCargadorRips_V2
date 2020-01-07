@@ -401,7 +401,7 @@ namespace WebAppCargadorRips_V2.Controllers
                     {
                         //Ejecuto los valores en el SP
                         //borrarSP_Updaterestacontra
-                        var response = db.SP_ChangeContraseniaUser(model.idUsuario, model.contrasenia).First();
+                        var response = db.SP_ChangeContraseniaUser(model.usuario_id, model.contrasenia).First();
                         //
                         await db.SaveChangesAsync();
 

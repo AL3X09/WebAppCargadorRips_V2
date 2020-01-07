@@ -61,7 +61,7 @@ namespace WebAppCargadorRips_V2.Models
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser mínimo {2}.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: mínimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: mínimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (! @ # $% ^ & *)")]
         [Display(Name = "Contraseña (*)")]
         public string Pasword { get; set; }
 
@@ -141,12 +141,13 @@ namespace WebAppCargadorRips_V2.Models
     {
 
         [Required]
-        public int idUsuario { get; set; }
+        [Editable(false)]
+        public int usuario_id { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: mínimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: mínimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (! @ # $% ^ & *)")]
         [Display(Name = "Contraseña (*)")]
         public string contrasenia { get; set; }
 

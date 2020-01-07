@@ -31,14 +31,14 @@
             <div class="card-body">
 
 
-                @using (Html.BeginForm("CambiarContrasenia", "Web_Usuario", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "", runat = "" }))
+                @using (Html.BeginForm("CambiarContrasenia", "Web_Usuario", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "", runat = "server" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.usuario_id, new { Value = @ViewBag.usuario_id })
 
                     <div class="form-horizontal">
                         <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.idUsuario, new { Value = @HttpContext.Current.User.Identity.Name.ToString() })
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })

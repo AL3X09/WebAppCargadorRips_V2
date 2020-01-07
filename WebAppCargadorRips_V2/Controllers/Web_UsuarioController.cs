@@ -183,8 +183,13 @@ namespace WebAppCargadorRips_V2.Controllers
         /// Metodo carga la vista para el cambio de contraseña de un usuario logeado
         /// </summary>
         /// GET: Perfil Usuario
-        public ActionResult CambiarContrasenia()
+        public ActionResult CambiarContrasenia(long? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.usuario_id = id; 
             return View();
         }
 
@@ -198,7 +203,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 {
                         //Ejecuto los valores en el SP
                         //borrarSP_Updaterestacontra
-                        var response = db.SP_ChangeContraseniaUser(model.idUsuario, model.contrasenia).First();
+                        var response = db.SP_ChangeContraseniaUser(model.usuario_id, model.contrasenia).First();
                         //
                         await db.SaveChangesAsync();
 
