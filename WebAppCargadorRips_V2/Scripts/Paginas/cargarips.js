@@ -88,6 +88,7 @@ function callFechasPeriodos(rol) {
         data: { rol: rol },
         success: function (response) {
             $.each(response, function (i, v) {
+                //console.log(v.nombre_fecha.substring(0, 9).replace(' ', ''));
                 if (v.fecha_id == 1) {
                     FechaMin = v.valor_fecha.substring(0, 10).replace(/-/g, '/');
                     FechaMax = new Date(currentDate2.getFullYear(), currentDate2.getMonth() - 0, 0);
@@ -95,20 +96,26 @@ function callFechasPeriodos(rol) {
                 }
 
                 //valido si el prestador tiene la fecha habilitada para realizar el cargue
-                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 12).trim() =='fecha inicio' ) {
+                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 12).replace(' ', '') =='fechainicio' ) {
                     FechaInicioReporte = v.valor_fecha.substring(0, 10);
                     if (new Date(today) < new Date(FechaInicioReporte)) {
                         $('#btncargarinfo').remove();
                     }
                     
                 }
+
                 //valido si el prestador tiene la fecha habilitada para realizar el cargue
-                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 10).trim() == 'fecha fin') {
+                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 9).replace(' ', '') == 'fechafin') {
                     FechaFinReporte = v.valor_fecha.substring(0, 10);
-                    console.log(FechaFinReporte);
-                    if (new Date(today) >= new Date(FechaFinReporte)) { 
+                    //console.log(FechaFinReporte);
+                    if (new Date(today) >= new Date(FechaFinReporte)) {
                         $('#btncargarinfo').remove();
                     }
+                }
+                else {
+                    /*FechaMin = v.valor_fecha.substring(0, 10).replace(/-/g, '/');
+                    FechaMax = new Date(currentDate2.getFullYear(), currentDate2.getMonth() - 0, 0);
+                    calendarios(FechaMin, FechaMax);*/
                 }
                 
             });
@@ -122,19 +129,22 @@ function callFechasPeriodos(rol) {
         )
         console.error(textStatus, errorThrown); // Algo fallo
 
-        })
+    })
 
 }
 
 //Getting the last day for a given year and month:
 function getLastDayOfYearAndMonth(year, month) {
-    console.log(month);
+    //console.log(month);
     return (new Date((new Date(year, month + 1, 1)) - 1)).getDate();
 }
 
 //Función encargada de los calendarios
 function calendarios(FechaMin, FechaMax) {
-   
+
+    //console.log(FechaMin);
+    //console.log('hola');
+
     $('#fechaInicio').datepicker({
         locale: 'es-es',
         format: 'yyyy/mm/dd',

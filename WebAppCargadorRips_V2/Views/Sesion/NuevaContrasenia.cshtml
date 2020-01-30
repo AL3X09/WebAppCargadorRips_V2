@@ -123,17 +123,17 @@
 
 @if (ViewBag.TokenP != null)
 {
-    <script type="application/javascript">
+<script type="application/javascript">
         $(document).ready(function () {
         var token =@Html.Raw(ViewBag.TokenP);
 
             if(token !== undefined ){
-                $('#data').html('<input type="hidden" id="idUsuario" name="idUsuario" value="'+token+'">');
-                
+                $('#data').html('<input type="hidden" id="usuario_id" name="usuario_id" value="'+token+'">');
+
             }else{
                   window.location.href = baseURL+"Sesion";
                }
         });
-    </script>
+</script>
 }
 

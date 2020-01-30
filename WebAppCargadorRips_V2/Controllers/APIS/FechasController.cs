@@ -49,7 +49,8 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<IHttpActionResult> GetFecha_rol(long rol)
         {
-            var fecha =  db.Fecha.Where(x => x.rol_ide.Equals(rol)).Select(x => new {
+            //Le envio la fecha con id 1 ya que es el que tiene el año de inico permitido
+            var fecha =  db.Fecha.Where(x => x.rol_ide.Equals(rol) || x.fecha_id == 1).Select(x => new {
                 fecha_id = x.fecha_id,
                 nombre_fecha = x.nombre_fecha,
                 valor_fecha = x.valor_fecha

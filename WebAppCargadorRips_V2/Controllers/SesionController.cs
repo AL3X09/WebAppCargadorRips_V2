@@ -67,7 +67,6 @@ namespace WebAppCargadorRips_V2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ViewPartialLogin(LoginViewModel model)
         {
-
             //Valido los campos del modelo
             if (!ModelState.IsValid)
             {
@@ -94,7 +93,12 @@ namespace WebAppCargadorRips_V2.Controllers
                     if (response != null && response.codigo.Equals(200))
                     {
                         var obj = db.Web_Usuario.Where(u => u.Prestador.codigo.Equals(model.Usuario)).FirstOrDefault();
-                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString() + "|" + obj.FK_usuario_rol.ToString(), false);
+                        FormsAuthentication.SetAuthCookie(obj.usuario_id.ToString(), false);
+                        //Pongo en cookie el rol del usuario para traer los datos del tablero de control
+                        HttpCookie cookierl = new HttpCookie("fkrol", obj.FK_usuario_rol.ToString());
+                        //cookierl.Expires= DateTime.
+                        ControllerContext.HttpContext.Response.SetCookie(cookierl);
+
                         return RedirectToAction("Index", "Tablero");
                     }
                     else if (response.codigo != 200)
@@ -467,7 +471,7 @@ namespace WebAppCargadorRips_V2.Controllers
 
 
         /// <summary>
-        /// Metodo que ejecuta el inicio de sesion
+        /// Metodo que ejecuta el inicio de sesion EN PRUEBAS NO MODIFICABLE
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -562,8 +566,14 @@ namespace WebAppCargadorRips_V2.Controllers
             //Cierro sesiones
             FormsAuthentication.SignOut();
             Session.Abandon();
+            
+            //limpio cache
+            HttpCookie cookie = HttpContext.Request.Cookies["fkrol"];
+            cookie.Values.Remove("fkrol");
+            HttpContext.Response.Cookies.Add(cookie);
             //Limpio campos
             ModelState.Clear();
+            FormsAuthentication.RedirectToLoginPage();
             return RedirectToAction("Index");
         }
 

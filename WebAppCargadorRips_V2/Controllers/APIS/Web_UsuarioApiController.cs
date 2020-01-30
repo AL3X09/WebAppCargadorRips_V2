@@ -36,7 +36,45 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
 
         // GET: api/Web_Usuario/5
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public async Task<IHttpActionResult> GetWeb_Usuario(long id, long rol)
+        public async Task<IHttpActionResult> GetWeb_Usuario(long id)
+        {
+            object[] web_Usuario;
+
+            //extraigo por cookie el rol del usuario
+            var c1 = ControllerContext.Request.Headers.GetCookies("fkrol").FirstOrDefault();
+            long rol = long.Parse(c1["fkrol"].Value);
+            
+            web_Usuario = db.SP_GetAllInfoUsers().Where(w => w.id_rol.Equals(rol) && w.usuario_id.Equals(id)).ToArray();
+
+            //si el retorno del usuario llega en cero busca si es un usario de otro rol
+            if (web_Usuario.Count() == 0)
+            {
+                web_Usuario = await db.Web_Administrador.Where(a => a.administrador_id == id && a.FK_web_administrador_rol.Equals(rol)).Select(a => new {
+                    id = a.administrador_id,
+                    nombres = a.nombres,
+                    apellidos = a.apellidos,
+                    descripcion = a.descripcion,
+                    correo = a.correo,
+                    extencion = a.extension,
+                    imagen = a.imagen,
+                    id_rol = a.FK_web_administrador_rol
+                }).ToArrayAsync();
+
+                //await db.SaveChangesAsync();
+            }
+
+            else if (web_Usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(web_Usuario);
+
+        }
+
+        // GET: api/Web_Usuario/5
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public async Task<IHttpActionResult> GetWeb_Usuario2(long id, long rol)
         {
             object[] web_Usuario;
 

@@ -184,14 +184,14 @@ function vistaDescargarValidador() {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZOk-bHZ8lhyZ_s5iqbznbGUYgXoYny3kDhqHmkSQHRyYyIw/viewform?embedded=true');
 }
 
-function getAllME(token, rol) {
+function getAllME(token) {
    
     token = token;
     
     $.ajax({
         type: "GET",
         url: baseURL + "api/Web_UsuarioApi/GetWeb_Usuario",
-        data: { id: token, rol: rol },
+        data: { id: token },
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {

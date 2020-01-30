@@ -1,0 +1,56 @@
+
+-------------------------------------- 14/01/2020 11:21:17 a. m. --------------------------
+System.InvalidOperationException: The 'ultimoIdInsert' property on 'SP_Web_Insert_Datos_Rips_a_Validar_Result' could not be set to a 'System.String' value. You must set this property to a non-null value of type 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips_V2.Controllers.APIS.ArchivosplanosController.<UploadSingleFile>d__8.MoveNext() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ArchivosplanosController.cs:línea 99
+
+-------------------------------------- 14/01/2020 11:21:17 a. m. --------------------------
+System.InvalidOperationException: The 'ultimoIdInsert' property on 'SP_Web_Insert_Datos_Rips_a_Validar_Result' could not be set to a 'System.String' value. You must set this property to a non-null value of type 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips_V2.Controllers.APIS.ArchivosplanosController.<UploadSingleFile>d__8.MoveNext() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ArchivosplanosController.cs:línea 99
+
+-------------------------------------- 14/01/2020 11:21:17 a. m. --------------------------
+System.InvalidOperationException: The 'ultimoIdInsert' property on 'SP_Web_Insert_Datos_Rips_a_Validar_Result' could not be set to a 'System.String' value. You must set this property to a non-null value of type 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips_V2.Controllers.APIS.ArchivosplanosController.<UploadSingleFile>d__8.MoveNext() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ArchivosplanosController.cs:línea 99
+
+-------------------------------------- 14/01/2020 11:47:56 a. m. --------------------------
+System.InvalidOperationException: The 'ultimoIdInsert' property on 'SP_Web_Insert_Datos_Rips_a_Validar_Result' could not be set to a 'System.String' value. You must set this property to a non-null value of type 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips_V2.Controllers.APIS.ArchivosplanosController.<UploadSingleFile>d__8.MoveNext() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ArchivosplanosController.cs:línea 99
+
+-------------------------------------- 30/01/2020 10:20:09 a. m. --------------------------
+System.Web.Http.HttpResponseException: Processing of the HTTP request resulted in an exception. Please see the HTTP response returned by the 'Response' property of this exception for details.
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass8_0.<GetActas_Aprobado>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 168
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 30/01/2020 10:51:17 a. m. --------------------------
+System.Web.Http.HttpResponseException: Processing of the HTTP request resulted in an exception. Please see the HTTP response returned by the 'Response' property of this exception for details.
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass8_0.<GetActas_Aprobado>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 168
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 30/01/2020 11:06:05 a. m. --------------------------
+System.Web.Http.HttpResponseException: Processing of the HTTP request resulted in an exception. Please see the HTTP response returned by the 'Response' property of this exception for details.
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass7_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 96
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72
+
+-------------------------------------- 30/01/2020 11:06:05 a. m. --------------------------
+System.Web.Http.HttpResponseException: Processing of the HTTP request resulted in an exception. Please see the HTTP response returned by the 'Response' property of this exception for details.
+   en WebAppCargadorRips_V2.Controllers.APIS.ActasGeneradasController.<>c__DisplayClass7_0.<GetActas_Rechazos>b__0() en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Controllers\APIS\ActasGeneradasController.cs:línea 96
+   en WebAppCargadorRips_V2.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en B:\NETAPPS\WebAppCargadorRips_V2\WebAppCargadorRips_V2\Models\NetworkConnection.cs:línea 72

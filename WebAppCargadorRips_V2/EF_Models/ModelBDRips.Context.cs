@@ -48,47 +48,12 @@ namespace WebAppCargadorRips_V2.EF_Models
         public virtual DbSet<Web_Documento> Web_Documento { get; set; }
         public virtual DbSet<Web_Pregunta_Frecuente> Web_Pregunta_Frecuente { get; set; }
         public virtual DbSet<Web_Usuario> Web_Usuario { get; set; }
-        public virtual DbSet<VW_Radicacion> VW_Radicacion { get; set; }
-        public virtual DbSet<VW_Servicio_Validacion> VW_Servicio_Validacion { get; set; }
         public virtual DbSet<Fecha> Fecha { get; set; }
         public virtual DbSet<Web_Nivel_Permiso> Web_Nivel_Permiso { get; set; }
         public virtual DbSet<Web_Modulo> Web_Modulo { get; set; }
         public virtual DbSet<Plantilla_Respuesta_PDF> Plantilla_Respuesta_PDF { get; set; }
         public virtual DbSet<Directorios> Directorios { get; set; }
-        public virtual DbSet<VW_Seguimiento_Web> VW_Seguimiento_Web { get; set; }
-    
-        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
-        {
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var categoriaParameter = categoria != null ?
-                new ObjectParameter("Categoria", categoria) :
-                new ObjectParameter("Categoria", typeof(string));
-    
-            var extranjeroParameter = extranjero.HasValue ?
-                new ObjectParameter("Extranjero", extranjero) :
-                new ObjectParameter("Extranjero", typeof(bool));
-    
-            var periodoFechaInicioParameter = periodoFechaInicio != null ?
-                new ObjectParameter("PeriodoFechaInicio", periodoFechaInicio) :
-                new ObjectParameter("PeriodoFechaInicio", typeof(string));
-    
-            var periodoFechaFinParameter = periodoFechaFin != null ?
-                new ObjectParameter("PeriodoFechaFin", periodoFechaFin) :
-                new ObjectParameter("PeriodoFechaFin", typeof(string));
-    
-            var idUserParameter = idUser != null ?
-                new ObjectParameter("IdUser", idUser) :
-                new ObjectParameter("IdUser", typeof(string));
-    
-            var fkEstadoParameter = fkEstado != null ?
-                new ObjectParameter("FkEstado", fkEstado) :
-                new ObjectParameter("FkEstado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, extranjeroParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
-        }
+        public virtual DbSet<VW_Auditoria_RIPS> VW_Auditoria_RIPS { get; set; }
     
         public virtual ObjectResult<SP_Web_Insert_Rips_a_Preradicar_Result> SP_Web_Insert_Rips_a_Preradicar(Nullable<long> idUser, Nullable<long> webvalidacion_id)
         {
@@ -450,6 +415,39 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("Contrasenia", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Ingreso_Usuario_Administrador_Result>("SP_Ingreso_Usuario_Administrador", usuarioParameter, contraseniaParameter);
+        }
+    
+        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
+        {
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var categoriaParameter = categoria != null ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(string));
+    
+            var extranjeroParameter = extranjero.HasValue ?
+                new ObjectParameter("Extranjero", extranjero) :
+                new ObjectParameter("Extranjero", typeof(bool));
+    
+            var periodoFechaInicioParameter = periodoFechaInicio != null ?
+                new ObjectParameter("PeriodoFechaInicio", periodoFechaInicio) :
+                new ObjectParameter("PeriodoFechaInicio", typeof(string));
+    
+            var periodoFechaFinParameter = periodoFechaFin != null ?
+                new ObjectParameter("PeriodoFechaFin", periodoFechaFin) :
+                new ObjectParameter("PeriodoFechaFin", typeof(string));
+    
+            var idUserParameter = idUser != null ?
+                new ObjectParameter("IdUser", idUser) :
+                new ObjectParameter("IdUser", typeof(string));
+    
+            var fkEstadoParameter = fkEstado != null ?
+                new ObjectParameter("FkEstado", fkEstado) :
+                new ObjectParameter("FkEstado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, extranjeroParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
         }
     }
 }

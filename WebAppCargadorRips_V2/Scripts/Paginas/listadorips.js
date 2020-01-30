@@ -22,14 +22,15 @@ function cargaratabla(token) {
         "sAjaxDataProp": "aaData", // data property of the returned ajax which contains table data
         "bProcessing": true,
         "sPaginationType": "full_numbers",//pagination type
+        "order": [[0, "desc"]],
         "aoColumns": [
 
             {
                 'mData': "#", 'mRender': function (data, type, row) {
 
-                    if (row.estado_id === 5) {
+                    if (row.estado_general_numero === 5) {
                         return '<img src="' + baseURL +'Img/tboton/info.png" alt="Información" height="42" width="42">';
-                    } if (row.estado_id === 10) {
+                    } if (row.estado_general_numero === 10) {
                         return '<img src="' + baseURL +'Img/tboton/success.png" alt="Generar PDF" height="42" width="42">';
                     } else {
                         return '<img src="' + baseURL +'Img/tboton/error.png" alt="Errores" height="42" width="42">';                        
@@ -37,13 +38,13 @@ function cargaratabla(token) {
 
                 }
             },
-            { "mData": "Preradicado" },
-            { "mData": "Tipo_Usuario" },
-            { "mData": "Categoria" },
+            { "mData": "preradicado" },
+            { "mData": "tipo_usuario_afilicion" },
+            { "mData": "categoria" },
             {
-                'mData': "Extranjero", 'mRender': function (data, type, row) {
+                'mData': "extranjero", 'mRender': function (data, type, row) {
 
-                    if (row.Extranjero === true) {
+                    if (row.extranjero === true) {
                         return '<input type="checkbox" checked="checked" disabled>';
                     } else {
                         return '<input type="checkbox" disabled>';
@@ -52,34 +53,34 @@ function cargaratabla(token) {
                 }
             },
             {
-                'mData': "Periodo_inicio", 'mRender': function (data, type, full) {
+                'mData': "periodo_inicio", 'mRender': function (data, type, full) {
                     return data.substring(0, 10);
                 }
             },
             {
-                'mData': "Periodo_Fin", 'mRender': function (data, type, full) {
+                'mData': "periodo_fin", 'mRender': function (data, type, full) {
                     return data.substring(0, 10);
                 }
             },
             {
-                'mData': "Fecha_Carga", 'mRender': function (data, type, full) {
+                'mData': "preradicado_fecha", 'mRender': function (data, type, full) {
                     //console.log(data.substring(0,10))
                     return data.substring(0, 10);
                 }
             },
-            { "mData": "Estado" },
-            { "mData": "Radicado" },
+            { "mData": "estado_general" },
+            { "mData": "radicado" },
             {
                 'mData': "Acciones", 'mRender': function (data, type, row) {
 
-                    if (row.FK_estado_preradicacion === 17) {
-                        return '<a href="' + baseURL + 'api/ActasGeneradas/Rechazdo?preradicado=' + row.Preradicado + '" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                    if (row.estado_general_numero === 9) {
+                        return '<a href="' + baseURL + 'api/ActasGeneradas/Rechazados?prerradicado=' + row.preradicado + '" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
                         //return 'Pendiente';
-                    } else if (row.Radicado === null) {
+                    } else if (row.radicado === null) {
                         return 'Pendiente';
                     } 
                     else {
-                      return '<a href="#" class="btn btn-secondary btn-sm" role="button" id="' + row.codigo + ' onclick="getErrores(' + row.codigo + ')" "><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                        return '<a href="' + baseURL + 'api/ActasGeneradas/Radicados?radicado=' + row.radicado + '&prerradicado=' + row.preradicado+'" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
                     //return 'Pendiente';
                     }
                     

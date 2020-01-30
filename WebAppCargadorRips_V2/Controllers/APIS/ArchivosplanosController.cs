@@ -299,59 +299,70 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             int iSortCol = Convert.ToInt32(nvc["iSortCol_0"]);
             //provides your sort order (asc/desc)
             string sortOrder = nvc["sSortDir_0"].ToString();
-            var result = new List<VW_Seguimiento_Web>();//new List<VW_Listado_Estado_Rips>();
+            var result = new List<VW_Auditoria_RIPS>();//new List<VW_Listado_Estado_Rips>();
+            var Cantidad = 0;
             //Search query when sSearch is not empty
             if (sSearch != "" && sSearch != null) //If there is search query
             {
 
-                result = (from VLR in bd.VW_Seguimiento_Web
-                          where (VLR.Preradicado.ToString().Contains(sSearch.ToString())
-                          || VLR.Tipo_Usuario.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.Categoria.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.Periodo_inicio.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.Periodo_Fin.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.Fecha_Carga.ToString().Contains(sSearch.ToString())
-                          || VLR.estado_id.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.Estado.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.radicacion_id.ToString().ToLower().Contains(sSearch.ToString())
+                result = (from VLR in bd.VW_Auditoria_RIPS
+                          where (VLR.preradicado.ToString().Contains(sSearch.ToString())
+                          || VLR.tipo_usuario_afilicion.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.categoria.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.periodo_inicio.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.periodo_fin.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.preradicado_fecha.ToString().Contains(sSearch.ToString())
+                          || VLR.extranjero.ToString().Contains(sSearch.ToString())
+                          || VLR.estado_general_numero.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.estado_general.ToString().ToLower().Contains(sSearch.ToString())
+                          || VLR.radicado.ToString().ToLower().Contains(sSearch.ToString())
                           )
-                          where VLR.FK_usuario == fktoken
-                          orderby VLR.Fecha_Carga descending
+                          where VLR.web_usuario_id == fktoken
+                          orderby VLR.preradicado ascending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }
             else //Si no hay valores a buscar
             {
-                result = (from VLR in bd.VW_Seguimiento_Web
-                          where VLR.FK_usuario == fktoken
-                          orderby VLR.Fecha_Carga ascending
-                          select VLR).ToList();
-                // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
+                result = (from VLR in bd.VW_Auditoria_RIPS
+                          where VLR.web_usuario_id == fktoken
+                          group VLR by new { VLR.periodo_inicio, VLR.extranjero} into grp
+                          select grp.OrderByDescending(y => y.periodo_inicio).FirstOrDefault()
+                          ).ToList();
+                //).Where(s => s.periodo_inicio == result.Max(x=> x.periodo_inicio)).First();
+                //https://stackoverflow.com/questions/38204748/linq-query-to-order-a-list-based-on-date-and-get-distinct
+                //select VLR).GroupBy(r => new { r.tipo_usuario_afilicion }).Max(k => k.periodo_inicio).ToList();
+                //select VLR).OrderByDescending(r => r.periodo_inicio).ToList();
+                // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  select VLR).Max(k => k.periodo_inicio).ToList();
+                
+                //get total value count
+                Cantidad = result.Count();//bd.VW_Auditoria_RIPS.Where(v => v.web_usuario_id == fktoken).Count();
+
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }
 
-            //get total value count
-            var Cantidad = bd.VW_Seguimiento_Web.Where(v => v.FK_usuario == fktoken).Count();
+            
 
             //se Creo un modelo para datatable paging and sending data & enter all the required values
-            var VWListadoPaged = new SysDataTablePager<VW_Seguimiento_Web>(result, Cantidad, Cantidad, sEcho);
+            var VWListadoPaged = new SysDataTablePager<VW_Auditoria_RIPS>(result, Cantidad, Cantidad, sEcho);
 
             return VWListadoPaged;
         }
 
 
         //Funcion de ordenado
-        private List<VW_Seguimiento_Web> SortFunction(int iSortCol, string sortOrder, List<VW_Seguimiento_Web> list)
+        private List<VW_Auditoria_RIPS> SortFunction(int iSortCol, string sortOrder, List<VW_Auditoria_RIPS> list)
         {
 
             //Sorting for String columns
             if (iSortCol == 1 || iSortCol == 0)
             {
-                Func<VW_Seguimiento_Web, long> orderingFunction = (c => iSortCol == 1 ? c.Preradicado : c.Preradicado); // compara la columna a ordenar
+                Func<VW_Auditoria_RIPS, long?> orderingFunction = (c => iSortCol == 1 || iSortCol == 0 ? c.preradicado : c.preradicado); // compara la columna a ordenar
 
+                //if (sortOrder == "desc")
                 if (sortOrder == "desc")
-                {
+                    {
                     list = list.OrderByDescending(orderingFunction).ToList();
                 }
                 else
@@ -363,7 +374,103 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             //Sorting for Int columns TODO
             else if (iSortCol == 2)
             {
-                Func<VW_Seguimiento_Web, long> orderingFunction = (c => iSortCol == 2 ? c.Preradicado : c.Preradicado); // compara la columna a ordenar
+                Func<VW_Auditoria_RIPS, string> orderingFunction = (c => iSortCol == 2 ? c.tipo_usuario_afilicion : c.tipo_usuario_afilicion); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns TODO
+            else if (iSortCol == 3)
+            {
+                Func<VW_Auditoria_RIPS, string> orderingFunction = (c => iSortCol == 2 ? c.categoria : c.categoria); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns extranjero
+            else if (iSortCol == 4)
+            {
+                Func<VW_Auditoria_RIPS, bool?> orderingFunction = (c => iSortCol == 2 ? false : c.extranjero); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns TODO
+            else if (iSortCol == 5)
+            {
+                Func<VW_Auditoria_RIPS, DateTime?> orderingFunction = (c => iSortCol == 2 ? c.periodo_inicio : c.periodo_inicio); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns TODO
+            else if (iSortCol == 6)
+            {
+                Func<VW_Auditoria_RIPS, DateTime?> orderingFunction = (c => iSortCol == 2 ? c.periodo_fin : c.periodo_fin); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns TODO
+            else if (iSortCol == 7)
+            {
+                Func<VW_Auditoria_RIPS, DateTime?> orderingFunction = (c => iSortCol == 2 ? c.preradicado_fecha : c.preradicado_fecha); // compara la columna a ordenar
+
+                if (sortOrder == "desc")
+                {
+                    list = list.OrderByDescending(orderingFunction).ToList();
+                }
+                else
+                {
+                    list = list.OrderBy(orderingFunction).ToList();
+
+                }
+            }
+
+            //Sorting for Int columns TODO
+            else if (iSortCol == 8)
+            {
+                Func<VW_Auditoria_RIPS, string> orderingFunction = (c => iSortCol == 2 ? c.estado_general : c.estado_general); // compara la columna a ordenar
 
                 if (sortOrder == "desc")
                 {

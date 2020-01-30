@@ -68,7 +68,7 @@
     <script>
         $(document).ready(function () {
             
-            token =@Html.Raw(@HttpContext.Current.User.Identity.Name.Split('|')[0]);
+            token =@Html.Raw(@HttpContext.Current.User.Identity.Name);
             //
             getAllAdmin(token);
             

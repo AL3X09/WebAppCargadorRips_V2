@@ -360,120 +360,51 @@
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Radicacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="VW_Radicacion">
+advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_Auditoria_RIPS">
           <Key>
-            <PropertyRef Name="radicado" />
-            <PropertyRef Name="servicio_radicacion_id" />
+            <PropertyRef Name="RN" />
           </Key>
-          <Property Name="radicado" Type="int" Nullable="false" />
-          <Property Name="servicio_validacion_id" Type="bigint" />
-          <Property Name="servicio_radicacion_id" Type="bigint" Nullable="false" />
-          <Property Name="estado_validacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="estado_radicado" Type="nvarchar" MaxLength="100" />
-          <Property Name="estado_carga" Type="nvarchar" MaxLength="100" />
-          <Property Name="categoria" Type="nvarchar" MaxLength="60" />
-          <Property Name="afiliacion" Type="nvarchar" MaxLength="20" />
-          <Property Name="condicion" Type="nvarchar" MaxLength="50" />
-          <Property Name="entidad_reporta" Type="nvarchar" MaxLength="20" />
-          <Property Name="prestador" Type="nvarchar" MaxLength="10" />
-          <Property Name="administradora_id" Type="bigint" />
+          <Property Name="RN" Type="bigint" Nullable="false" />
+          <Property Name="estado_general_numero" Type="tinyint" />
+          <Property Name="estado_general" Type="nvarchar" MaxLength="201" />
+          <Property Name="preradicado" Type="bigint" />
+          <Property Name="preradicado_fecha" Type="smalldatetime" />
+          <Property Name="preradicado_estado" Type="nvarchar" MaxLength="100" />
+          <Property Name="validacion_fecha" Type="smalldatetime" />
+          <Property Name="validacion_usuario" Type="nvarchar" MaxLength="20" />
+          <Property Name="validacion_estado" Type="nvarchar" MaxLength="100" />
+          <Property Name="radicado" Type="int" />
+          <Property Name="radicado_fecha" Type="smalldatetime" />
+          <Property Name="radicacion_estado" Type="nvarchar" MaxLength="100" />
+          <Property Name="prestador_id" Type="bigint" />
+          <Property Name="prestador" Type="nvarchar" MaxLength="12" />
+          <Property Name="prestador_habilitacion" Type="nvarchar" MaxLength="10" />
+          <Property Name="prestador_Sede" Type="nvarchar" MaxLength="2" />
+          <Property Name="prestador_nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="prestador_sede_nombre" Type="nvarchar" MaxLength="200" />
+          <Property Name="prestador_red_adscrita" Type="bit" />
+          <Property Name="prestador_habilitado" Type="bit" />
           <Property Name="periodo_inicio" Type="smalldatetime" />
           <Property Name="periodo_fin" Type="smalldatetime" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="60" />
+          <Property Name="tipo_usuario_afilicion" Type="nvarchar" MaxLength="20" />
+          <Property Name="tipo_usuario_condicion" Type="nvarchar" MaxLength="50" />
+          <Property Name="extranjero" Type="bit" />
           <Property Name="us" Type="int" />
           <Property Name="af" Type="int" />
           <Property Name="ac" Type="int" />
           <Property Name="ap" Type="int" />
           <Property Name="au" Type="int" />
           <Property Name="ah" Type="int" />
-          <Property Name="an" Type="int" />
           <Property Name="am" Type="int" />
+          <Property Name="an" Type="int" />
           <Property Name="at" Type="int" />
-          <Property Name="validacion_fecha" Type="smalldatetime" />
-          <Property Name="radicacion_fecha" Type="smalldatetime" />
+          <Property Name="web_usuario_id" Type="bigint" />
+          <Property Name="web_validacion" Type="bigint" />
+          <Property Name="servicio_validacion" Type="bigint" />
+          <Property Name="carga_estado" Type="nvarchar" MaxLength="100" />
           <Property Name="carga_fecha" Type="smalldatetime" />
-          <Property Name="usuario_validacion" Type="nvarchar" MaxLength="20" />
-          <Property Name="radicacion_usuario" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Seguimiento_Web' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="VW_Seguimiento_Web">
-          <Key>
-            <PropertyRef Name="Preradicado" />
-            <PropertyRef Name="Tipo Usuario" />
-            <PropertyRef Name="Categoria" />
-            <PropertyRef Name="Extranjero" />
-            <PropertyRef Name="Fecha Carga" />
-            <PropertyRef Name="FK_usuario" />
-            <PropertyRef Name="FK_estado_preradicacion" />
-            <PropertyRef Name="Estado Preradicacion" />
-          </Key>
-          <Property Name="Preradicado" Type="bigint" Nullable="false" />
-          <Property Name="Radicado" Type="int" />
-          <Property Name="Tipo Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Categoria" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="Extranjero" Type="bit" Nullable="false" />
-          <Property Name="Periodo inicio" Type="date" />
-          <Property Name="Periodo Fin" Type="date" />
-          <Property Name="Fecha Carga" Type="smalldatetime" Nullable="false" />
-          <Property Name="FK_usuario" Type="bigint" Nullable="false" />
-          <Property Name="FK_estado_preradicacion" Type="bigint" Nullable="false" />
-          <Property Name="Estado Preradicacion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Estado Preradicacion Descripcion" Type="nvarchar" MaxLength="255" />
-          <Property Name="validacion_id" Type="bigint" />
-          <Property Name="FK_estado_validacion" Type="bigint" />
-          <Property Name="Estado Validacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="Estado Validacion Descripcion" Type="nvarchar" MaxLength="255" />
-          <Property Name="radicacion_id" Type="bigint" />
-          <Property Name="FK_estado_radicacion" Type="bigint" />
-          <Property Name="Estado Radicacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="Estado Radicacion Descripcion" Type="nvarchar" MaxLength="255" />
-          <Property Name="estado_id" Type="bigint" />
-          <Property Name="Estado" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="VW_Servicio_Validacion">
-          <Key>
-            <PropertyRef Name="servicio_validacion_id" />
-            <PropertyRef Name="us" />
-            <PropertyRef Name="af" />
-            <PropertyRef Name="ac" />
-            <PropertyRef Name="ap" />
-            <PropertyRef Name="au" />
-            <PropertyRef Name="ah" />
-            <PropertyRef Name="an" />
-            <PropertyRef Name="am" />
-            <PropertyRef Name="at" />
-          </Key>
-          <Property Name="servicio_validacion_id" Type="bigint" Nullable="false" />
-          <Property Name="servicio_radicacion_id" Type="bigint" />
-          <Property Name="radicado" Type="int" />
-          <Property Name="estado_validacion" Type="nvarchar" MaxLength="100" />
-          <Property Name="estado_radicado" Type="nvarchar" MaxLength="100" />
-          <Property Name="estado_carga" Type="nvarchar" MaxLength="100" />
-          <Property Name="categoria" Type="nvarchar" MaxLength="60" />
-          <Property Name="afiliacion" Type="nvarchar" MaxLength="20" />
-          <Property Name="condicion" Type="nvarchar" MaxLength="50" />
-          <Property Name="entidad_reporta" Type="nvarchar" MaxLength="20" />
-          <Property Name="prestador" Type="nvarchar" MaxLength="10" />
-          <Property Name="administradora_id" Type="bigint" />
-          <Property Name="periodo_inicio" Type="smalldatetime" />
-          <Property Name="periodo_fin" Type="smalldatetime" />
-          <Property Name="us" Type="int" Nullable="false" />
-          <Property Name="af" Type="int" Nullable="false" />
-          <Property Name="ac" Type="int" Nullable="false" />
-          <Property Name="ap" Type="int" Nullable="false" />
-          <Property Name="au" Type="int" Nullable="false" />
-          <Property Name="ah" Type="int" Nullable="false" />
-          <Property Name="an" Type="int" Nullable="false" />
-          <Property Name="am" Type="int" Nullable="false" />
-          <Property Name="at" Type="int" Nullable="false" />
-          <Property Name="validacion_fecha" Type="smalldatetime" />
-          <Property Name="radicacion_fecha" Type="smalldatetime" />
-          <Property Name="carga_fecha" Type="smalldatetime" />
-          <Property Name="usuario_validacion" Type="nvarchar" MaxLength="20" />
-          <Property Name="radicacion_usuario" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__Categoria__estad__0169315C">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
@@ -978,95 +909,49 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
           <EntitySet Name="Web_Documento" EntityType="Self.Web_Documento" Schema="Referencia" store:Type="Tables" />
           <EntitySet Name="Web_Pregunta_Frecuente" EntityType="Self.Web_Pregunta_Frecuente" Schema="Referencia" store:Type="Tables" />
           <EntitySet Name="Web_Usuario" EntityType="Self.Web_Usuario" Schema="Referencia" store:Type="Tables" />
-          <EntitySet Name="VW_Radicacion" EntityType="Self.VW_Radicacion" store:Type="Views" store:Schema="Auditoria">
+          <EntitySet Name="VW_Auditoria_RIPS" EntityType="Self.VW_Auditoria_RIPS" store:Type="Views" store:Schema="Auditoria">
             <DefiningQuery>SELECT 
-    [VW_Radicacion].[radicado] AS [radicado], 
-    [VW_Radicacion].[servicio_validacion_id] AS [servicio_validacion_id], 
-    [VW_Radicacion].[servicio_radicacion_id] AS [servicio_radicacion_id], 
-    [VW_Radicacion].[estado_validacion] AS [estado_validacion], 
-    [VW_Radicacion].[estado_radicado] AS [estado_radicado], 
-    [VW_Radicacion].[estado_carga] AS [estado_carga], 
-    [VW_Radicacion].[categoria] AS [categoria], 
-    [VW_Radicacion].[afiliacion] AS [afiliacion], 
-    [VW_Radicacion].[condicion] AS [condicion], 
-    [VW_Radicacion].[entidad_reporta] AS [entidad_reporta], 
-    [VW_Radicacion].[prestador] AS [prestador], 
-    [VW_Radicacion].[administradora_id] AS [administradora_id], 
-    [VW_Radicacion].[periodo_inicio] AS [periodo_inicio], 
-    [VW_Radicacion].[periodo_fin] AS [periodo_fin], 
-    [VW_Radicacion].[us] AS [us], 
-    [VW_Radicacion].[af] AS [af], 
-    [VW_Radicacion].[ac] AS [ac], 
-    [VW_Radicacion].[ap] AS [ap], 
-    [VW_Radicacion].[au] AS [au], 
-    [VW_Radicacion].[ah] AS [ah], 
-    [VW_Radicacion].[an] AS [an], 
-    [VW_Radicacion].[am] AS [am], 
-    [VW_Radicacion].[at] AS [at], 
-    [VW_Radicacion].[validacion_fecha] AS [validacion_fecha], 
-    [VW_Radicacion].[radicacion_fecha] AS [radicacion_fecha], 
-    [VW_Radicacion].[carga_fecha] AS [carga_fecha], 
-    [VW_Radicacion].[usuario_validacion] AS [usuario_validacion], 
-    [VW_Radicacion].[radicacion_usuario] AS [radicacion_usuario]
-    FROM [Auditoria].[VW_Radicacion] AS [VW_Radicacion]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="VW_Seguimiento_Web" EntityType="Self.VW_Seguimiento_Web" store:Type="Views" store:Schema="Auditoria">
-            <DefiningQuery>SELECT 
-    [VW_Seguimiento_Web].[Preradicado] AS [Preradicado], 
-    [VW_Seguimiento_Web].[Radicado] AS [Radicado], 
-    [VW_Seguimiento_Web].[Tipo Usuario] AS [Tipo Usuario], 
-    [VW_Seguimiento_Web].[Categoria] AS [Categoria], 
-    [VW_Seguimiento_Web].[Extranjero] AS [Extranjero], 
-    [VW_Seguimiento_Web].[Periodo inicio] AS [Periodo inicio], 
-    [VW_Seguimiento_Web].[Periodo Fin] AS [Periodo Fin], 
-    [VW_Seguimiento_Web].[Fecha Carga] AS [Fecha Carga], 
-    [VW_Seguimiento_Web].[FK_usuario] AS [FK_usuario], 
-    [VW_Seguimiento_Web].[FK_estado_preradicacion] AS [FK_estado_preradicacion], 
-    [VW_Seguimiento_Web].[Estado Preradicacion] AS [Estado Preradicacion], 
-    [VW_Seguimiento_Web].[Estado Preradicacion Descripcion] AS [Estado Preradicacion Descripcion], 
-    [VW_Seguimiento_Web].[validacion_id] AS [validacion_id], 
-    [VW_Seguimiento_Web].[FK_estado_validacion] AS [FK_estado_validacion], 
-    [VW_Seguimiento_Web].[Estado Validacion] AS [Estado Validacion], 
-    [VW_Seguimiento_Web].[Estado Validacion Descripcion] AS [Estado Validacion Descripcion], 
-    [VW_Seguimiento_Web].[radicacion_id] AS [radicacion_id], 
-    [VW_Seguimiento_Web].[FK_estado_radicacion] AS [FK_estado_radicacion], 
-    [VW_Seguimiento_Web].[Estado Radicacion] AS [Estado Radicacion], 
-    [VW_Seguimiento_Web].[Estado Radicacion Descripcion] AS [Estado Radicacion Descripcion], 
-    [VW_Seguimiento_Web].[estado_id] AS [estado_id], 
-    [VW_Seguimiento_Web].[Estado] AS [Estado]
-    FROM [Auditoria].[VW_Seguimiento_Web] AS [VW_Seguimiento_Web]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="VW_Servicio_Validacion" EntityType="Self.VW_Servicio_Validacion" store:Type="Views" store:Schema="Auditoria">
-            <DefiningQuery>SELECT 
-    [VW_Servicio_Validacion].[servicio_validacion_id] AS [servicio_validacion_id], 
-    [VW_Servicio_Validacion].[servicio_radicacion_id] AS [servicio_radicacion_id], 
-    [VW_Servicio_Validacion].[radicado] AS [radicado], 
-    [VW_Servicio_Validacion].[estado_validacion] AS [estado_validacion], 
-    [VW_Servicio_Validacion].[estado_radicado] AS [estado_radicado], 
-    [VW_Servicio_Validacion].[estado_carga] AS [estado_carga], 
-    [VW_Servicio_Validacion].[categoria] AS [categoria], 
-    [VW_Servicio_Validacion].[afiliacion] AS [afiliacion], 
-    [VW_Servicio_Validacion].[condicion] AS [condicion], 
-    [VW_Servicio_Validacion].[entidad_reporta] AS [entidad_reporta], 
-    [VW_Servicio_Validacion].[prestador] AS [prestador], 
-    [VW_Servicio_Validacion].[administradora_id] AS [administradora_id], 
-    [VW_Servicio_Validacion].[periodo_inicio] AS [periodo_inicio], 
-    [VW_Servicio_Validacion].[periodo_fin] AS [periodo_fin], 
-    [VW_Servicio_Validacion].[us] AS [us], 
-    [VW_Servicio_Validacion].[af] AS [af], 
-    [VW_Servicio_Validacion].[ac] AS [ac], 
-    [VW_Servicio_Validacion].[ap] AS [ap], 
-    [VW_Servicio_Validacion].[au] AS [au], 
-    [VW_Servicio_Validacion].[ah] AS [ah], 
-    [VW_Servicio_Validacion].[an] AS [an], 
-    [VW_Servicio_Validacion].[am] AS [am], 
-    [VW_Servicio_Validacion].[at] AS [at], 
-    [VW_Servicio_Validacion].[validacion_fecha] AS [validacion_fecha], 
-    [VW_Servicio_Validacion].[radicacion_fecha] AS [radicacion_fecha], 
-    [VW_Servicio_Validacion].[carga_fecha] AS [carga_fecha], 
-    [VW_Servicio_Validacion].[usuario_validacion] AS [usuario_validacion], 
-    [VW_Servicio_Validacion].[radicacion_usuario] AS [radicacion_usuario]
-    FROM [Auditoria].[VW_Servicio_Validacion] AS [VW_Servicio_Validacion]</DefiningQuery>
+    [VW_Auditoria_RIPS].[RN] AS [RN], 
+    [VW_Auditoria_RIPS].[estado_general_numero] AS [estado_general_numero], 
+    [VW_Auditoria_RIPS].[estado_general] AS [estado_general], 
+    [VW_Auditoria_RIPS].[preradicado] AS [preradicado], 
+    [VW_Auditoria_RIPS].[preradicado_fecha] AS [preradicado_fecha], 
+    [VW_Auditoria_RIPS].[preradicado_estado] AS [preradicado_estado], 
+    [VW_Auditoria_RIPS].[validacion_fecha] AS [validacion_fecha], 
+    [VW_Auditoria_RIPS].[validacion_usuario] AS [validacion_usuario], 
+    [VW_Auditoria_RIPS].[validacion_estado] AS [validacion_estado], 
+    [VW_Auditoria_RIPS].[radicado] AS [radicado], 
+    [VW_Auditoria_RIPS].[radicado_fecha] AS [radicado_fecha], 
+    [VW_Auditoria_RIPS].[radicacion_estado] AS [radicacion_estado], 
+    [VW_Auditoria_RIPS].[prestador_id] AS [prestador_id], 
+    [VW_Auditoria_RIPS].[prestador] AS [prestador], 
+    [VW_Auditoria_RIPS].[prestador_habilitacion] AS [prestador_habilitacion], 
+    [VW_Auditoria_RIPS].[prestador_Sede] AS [prestador_Sede], 
+    [VW_Auditoria_RIPS].[prestador_nombre] AS [prestador_nombre], 
+    [VW_Auditoria_RIPS].[prestador_sede_nombre] AS [prestador_sede_nombre], 
+    [VW_Auditoria_RIPS].[prestador_red_adscrita] AS [prestador_red_adscrita], 
+    [VW_Auditoria_RIPS].[prestador_habilitado] AS [prestador_habilitado], 
+    [VW_Auditoria_RIPS].[periodo_inicio] AS [periodo_inicio], 
+    [VW_Auditoria_RIPS].[periodo_fin] AS [periodo_fin], 
+    [VW_Auditoria_RIPS].[categoria] AS [categoria], 
+    [VW_Auditoria_RIPS].[tipo_usuario_afilicion] AS [tipo_usuario_afilicion], 
+    [VW_Auditoria_RIPS].[tipo_usuario_condicion] AS [tipo_usuario_condicion], 
+    [VW_Auditoria_RIPS].[extranjero] AS [extranjero], 
+    [VW_Auditoria_RIPS].[us] AS [us], 
+    [VW_Auditoria_RIPS].[af] AS [af], 
+    [VW_Auditoria_RIPS].[ac] AS [ac], 
+    [VW_Auditoria_RIPS].[ap] AS [ap], 
+    [VW_Auditoria_RIPS].[au] AS [au], 
+    [VW_Auditoria_RIPS].[ah] AS [ah], 
+    [VW_Auditoria_RIPS].[am] AS [am], 
+    [VW_Auditoria_RIPS].[an] AS [an], 
+    [VW_Auditoria_RIPS].[at] AS [at], 
+    [VW_Auditoria_RIPS].[web_usuario_id] AS [web_usuario_id], 
+    [VW_Auditoria_RIPS].[web_validacion] AS [web_validacion], 
+    [VW_Auditoria_RIPS].[servicio_validacion] AS [servicio_validacion], 
+    [VW_Auditoria_RIPS].[carga_estado] AS [carga_estado], 
+    [VW_Auditoria_RIPS].[carga_fecha] AS [carga_fecha]
+    FROM [Auditoria].[VW_Auditoria_RIPS] AS [VW_Auditoria_RIPS]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Categoria__estad__0169315C" Association="Self.FK__Categoria__estad__0169315C">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
@@ -1541,82 +1426,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
           <NavigationProperty Name="Estado_RIPS" Relationship="Self.FK_usuario_estado_rips" FromRole="Web_Usuario" ToRole="Estado_RIPS" />
           <NavigationProperty Name="Prestador" Relationship="Self.FK_usuario_prestador" FromRole="Web_Usuario" ToRole="Prestador" />
         </EntityType>
-        <EntityType Name="VW_Radicacion">
-          <Key>
-            <PropertyRef Name="radicado" />
-            <PropertyRef Name="servicio_radicacion_id" />
-          </Key>
-          <Property Name="radicado" Type="Int32" Nullable="false" />
-          <Property Name="servicio_validacion_id" Type="Int64" />
-          <Property Name="servicio_radicacion_id" Type="Int64" Nullable="false" />
-          <Property Name="estado_validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="estado_radicado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="estado_carga" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="afiliacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="condicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="entidad_reporta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="prestador" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="administradora_id" Type="Int64" />
-          <Property Name="periodo_inicio" Type="DateTime" Precision="0" />
-          <Property Name="periodo_fin" Type="DateTime" Precision="0" />
-          <Property Name="us" Type="Int32" />
-          <Property Name="af" Type="Int32" />
-          <Property Name="ac" Type="Int32" />
-          <Property Name="ap" Type="Int32" />
-          <Property Name="au" Type="Int32" />
-          <Property Name="ah" Type="Int32" />
-          <Property Name="an" Type="Int32" />
-          <Property Name="am" Type="Int32" />
-          <Property Name="at" Type="Int32" />
-          <Property Name="validacion_fecha" Type="DateTime" Precision="0" />
-          <Property Name="radicacion_fecha" Type="DateTime" Precision="0" />
-          <Property Name="carga_fecha" Type="DateTime" Precision="0" />
-          <Property Name="usuario_validacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="radicacion_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="VW_Servicio_Validacion">
-          <Key>
-            <PropertyRef Name="servicio_validacion_id" />
-            <PropertyRef Name="us" />
-            <PropertyRef Name="af" />
-            <PropertyRef Name="ac" />
-            <PropertyRef Name="ap" />
-            <PropertyRef Name="au" />
-            <PropertyRef Name="ah" />
-            <PropertyRef Name="an" />
-            <PropertyRef Name="am" />
-            <PropertyRef Name="at" />
-          </Key>
-          <Property Name="servicio_validacion_id" Type="Int64" Nullable="false" />
-          <Property Name="servicio_radicacion_id" Type="Int64" />
-          <Property Name="radicado" Type="Int32" />
-          <Property Name="estado_validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="estado_radicado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="estado_carga" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="afiliacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="condicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="entidad_reporta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="prestador" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="administradora_id" Type="Int64" />
-          <Property Name="periodo_inicio" Type="DateTime" Precision="0" />
-          <Property Name="periodo_fin" Type="DateTime" Precision="0" />
-          <Property Name="us" Type="Int32" Nullable="false" />
-          <Property Name="af" Type="Int32" Nullable="false" />
-          <Property Name="ac" Type="Int32" Nullable="false" />
-          <Property Name="ap" Type="Int32" Nullable="false" />
-          <Property Name="au" Type="Int32" Nullable="false" />
-          <Property Name="ah" Type="Int32" Nullable="false" />
-          <Property Name="an" Type="Int32" Nullable="false" />
-          <Property Name="am" Type="Int32" Nullable="false" />
-          <Property Name="at" Type="Int32" Nullable="false" />
-          <Property Name="validacion_fecha" Type="DateTime" Precision="0" />
-          <Property Name="radicacion_fecha" Type="DateTime" Precision="0" />
-          <Property Name="carga_fecha" Type="DateTime" Precision="0" />
-          <Property Name="usuario_validacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="radicacion_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK__Web_Prera__FK_pr__70A8B9AE">
           <End Role="Estado_RIPS" Type="Self.Estado_RIPS" Multiplicity="1" />
           <End Role="Web_Preradicacion" Type="Self.Web_Preradicacion" Multiplicity="*" />
@@ -1915,8 +1724,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
           <EntitySet Name="Web_Documento" EntityType="Self.Web_Documento" />
           <EntitySet Name="Web_Pregunta_Frecuente" EntityType="Self.Web_Pregunta_Frecuente" />
           <EntitySet Name="Web_Usuario" EntityType="Self.Web_Usuario" />
-          <EntitySet Name="VW_Radicacion" EntityType="Self.VW_Radicacion" />
-          <EntitySet Name="VW_Servicio_Validacion" EntityType="Self.VW_Servicio_Validacion" />
           <AssociationSet Name="FK__Web_Prera__FK_pr__70A8B9AE" Association="Self.FK__Web_Prera__FK_pr__70A8B9AE">
             <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
             <End Role="Web_Preradicacion" EntitySet="Web_Preradicacion" />
@@ -2009,15 +1816,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
             <End Role="Prestador" EntitySet="Prestador" />
             <End Role="Web_Usuario" EntitySet="Web_Usuario" />
           </AssociationSet>
-          <FunctionImport Name="SP_Web_Insert_Datos_Rips_a_Validar" ReturnType="Collection(RipsModel.SP_Web_Insert_Datos_Rips_a_Validar_Result)">
-            <Parameter Name="TipoUsuario" Mode="In" Type="String" />
-            <Parameter Name="Categoria" Mode="In" Type="String" />
-            <Parameter Name="Extranjero" Mode="In" Type="Boolean" />
-            <Parameter Name="PeriodoFechaInicio" Mode="In" Type="String" />
-            <Parameter Name="PeriodoFechaFin" Mode="In" Type="String" />
-            <Parameter Name="IdUser" Mode="In" Type="String" />
-            <Parameter Name="FkEstado" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_Web_Insert_Rips_a_Preradicar" ReturnType="Collection(RipsModel.SP_Web_Insert_Rips_a_Preradicar_Result)">
             <Parameter Name="IdUser" Mode="In" Type="Int64" />
             <Parameter Name="webvalidacion_id" Mode="In" Type="Int64" />
@@ -2161,14 +1959,17 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
             <Parameter Name="Contrasenia" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Directorios" EntityType="RipsModel.Directorios" />
-          <EntitySet Name="VW_Seguimiento_Web" EntityType="RipsModel.VW_Seguimiento_Web" />
+          <FunctionImport Name="SP_Web_Insert_Datos_Rips_a_Validar" ReturnType="Collection(RipsModel.SP_Web_Insert_Datos_Rips_a_Validar_Result)">
+            <Parameter Name="TipoUsuario" Mode="In" Type="String" />
+            <Parameter Name="Categoria" Mode="In" Type="String" />
+            <Parameter Name="Extranjero" Mode="In" Type="Boolean" />
+            <Parameter Name="PeriodoFechaInicio" Mode="In" Type="String" />
+            <Parameter Name="PeriodoFechaFin" Mode="In" Type="String" />
+            <Parameter Name="IdUser" Mode="In" Type="String" />
+            <Parameter Name="FkEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="VW_Auditoria_RIPS" EntityType="RipsModel.VW_Auditoria_RIPS" />
           </EntityContainer>
-        <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
-          <Property Type="Int32" Name="codigo" Nullable="false" />
-          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="mensaje" Nullable="false" />
-          <Property Type="Int32" Name="ultimoIdInsert" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="SP_Web_Insert_Rips_a_Preradicar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
@@ -2536,39 +2337,56 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
           <Property Name="usuario_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contraseña_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="VW_Seguimiento_Web">
+        <ComplexType Name="SP_Web_Insert_Datos_Rips_a_Validar_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mensaje" Nullable="false" />
+          <Property Type="Int32" Name="ultimoIdInsert" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="VW_Auditoria_RIPS">
           <Key>
-            <PropertyRef Name="Preradicado" />
-            <PropertyRef Name="Tipo_Usuario" />
-            <PropertyRef Name="Categoria" />
-            <PropertyRef Name="Extranjero" />
-            <PropertyRef Name="Fecha_Carga" />
-            <PropertyRef Name="FK_usuario" />
-            <PropertyRef Name="FK_estado_preradicacion" />
-            <PropertyRef Name="Estado_Preradicacion" />
+            <PropertyRef Name="RN" />
           </Key>
-          <Property Name="Preradicado" Type="Int64" Nullable="false" />
-          <Property Name="Radicado" Type="Int32" />
-          <Property Name="Tipo_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Extranjero" Type="Boolean" Nullable="false" />
-          <Property Name="Periodo_inicio" Type="DateTime" Precision="0" />
-          <Property Name="Periodo_Fin" Type="DateTime" Precision="0" />
-          <Property Name="Fecha_Carga" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FK_usuario" Type="Int64" Nullable="false" />
-          <Property Name="FK_estado_preradicacion" Type="Int64" Nullable="false" />
-          <Property Name="Estado_Preradicacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Preradicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="validacion_id" Type="Int64" />
-          <Property Name="FK_estado_validacion" Type="Int64" />
-          <Property Name="Estado_Validacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Validacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="radicacion_id" Type="Int64" />
-          <Property Name="FK_estado_radicacion" Type="Int64" />
-          <Property Name="Estado_Radicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Estado_Radicacion_Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="estado_id" Type="Int64" />
-          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RN" Type="Int64" Nullable="false" />
+          <Property Name="estado_general_numero" Type="Byte" />
+          <Property Name="estado_general" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="preradicado" Type="Int64" />
+          <Property Name="preradicado_fecha" Type="DateTime" Precision="0" />
+          <Property Name="preradicado_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="validacion_fecha" Type="DateTime" Precision="0" />
+          <Property Name="validacion_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="validacion_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="radicado" Type="Int32" />
+          <Property Name="radicado_fecha" Type="DateTime" Precision="0" />
+          <Property Name="radicacion_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_id" Type="Int64" />
+          <Property Name="prestador" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_habilitacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_Sede" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_sede_nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="prestador_red_adscrita" Type="Boolean" />
+          <Property Name="prestador_habilitado" Type="Boolean" />
+          <Property Name="periodo_inicio" Type="DateTime" Precision="0" />
+          <Property Name="periodo_fin" Type="DateTime" Precision="0" />
+          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_usuario_afilicion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_usuario_condicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="extranjero" Type="Boolean" />
+          <Property Name="us" Type="Int32" />
+          <Property Name="af" Type="Int32" />
+          <Property Name="ac" Type="Int32" />
+          <Property Name="ap" Type="Int32" />
+          <Property Name="au" Type="Int32" />
+          <Property Name="ah" Type="Int32" />
+          <Property Name="am" Type="Int32" />
+          <Property Name="an" Type="Int32" />
+          <Property Name="at" Type="Int32" />
+          <Property Name="web_usuario_id" Type="Int64" />
+          <Property Name="web_validacion" Type="Int64" />
+          <Property Name="servicio_validacion" Type="Int64" />
+          <Property Name="carga_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="carga_fecha" Type="DateTime" Precision="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2887,84 +2705,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VW_Radicacion">
-            <EntityTypeMapping TypeName="RipsModel.VW_Radicacion">
-              <MappingFragment StoreEntitySet="VW_Radicacion">
-                <ScalarProperty Name="radicado" ColumnName="radicado" />
-                <ScalarProperty Name="servicio_validacion_id" ColumnName="servicio_validacion_id" />
-                <ScalarProperty Name="servicio_radicacion_id" ColumnName="servicio_radicacion_id" />
-                <ScalarProperty Name="estado_validacion" ColumnName="estado_validacion" />
-                <ScalarProperty Name="estado_radicado" ColumnName="estado_radicado" />
-                <ScalarProperty Name="estado_carga" ColumnName="estado_carga" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="afiliacion" ColumnName="afiliacion" />
-                <ScalarProperty Name="condicion" ColumnName="condicion" />
-                <ScalarProperty Name="entidad_reporta" ColumnName="entidad_reporta" />
-                <ScalarProperty Name="prestador" ColumnName="prestador" />
-                <ScalarProperty Name="administradora_id" ColumnName="administradora_id" />
-                <ScalarProperty Name="periodo_inicio" ColumnName="periodo_inicio" />
-                <ScalarProperty Name="periodo_fin" ColumnName="periodo_fin" />
-                <ScalarProperty Name="us" ColumnName="us" />
-                <ScalarProperty Name="af" ColumnName="af" />
-                <ScalarProperty Name="ac" ColumnName="ac" />
-                <ScalarProperty Name="ap" ColumnName="ap" />
-                <ScalarProperty Name="au" ColumnName="au" />
-                <ScalarProperty Name="ah" ColumnName="ah" />
-                <ScalarProperty Name="an" ColumnName="an" />
-                <ScalarProperty Name="am" ColumnName="am" />
-                <ScalarProperty Name="at" ColumnName="at" />
-                <ScalarProperty Name="validacion_fecha" ColumnName="validacion_fecha" />
-                <ScalarProperty Name="radicacion_fecha" ColumnName="radicacion_fecha" />
-                <ScalarProperty Name="carga_fecha" ColumnName="carga_fecha" />
-                <ScalarProperty Name="usuario_validacion" ColumnName="usuario_validacion" />
-                <ScalarProperty Name="radicacion_usuario" ColumnName="radicacion_usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_Servicio_Validacion">
-            <EntityTypeMapping TypeName="RipsModel.VW_Servicio_Validacion">
-              <MappingFragment StoreEntitySet="VW_Servicio_Validacion">
-                <ScalarProperty Name="servicio_validacion_id" ColumnName="servicio_validacion_id" />
-                <ScalarProperty Name="servicio_radicacion_id" ColumnName="servicio_radicacion_id" />
-                <ScalarProperty Name="radicado" ColumnName="radicado" />
-                <ScalarProperty Name="estado_validacion" ColumnName="estado_validacion" />
-                <ScalarProperty Name="estado_radicado" ColumnName="estado_radicado" />
-                <ScalarProperty Name="estado_carga" ColumnName="estado_carga" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="afiliacion" ColumnName="afiliacion" />
-                <ScalarProperty Name="condicion" ColumnName="condicion" />
-                <ScalarProperty Name="entidad_reporta" ColumnName="entidad_reporta" />
-                <ScalarProperty Name="prestador" ColumnName="prestador" />
-                <ScalarProperty Name="administradora_id" ColumnName="administradora_id" />
-                <ScalarProperty Name="periodo_inicio" ColumnName="periodo_inicio" />
-                <ScalarProperty Name="periodo_fin" ColumnName="periodo_fin" />
-                <ScalarProperty Name="us" ColumnName="us" />
-                <ScalarProperty Name="af" ColumnName="af" />
-                <ScalarProperty Name="ac" ColumnName="ac" />
-                <ScalarProperty Name="ap" ColumnName="ap" />
-                <ScalarProperty Name="au" ColumnName="au" />
-                <ScalarProperty Name="ah" ColumnName="ah" />
-                <ScalarProperty Name="an" ColumnName="an" />
-                <ScalarProperty Name="am" ColumnName="am" />
-                <ScalarProperty Name="at" ColumnName="at" />
-                <ScalarProperty Name="validacion_fecha" ColumnName="validacion_fecha" />
-                <ScalarProperty Name="radicacion_fecha" ColumnName="radicacion_fecha" />
-                <ScalarProperty Name="carga_fecha" ColumnName="carga_fecha" />
-                <ScalarProperty Name="usuario_validacion" ColumnName="usuario_validacion" />
-                <ScalarProperty Name="radicacion_usuario" ColumnName="radicacion_usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_Web_Insert_Datos_Rips_a_Validar" FunctionName="RipsModel.Store.SP_Web_Insert_Datos_Rips_a_Validar">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="RipsModel.SP_Web_Insert_Datos_Rips_a_Validar_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-                <ScalarProperty Name="ultimoIdInsert" ColumnName="ultimoIdInsert" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Web_Insert_Rips_a_Preradicar" FunctionName="RipsModel.Store.SP_Web_Insert_Rips_a_Preradicar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="RipsModel.SP_Web_Insert_Rips_a_Preradicar_Result">
@@ -3309,31 +3049,59 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Servicio_Validacion' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VW_Seguimiento_Web">
-            <EntityTypeMapping TypeName="RipsModel.VW_Seguimiento_Web">
-              <MappingFragment StoreEntitySet="VW_Seguimiento_Web">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="estado_id" ColumnName="estado_id" />
-                <ScalarProperty Name="Estado_Radicacion_Descripcion" ColumnName="Estado Radicacion Descripcion" />
-                <ScalarProperty Name="Estado_Radicacion" ColumnName="Estado Radicacion" />
-                <ScalarProperty Name="FK_estado_radicacion" ColumnName="FK_estado_radicacion" />
-                <ScalarProperty Name="radicacion_id" ColumnName="radicacion_id" />
-                <ScalarProperty Name="Estado_Validacion_Descripcion" ColumnName="Estado Validacion Descripcion" />
-                <ScalarProperty Name="Estado_Validacion" ColumnName="Estado Validacion" />
-                <ScalarProperty Name="FK_estado_validacion" ColumnName="FK_estado_validacion" />
-                <ScalarProperty Name="validacion_id" ColumnName="validacion_id" />
-                <ScalarProperty Name="Estado_Preradicacion_Descripcion" ColumnName="Estado Preradicacion Descripcion" />
-                <ScalarProperty Name="Estado_Preradicacion" ColumnName="Estado Preradicacion" />
-                <ScalarProperty Name="FK_estado_preradicacion" ColumnName="FK_estado_preradicacion" />
-                <ScalarProperty Name="FK_usuario" ColumnName="FK_usuario" />
-                <ScalarProperty Name="Fecha_Carga" ColumnName="Fecha Carga" />
-                <ScalarProperty Name="Periodo_Fin" ColumnName="Periodo Fin" />
-                <ScalarProperty Name="Periodo_inicio" ColumnName="Periodo inicio" />
-                <ScalarProperty Name="Extranjero" ColumnName="Extranjero" />
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="Tipo_Usuario" ColumnName="Tipo Usuario" />
-                <ScalarProperty Name="Radicado" ColumnName="Radicado" />
-                <ScalarProperty Name="Preradicado" ColumnName="Preradicado" />
+          <FunctionImportMapping FunctionImportName="SP_Web_Insert_Datos_Rips_a_Validar" FunctionName="RipsModel.Store.SP_Web_Insert_Datos_Rips_a_Validar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_Web_Insert_Datos_Rips_a_Validar_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="ultimoIdInsert" ColumnName="ultimoIdInsert" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="VW_Auditoria_RIPS">
+            <EntityTypeMapping TypeName="RipsModel.VW_Auditoria_RIPS">
+              <MappingFragment StoreEntitySet="VW_Auditoria_RIPS">
+                <ScalarProperty Name="carga_fecha" ColumnName="carga_fecha" />
+                <ScalarProperty Name="carga_estado" ColumnName="carga_estado" />
+                <ScalarProperty Name="servicio_validacion" ColumnName="servicio_validacion" />
+                <ScalarProperty Name="web_validacion" ColumnName="web_validacion" />
+                <ScalarProperty Name="web_usuario_id" ColumnName="web_usuario_id" />
+                <ScalarProperty Name="at" ColumnName="at" />
+                <ScalarProperty Name="an" ColumnName="an" />
+                <ScalarProperty Name="am" ColumnName="am" />
+                <ScalarProperty Name="ah" ColumnName="ah" />
+                <ScalarProperty Name="au" ColumnName="au" />
+                <ScalarProperty Name="ap" ColumnName="ap" />
+                <ScalarProperty Name="ac" ColumnName="ac" />
+                <ScalarProperty Name="af" ColumnName="af" />
+                <ScalarProperty Name="us" ColumnName="us" />
+                <ScalarProperty Name="extranjero" ColumnName="extranjero" />
+                <ScalarProperty Name="tipo_usuario_condicion" ColumnName="tipo_usuario_condicion" />
+                <ScalarProperty Name="tipo_usuario_afilicion" ColumnName="tipo_usuario_afilicion" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="periodo_fin" ColumnName="periodo_fin" />
+                <ScalarProperty Name="periodo_inicio" ColumnName="periodo_inicio" />
+                <ScalarProperty Name="prestador_habilitado" ColumnName="prestador_habilitado" />
+                <ScalarProperty Name="prestador_red_adscrita" ColumnName="prestador_red_adscrita" />
+                <ScalarProperty Name="prestador_sede_nombre" ColumnName="prestador_sede_nombre" />
+                <ScalarProperty Name="prestador_nombre" ColumnName="prestador_nombre" />
+                <ScalarProperty Name="prestador_Sede" ColumnName="prestador_Sede" />
+                <ScalarProperty Name="prestador_habilitacion" ColumnName="prestador_habilitacion" />
+                <ScalarProperty Name="prestador" ColumnName="prestador" />
+                <ScalarProperty Name="prestador_id" ColumnName="prestador_id" />
+                <ScalarProperty Name="radicacion_estado" ColumnName="radicacion_estado" />
+                <ScalarProperty Name="radicado_fecha" ColumnName="radicado_fecha" />
+                <ScalarProperty Name="radicado" ColumnName="radicado" />
+                <ScalarProperty Name="validacion_estado" ColumnName="validacion_estado" />
+                <ScalarProperty Name="validacion_usuario" ColumnName="validacion_usuario" />
+                <ScalarProperty Name="validacion_fecha" ColumnName="validacion_fecha" />
+                <ScalarProperty Name="preradicado_estado" ColumnName="preradicado_estado" />
+                <ScalarProperty Name="preradicado_fecha" ColumnName="preradicado_fecha" />
+                <ScalarProperty Name="preradicado" ColumnName="preradicado" />
+                <ScalarProperty Name="estado_general" ColumnName="estado_general" />
+                <ScalarProperty Name="estado_general_numero" ColumnName="estado_general_numero" />
+                <ScalarProperty Name="RN" ColumnName="RN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

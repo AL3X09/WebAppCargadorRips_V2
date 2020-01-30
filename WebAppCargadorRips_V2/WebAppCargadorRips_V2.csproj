@@ -349,7 +349,6 @@
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Controllers\TerminosController.cs" />
     <Compile Include="Controllers\Tipo_UsuarioController.cs" />
-    <Compile Include="Controllers\VW_RadicacionController.cs" />
     <Compile Include="Controllers\Web_AdministradoresController.cs" />
     <Compile Include="Controllers\Web_Correo_Sin_RestriccionController.cs" />
     <Compile Include="Controllers\Web_DocumentoController.cs" />
@@ -497,13 +496,7 @@
     <Compile Include="EF_Models\Tipo_Usuario.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\VW_Radicacion.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\VW_Seguimiento_Web.cs">
-      <DependentUpon>ModelBDRips.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\VW_Servicio_Validacion.cs">
+    <Compile Include="EF_Models\VW_Auditoria_RIPS.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Web_Administrador.cs">
@@ -1395,11 +1388,6 @@
     <Content Include="Views\Plantilla_Correo\Details.cshtml" />
     <Content Include="Views\Plantilla_Correo\Edit.cshtml" />
     <Content Include="Views\Plantilla_Correo\Index.cshtml" />
-    <Content Include="Views\VW_Radicacion\Create.cshtml" />
-    <Content Include="Views\VW_Radicacion\Delete.cshtml" />
-    <Content Include="Views\VW_Radicacion\Details.cshtml" />
-    <Content Include="Views\VW_Radicacion\Edit.cshtml" />
-    <Content Include="Views\VW_Radicacion\Index.cshtml" />
     <Content Include="Views\Correos\Create.cshtml" />
     <Content Include="Views\Correos\Delete.cshtml" />
     <Content Include="Views\Correos\Details.cshtml" />

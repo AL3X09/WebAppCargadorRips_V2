@@ -162,7 +162,7 @@
                     
                     <div>
                         <!-- se usa para enviar el ID del usuario-->
-                        <input type="hidden" name="idUsuario" id="idUsuario" value="@HttpContext.Current.User.Identity.Name"/>
+                        <input type="hidden" name="idUsuario" id="idUsuario" value="@HttpContext.Current.User.Identity.Name.TrimEnd('|')"/>
                     </div>
 
                     <div class="row d-flex justify-content-center">
