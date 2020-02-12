@@ -1,5 +1,6 @@
 ﻿/**
  * Created by Alex on 15/06/2019.
+ * Si busca el JS que controla la sesiones y el tablero se encuntra en el Layout.js
  */
 
 $(document).ready(function () {

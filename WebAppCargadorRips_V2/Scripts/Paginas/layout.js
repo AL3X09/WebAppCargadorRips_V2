@@ -1,11 +1,12 @@
-﻿/**
+﻿
+/**
  * Created by Alex on 11/03/2017.
  * https://www.it-swarm.net/es/asp.net/asp.net-mvc-establecer-identidad-personalizada-o-iprincipal/967225311/
  */
 const getUrl = window.location;
 var token;
-const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
-//const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
+//const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
+const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
     
@@ -259,8 +260,8 @@ function getAllME(token) {
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
         //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
-        console.error(textStatus, errorThrown); // Algo fallo
-        //window.location.href = baseURL + "Cuenta";
+        //console.error(textStatus, errorThrown); // Algo fallo
+        window.location.href = baseURL + "Sesion";
     })
 
 }

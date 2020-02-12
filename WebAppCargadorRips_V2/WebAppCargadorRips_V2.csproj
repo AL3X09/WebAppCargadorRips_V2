@@ -847,8 +847,8 @@
     <Content Include="Img\administracion\roles.png" />
     <Content Include="Img\administracion\tipo_usuario.png" />
     <Content Include="Img\administracion\usuarios.png" />
+    <Content Include="Img\avatarsusers\1100199999.jpeg" />
     <Content Include="Img\avatarsusers\avatar.png" />
-    <Content Include="Img\avatarsusers\yop.jpg" />
     <Content Include="Img\backgrounds\bg.jpg" />
     <Content Include="Img\backgrounds\cookies.jpeg" />
     <Content Include="Img\backgrounds\copyrigth.jpg" />
@@ -867,6 +867,7 @@
     <Content Include="Img\lightbox\preloader.gif" />
     <Content Include="Img\logos\alcaldia_logo.png" />
     <Content Include="Img\logos\alcaldia_logo2.jpg" />
+    <Content Include="Img\logos\alcaldia_logo2.png" />
     <Content Include="Img\logos\logo.ico" />
     <Content Include="Img\logos\logo.png" />
     <Content Include="Img\logos\logo2.png" />
@@ -1080,9 +1081,9 @@
     <Content Include="Scripts\gijgo\modular\timepicker.min.js" />
     <Content Include="Scripts\gijgo\modular\tree.js" />
     <Content Include="Scripts\gijgo\modular\tree.min.js" />
-    <Content Include="Pdfrespuestas\EjemploActa de aprobacion.pdf" />
-    <Content Include="Pdfrespuestas\EjemploActa de rechazo.pdf" />
     <None Include="Properties\PublishProfiles\caragdorripsv2.pubxml" />
+    <Content Include="RIPSCargados\6812.zip" />
+    <Content Include="RIPSCargados\BodyPart_520a277b-c241-4582-a4a4-40511727757e" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Izitoast\iziToast.js" />
     <Content Include="Scripts\Izitoast\iziToast.min.js" />

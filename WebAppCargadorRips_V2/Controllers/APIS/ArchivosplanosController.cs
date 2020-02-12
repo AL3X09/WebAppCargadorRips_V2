@@ -335,9 +335,9 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 //select VLR).GroupBy(r => new { r.tipo_usuario_afilicion }).Max(k => k.periodo_inicio).ToList();
                 //select VLR).OrderByDescending(r => r.periodo_inicio).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  select VLR).Max(k => k.periodo_inicio).ToList();
-                
+
                 //get total value count
-                Cantidad = result.Count();//bd.VW_Auditoria_RIPS.Where(v => v.web_usuario_id == fktoken).Count();
+                Cantidad = result.Count();
 
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }

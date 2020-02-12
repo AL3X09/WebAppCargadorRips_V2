@@ -1,4 +1,5 @@
 ﻿<!-- DESARROLLADO POR ALEX CIFUENTES SANCHEZ-->
+<!-- NO ES FUNCIONAL VERIFICAR-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,11 +68,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script>
         $(document).ready(function () {
-            
+
             token =@Html.Raw(@HttpContext.Current.User.Identity.Name);
             //
             getAllAdmin(token);
-            
+
         });
     </script>
     @RenderSection("scripts", required: false)

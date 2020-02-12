@@ -38,7 +38,8 @@ namespace WebAppCargadorRips_V2.Controllers
                 ViewBag.SomeData = TempData["cambiocontraseniasucces"].ToString();
                 //cierro sesiones
                 FormsAuthentication.SignOut();
-                Session.Abandon();
+                //Session.Abandon();
+                Logout();
             }
 
             return View();
@@ -517,8 +518,12 @@ namespace WebAppCargadorRips_V2.Controllers
 
                         var obj = db.Web_Administrador.Where(u => u.usuario.Equals(model.Usuario)).FirstOrDefault();
                        
-                        //FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString(), true);
-                        FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString()+ "|" + obj.FK_web_administrador_rol.ToString(), true);
+                        FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString(), true);
+                        //FormsAuthentication.SetAuthCookie(obj.administrador_id.ToString()+ "|" + obj.FK_web_administrador_rol.ToString(), true);
+                        //Pongo en cookie el rol del usuario para traer los datos del tablero de control
+                        HttpCookie cookierl = new HttpCookie("fkrol", obj.FK_web_administrador_rol.ToString());
+                        //cookierl.Expires= DateTime.
+                        ControllerContext.HttpContext.Response.SetCookie(cookierl);
 
                         //return RedirectToAction("IndexAdmin", "Tablero");
                         return RedirectToAction("Index", "Tablero");

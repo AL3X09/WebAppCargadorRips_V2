@@ -74,13 +74,13 @@ function cargaratabla(token) {
                 'mData': "Acciones", 'mRender': function (data, type, row) {
 
                     if (row.estado_general_numero === 9) {
-                        return '<a href="' + baseURL + 'api/ActasGeneradas/Rechazados?prerradicado=' + row.preradicado + '" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                        return '<a href="' + baseURL + 'api/ActasGeneradas/Rechazados?prerradicado=' + row.preradicado + '" target="_blank"><img src="' + baseURL + '/Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
                         //return 'Pendiente';
                     } else if (row.radicado === null) {
                         return 'Pendiente';
                     } 
                     else {
-                        return '<a href="' + baseURL + 'api/ActasGeneradas/Radicados?radicado=' + row.radicado + '&prerradicado=' + row.preradicado+'" target="_blank"><img src="../Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
+                        return '<a href="' + baseURL + 'api/ActasGeneradas/Radicados?radicado=' + row.radicado + '&prerradicado=' + row.preradicado + '" target="_blank"><img src="' + baseURL + '/Img/tboton/apdf.png" alt="Generar PDF" height="42" width="42"></a>';
                     //return 'Pendiente';
                     }
                     
