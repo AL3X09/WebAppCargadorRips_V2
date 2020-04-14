@@ -11,14 +11,13 @@ namespace WebAppCargadorRips_V2.EF_Models
 {
     using System;
     
-    public partial class SP_GetAllPreguntasFrecuentes_Result
+    public partial class SP_GetContactos_Result
     {
-        public long IdPreguntas_Frecuentes { get; set; }
-        public Nullable<int> tipo { get; set; }
-        public string Nombre_Preguntas { get; set; }
-        public string pregunta_frecuente { get; set; }
-        public string respuesta_preguntas { get; set; }
-        public string NombreEstado { get; set; }
-        public long FK_estado { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public string correo { get; set; }
+        public int extension { get; set; }
+        public string descripcion { get; set; }
+        public string imagen { get; set; }
     }
 }

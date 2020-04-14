@@ -324,6 +324,7 @@
     <Compile Include="Controllers\APIS\FechasController.cs" />
     <Compile Include="Controllers\APIS\LogsController.cs" />
     <Compile Include="Controllers\APIS\DocsRedascritacontroller.cs" />
+    <Compile Include="Controllers\APIS\ContactoController.cs" />
     <Compile Include="Controllers\APIS\ManualesController.cs" />
     <Compile Include="Controllers\APIS\NormatividadController.cs" />
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
@@ -437,6 +438,9 @@
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\SP_GetAllPresentacionesAyuda_Result.cs">
+      <DependentUpon>ModelBDRips.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_GetContactos_Result.cs">
       <DependentUpon>ModelBDRips.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\SP_GetDatosUsuario_Result.cs">
@@ -1417,6 +1421,9 @@
     <Content Include="Views\Sesion\IndexAdmin.cshtml" />
     <Content Include="Views\Sesion\ViewPartialLoginAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin_.cshtml" />
+    <Content Include="Views\Ayuda\Index - Copia.cshtml" />
+    <Content Include="Views\Shared\_LayoutExternal.cshtml" />
+    <Content Include="Views\Shared\_NavbarExternal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

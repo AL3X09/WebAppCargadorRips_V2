@@ -22,7 +22,7 @@ function getManuales() {
                 $('#listmanuales').append(
 
                     '<div class="">' +
-                    '<div class="card-header card-header-info">' +
+                    '<div class="card-header card-header-info mt-3">' +
                     '<a class="card-link" data-toggle="collapse" href="#v.pregunta_frecuente">' +
                     '<div><a href="' + v.ruta + '" class="secondary-content title" target="_blank">' + v.descripcion + ' <i class="material-icons">send</i></a></div>' +
                     '</a>' +
@@ -48,32 +48,83 @@ function getManuales() {
 
 //llamo la api y alimento el ul de pregunta frecuente
 function getPreguntasFrecuentes() {
-
-    $.ajax({
+    var j = 0;
+    var conte1 = "";
+    var conte2 = "";
+    //let conte2 = new Array();
+        $.ajax({
         type: "GET",
         url: baseURL + "api/Preguntas/Listar",
-        success: function (response) {
-            //console.log(response);
-            $.each(response, function (i, v) {
-                $('#listpreguntas').append(
-                    '<div id="sectionP' +i+ '">' +
-                    '<div class="card card-header-info">' +
-                    '<div class="card-header" id="sectionP' + i + '">' +
-                    '<h5 class="mb-0">' +
-                    '<button class="btn btn-link card-title" data-toggle="collapse" data-target="#P' + i + '" aria-expanded="true" aria-controls="P' + i + '">' +
-                    v.pregunta_frecuente +
-                    '</button>' +
-                    '</h5>' +
-                    '</div>' +
-                    '<div id="P' + i + '" class="collapse" aria-labelledby="sectionP' + i + '" data-parent="#sectionP' +i+ '">' +
-                    '<div class="card-body">' +
-                    v.respuesta_preguntas +
-                    '</div>' +
-                    ' </div>' +
-                    '</div>' +
-                    '</div>'
+            success: function (response) {
+
+               
+
+                $.each(response, function (i, v) {
+                    ///console.log(conte2[10]);
+                    if (j !== v.tipo) {
+                    j = v.tipo;
+                        conte1 += '<div id="sectionP' + i + '">' +
+                            '<div class="card card-header-info mt-3">' +
+                            '<div class="card-header" id="sectionP' + i + '">' +
+                            '<h5 class="mb-0">' +
+                            '<button class="btn btn-link card-title" data-toggle="collapse" data-target="#P' + i + '" aria-expanded="true" aria-controls="P' + i + '">' +
+                            v.Nombre_Preguntas +
+                            '</button>' +
+                            '</h5>' +
+                            '</div>' +
+                            '<div id="P' + i + '" class="collapse" aria-labelledby="sectionP' + i + '" data-parent="#sectionP' + i + '">' +
+                            '<div class="card-body" id="subpreguntas' +j+'">'+
+
+                            //v.respuesta_preguntas +
+                            
+
+                             '</div>' +
+                            ' </div>' +
+                            '</div>' +
+                            '</div>';
+
+                        //'<div id="subpreguntas' + j + '"></div>' +
+                }
+
+               
+                });
+
+                $('#listpreguntas').html(
+                    //console.log(conte)
+                    conte1
                 )
-            });
+                
+                
+
+                $.each(response, function (k, y) {
+                    
+                    
+                    conte2 += '<div class="card mt-3">' +
+                        '<div class="card-header" id="sectionJ'+k+'">' +
+                        '<h5 class="mb-0"><button class="btn btn-link  btn-round card-title" data-toggle="collapse" data-target="#J' + k + '" aria-expanded="true" aria-controls="J' + k + '">' +
+                        '<h4 class="card-subtitle mb-2 text-muted">' + y.pregunta_frecuente +'</h4>'+
+                       
+                        '</button>' +
+                        '</h5>' +
+                        '</div>' +
+                        '<div id="J'+k+'" class="collapse" aria-laben lledby="sectionJ'+k+'" data-parent="#sectionJ'+k+'">' +
+                        '<div class="card-body">' +
+                        y.respuesta_preguntas +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                    $('#subpreguntas' + y.tipo).append(conte2);
+                    //$(conte2).append('#subpreguntas' + y.tipo);
+                    //console.dir(document.getElementById("#subpreguntas'" + y.tipo + '"'));
+                    
+                    //$('#subpreguntas' + y.tipo).append("<strong>Hello</strong>");
+
+                    //console.log(conte2);
+                    conte2 = "";
+                    
+                });
+
+           
 
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -102,7 +153,7 @@ function getPresentaciones() {
             $.each(response, function (i, v) {
                 $('#listpresentaciones').append(
                     '<div class="">' +
-                    '<div class="card-header card-header-info">' +
+                    '<div class="card-header card-header-info mt-3">' +
                     '<a class="card-link " data-toggle="collapse" href="#v.pregunta_frecuente">' +
                     '<div><a href="' + v.ruta + '" class="secondary-content title" target="_blank">' + v.descripcion + ' <i class="material-icons">send</i></a></div>' +
                     '</a>'+
@@ -139,7 +190,7 @@ function getNormatividad() {
             $.each(response, function (i, v) {
                 $('#listresolucionesnormas').append(
                     '<div class="">' +
-                    '<div class="card-header card-header-info">' +
+                    '<div class="card-header card-header-info mt-3">' +
                     '<a class="card-link" data-toggle="collapse" href="#v.pregunta_frecuente">' +
                     '<div><a href="' + v.ruta + '" class="secondary-content title" target="_blank">' + v.descripcion + ' <i class="material-icons">send</i></a></div>' +
                     '</a>' +
@@ -175,7 +226,7 @@ function getRedadscrita() {
 
                 $('#listdocredascrita').append(
                     '<div class="">' +
-                    '<div class="card-header card-header-info">' +
+                    '<div class="card-header card-header-info mt-3">' +
                     '<a class="card-link" data-toggle="collapse" href="#v.doc_redascrita">' +
                     '<div><a href="' + v.ruta + '" class="secondary-content title" target="_blank">' + v.descripcion + ' <i class="material-icons">send</i></a></div>' +
                     '</a>' +
@@ -205,7 +256,7 @@ function getContactos() {
 
     $.ajax({
         type: "GET",
-        url: baseURL + "api/Usuarios/ListarContactos",
+        url: baseURL + "api/Contactos/Listar",
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {
@@ -220,7 +271,7 @@ function getContactos() {
                             '</div>'+
                             '<div class="card-body">'+
                                     
-                                    '<h4 class="card-title">' + v.nombre + ' ' + v.apellido + '</h4>'+
+                                    '<h4 class="card-title">' + v.nombres + ' ' + v.apellidos + '</h4>'+
                                     '<p class="card-description">'+
                                         '<p><strong>Descripción:</strong></p>' +
                                         '<p>' + v.descripcion + '</p>' +
@@ -229,7 +280,7 @@ function getContactos() {
                                         '<spam>' + v.correo + '</spam>' +
                                         '</div>' +
                                         '<div class="card-action">' +
-                                        '<p> EXT:' + v.extencion + '</p>' +
+                                        '<p> EXT:' + v.extension + '</p>' +
                                     '</p>'+
                              '</div>'+
                         '</div>'+

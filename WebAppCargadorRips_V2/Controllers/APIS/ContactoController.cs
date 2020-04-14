@@ -10,30 +10,26 @@ using WebAppCargadorRips_V2.EF_Models;
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
     //[Authorize]
-    [RoutePrefix("api/Presentaciones")]
-    public class PresentacionesAyudaController : ApiController
+    [RoutePrefix("api/Contactos")]
+    public class ContactoController : ApiController
     {
-
         private RipsEntitiesConnection db = new RipsEntitiesConnection();
 
         //constructor
-        PresentacionesAyudaController()
+        ContactoController()
         {
 
         }
 
-        //RECORDAR QUE SE DEBE HABILITAR CORS + INFO IR AL LINK
-        //https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
-
         ///<summary>
-        /// Lista de las presentaciones de ayuda existentes en el aplicativo
+        /// Lista de los links manuales de la base de datos
         ///</summary>
         [HttpGet]
         [Route("Listar")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> Get()
         {
-            var result = db.SP_GetAllPresentacionesAyuda();
+            var result = db.SP_GetContactos();
             return result;
         }
     }

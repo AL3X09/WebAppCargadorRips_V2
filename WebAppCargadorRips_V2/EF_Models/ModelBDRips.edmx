@@ -289,6 +289,9 @@
           <Property Name="localidad_id" Type="bigint" />
           <Property Name="upz_id" Type="bigint" />
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="direccion_formateada" Type="nvarchar" MaxLength="120" />
+          <Property Name="direccion_geolocalizacion" Type="nvarchar" MaxLength="120" />
+          <Property Name="red_contratada_bogota" Type="bit" />
         </EntityType>
         <EntityType Name="Web_Administrador">
           <Key>
@@ -818,6 +821,7 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
         <Function Name="SP_GetAllPlantillasCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web" />
         <Function Name="SP_GetAllPreguntasFrecuentes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web" />
         <Function Name="SP_GetAllPresentacionesAyuda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web" />
+        <Function Name="SP_GetContactos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web" />
         <Function Name="SP_GetDatosUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Web">
           <Parameter Name="codigo" Type="nvarchar" Mode="In" />
         </Function>
@@ -1348,6 +1352,9 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
           <Property Name="upz_id" Type="Int64" />
           <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Web_Usuario" Relationship="Self.FK_usuario_prestador" FromRole="Prestador" ToRole="Web_Usuario" />
+          <Property Name="direccion_formateada" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="direccion_geolocalizacion" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="red_contratada_bogota" Type="Boolean" />
         </EntityType>
         <EntityType Name="Web_Administrador">
           <Key>
@@ -1842,7 +1849,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
           <FunctionImport Name="SP_GetAllManuales" ReturnType="Collection(RipsModel.SP_GetAllManuales_Result)" />
           <FunctionImport Name="SP_GetAllNormatividad" ReturnType="Collection(RipsModel.SP_GetAllNormatividad_Result)" />
           <FunctionImport Name="SP_GetAllPlantillasCorreo" ReturnType="Collection(RipsModel.SP_GetAllPlantillasCorreo_Result)" />
-          <FunctionImport Name="SP_GetAllPreguntasFrecuentes" ReturnType="Collection(RipsModel.SP_GetAllPreguntasFrecuentes_Result)" />
           <FunctionImport Name="SP_GetAllPresentacionesAyuda" ReturnType="Collection(RipsModel.SP_GetAllPresentacionesAyuda_Result)" />
           <FunctionImport Name="SP_GetEstadoRipsRecibidos" ReturnType="Collection(RipsModel.SP_GetEstadoRipsRecibidos_Result)">
           <Parameter Name="Prestador" Mode="In" Type="Int32" />
@@ -1969,6 +1975,8 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
             <Parameter Name="FkEstado" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="VW_Auditoria_RIPS" EntityType="RipsModel.VW_Auditoria_RIPS" />
+          <FunctionImport Name="SP_GetContactos" ReturnType="Collection(RipsModel.SP_GetContactos_Result)" />
+          <FunctionImport Name="SP_GetAllPreguntasFrecuentes" ReturnType="Collection(RipsModel.SP_GetAllPreguntasFrecuentes_Result)" />
           </EntityContainer>
         <ComplexType Name="SP_Web_Insert_Rips_a_Preradicar_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
@@ -2044,15 +2052,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
           <Property Type="String" Name="cuerpo" Nullable="false" MaxLength="Max" />
           <Property Type="Int64" Name="FK_plantillas_correo_estado_rips" Nullable="false" />
           <Property Type="String" Name="nombre_estado" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllPreguntasFrecuentes_Result">
-          <Property Type="Int64" Name="IdPreguntas_Frecuentes" Nullable="false" />
-          <Property Type="String" Name="Nombre_Preguntas" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="descripcion_pregunta" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="pregunta_frecuente" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="respuesta_preguntas" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="100" />
-          <Property Type="Int64" Name="FK_estado" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SP_GetAllPresentacionesAyuda_Result">
           <Property Type="Int64" Name="documento_id" Nullable="false" />
@@ -2388,6 +2387,23 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
           <Property Name="carga_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="carga_fecha" Type="DateTime" Precision="0" />
         </EntityType>
+        <ComplexType Name="SP_GetContactos_Result">
+          <Property Type="String" Name="nombres" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="extension" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="imagen" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllPreguntasFrecuentes_Result">
+          <Property Type="Int64" Name="IdPreguntas_Frecuentes" Nullable="false" />
+          <Property Type="Int32" Name="tipo" Nullable="true" />
+          <Property Type="String" Name="Nombre_Preguntas" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="pregunta_frecuente" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="respuesta_preguntas" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="FK_estado" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2592,6 +2608,9 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
           <EntitySetMapping Name="Prestador">
             <EntityTypeMapping TypeName="RipsModel.Prestador">
               <MappingFragment StoreEntitySet="Prestador">
+                <ScalarProperty Name="red_contratada_bogota" ColumnName="red_contratada_bogota" />
+                <ScalarProperty Name="direccion_geolocalizacion" ColumnName="direccion_geolocalizacion" />
+                <ScalarProperty Name="direccion_formateada" ColumnName="direccion_formateada" />
                 <ScalarProperty Name="prestador_id" ColumnName="prestador_id" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="habilitado" ColumnName="habilitado" />
@@ -2817,19 +2836,6 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
                 <ScalarProperty Name="cuerpo" ColumnName="cuerpo" />
                 <ScalarProperty Name="FK_plantillas_correo_estado_rips" ColumnName="FK_plantillas_correo_estado_rips" />
                 <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetAllPreguntasFrecuentes" FunctionName="RipsModel.Store.SP_GetAllPreguntasFrecuentes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="RipsModel.SP_GetAllPreguntasFrecuentes_Result">
-                <ScalarProperty Name="IdPreguntas_Frecuentes" ColumnName="IdPreguntas_Frecuentes" />
-                <ScalarProperty Name="Nombre_Preguntas" ColumnName="Nombre_Preguntas" />
-                <ScalarProperty Name="descripcion_pregunta" ColumnName="descripcion_pregunta" />
-                <ScalarProperty Name="pregunta_frecuente" ColumnName="pregunta_frecuente" />
-                <ScalarProperty Name="respuesta_preguntas" ColumnName="respuesta_preguntas" />
-                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
-                <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3105,6 +3111,31 @@ advertencia 6002: La tabla o vista 'Rips.Auditoria.VW_Auditoria_RIPS' no tiene d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetContactos" FunctionName="RipsModel.Store.SP_GetContactos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_GetContactos_Result">
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllPreguntasFrecuentes" FunctionName="RipsModel.Store.SP_GetAllPreguntasFrecuentes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RipsModel.SP_GetAllPreguntasFrecuentes_Result">
+                <ScalarProperty Name="IdPreguntas_Frecuentes" ColumnName="IdPreguntas_Frecuentes" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="Nombre_Preguntas" ColumnName="Nombre_Preguntas" />
+                <ScalarProperty Name="pregunta_frecuente" ColumnName="pregunta_frecuente" />
+                <ScalarProperty Name="respuesta_preguntas" ColumnName="respuesta_preguntas" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

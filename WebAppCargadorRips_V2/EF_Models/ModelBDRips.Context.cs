@@ -145,11 +145,6 @@ namespace WebAppCargadorRips_V2.EF_Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllPlantillasCorreo_Result>("SP_GetAllPlantillasCorreo");
         }
     
-        public virtual ObjectResult<SP_GetAllPreguntasFrecuentes_Result> SP_GetAllPreguntasFrecuentes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllPreguntasFrecuentes_Result>("SP_GetAllPreguntasFrecuentes");
-        }
-    
         public virtual ObjectResult<SP_GetAllPresentacionesAyuda_Result> SP_GetAllPresentacionesAyuda()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllPresentacionesAyuda_Result>("SP_GetAllPresentacionesAyuda");
@@ -448,6 +443,16 @@ namespace WebAppCargadorRips_V2.EF_Models
                 new ObjectParameter("FkEstado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, extranjeroParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetContactos_Result> SP_GetContactos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetContactos_Result>("SP_GetContactos");
+        }
+    
+        public virtual ObjectResult<SP_GetAllPreguntasFrecuentes_Result> SP_GetAllPreguntasFrecuentes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllPreguntasFrecuentes_Result>("SP_GetAllPreguntasFrecuentes");
         }
     }
 }

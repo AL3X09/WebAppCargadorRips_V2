@@ -9,7 +9,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Normatividad")]
     public class NormatividadController : ApiController
     {

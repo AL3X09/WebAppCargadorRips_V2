@@ -1,5 +1,4 @@
-﻿<!-- DESARROLLADO POR ALEX CIFUENTES SANCHEZ-->
-<!-- NO SE ESTA USANDO NO ES FUNCIONAL VERIFICAR-->
+﻿<!-- DESARROLLADO POR ALEX CIFUENTES SANCHEZ 19-03-2020-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,7 +35,7 @@
         <!--Main Panel-->
         <div class="main-panel">
             <!-- Navbar -->
-            @Html.Partial("_Navbar")
+            @Html.Partial("_NavbarExternal")
             <!-- /Navbar -->
             <!--Main layout-->
             <div class="content">
@@ -66,15 +65,7 @@
     @Scripts.Render("~/JSPaginas/layoutjs")
     <!--./cdn sweetalert2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script>
-        $(document).ready(function () {
-
-            token =@Html.Raw(@HttpContext.Current.User.Identity.Name);
-            //
-            getAllAdmin(token);
-
-        });
-    </script>
+   
     @RenderSection("scripts", required: false)
 
 </body>

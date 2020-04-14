@@ -11,7 +11,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/DocsRedadscrita")]
     public class DocsRedascritacontroller : ApiController
     {
@@ -39,7 +39,6 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                    descripcion= s.descripcion,
                    tipo = s.tipo,
                    ruta = s.ruta
-
                });
 
             //JsonResult result = db.Web_Documento;

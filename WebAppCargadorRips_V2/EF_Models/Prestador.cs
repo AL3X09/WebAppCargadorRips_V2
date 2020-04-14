@@ -56,6 +56,9 @@ namespace WebAppCargadorRips_V2.EF_Models
         public Nullable<long> localidad_id { get; set; }
         public Nullable<long> upz_id { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
+        public string direccion_formateada { get; set; }
+        public string direccion_geolocalizacion { get; set; }
+        public Nullable<bool> red_contratada_bogota { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Usuario> Web_Usuario { get; set; }

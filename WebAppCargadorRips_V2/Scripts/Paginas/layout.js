@@ -5,8 +5,8 @@
  */
 const getUrl = window.location;
 var token;
-//const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
-const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
+const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
+//const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
     
