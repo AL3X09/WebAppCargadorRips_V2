@@ -1424,6 +1424,7 @@
     <Content Include="Views\Ayuda\Index - Copia.cshtml" />
     <Content Include="Views\Shared\_LayoutExternal.cshtml" />
     <Content Include="Views\Shared\_NavbarExternal.cshtml" />
+    <Content Include="Views\Ayuda\AyudaExternal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

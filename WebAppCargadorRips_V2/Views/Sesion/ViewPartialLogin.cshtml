@@ -57,14 +57,14 @@
                 <div class="options text-center text-md-right mt-1">
                     <p>
                         @Html.ActionLink("¿Ha olvidado su contraseña?", "RecuperarContrasenia")
-                        @Html.ActionLink("Ayuda", "Index", "Ayuda")
+                        
                     </p>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="options text-center text-md-left mt-1">
                     <p>
-                        <a href="https://rips.gitbook.io/cargador-rips/" target="_blank">Ayuda</a>
+                        @Html.ActionLink("Ayuda", "AyudaExternal", new { controller = "Ayuda" }, new { target = "_blank" })
                     </p>
                 </div>
             </div>

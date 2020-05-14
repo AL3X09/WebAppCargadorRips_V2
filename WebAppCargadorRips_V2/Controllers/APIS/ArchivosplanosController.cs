@@ -15,6 +15,8 @@ using System.Security;
 using Ionic.Zip;
 using WebAppCargadorRips_V2.Models;
 using System.Web.Http.Cors;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
@@ -301,27 +303,35 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             string sortOrder = nvc["sSortDir_0"].ToString();
             var result = new List<VW_Auditoria_RIPS>();//new List<VW_Listado_Estado_Rips>();
             var Cantidad = 0;
+            //Console.WriteLine(Convert.ToDateTime(sSearch).ToString());
             //Search query when sSearch is not empty
             if (sSearch != "" && sSearch != null) //If there is search query
             {
+                
 
                 result = (from VLR in bd.VW_Auditoria_RIPS
-                          where (VLR.preradicado.ToString().Contains(sSearch.ToString())
-                          || VLR.tipo_usuario_afilicion.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.categoria.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.periodo_inicio.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.periodo_fin.Value.ToString().Contains(sSearch.ToString())
-                          || VLR.preradicado_fecha.ToString().Contains(sSearch.ToString())
-                          || VLR.extranjero.ToString().Contains(sSearch.ToString())
-                          || VLR.estado_general_numero.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.estado_general.ToString().ToLower().Contains(sSearch.ToString())
-                          || VLR.radicado.ToString().ToLower().Contains(sSearch.ToString())
-                          )
                           where VLR.web_usuario_id == fktoken
-                          orderby VLR.preradicado ascending
-                          select VLR).ToList();
+                          where (
+                          VLR.preradicado.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.radicado.Value.ToString().Contains(sSearch.ToString())
+                          || VLR.tipo_usuario_afilicion.ToString().ToLower().Contains(sSearch.ToString().ToLower())
+                          || VLR.categoria.ToString().ToLower().Contains(sSearch.ToString().ToLower())
+                          || VLR.estado_general.ToString().ToLower().Contains(sSearch.ToString().ToLower())
+                          || EntityFunctions.TruncateTime(VLR.preradicado_fecha).ToString().Contains(sSearch.ToString())
+                          || EntityFunctions.TruncateTime(VLR.periodo_inicio).ToString().Contains(sSearch.ToString())
+                          || EntityFunctions.TruncateTime(VLR.periodo_fin).ToString().Contains(sSearch.ToString())
+
+                          )
+                          group VLR by new { VLR.periodo_inicio, VLR.extranjero } into grp
+                          select grp.OrderBy(y => y.preradicado).FirstOrDefault()).ToList();
+
+                //get total value count
+                Cantidad = result.Count();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
+
+                /*orderby VLR.preradicado ascending
+                          select VLR).ToList();*/
             }
             else //Si no hay valores a buscar
             {

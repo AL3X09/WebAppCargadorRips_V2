@@ -13,7 +13,7 @@ using WebAppCargadorRips_V2.EF_Models;
 
 namespace WebAppCargadorRips_V2.Controllers.APIS
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Log")]
     public class LogsController : ApiController
     {
@@ -90,9 +90,9 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             try
             {
 
-                if (File.Exists(file))
+                if (File.Exists(nombrefile))
                 {
-                    File.AppendAllText(file, string.Concat("\r\n-------------------------------------- ", fechaActual, " --------------------------\r\n", texto, "\r\n"));
+                    File.AppendAllText(nombrefile, string.Concat("\r\n-------------------------------------- ", fechaActual, " --------------------------\r\n", texto, "\r\n"));
                     //using (StreamWriter sw = new StreamWriter(file))
                     //{
                     //sw.Write(texto);

@@ -14,5 +14,12 @@ namespace WebAppCargadorRips_V2.Controllers
         {
             return View();
         }
+
+        // GET: Ayuda
+        public ActionResult AyudaExternal()
+        {
+            return View();
+        }
+        
     }
 }

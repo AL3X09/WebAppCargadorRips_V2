@@ -196,18 +196,19 @@ function getAllME(token) {
         success: function (response) {
             //console.log(response);
             $.each(response, function (i, v) {
-                
                 var apellido;
                 if (v.apellidos == null) {
                     apellido = "";
                 } else {
                     apellido = v.apellidos;
                 }
+                //alguna de estos datos dinamicos estan en tablero/index o shared/sidebar
                 $("#imguser").attr("src", baseURL + v.imagen);
                 $("#imguserperfil").attr("src", baseURL + v.imagen);
                 $("#nombreuserspan").html(v.nombres + " " + apellido);
                 $("#prestador").html(v.nombres + " " + apellido);
                 $("#codigoprest").html(v.codigo);
+                $("#nombre_rol").html(v.nombre_rol);
                 $('#emailspan').html(v.correo);
                 if (v.id_rol === 1) {
                     $("#tokenacces").append(
@@ -312,8 +313,8 @@ function getControlTablero(id_rol) {
                     '<!-- Text -->' +
                     '<p class="card-text text-justify">' + v.descripcion + '</p>' +
                     '<!-- Button -->' +
-                    (v.nombre.search("validador") > 1 ? '<div id="validador">' :  '<div>') +
-                    (v.pr_crear == true ? '<a href = "' + (v.nombre.search("validador") > 1 ? v.ruta : baseURL + v.ruta ) + '" class= "btn btn-info" id = "btnTacceso">Acceder</a >' : '') +
+                    (v.nombre.toLowerCase().search("validador") > 1 ? '<div id="validador">' :  '<div>') +
+                    (v.pr_crear == true ? '<a ' + (v.nombre.toLowerCase().search("validador") > 1 ? ' href ="'+v.ruta+'" target="_blanc"' : 'href ="'+baseURL + v.ruta ) + '" class= "btn btn-info" id = "btnTacceso"  >Acceder</a >' : '') +
                     '</div>' +
                     '</div>' +
                     '</div >'
