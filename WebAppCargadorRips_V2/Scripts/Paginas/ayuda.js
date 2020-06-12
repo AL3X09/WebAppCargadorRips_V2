@@ -102,7 +102,7 @@ function getPreguntasFrecuentes() {
                     conte2 += '<div class="card mt-3">' +
                         '<div class="card-header" id="sectionJ'+k+'">' +
                         '<h5 class="mb-0"><button class="btn btn-link  btn-round card-title" data-toggle="collapse" data-target="#J' + k + '" aria-expanded="true" aria-controls="J' + k + '">' +
-                        '<h4 class="card-subtitle mb-2 text-muted">' + y.pregunta_frecuente +'</h4>'+
+                        '<h6 class="card-subtitle mb-2 text-muted">' + y.pregunta_frecuente +'</h6>'+
                        
                         '</button>' +
                         '</h5>' +

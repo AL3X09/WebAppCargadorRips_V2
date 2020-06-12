@@ -41,7 +41,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // GET: Web_Pregunta_Frecuente/Create
         public ActionResult Create()
         {
-            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo");
+            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre");
             return View();
         }
 
@@ -50,6 +50,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Create([Bind(Include = "pregunta_frecuente_id,nombre,descripcion,tipo,pregunta,respuesta,FK_pregunta_frecuente_estado_rips,fecha_modificacion")] Web_Pregunta_Frecuente web_Pregunta_Frecuente)
         {
             if (ModelState.IsValid)
@@ -59,7 +60,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
+            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
             return View(web_Pregunta_Frecuente);
         }
 
@@ -75,7 +76,7 @@ namespace WebAppCargadorRips_V2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
+            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
             return View(web_Pregunta_Frecuente);
         }
 
@@ -84,6 +85,7 @@ namespace WebAppCargadorRips_V2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Edit([Bind(Include = "pregunta_frecuente_id,nombre,descripcion,tipo,pregunta,respuesta,FK_pregunta_frecuente_estado_rips,fecha_modificacion")] Web_Pregunta_Frecuente web_Pregunta_Frecuente)
         {
             if (ModelState.IsValid)
@@ -92,7 +94,7 @@ namespace WebAppCargadorRips_V2.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "tipo", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
+            ViewBag.FK_pregunta_frecuente_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Pregunta_Frecuente.FK_pregunta_frecuente_estado_rips);
             return View(web_Pregunta_Frecuente);
         }
 

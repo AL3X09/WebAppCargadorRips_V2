@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security;
 using System.Security.Permissions;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -56,7 +58,7 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
             }
             catch (Exception e)
             {
-                Console.Write(e);
+                Console.Write(e.ToString());
             }
         }
 
@@ -117,7 +119,9 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Download_Logs() 
         {
+            //HttpResponseMessage response = null;
             HttpResponse Response = HttpContext.Current.Response;
+
             //Create HTTP Response.
             //HttpResponseMessage Response1 = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -151,16 +155,20 @@ namespace WebAppCargadorRips_V2.Controllers.APIS
                 }
                 else
                 {
-                    //Response.ContentType = "text/plain";
-                    //Response.Write("File not be found!");
-                    Response.Write("<script language=javascript>alert('ERROR');</script>");
-
+                    //string json = "{\"name\":\"Joe\"}";
+                    Response.ClearContent();
+                    Response.ContentType = "text/javascript";
+                    //Response.Write(json);
+                    Response.Write("<script language='javascript'>alert('ERROR "+ HttpStatusCode.NoContent+"');</script>");
+                    //Response.End();
                 }
-                
+
             }
             catch (Exception e)
             {
-                Response.Write("<script language=javascript>alert('ERROR');</script>");
+                Response.ClearContent();
+                Response.ContentType = "text/javascript";
+                Response.Write("<script language=javascript>alert('ERROR " + e.ToString() + "');</script>");
                 
             }
 

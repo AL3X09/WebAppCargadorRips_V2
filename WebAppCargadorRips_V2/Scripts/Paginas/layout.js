@@ -202,12 +202,14 @@ function getAllME(token) {
                 } else {
                     apellido = v.apellidos;
                 }
+                console.log(v);
                 //alguna de estos datos dinamicos estan en tablero/index o shared/sidebar
                 $("#imguser").attr("src", baseURL + v.imagen);
                 $("#imguserperfil").attr("src", baseURL + v.imagen);
                 $("#nombreuserspan").html(v.nombres + " " + apellido);
                 $("#prestador").html(v.nombres + " " + apellido);
                 $("#codigoprest").html(v.codigo);
+                v.nombre_rol !== undefined ? $("#nombre_rol").html(v.nombre_rol) : $("#nombre_rol").html(v.descripcion);
                 $("#nombre_rol").html(v.nombre_rol);
                 $('#emailspan').html(v.correo);
                 if (v.id_rol === 1) {

@@ -42,6 +42,7 @@ namespace WebAppCargadorRips_V2.Controllers
         public ActionResult Create()
         {
             ViewBag.FK_web_administrador_rol = new SelectList(db.Web_Rol, "rol_id", "nombre");
+            ViewBag.FK_web_administrador_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre");
             return View();
         }
 
@@ -50,7 +51,26 @@ namespace WebAppCargadorRips_V2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "administrador_id,usuario,contrasenia,nombres,apellidos,descripcion,correo,extension,imagen,FK_web_administrador_rol,FK_web_administrador_estado_rips,fecha_modificacion")] Web_Administrador web_Administrador)
+        public async Task<ActionResult> Create(string administrador_id, string usuario, string contrasenia, string nombres, string apellidos, string descripcion, string correo, string extension, int FK_web_administrador_rol, int FK_web_administrador_estado_rips)  
+        {
+            if (ModelState.IsValid)
+            {
+                db.SP_Registro_Usuario_Administrador(usuario,contrasenia, correo, nombres, apellidos, descripcion, extension,null,FK_web_administrador_rol,FK_web_administrador_estado_rips);
+                
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.FK_web_administrador_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Administrador.FK_web_administrador_rol);
+            //ViewBag.FK_web_administrador_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre",web_Administrador.FK_web_administrador_rol);
+            return Create();
+        }
+
+        // POST: Web_Administradores/Create NO ES FUNCIONAL
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Createnotfuncional([Bind(Include = "administrador_id,usuario,contrasenia,nombres,apellidos,descripcion,correo,extension,imagen,FK_web_administrador_rol,FK_web_administrador_estado_rips,fecha_modificacion")] Web_Administrador web_Administrador)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +80,7 @@ namespace WebAppCargadorRips_V2.Controllers
             }
 
             ViewBag.FK_web_administrador_rol = new SelectList(db.Web_Rol, "rol_id", "nombre", web_Administrador.FK_web_administrador_rol);
+            ViewBag.FK_web_administrador_estado_rips = new SelectList(db.Estado_RIPS, "estado_rips_id", "nombre", web_Administrador.FK_web_administrador_rol);
             return View(web_Administrador);
         }
 
