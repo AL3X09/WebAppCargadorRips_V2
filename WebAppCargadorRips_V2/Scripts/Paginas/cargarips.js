@@ -94,12 +94,21 @@ function callFechasPeriodos(rol) {
                     FechaMax = new Date(currentDate2.getFullYear(), currentDate2.getMonth() - 0, 0);
                     calendarios(FechaMin, FechaMax);
                 }
-
                 //valido si el prestador tiene la fecha habilitada para realizar el cargue
-                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 12).replace(' ', '') =='fechainicio' ) {
+                if (v.fecha_id != 1 && v.nombre_fecha.substring(0, 12).replace(' ', '') == 'fechainicio') {
+                    
                     FechaInicioReporte = v.valor_fecha.substring(0, 10);
                     if (new Date(today) < new Date(FechaInicioReporte)) {
                         $('#btncargarinfo').remove();
+                        iziToast.error({
+                            title: 'Precaución',
+                            message: 'Señor prestador usted se encuentra fuera de las fechas de carga.',
+                            position: 'topCenter',
+                            timeout: 50000,
+                            resetOnHover: true,
+                            drag: true,
+                            close: true,
+                        });
                     }
                     
                 }
@@ -110,6 +119,15 @@ function callFechasPeriodos(rol) {
                     //console.log(FechaFinReporte);
                     if (new Date(today) >= new Date(FechaFinReporte)) {
                         $('#btncargarinfo').remove();
+                        iziToast.error({
+                            title: 'Precaución',
+                            message: 'Señor prestador usted se encuentra fuera de las fechas de carga.',
+                            position: 'topCenter',
+                            timeout: 50000,
+                            resetOnHover: true,
+                            drag: true,
+                            close: true,
+                        });
                     }
                 }
                 else {

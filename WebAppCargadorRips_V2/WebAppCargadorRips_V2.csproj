@@ -891,6 +891,7 @@
     <Content Include="Img\tablero\default.png" />
     <Content Include="Img\tablero\indicadores.png" />
     <Content Include="Img\tablero\listado.png" />
+    <Content Include="Img\tablero\noatenciones.jpg" />
     <Content Include="Img\tablero\txt.png" />
     <Content Include="Img\tablero\validador.png" />
     <Content Include="Img\tboton\apdf.png" />

@@ -1,74 +1,103 @@
 ﻿@model WebAppCargadorRips_V2.EF_Models.Web_Pregunta_Frecuente
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles Pregunta";
 }
 
-<h2>Details</h2>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
 
-<div>
-    <h4>Web_Pregunta_Frecuente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>@ViewBag.Title</span>
+        </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tipo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pregunta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pregunta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.respuesta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.respuesta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_modificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.pregunta_frecuente_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- Heading -->
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+
+            <div class="card-body">
+
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nombre)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tipo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tipo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pregunta)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.pregunta)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.respuesta)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.respuesta)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fecha_modificacion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fecha_modificacion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Estado_RIPS.tipo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Estado_RIPS.tipo)
+                        </dd>
+
+                    </dl>
+                </div>
+                
+                <div>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.pregunta_frecuente_id }, new { @class = "btn btn-default" })
+                </div>
+
+                <div>
+                    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

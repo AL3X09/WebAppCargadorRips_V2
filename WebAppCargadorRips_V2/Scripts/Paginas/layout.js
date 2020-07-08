@@ -5,8 +5,8 @@
  */
 const getUrl = window.location;
 var token;
-const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
-//const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
+//const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
+const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
     
@@ -202,7 +202,7 @@ function getAllME(token) {
                 } else {
                     apellido = v.apellidos;
                 }
-                console.log(v);
+                //console.log(v);
                 //alguna de estos datos dinamicos estan en tablero/index o shared/sidebar
                 $("#imguser").attr("src", baseURL + v.imagen);
                 $("#imguserperfil").attr("src", baseURL + v.imagen);
@@ -294,7 +294,11 @@ function getControlTablero(id_rol) {
         success: function (response) {
 
             $.each(response, function (i, v) {
-
+                console.log(v.ruta.substring(0, 8).toLowerCase());
+                console.log(v.ruta.substring(0, 8).toLowerCase().search('https'));
+                console.log(v.nombre.toLowerCase());
+                console.log(v.nombre.toLowerCase().search("validador"));
+                
                 $('#listamandos').append(
 
                     '<div class="col-lg-3 col-sm-12" id"' + v.nombre + '">' +
@@ -315,8 +319,8 @@ function getControlTablero(id_rol) {
                     '<!-- Text -->' +
                     '<p class="card-text text-justify">' + v.descripcion + '</p>' +
                     '<!-- Button -->' +
-                    (v.nombre.toLowerCase().search("validador") > 1 ? '<div id="validador">' :  '<div>') +
-                    (v.pr_crear == true ? '<a ' + (v.nombre.toLowerCase().search("validador") > 1 ? ' href ="'+v.ruta+'" target="_blanc"' : 'href ="'+baseURL + v.ruta ) + '" class= "btn btn-info" id = "btnTacceso"  >Acceder</a >' : '') +
+                    (v.nombre.toLowerCase().search("validador") > 1 ? '<div id="validador">' :  '<div>') +//esta linea crea un div independiete para el link del validador
+                    (v.pr_crear == true ? '<a ' + (v.ruta.toLowerCase().substring(0, 8).search("https://") !== -1 ? ' href ="'+v.ruta+'" target="_blanc"' : 'href ="'+baseURL + v.ruta ) + '" class= "btn btn-info" id = "btnTacceso">Acceder</a >' : '') +
                     '</div>' +
                     '</div>' +
                     '</div >'
